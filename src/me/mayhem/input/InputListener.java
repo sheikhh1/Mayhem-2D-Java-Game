@@ -2,15 +2,31 @@ package me.mayhem.input;
 
 import org.jsfml.window.event.Event;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.Objects;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface InputListener {
+public abstract class InputListener<T extends Event> {
 
-    Event.Type[] events() default {};
+    private final Event.Type type;
+
+    public InputListener(Event.Type type) {
+        this.type = type;
+
+        InputManager.registerInput(this);
+    }
+
+    public Event.Type getType() {
+        return this.type;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void onEvent(Event event) {
+        if (!Objects.equals(this.type, event.type)) {
+            return;
+        }
+
+        this.takeInput((T) event);
+    }
+
+    protected abstract void takeInput(T event);
 
 }
