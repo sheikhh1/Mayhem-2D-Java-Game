@@ -2,9 +2,7 @@ package me.mayhem;
 
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
-import me.mayhem.input.test.KeyboardListener;
 import org.jsfml.graphics.Color;
-import org.jsfml.graphics.Image;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
