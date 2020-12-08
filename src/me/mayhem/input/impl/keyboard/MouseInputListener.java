@@ -1,4 +1,4 @@
-package me.mayhem.input.impl;
+package me.mayhem.input.impl.keyboard;
 
 import me.mayhem.input.InputListener;
 import org.jsfml.window.event.Event;
