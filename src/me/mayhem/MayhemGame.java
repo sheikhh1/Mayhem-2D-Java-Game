@@ -50,6 +50,7 @@ public class MayhemGame {
 
             //Handle events
             for(Event event : window.pollEvents()) {
+
                 if (event.type == Event.Type.CLOSED) {
                     //The user pressed the close button
                     window.close();
