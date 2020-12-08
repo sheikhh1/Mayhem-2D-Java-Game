@@ -5,13 +5,10 @@ import me.mayhem.input.InputManager;
 import me.mayhem.ui.ButtonInteractable;
 import me.mayhem.ui.Interatable;
 import org.jsfml.graphics.*;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.Font;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
 
-import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -59,7 +56,7 @@ public class MayhemGame {
 
             //Display what was drawn (... the red color!)
             window.display();
-
+            //You suk
             //Handle events
             for(Event event : window.pollEvents()) {
 
