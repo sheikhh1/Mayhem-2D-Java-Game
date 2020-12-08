@@ -2,25 +2,26 @@ package me.mayhem.input;
 
 import org.jsfml.window.event.Event;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class InputListener<T extends Event> {
 
-    private final Event.Type type;
+    private final List<Event.Type> types;
 
-    public InputListener(Event.Type type) {
-        this.type = type;
+    public InputListener(Event.Type... types) {
+        this.types = Arrays.asList(types);
 
         InputManager.registerInput(this);
     }
 
-    public Event.Type getType() {
-        return this.type;
+    public List<Event.Type> getTypes() {
+        return this.types;
     }
 
     @SuppressWarnings("unchecked")
     public void onEvent(Event event) {
-        if (!Objects.equals(this.type, event.type)) {
+        if (!this.types.contains(event.type)) {
             return;
         }
 
