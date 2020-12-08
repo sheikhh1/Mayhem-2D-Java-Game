@@ -10,6 +10,8 @@ public abstract class InputListener<T extends Event> {
 
     public InputListener(Event.Type type) {
         this.type = type;
+
+        InputManager.registerInput(this);
     }
 
     public Event.Type getType() {
