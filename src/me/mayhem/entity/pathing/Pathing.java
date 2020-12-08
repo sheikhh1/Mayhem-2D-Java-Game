@@ -15,4 +15,5 @@ public interface Pathing {
     void updatePosition(Entity entity);
 
 
+
 }
