@@ -2,16 +2,34 @@ package me.mayhem.math;
 
 import org.jsfml.system.Vector2f;
 
+/**
+ *
+ * Vector is a proxy class used to reduce dependency on JSFML
+ *
+ */
 public class Vector {
 
     public static final Vector ZERO = new Vector(Vector2f.ZERO);
 
     private Vector2f vector2f;
 
+    /**
+     *
+     * Creates a new vector with given X and Y values
+     *
+     * @param x Any real number
+     * @param y Any real number
+     */
     public Vector(float x, float y) {
         this.vector2f = new Vector2f(x, y);
     }
 
+    /**
+     *
+     * A private constructor for constants
+     *
+     * @param vector2f The constant vector
+     */
     private Vector(Vector2f vector2f) {
         this.vector2f = vector2f;
     }
