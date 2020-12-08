@@ -1,22 +1,22 @@
 package me.mayhem.entity;
 
+import org.jsfml.graphics.Shape;
 import org.jsfml.system.Vector2f;
 
-public abstract class AbstractEntity implements Entity {
+public abstract class AbstractEntity<T extends Shape> implements Entity {
 
     private final int id;
     private final int priority;
+    private final T shape;
 
-    private Vector2f position;
-
-    public AbstractEntity(int id) {
-        this(id, 0, new Vector2f(0, 0));
-    }
-
-    public AbstractEntity(int id, int priority, Vector2f position) {
+    public AbstractEntity(int id, int priority, T shape) {
         this.id = id;
         this.priority = priority;
-        this.position = position;
+        this.shape = shape;
+    }
+
+    protected T getShape() {
+        return this.shape;
     }
 
     @Override
@@ -31,11 +31,13 @@ public abstract class AbstractEntity implements Entity {
 
     @Override
     public Vector2f getPosition() {
-        return this.position;
+        return this.shape.getPosition();
     }
 
     @Override
     public void setPosition(Vector2f position) {
-        this.position = position;
+        this.shape.setPosition(position);
     }
+
+
 }

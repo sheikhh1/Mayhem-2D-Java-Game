@@ -13,6 +13,10 @@ public interface Entity {
 
     void setPosition(Vector2f position);
 
+
+
+
+
     void draw(RenderWindow window);
 
 }
