@@ -2,9 +2,9 @@ package me.mayhem.input.impl.keyboard;
 
 import me.mayhem.input.InputListener;
 import org.jsfml.window.event.Event;
-import org.jsfml.window.event.MouseEvent;
+import org.jsfml.window.event.MouseButtonEvent;
 
-public abstract class MouseButtonListener extends InputListener<MouseEvent> {
+public abstract class MouseButtonListener extends InputListener<MouseButtonEvent> {
 
     public MouseButtonListener() {
         super(Event.Type.MOUSE_BUTTON_PRESSED,
