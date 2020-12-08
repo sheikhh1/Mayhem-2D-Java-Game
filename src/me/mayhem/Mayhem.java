@@ -1,5 +1,7 @@
 package me.mayhem;
 
+import me.mayhem.input.InputListener;
+import me.mayhem.input.InputManager;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -21,6 +23,10 @@ public class Mayhem {
             for (Event event : window.pollEvents()) {
                 if (event.type == Event.Type.CLOSED) {
                     window.close();
+                } else {
+                    for (InputListener<?> listener : InputManager.getListeners(event.type)) {
+                        listener.onEvent(event);
+                    }
                 }
             }
         }
