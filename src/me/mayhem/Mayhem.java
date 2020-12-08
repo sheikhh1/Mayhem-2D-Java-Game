@@ -18,6 +18,8 @@ public class Mayhem {
         while (window.isOpen()) {
             window.clear(Color.WHITE);
 
+            //TODO: tick drawables
+
             window.display();
 
             for (Event event : window.pollEvents()) {
@@ -29,6 +31,8 @@ public class Mayhem {
                     }
                 }
             }
+
+            //TODO: tick objects/entities
         }
     }
 }
