@@ -9,6 +9,10 @@ public abstract class AbstractInteractable implements Interatable {
 
     private Shape shape;
 
+    public AbstractInteractable(Shape shape) {
+        this.shape = shape;
+    }
+
     @Override
     public void onInteract(RenderWindow window, Event event) {
         if (event instanceof MouseEvent) {
