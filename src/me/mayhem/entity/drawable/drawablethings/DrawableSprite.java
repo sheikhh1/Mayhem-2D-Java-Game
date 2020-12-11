@@ -1,7 +1,9 @@
 package me.mayhem.entity.drawable.drawablethings;
 
 import me.mayhem.entity.drawable.Drawable;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
+import org.jsfml.graphics.Texture;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -25,15 +27,17 @@ public class DrawableSprite implements Drawable {
      * @param path the file path of an image to to be added to the canvas
      */
     public DrawableSprite(String path) {
+        Texture myTexture = new Texture();
+        this.loadFromFile(myTexture, path);
+        this.mySprite = new Sprite(myTexture);
+    }
+
+    private void loadFromFile(Texture texture, String path) {
         try {
-            Texture myTexture = new Texture();
-            myTexture.loadFromFile((Paths.get(path)));
-            this.mySprite = new Sprite(myTexture);
-
-        } catch(IOException ex){
-            ex.printStackTrace();
+            texture.loadFromFile(Paths.get(path));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 
     /**
