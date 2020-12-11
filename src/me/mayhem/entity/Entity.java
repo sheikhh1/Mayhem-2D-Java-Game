@@ -39,7 +39,9 @@ public class Entity {
         return this.motion;
     }
 
-    public Pathing getPathing() {return this.pathing;}
+    public Pathing getPathing() {
+        return this.pathing;
+    }
 
     public Hitbox getHitbox() {
         return this.hitbox;
