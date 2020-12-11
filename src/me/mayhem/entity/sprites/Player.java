@@ -2,7 +2,7 @@ package me.mayhem.entity.sprites;
 
 import me.mayhem.entity.Entity;
 import me.mayhem.entity.EntityType;
-import me.mayhem.entity.pathing.NoPathing;
+import me.mayhem.entity.pathing.impl.NoPathing;
 import me.mayhem.math.Vector;
 
 /**

@@ -1,11 +1,12 @@
-package me.mayhem.entity.pathing;
+package me.mayhem.entity.pathing.impl;
 
 import me.mayhem.entity.Entity;
+import me.mayhem.entity.pathing.Pathing;
 
 /**
  * Required to make an entity jump
  */
-public class JumpPathing implements Pathing{
+public class JumpPathing implements Pathing {
 
 
     @Override
