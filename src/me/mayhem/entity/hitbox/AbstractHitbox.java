@@ -6,15 +6,23 @@ public abstract class AbstractHitbox implements Hitbox {
 
     protected int priority;
     protected Vector position;
-    protected Vector motion;
     protected int height;
     protected int width;
 
-    public AbstractHitbox(int priority, Vector position, Vector motion, int height, int width) {
+    public AbstractHitbox(int priority, Vector position, int height, int width) {
         this.priority = priority;
         this.position = position;
-        this.motion = motion;
         this.height = height;
         this.width = width;
+    }
+
+    @Override
+    public int getPriority() {
+        return this.priority;
+    }
+
+    @Override
+    public Vector asVector() {
+        return this.position;
     }
 }

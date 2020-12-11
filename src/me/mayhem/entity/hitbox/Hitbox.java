@@ -1,6 +1,8 @@
 package me.mayhem.entity.hitbox;
 
 
+import me.mayhem.math.Vector;
+
 /**
  *
  *
@@ -8,8 +10,10 @@ package me.mayhem.entity.hitbox;
  */
 public interface Hitbox {
 
+    int getPriority();
+
     boolean collides(Hitbox other);
 
-    void handleCollision(Hitbox other);
+    Vector asVector();
 
 }
