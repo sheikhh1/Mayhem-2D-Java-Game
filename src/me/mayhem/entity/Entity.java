@@ -18,6 +18,10 @@ public class Entity {
         this.pathing = pathing;
     }
 
+    public EntityType getType() {
+        return this.type;
+    }
+
     public Vector getPosition() {
         return this.position;
     }
