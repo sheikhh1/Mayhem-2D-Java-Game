@@ -8,6 +8,10 @@ import me.mayhem.math.Vector;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Entity Class
+ * Used to store all the common information per entity in the game
+ */
 public class Entity {
 
     private final EntityType type;
@@ -18,6 +22,14 @@ public class Entity {
     private Hitbox hitbox;
     private List<Attribute<?>> attributes;
 
+    /**
+     * Entity Constructor
+     * @param type - Type of Entity - eg Player/Enemy
+     * @param position - Current Position of entity relative to the game window
+     * @param motion - Motion of the entity eg if entity is moving
+     * @param pathing - Pathing for AI generated movement
+     * @param attributes - Attributes an entity has - eg health
+     */
     public Entity(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
         this.type = type;
         this.position = position;
