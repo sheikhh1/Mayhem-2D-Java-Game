@@ -1,6 +1,7 @@
-package me.mayhem.entity.pathing;
+package me.mayhem.entity.pathing.impl;
 
 import me.mayhem.entity.Entity;
+import me.mayhem.entity.pathing.Pathing;
 
 /**
  * NoPathing required for the player entity as AI is not needed
