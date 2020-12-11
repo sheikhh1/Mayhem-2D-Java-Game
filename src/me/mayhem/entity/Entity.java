@@ -5,9 +5,18 @@ import me.mayhem.math.Vector;
 
 public class Entity {
 
+    private final EntityType type;
+
     private Vector position;
     private Vector motion;
     private Pathing pathing;
+
+    public Entity(EntityType type, Vector position, Vector motion, Pathing pathing) {
+        this.type = type;
+        this.position = position;
+        this.motion = motion;
+        this.pathing = pathing;
+    }
 
     public Vector getPosition() {
         return this.position;
