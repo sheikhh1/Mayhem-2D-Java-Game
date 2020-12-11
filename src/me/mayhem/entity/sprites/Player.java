@@ -2,6 +2,7 @@ package me.mayhem.entity.sprites;
 
 import me.mayhem.entity.Entity;
 import me.mayhem.entity.EntityType;
+import me.mayhem.entity.pathing.NoPathing;
 import me.mayhem.math.Vector;
 
 /**
@@ -13,7 +14,7 @@ public class Player extends Entity {
     private String name;
 
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.ZERO, null); //TODO: create none pathing
+        super(EntityType.PLAYER, position, Vector.ZERO, new NoPathing());
 
         this.name = name;
     }
