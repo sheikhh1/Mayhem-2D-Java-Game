@@ -40,10 +40,6 @@ public class DrawableSprite implements Drawable {
         }
     }
 
-    /**
-     *
-     * @param canvas the canvas to draw onto
-     */
     @Override
     public void draw(RenderWindow canvas) {
         canvas.draw(this.mySprite);
