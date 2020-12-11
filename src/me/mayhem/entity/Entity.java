@@ -5,6 +5,7 @@ import me.mayhem.entity.hitbox.Hitbox;
 import me.mayhem.entity.pathing.Pathing;
 import me.mayhem.math.Vector;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Entity {
@@ -23,6 +24,7 @@ public class Entity {
         this.motion = motion;
         this.pathing = pathing;
         this.hitbox = null;
+        this.attributes = Arrays.asList(attributes);
     }
 
     public EntityType getType() {
@@ -41,5 +43,19 @@ public class Entity {
 
     public Hitbox getHitbox() {
         return this.hitbox;
+    }
+
+    public List<Attribute<?>> getAttributes() {
+        return this.attributes;
+    }
+
+    public Attribute<?> getAttribute(String identifier) {
+        for (Attribute<?> attribute : this.attributes) {
+            if (attribute.getIdentifier().equals(identifier)) {
+                return attribute;
+            }
+        }
+
+        return null;
     }
 }
