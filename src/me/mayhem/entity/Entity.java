@@ -1,8 +1,11 @@
 package me.mayhem.entity;
 
+import me.mayhem.attribute.Attribute;
 import me.mayhem.entity.hitbox.Hitbox;
 import me.mayhem.entity.pathing.Pathing;
 import me.mayhem.math.Vector;
+
+import java.util.List;
 
 public class Entity {
 
@@ -12,8 +15,9 @@ public class Entity {
     private Vector motion;
     private Pathing pathing;
     private Hitbox hitbox;
+    private List<Attribute<?>> attributes;
 
-    public Entity(EntityType type, Vector position, Vector motion, Pathing pathing) {
+    public Entity(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
         this.type = type;
         this.position = position;
         this.motion = motion;
