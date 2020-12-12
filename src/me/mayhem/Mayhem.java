@@ -1,5 +1,7 @@
 package me.mayhem;
 
+import me.mayhem.entity.sprites.player.PlayerKeyboardListener;
+import me.mayhem.entity.sprites.player.PlayerMouseListener;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import org.jsfml.graphics.Color;
@@ -14,6 +16,9 @@ public class Mayhem {
         window.create(new VideoMode(640, 480), "Mayhem");
 
         window.setFramerateLimit(30);
+
+        new PlayerMouseListener();
+        new PlayerKeyboardListener();
 
         while (window.isOpen()) {
             window.clear(Color.WHITE);
