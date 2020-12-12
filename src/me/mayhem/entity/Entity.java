@@ -47,6 +47,8 @@ public class Entity {
         return this.position;
     }
 
+    public void setPosition(float x, float y) {getPosition().add(x,y);}
+
     public Vector getMotion() {
         return this.motion;
     }
