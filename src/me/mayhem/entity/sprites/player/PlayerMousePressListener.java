@@ -6,7 +6,7 @@ import org.jsfml.window.event.MouseButtonEvent;
 /**
  * Mouse Listener for the Player Entity
  */
-public class PlayerMouseListener extends MouseButtonPressListener {
+public class PlayerMousePressListener extends MouseButtonPressListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {

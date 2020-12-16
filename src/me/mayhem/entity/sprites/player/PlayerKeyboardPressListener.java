@@ -6,11 +6,11 @@ import org.jsfml.window.event.KeyEvent;
 /**
  * Keyboard input listener for the Player Entity
  */
-public class PlayerKeyboardInputListener extends KeyboardPressListener {
+public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private Player player;
 
-    public PlayerKeyboardInputListener(Player p){
+    public PlayerKeyboardPressListener(Player p){
         this.player = p;
     }
 
@@ -21,8 +21,9 @@ public class PlayerKeyboardInputListener extends KeyboardPressListener {
 
         switch(event.asKeyEvent().key){
             case W: // Replace with SPACE?
+                player.setKeyPress(1);
                 System.out.println("Jump");
-                player.setVelY(-5f);
+                //player.setVelY(-5f);
                 break;
             case A:
                 System.out.println("Move Back");
