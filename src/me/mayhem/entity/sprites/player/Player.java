@@ -3,12 +3,11 @@ package me.mayhem.entity.sprites.player;
 import me.mayhem.entity.Entity;
 import me.mayhem.entity.EntityType;
 import me.mayhem.entity.pathing.impl.NoPathing;
+import me.mayhem.entity.sprites.player.physics.PlayerPhysics;
 import me.mayhem.math.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
-
-import java.awt.*;
 
 /**
  * Player Class
@@ -20,8 +19,13 @@ public class Player extends Entity {
 
     //TODO: Implement DrawableSprite
     private RectangleShape test = new RectangleShape(new Vector(50,50).toVector());
-    private float velX = 0f;
-    private float velY = 0f;
+    public enum playerState {FORWARD,BACK,JUMPING,FALLING,STANDING};
+    PlayerPhysics p = new PlayerPhysics();
+
+    // Determine what the player is currently doing
+    private boolean jumping;
+    private boolean forward;
+    private boolean back;
 
     /**
      * Player Constructor
@@ -44,23 +48,20 @@ public class Player extends Entity {
     }
 
     /**
-     * Velocity in X Direction
-     * @param x
+     * Keyboard press listener sends a player state depending on which key has been pressed
+     * @param state - Current state of the player
      */
-    public void setVelX(float x) {
-        this.velX = x;
-        this.position.add(velX,0);
-    }
-
-    /**
-     * Velocity in Y Direction
-     * @param y
-     */
-    public void setVelY(float y){
-        this.velY = y;
-        this.position.add(0,velY);
-
-    }
+   public void setState(playerState state){
+        if (state == playerState.JUMPING){
+            jumping = true;
+        } else if (state == playerState.FORWARD){
+            forward = true;
+            back = false;
+        } else if (state == playerState.BACK){
+            back = true;
+            forward = false;
+        }
+   }
 
     /**
      * Updates position of the Player
