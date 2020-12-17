@@ -19,4 +19,9 @@ public class PlayerPhysics {
      * Move Player Forward method by 5 Pixels
      */
     public void moveForward(){currentPosition.add(MAX_SPEED,0);}
+
+    /**
+     * Move Player Back method by 5 Pixels
+     */
+    public void moveBack(){currentPosition.subtract(MAX_SPEED,0);}
 }
