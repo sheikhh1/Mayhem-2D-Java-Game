@@ -23,9 +23,10 @@ public class Player extends Entity {
     PlayerPhysics p = new PlayerPhysics();
 
     // Determine what the player is currently doing
-    public boolean jumping;
-    public boolean forward;
-    public  boolean back;
+    public boolean jumping = false;
+    public boolean forward = false;
+    public boolean back = false;
+    public boolean fall = true;
 
     /**
      * Player Constructor
@@ -74,6 +75,10 @@ public class Player extends Entity {
      * @param rend
      */
     public void update(RenderWindow rend){
+        if (fall) {
+            p.fall();
+            if (p.checkCollision()) {fall = false;}
+        }
         if (jumping){
             p.jump();
             if (p.checkCollision()){jumping = false;}

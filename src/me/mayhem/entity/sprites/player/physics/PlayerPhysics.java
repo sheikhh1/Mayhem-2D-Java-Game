@@ -8,6 +8,7 @@ public class PlayerPhysics {
     private float MAX_SPEED = 5f;
     private float JUMP_STRENGTH = 20f;
     private Vector currentPosition;
+    private float FALL_STRENGTH = 0;
 
     private float yBound = 430f; // Floor Height = GetYPosition - Rectangle.size
 
@@ -33,6 +34,14 @@ public class PlayerPhysics {
     public void jump(){
         currentPosition.subtract(0,JUMP_STRENGTH);
         JUMP_STRENGTH -= GRAVITY;
+    }
+
+    /**
+     * Basic Fall Method Added
+     */
+    public void fall(){
+        currentPosition.add(0,FALL_STRENGTH);
+        FALL_STRENGTH += GRAVITY;
     }
 
     /**
