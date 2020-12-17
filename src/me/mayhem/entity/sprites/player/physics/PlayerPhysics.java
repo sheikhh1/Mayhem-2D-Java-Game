@@ -9,6 +9,8 @@ public class PlayerPhysics {
     private float JUMP_STRENGTH = 20f;
     private Vector currentPosition;
 
+    private float yBound = 430f; // Floor Height = GetYPosition - Rectangle.size
+
     /**
      * Takes current player position from Player Class
      * @param currentPosition - Player Position
@@ -31,5 +33,19 @@ public class PlayerPhysics {
     public void jump(){
         currentPosition.subtract(0,JUMP_STRENGTH);
         JUMP_STRENGTH -= GRAVITY;
+    }
+
+    /**
+     * Test Collision Checker
+     * @return true if player has collided with floor, otherwise return false
+     */
+    public boolean checkCollision(){
+        if (currentPosition.getY() >= yBound){
+            currentPosition.set(currentPosition.getX(),yBound);
+            JUMP_STRENGTH = 20f;
+            return true;
+        }
+
+        return false;
     }
 }
