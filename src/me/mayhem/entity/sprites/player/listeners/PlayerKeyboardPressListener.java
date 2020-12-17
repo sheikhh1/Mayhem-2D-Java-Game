@@ -1,5 +1,6 @@
-package me.mayhem.entity.sprites.player;
+package me.mayhem.entity.sprites.player.listeners;
 
+import me.mayhem.entity.sprites.player.Player;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
 import org.jsfml.window.event.KeyEvent;
 
