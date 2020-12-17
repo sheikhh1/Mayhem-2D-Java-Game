@@ -4,6 +4,9 @@ import me.mayhem.math.Vector;
 
 public class PlayerPhysics {
 
+    private float GRAVITY = 1.5f;
+    private float MAX_SPEED = 5f;
+    private float JUMP_STRENGTH = 20f;
     private Vector currentPosition;
 
     /**
@@ -11,4 +14,6 @@ public class PlayerPhysics {
      * @param currentPosition - Player Position
      */
     public void setPlayerPosition(Vector currentPosition){this.currentPosition=currentPosition;}
+
+
 }
