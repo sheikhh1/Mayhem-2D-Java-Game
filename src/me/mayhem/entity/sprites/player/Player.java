@@ -23,9 +23,9 @@ public class Player extends Entity {
     PlayerPhysics p = new PlayerPhysics();
 
     // Determine what the player is currently doing
-    private boolean jumping;
-    private boolean forward;
-    private boolean back;
+    public boolean jumping;
+    public boolean forward;
+    public  boolean back;
 
     /**
      * Player Constructor
@@ -64,10 +64,19 @@ public class Player extends Entity {
    }
 
     /**
-     * Updates position of the Player
+     * Updates position of the Player depending on user input
+     * Outputs onto main window
      * @param rend
      */
     public void update(RenderWindow rend){
+        if (jumping){
+            p.jump();
+            if (p.checkCollision()){jumping = false;}
+        } else if (forward){
+            p.moveForward();
+        } else if (back){
+            p.moveBack();
+        }
         test.setPosition(this.position.toVector());
         rend.draw(test);
     }
