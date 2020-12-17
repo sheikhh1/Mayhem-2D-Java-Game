@@ -18,8 +18,6 @@ public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
     protected void takeInput(KeyEvent event) {
         switch(event.asKeyEvent().key){
             case A:
-                player.setState(Player.playerState.STANDING);
-                break;
             case D:
                 player.setState(Player.playerState.STANDING);
                 break;
