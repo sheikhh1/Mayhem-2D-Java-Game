@@ -1,8 +1,9 @@
 package me.mayhem;
 
 import me.mayhem.entity.sprites.player.Player;
-import me.mayhem.entity.sprites.player.PlayerKeyboardInputListener;
-import me.mayhem.entity.sprites.player.PlayerMouseListener;
+import me.mayhem.entity.sprites.player.listeners.PlayerKeyboardPressListener;
+import me.mayhem.entity.sprites.player.listeners.PlayerKeyboardReleaseListener;
+import me.mayhem.entity.sprites.player.listeners.PlayerMousePressListener;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.math.Vector;
@@ -19,8 +20,9 @@ public class Mayhem {
         Player myPlayer = new Player("test", new Vector(100,100));
         window.setFramerateLimit(30);
 
-        new PlayerMouseListener();
-        new PlayerKeyboardInputListener(myPlayer);
+        new PlayerMousePressListener();
+        new PlayerKeyboardPressListener(myPlayer);
+        new PlayerKeyboardReleaseListener(myPlayer);
 
         while (window.isOpen()) {
             window.clear(Color.WHITE);
