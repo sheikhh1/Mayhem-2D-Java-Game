@@ -24,4 +24,12 @@ public class PlayerPhysics {
      * Move Player Back method by 5 Pixels
      */
     public void moveBack(){currentPosition.subtract(MAX_SPEED,0);}
+
+    /**
+     * Jump method for the Player
+     */
+    public void jump(){
+        currentPosition.subtract(0,JUMP_STRENGTH);
+        JUMP_STRENGTH -= GRAVITY;
+    }
 }
