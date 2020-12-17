@@ -17,26 +17,25 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     @Override
     protected void takeInput(KeyEvent event) {
-        //TODO: Add functionality for W,A,S,D
-        // Fight Button?
+        //TODO: Add button functionality for:
+        // Fight
+        // Crouch?
+        // S key
+        // Pick-up
+        // Pause / Show Menu
 
         switch(event.asKeyEvent().key){
             case W: // Replace with SPACE?
-                player.setKeyPress(1);
-                System.out.println("Jump");
-                //player.setVelY(-5f);
+                player.setState(Player.playerState.JUMPING);
                 break;
             case A:
-                System.out.println("Move Back");
-                player.setVelX(-5f);
+                player.setState(Player.playerState.BACK);
                 break;
             case S: // Pick up button?
-                System.out.println("S is pressed");
-                player.setVelY(5f);
+                System.out.println("S is not mapped to any functionality ");
                 break;
             case D:
-                System.out.println("Move Forward");
-                player.setVelX(5f);
+                player.setState(Player.playerState.FORWARD);
                 break;
         }
     }
