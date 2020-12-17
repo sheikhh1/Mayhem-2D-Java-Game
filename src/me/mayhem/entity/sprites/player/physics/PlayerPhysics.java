@@ -15,5 +15,8 @@ public class PlayerPhysics {
      */
     public void setPlayerPosition(Vector currentPosition){this.currentPosition=currentPosition;}
 
-
+    /**
+     * Move Player Forward method by 5 Pixels
+     */
+    public void moveForward(){currentPosition.add(MAX_SPEED,0);}
 }
