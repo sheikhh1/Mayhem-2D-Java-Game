@@ -38,6 +38,8 @@ public class Player extends Entity {
         this.name = name; // Name assigned and stored
         this.position = position;
 
+        p.setPlayerPosition(this.position);
+
         test.setFillColor(Color.BLUE);
         test.setScale(1,1);
 
@@ -60,6 +62,9 @@ public class Player extends Entity {
         } else if (state == playerState.BACK){
             back = true;
             forward = false;
+        } else if (state == playerState.STANDING){
+            forward = false;
+            back = false;
         }
    }
 
@@ -72,7 +77,8 @@ public class Player extends Entity {
         if (jumping){
             p.jump();
             if (p.checkCollision()){jumping = false;}
-        } else if (forward){
+        }
+        if (forward){
             p.moveForward();
         } else if (back){
             p.moveBack();
