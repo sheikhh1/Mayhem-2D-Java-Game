@@ -1,8 +1,13 @@
 package me.mayhem.entity.sprites.player.listeners;
 
 import me.mayhem.entity.sprites.player.Player;
+import me.mayhem.entity.sprites.player.PlayerState;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
+import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Keyboard input listener for the Player Entity
@@ -10,9 +15,14 @@ import org.jsfml.window.event.KeyEvent;
 public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private Player player;
+    private Map<Keyboard.Key, PlayerState> keyHandler = new HashMap<>();
 
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
+
+        keyHandler.put(Keyboard.Key.W,PlayerState.JUMPING);
+        keyHandler.put(Keyboard.Key.A,PlayerState.BACK);
+        keyHandler.put(Keyboard.Key.D,PlayerState.FORWARD);
     }
 
     @Override
@@ -24,19 +34,7 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
         // Pick-up
         // Pause / Show Menu
 
-        switch(event.asKeyEvent().key){
-            case W: // Replace with SPACE?
-                player.setState(Player.playerState.JUMPING);
-                break;
-            case A:
-                player.setState(Player.playerState.BACK);
-                break;
-            case S: // Pick up button?
-                System.out.println("S is not mapped to any functionality ");
-                break;
-            case D:
-                player.setState(Player.playerState.FORWARD);
-                break;
-        }
+        player.setState(keyHandler.get(event.asKeyEvent().key));
+
     }
 }
