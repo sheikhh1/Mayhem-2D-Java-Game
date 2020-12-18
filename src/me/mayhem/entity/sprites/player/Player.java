@@ -36,6 +36,8 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
+        playerPhysics.setPlayerPosition(position);
+
         this.test.setFillColor(Color.BLUE);
         this.test.setScale(1,1);
 
