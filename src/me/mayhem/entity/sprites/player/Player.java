@@ -45,6 +45,38 @@ public class Player extends Entity {
         return this.name;
     }
 
+    public boolean isJumping() {
+        return this.jumping;
+    }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
+
+    public boolean isForward() {
+        return this.forward;
+    }
+
+    public void setForward(boolean forward) {
+        this.forward = forward;
+    }
+
+    public boolean isBack() {
+        return this.back;
+    }
+
+    public void setBack(boolean back) {
+        this.back = back;
+    }
+
+    public boolean isFall() {
+        return this.fall;
+    }
+
+    public void setFall(boolean fall) {
+        this.fall = fall;
+    }
+
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
@@ -67,9 +99,9 @@ public class Player extends Entity {
     /**
      * Updates position of the Player depending on user input
      * Outputs onto main window
-     * @param rend
+     * @param window
      */
-    public void update(RenderWindow rend) {
+    public void update(RenderWindow window) {
         if (this.fall) {
             this.playerPhysics.fall();
 
@@ -92,6 +124,6 @@ public class Player extends Entity {
         }
 
         this.test.setPosition(this.getPosition().toVector());
-        rend.draw(this.test);
+        window.draw(this.test);
     }
 }
