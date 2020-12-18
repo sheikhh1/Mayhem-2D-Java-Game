@@ -11,8 +11,8 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private Player player;
 
-    public PlayerKeyboardPressListener(Player p){
-        this.player = p;
+    public PlayerKeyboardPressListener(Player player) {
+        this.player = player;
     }
 
     @Override
