@@ -36,8 +36,8 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        test.setFillColor(Color.BLUE);
-        test.setScale(1,1);
+        this.test.setFillColor(Color.BLUE);
+        this.test.setScale(1,1);
 
     }
 
@@ -53,14 +53,14 @@ public class Player extends Entity {
         if (state == PlayerState.JUMPING){
             this.jumping = true;
         } else if (state == PlayerState.FORWARD){
-            forward = true;
-            back = false;
+            this.forward = true;
+            this.back = false;
         } else if (state == PlayerState.BACK){
-            back = true;
-            forward = false;
+            this.back = true;
+            this.forward = false;
         } else if (state == PlayerState.STANDING){
-            forward = false;
-            back = false;
+            this.forward = false;
+            this.back = false;
         }
    }
 
@@ -70,26 +70,28 @@ public class Player extends Entity {
      * @param rend
      */
     public void update(RenderWindow rend) {
-        if (fall) {
-            playerPhysics.fall();
-            if (playerPhysics.checkCollision()) {
+        if (this.fall) {
+            this.playerPhysics.fall();
+
+            if (this.playerPhysics.checkCollision()) {
                 fall = false;
             }
         }
-        if (jumping) {
-            playerPhysics.jump();
-            if (playerPhysics.checkCollision()) {
-                jumping = false;
+
+        if (this.jumping) {
+            this.playerPhysics.jump();
+            if (this.playerPhysics.checkCollision()) {
+                this.jumping = false;
             }
         }
-        if (forward) {
-            playerPhysics.moveForward();
+
+        if (this.forward) {
+            this.playerPhysics.moveForward();
         } else if (back) {
-            playerPhysics.moveBack();
+            this.playerPhysics.moveBack();
         }
-        test.setPosition(this.getPosition().toVector());
-        rend.draw(test);
+
+        this.test.setPosition(this.getPosition().toVector());
+        rend.draw(this.test);
     }
-
-
 }
