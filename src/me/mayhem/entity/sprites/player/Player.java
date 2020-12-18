@@ -15,18 +15,16 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private Vector position;
 
     //TODO: Implement DrawableSprite
     private RectangleShape test = new RectangleShape(new Vector(50,50).toVector());
-    public enum playerState {FORWARD,BACK,JUMPING,FALLING,STANDING};
-    PlayerPhysics p = new PlayerPhysics();
+    private PlayerPhysics playerPhysics = new PlayerPhysics();
 
     // Determine what the player is currently doing
-    public boolean jumping = false;
-    public boolean forward = false;
-    public boolean back = false;
-    public boolean fall = true;
+    private boolean jumping = false;
+    private boolean forward = false;
+    private boolean back = false;
+    private boolean fall = true;
 
     /**
      * Player Constructor
@@ -37,9 +35,6 @@ public class Player extends Entity {
         super(EntityType.PLAYER, position, Vector.ZERO, new NoPathing());
 
         this.name = name; // Name assigned and stored
-        this.position = position;
-
-        p.setPlayerPosition(this.position);
 
         test.setFillColor(Color.BLUE);
         test.setScale(1,1);
@@ -54,16 +49,16 @@ public class Player extends Entity {
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
      */
-   public void setState(playerState state){
-        if (state == playerState.JUMPING){
-            jumping = true;
-        } else if (state == playerState.FORWARD){
+   public void setState(PlayerState state){
+        if (state == PlayerState.JUMPING){
+            this.jumping = true;
+        } else if (state == PlayerState.FORWARD){
             forward = true;
             back = false;
-        } else if (state == playerState.BACK){
+        } else if (state == PlayerState.BACK){
             back = true;
             forward = false;
-        } else if (state == playerState.STANDING){
+        } else if (state == PlayerState.STANDING){
             forward = false;
             back = false;
         }
@@ -74,21 +69,25 @@ public class Player extends Entity {
      * Outputs onto main window
      * @param rend
      */
-    public void update(RenderWindow rend){
+    public void update(RenderWindow rend) {
         if (fall) {
-            p.fall();
-            if (p.checkCollision()) {fall = false;}
+            playerPhysics.fall();
+            if (playerPhysics.checkCollision()) {
+                fall = false;
+            }
         }
-        if (jumping){
-            p.jump();
-            if (p.checkCollision()){jumping = false;}
+        if (jumping) {
+            playerPhysics.jump();
+            if (playerPhysics.checkCollision()) {
+                jumping = false;
+            }
         }
-        if (forward){
-            p.moveForward();
-        } else if (back){
-            p.moveBack();
+        if (forward) {
+            playerPhysics.moveForward();
+        } else if (back) {
+            playerPhysics.moveBack();
         }
-        test.setPosition(this.position.toVector());
+        test.setPosition(this.getPosition().toVector());
         rend.draw(test);
     }
 
