@@ -4,11 +4,12 @@ import me.mayhem.math.Vector;
 
 public class PlayerPhysics {
 
-    private float GRAVITY = 1.5f;
-    private float MAX_SPEED = 5f;
-    private float JUMP_STRENGTH = 20f;
+    private static final float GRAVITY = 1.5f;
+    private static final float MAX_SPEED = 5f;
+
+    private float jumpStrength = 20f;
+    private float fallStrength = 0;
     private Vector currentPosition;
-    private float FALL_STRENGTH = 0;
 
     private float yBound = 430f; // Floor Height = GetYPosition - Rectangle.size
 
@@ -16,42 +17,48 @@ public class PlayerPhysics {
      * Takes current player position from Player Class
      * @param currentPosition - Player Position
      */
-    public void setPlayerPosition(Vector currentPosition){this.currentPosition=currentPosition;}
+    public void setPlayerPosition(Vector currentPosition) {
+        this.currentPosition = currentPosition;
+    }
 
     /**
      * Move Player Forward method by 5 Pixels
      */
-    public void moveForward(){currentPosition.add(MAX_SPEED,0);}
+    public void moveForward() {
+        this.currentPosition.add(MAX_SPEED,0);
+    }
 
     /**
      * Move Player Back method by 5 Pixels
      */
-    public void moveBack(){currentPosition.subtract(MAX_SPEED,0);}
+    public void moveBack() {
+        this.currentPosition.subtract(MAX_SPEED,0);
+    }
 
     /**
      * Jump method for the Player
      */
-    public void jump(){
-        currentPosition.subtract(0,JUMP_STRENGTH);
-        JUMP_STRENGTH -= GRAVITY;
+    public void jump() {
+        this.currentPosition.subtract(0, this.jumpStrength);
+        this.jumpStrength -= GRAVITY;
     }
 
     /**
      * Basic Fall Method Added
      */
-    public void fall(){
-        currentPosition.add(0,FALL_STRENGTH);
-        FALL_STRENGTH += GRAVITY;
+    public void fall() {
+        this.currentPosition.add(0, fallStrength);
+        this.fallStrength += GRAVITY;
     }
 
     /**
      * Test Collision Checker
      * @return true if player has collided with floor, otherwise return false
      */
-    public boolean checkCollision(){
-        if (currentPosition.getY() >= yBound){
-            currentPosition.set(currentPosition.getX(),yBound);
-            JUMP_STRENGTH = 20f;
+    public boolean checkCollision() {
+        if (this.currentPosition.getY() >= this.yBound) {
+            this.currentPosition.set(this.currentPosition.getX(), this.yBound);
+            this.jumpStrength = 20f;
             return true;
         }
 
