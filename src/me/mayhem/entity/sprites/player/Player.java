@@ -85,16 +85,17 @@ public class Player extends Entity {
      */
    public void setState(PlayerState state){
         if (state == PlayerState.JUMPING){
-            this.jumping = true;
+            this.setJumping(true);
         } else if (state == PlayerState.FORWARD){
             this.forward = true;
-            this.back = false;
+            this.setForward(true);
+            this.setBack(false);
         } else if (state == PlayerState.BACK){
-            this.back = true;
-            this.forward = false;
+            this.setForward(false);
+            this.setBack(true);
         } else if (state == PlayerState.STANDING){
-            this.forward = false;
-            this.back = false;
+            this.setForward(false);
+            this.setBack(false);
         }
    }
 
@@ -104,24 +105,24 @@ public class Player extends Entity {
      * @param window
      */
     public void update(RenderWindow window) {
-        if (this.fall) {
+        if (this.isFall()) {
             this.playerPhysics.fall();
 
             if (this.playerPhysics.checkCollision()) {
-                fall = false;
+                this.setFall(false);
             }
         }
 
-        if (this.jumping) {
+        if (this.isJumping()) {
             this.playerPhysics.jump();
             if (this.playerPhysics.checkCollision()) {
-                this.jumping = false;
+                this.setJumping(false);
             }
         }
 
-        if (this.forward) {
+        if (this.isForward()) {
             this.playerPhysics.moveForward();
-        } else if (back) {
+        } else if (this.isBack()) {
             this.playerPhysics.moveBack();
         }
 
