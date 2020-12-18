@@ -10,13 +10,13 @@ import org.jsfml.window.event.KeyEvent;
 public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
     Player player;
 
-    public PlayerKeyboardReleaseListener(Player p){
-        player = p;
+    public PlayerKeyboardReleaseListener(Player player) {
+        this.player = player;
     }
 
     @Override
     protected void takeInput(KeyEvent event) {
-        switch(event.asKeyEvent().key){
+        switch (event.asKeyEvent().key) {
             case A:
             case D:
                 player.setState(Player.playerState.STANDING);
