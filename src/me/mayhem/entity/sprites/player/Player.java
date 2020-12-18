@@ -77,6 +77,10 @@ public class Player extends Entity {
         this.fall = fall;
     }
 
+    public PlayerPhysics getPlayerPhysics() {
+        return this.playerPhysics;
+    }
+
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
