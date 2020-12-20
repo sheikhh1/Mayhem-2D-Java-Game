@@ -128,6 +128,6 @@ public class Player extends Entity {
             animate.setRow(9);
             animate.setPause(false);
         }
-        animate.animationPosition(this.getPosition().toVector());
+        animate.setSpritePosition(this.getPosition().toVector());
     }
 }
