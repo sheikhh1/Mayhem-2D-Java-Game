@@ -2,8 +2,10 @@ package me.mayhem.entity.sprites.player.animation;
 
 
 import org.jsfml.graphics.IntRect;
+import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
+import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
@@ -19,6 +21,8 @@ public class PlayerAnimation {
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
+    private int frameCount = 0;
+    private Clock animationUpdate = new Clock();
 
     public PlayerAnimation() {
         try {
@@ -28,7 +32,7 @@ public class PlayerAnimation {
         }
         // Increase the size of the sprite by 1.3x
         playerSprite.setScale(1.3f,1.3f);
-        playerSprite.setTextureRect(new IntRect(column * 64,row * 64,64,64));
+        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
 
     public void setRow(int row) {
@@ -53,6 +57,23 @@ public class PlayerAnimation {
 
     public void setPause(boolean pause) {
         this.pause = pause;
+    }
+
+    /**
+     * Creates an animation effect and changes sprite texture accordingly every 50ms
+     * @param window - Window passed to draw onto
+     */
+    public void playAnimation(RenderWindow window) {
+        if(!pause){
+            if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
+                animationUpdate.restart();
+                frameCount++;
+                if (frameCount > 8) frameCount = 0;
+                this.setColumn(frameCount % 9);
+            }
+        }
+        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
+        window.draw(playerSprite);
     }
 }
 
