@@ -13,21 +13,19 @@ import java.util.Map;
  * Handles events on key releases by the Player entity
  */
 public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
-    private Player player;
-    private Map<Keyboard.Key, PlayerState> keyReleaseHandler = new HashMap<>();
 
-
+    private final Player player;
+    private final Map<Keyboard.Key, PlayerState> keyReleaseHandler = new HashMap<>();
 
     public PlayerKeyboardReleaseListener(Player player) {
         this.player = player;
 
-        keyReleaseHandler.put(Keyboard.Key.A,PlayerState.STANDING);
-        keyReleaseHandler.put(Keyboard.Key.D,PlayerState.STANDING);
+        keyReleaseHandler.put(Keyboard.Key.A, PlayerState.STANDING);
+        keyReleaseHandler.put(Keyboard.Key.D, PlayerState.STANDING);
     }
 
     @Override
     protected void takeInput(KeyEvent event) {
         player.setState(keyReleaseHandler.get(event.asKeyEvent().key));
-
     }
 }
