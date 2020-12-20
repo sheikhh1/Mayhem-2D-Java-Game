@@ -15,7 +15,7 @@ import java.nio.file.Path;
  */
 public class Player extends Entity {
 
-    private static final Path PLAYER_ANIMATION = Path.of("src/me/mayhem/entity/sprites/player/images/PlayerSheet.png");
+    private static final Path PLAYER_ANIMATION = Path.of("src/me/mayhem/game/entity/player/images/PlayerSheet.png");
 
     private String name;
 
