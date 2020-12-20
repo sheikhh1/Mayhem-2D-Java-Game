@@ -1,6 +1,5 @@
 package me.mayhem.entity.sprites.player.animation;
 
-
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
@@ -9,6 +8,7 @@ import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -24,9 +24,9 @@ public class PlayerAnimation {
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
 
-    public PlayerAnimation() {
+    public PlayerAnimation(Path path) {
         try {
-            playerTexture.loadFromFile(Paths.get("src/me/mayhem/entity/sprites/player/images/PlayerSheet.png"));
+            playerTexture.loadFromFile(path);
         } catch(IOException ex) {
             ex.printStackTrace();
         }
