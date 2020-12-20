@@ -20,9 +20,9 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        keyHandler.put(Keyboard.Key.W,PlayerState.JUMPING);
-        keyHandler.put(Keyboard.Key.A,PlayerState.BACK);
-        keyHandler.put(Keyboard.Key.D,PlayerState.FORWARD);
+        keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
+        keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
+        keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
     }
 
     @Override
@@ -35,6 +35,5 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
         // Pause / Show Menu
 
         player.setState(keyHandler.get(event.asKeyEvent().key));
-
     }
 }
