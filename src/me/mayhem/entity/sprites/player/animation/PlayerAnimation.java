@@ -8,12 +8,15 @@ import org.jsfml.graphics.Texture;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Class created to output correct animations depending on user input for the player entity
+ */
 public class PlayerAnimation {
 
     private Texture playerTexture = new Texture();
     private Sprite playerSprite = new Sprite(playerTexture);
-    private int row = 11;
-    private int column = 0;
+    private int row = 11; // Row of PlayerSheet.png
+    private int column = 0;// Column of PlayerSheet.png
 
     public PlayerAnimation() {
         try {
@@ -21,10 +24,25 @@ public class PlayerAnimation {
         } catch(IOException ex) {
             ex.printStackTrace();
         }
-
+        // Increase the size of the sprite by 1.3x
         playerSprite.setScale(1.3f,1.3f);
         playerSprite.setTextureRect(new IntRect(column * 64,row * 64,64,64));
+    }
 
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getColumn() {
+        return this.column;
     }
 }
 
