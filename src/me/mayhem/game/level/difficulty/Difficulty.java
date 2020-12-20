@@ -1,13 +1,16 @@
 package me.mayhem.game.level.difficulty;
 
 import me.mayhem.game.level.layout.ai.LevelGenerator;
+import me.mayhem.game.level.layout.ai.impl.DifficultLevelGenerator;
+import me.mayhem.game.level.layout.ai.impl.EasyLevelGenerator;
+import me.mayhem.game.level.layout.ai.impl.MediumLevelGenerator;
 import me.mayhem.game.level.spawning.EntitySpawner;
 
 public enum Difficulty {
 
-    EASY(null, null),
-    MEDIUM(null, null),
-    HARD(null, null),
+    EASY(new EasyLevelGenerator(), null),
+    MEDIUM(new MediumLevelGenerator(), null),
+    DIFFICULT(new DifficultLevelGenerator(), null),
 
     ;
 
