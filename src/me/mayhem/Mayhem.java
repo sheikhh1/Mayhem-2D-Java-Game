@@ -1,9 +1,9 @@
 package me.mayhem;
 
-import me.mayhem.entity.sprites.player.Player;
-import me.mayhem.entity.sprites.player.listeners.PlayerKeyboardPressListener;
-import me.mayhem.entity.sprites.player.listeners.PlayerKeyboardReleaseListener;
-import me.mayhem.entity.sprites.player.listeners.PlayerMousePressListener;
+import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
+import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
+import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.math.Vector;
