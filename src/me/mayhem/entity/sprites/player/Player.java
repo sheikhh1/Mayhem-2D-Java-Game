@@ -3,11 +3,10 @@ package me.mayhem.entity.sprites.player;
 import me.mayhem.entity.Entity;
 import me.mayhem.entity.EntityType;
 import me.mayhem.entity.pathing.impl.NoPathing;
+import me.mayhem.entity.sprites.player.animation.PlayerAnimation;
 import me.mayhem.entity.sprites.player.physics.PlayerPhysics;
 import me.mayhem.math.Vector;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.*;
 
 /**
  * Player Class
@@ -17,8 +16,8 @@ public class Player extends Entity {
     private String name;
 
     //TODO: Implement DrawableSprite
-    private RectangleShape test = new RectangleShape(new Vector(50,50).toVector());
     private PlayerPhysics playerPhysics = new PlayerPhysics();
+    private PlayerAnimation animate = new PlayerAnimation();
 
     // Determine what the player is currently doing
     private boolean jumping = false;
@@ -36,9 +35,7 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        this.test.setFillColor(Color.BLUE);
-        this.test.setScale(1,1);
-
+        playerPhysics.setPlayerPosition(position);
     }
 
     public String getName() {
@@ -87,16 +84,19 @@ public class Player extends Entity {
      */
    public void setState(PlayerState state){
         if (state == PlayerState.JUMPING){
-            this.jumping = true;
+            this.setJumping(true);
         } else if (state == PlayerState.FORWARD){
             this.forward = true;
-            this.back = false;
+            this.setForward(true);
+            this.setBack(false);
         } else if (state == PlayerState.BACK){
-            this.back = true;
-            this.forward = false;
+            this.setForward(false);
+            this.setBack(true);
         } else if (state == PlayerState.STANDING){
-            this.forward = false;
-            this.back = false;
+            animate.setColumn(0);
+            animate.setPause(true);
+            this.setForward(false);
+            this.setBack(false);
         }
    }
 
@@ -106,28 +106,32 @@ public class Player extends Entity {
      * @param window
      */
     public void update(RenderWindow window) {
-        if (this.fall) {
+        animate.playAnimation(window);
+        if (this.isFall()) {
             this.playerPhysics.fall();
 
             if (this.playerPhysics.checkCollision()) {
-                fall = false;
+                this.setFall(false);
             }
         }
 
-        if (this.jumping) {
+        if (this.isJumping()) {
             this.playerPhysics.jump();
+
             if (this.playerPhysics.checkCollision()) {
-                this.jumping = false;
+                this.setJumping(false);
             }
         }
 
-        if (this.forward) {
+        if (this.isForward()) {
             this.playerPhysics.moveForward();
-        } else if (back) {
+            animate.setRow(11);
+            animate.setPause(false);
+        } else if (this.isBack()) {
             this.playerPhysics.moveBack();
+            animate.setRow(9);
+            animate.setPause(false);
         }
-
-        this.test.setPosition(this.getPosition().toVector());
-        window.draw(this.test);
+        animate.setSpritePosition(this.getPosition().toVector());
     }
 }

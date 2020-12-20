@@ -11,7 +11,7 @@ public class PlayerPhysics {
     private float fallStrength = 0;
     private Vector currentPosition;
 
-    private float yBound = 430f; // Floor Height = GetYPosition - Rectangle.size
+    private float yBound = 400f; // Floor Height (Test)
 
     /**
      * Takes current player position from Player Class
