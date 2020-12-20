@@ -4,6 +4,7 @@ package me.mayhem.entity.sprites.player.animation;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
+import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -17,6 +18,7 @@ public class PlayerAnimation {
     private Sprite playerSprite = new Sprite(playerTexture);
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
+    private boolean pause = true; // Required to pause or resume the animations
 
     public PlayerAnimation() {
         try {
@@ -43,6 +45,14 @@ public class PlayerAnimation {
 
     public int getColumn() {
         return this.column;
+    }
+
+    public void setSpritePosition(Vector2f position){
+        playerSprite.setPosition(position);
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
     }
 }
 
