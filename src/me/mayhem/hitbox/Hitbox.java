@@ -1,4 +1,4 @@
-package me.mayhem.entity.hitbox;
+package me.mayhem.hitbox;
 
 
 import me.mayhem.math.Vector;

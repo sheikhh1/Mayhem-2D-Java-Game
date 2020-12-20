@@ -1,7 +1,7 @@
-package me.mayhem.entity.hitbox.impl;
+package me.mayhem.hitbox.impl;
 
-import me.mayhem.entity.hitbox.AbstractHitbox;
-import me.mayhem.entity.hitbox.Hitbox;
+import me.mayhem.hitbox.AbstractHitbox;
+import me.mayhem.hitbox.Hitbox;
 import me.mayhem.math.Vector;
 import org.jsfml.graphics.FloatRect;
 

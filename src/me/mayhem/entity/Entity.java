@@ -1,7 +1,7 @@
 package me.mayhem.entity;
 
 import me.mayhem.attribute.Attribute;
-import me.mayhem.entity.hitbox.Hitbox;
+import me.mayhem.hitbox.Hitbox;
 import me.mayhem.entity.pathing.Pathing;
 import me.mayhem.math.Vector;
 
