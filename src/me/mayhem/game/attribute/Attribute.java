@@ -1,4 +1,4 @@
-package me.mayhem.attribute;
+package me.mayhem.game.attribute;
 
 public interface Attribute<T> {
 

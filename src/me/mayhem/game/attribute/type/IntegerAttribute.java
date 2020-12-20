@@ -1,6 +1,6 @@
-package me.mayhem.attribute.type;
+package me.mayhem.game.attribute.type;
 
-import me.mayhem.attribute.AbstractAttribute;
+import me.mayhem.game.attribute.AbstractAttribute;
 
 public class IntegerAttribute extends AbstractAttribute<Integer> {
 

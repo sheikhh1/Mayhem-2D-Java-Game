@@ -1,4 +1,4 @@
-package me.mayhem.attribute;
+package me.mayhem.game.attribute;
 
 public abstract class AbstractAttribute<T> implements Attribute<T> {
 

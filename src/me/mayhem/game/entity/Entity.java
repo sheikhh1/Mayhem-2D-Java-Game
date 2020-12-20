@@ -1,6 +1,6 @@
 package me.mayhem.game.entity;
 
-import me.mayhem.attribute.Attribute;
+import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.math.Vector;
