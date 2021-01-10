@@ -14,6 +14,8 @@ public abstract class AbstractInteractable extends InputListener<MouseEvent> imp
 
     public AbstractInteractable(Shape shape) {
         this.shape = shape;
+
+        this.register();
     }
 
     @Override
