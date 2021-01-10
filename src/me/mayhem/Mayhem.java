@@ -43,4 +43,8 @@ public class Mayhem {
             //TODO: tick objects/entities
         }
     }
+
+    public static RenderWindow getMainWindow() {
+        return null; //TODO
+    }
 }
