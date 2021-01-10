@@ -6,7 +6,6 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.window.VideoMode;
 import org.jsfml.window.event.Event;
 
 public class Mayhem {
