@@ -13,7 +13,7 @@ public class Mayhem {
 
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
-        window.create(new VideoMode(640, 480), "Mayhem", Window.CLOSE | Window.TITLEBAR);
+        window.create(new VideoMode((int) (640 * 1.5), (int) (480 * 1.5)), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setFramerateLimit(30);
 
         GameManager gameManager = new GameManager(window);
