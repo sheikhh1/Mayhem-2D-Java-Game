@@ -16,14 +16,13 @@ public class Mayhem {
 
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
-        window.create(new VideoMode(640, 480), "Mayhem");
 
         currentScreen = new HomePageManager(window);
         window.setFramerateLimit(30);
         mainWindow = window;
 
         while (window.isOpen()) {
-            window.clear(Color.GREEN);
+            window.clear(Color.WHITE);
 
 
             if (currentScreen != null) {
