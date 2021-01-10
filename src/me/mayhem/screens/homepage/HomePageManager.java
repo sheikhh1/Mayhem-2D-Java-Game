@@ -5,7 +5,6 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
-import me.mayhem.ui.AbstractInteractable;
 import me.mayhem.ui.Interatable;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
@@ -13,7 +12,10 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
-    private final int height = 800, width = 1000;
+
+    private static final int HEIGHT = 800;
+    private static final int WIDTH = 1000;
+
     private HomepageQuitButton quit;
     private HomePageLoadButton load;
     private HomePageNewGameButton newPage;
@@ -21,7 +23,7 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode(width, height), "Mayhem");
+        renderWindow.create(new VideoMode(WIDTH, HEIGHT), "Mayhem");
         CreateButtons();
         DrawButtons(renderWindow);
     }
@@ -46,7 +48,7 @@ public class HomePageManager implements ScreenManager {
     private Shape createQuitButton() {
         RectangleShape shape = new RectangleShape();
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((float) (width/10.00 * 4), (float) (height/10.00 * 7));
+        shape.setOrigin((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00 * 7));
 
         return shape;
     }
@@ -58,7 +60,7 @@ public class HomePageManager implements ScreenManager {
     private Shape createLoadButton() {
         RectangleShape shape = new RectangleShape();
         shape.setOrigin(100, 100);
-        shape.setSize(new Vector((float) (width/10.00 * 4), (float) (height/10.00 * 4)).toVector());
+        shape.setSize(new Vector((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00 * 4)).toVector());
         return shape;
     }
 
@@ -69,7 +71,7 @@ public class HomePageManager implements ScreenManager {
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
         shape.setOrigin(100, 100);
-        shape.setSize(new Vector((float) (width/10.00 * 4), (float) (height/10.00)).toVector());
+        shape.setSize(new Vector((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00)).toVector());
         return shape;
     }
 
