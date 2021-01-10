@@ -1,18 +1,32 @@
 package me.mayhem.ui;
 
 import me.mayhem.Mayhem;
-import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
+import me.mayhem.input.impl.mouse.MouseInputListener;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
 
-public abstract class AbstractInteractable extends InputListener<MouseEvent> implements Interatable {
+/**
+ *
+ * Skeletal implementation of the {@link Interatable} interface
+ * Handles checking for if the {@link MouseEvent} occurs in the correct location
+ *
+ */
+public abstract class AbstractInteractable extends MouseInputListener implements Interatable {
 
     private Shape shape;
 
+    /**
+     *
+     * Default constructor passing the shape to check the click location against
+     *
+     * @param shape The shape being displayed on the screen
+     */
     public AbstractInteractable(Shape shape) {
+        super();
+
         this.shape = shape;
 
         this.register();
@@ -30,12 +44,16 @@ public abstract class AbstractInteractable extends InputListener<MouseEvent> imp
 
     @Override
     protected void takeInput(MouseEvent event) {
-        MouseEvent mouseEvent = event.asMouseEvent();
-
-        if (shape.getGlobalBounds().contains(mouseEvent.position.x, mouseEvent.position.y)) {
+        if (shape.getGlobalBounds().contains(event.position.x, event.position.y)) {
             this.call(Mayhem.getMainWindow(), event);
         }
     }
 
+    /**
+     * calls a load game page manager
+     *
+     * @param window the current renderwindow
+     * @param event the event that has occoured
+     */
     protected abstract void call(RenderWindow window, Event event);
 }
