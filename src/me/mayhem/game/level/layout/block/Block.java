@@ -88,6 +88,8 @@ public class Block {
 
             this.drawable.setFillColor(this.fillColor);
             this.drawable.setOutlineColor(this.outlineColor);
+            System.out.println(this.outlineColor);
+            this.drawable.setPosition(this.position.toVector());
 
             return new Block(this.position, this.drawable, this.hitbox);
         }

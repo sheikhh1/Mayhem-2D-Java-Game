@@ -1,12 +1,8 @@
 package me.mayhem;
 
-import me.mayhem.game.entity.player.Player;
-import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
-import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
-import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
+import me.mayhem.game.GameManager;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
-import me.mayhem.math.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -19,13 +15,13 @@ public class Mayhem {
         window.create(new VideoMode(640, 480), "Mayhem");
         window.setFramerateLimit(30);
 
-
-        // Test Commit
+        GameManager gameManager = new GameManager(window);
 
         while (window.isOpen()) {
             window.clear(Color.WHITE);
 
-            //TODO: tick drawables
+            gameManager.tick();
+
             window.display();
 
             for (Event event : window.pollEvents()) {

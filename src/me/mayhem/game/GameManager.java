@@ -21,6 +21,7 @@ public class GameManager {
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
+        this.initialize();
     }
 
     /**
