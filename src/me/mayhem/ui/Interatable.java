@@ -5,6 +5,10 @@ import org.jsfml.window.event.Event;
 
 public interface Interatable {
 
+    void register();
+
+    void unregister();
+
     void onInteract(RenderWindow window, Event event);
 
 }
