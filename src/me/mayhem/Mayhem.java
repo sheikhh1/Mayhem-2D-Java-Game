@@ -29,8 +29,10 @@ public class Mayhem {
         while (window.isOpen()) {
             window.clear(Color.WHITE);
 
+
             //TODO: tick drawables
-            myPlayer.update(window); // Draw Player onto window
+            //myPlayer.update(window); // Draw Player onto window
+            homepage.drawButtons(window);
             window.display();
 
             for (Event event : window.pollEvents()) {
