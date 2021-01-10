@@ -22,7 +22,9 @@ public class GameManager {
     }
 
     /**
-     * Initalise key & mouse listeners on game start up
+     *
+     * Initialize key & mouse listeners on game start up
+     *
      */
     public void initialize() {
         playerMousePress = new PlayerMousePressListener();
@@ -33,7 +35,9 @@ public class GameManager {
     }
 
     /**
+     *
      * Remove registered listeners when user leaves game screen
+     *
      */
     public void deinitialize() {
         InputManager.unregisterInput(playerMousePress);
@@ -43,7 +47,9 @@ public class GameManager {
     }
 
     /**
+     *
      * Update drawables
+     *
      */
     public void tick() {
         myPlayer.update(renderWindow);
