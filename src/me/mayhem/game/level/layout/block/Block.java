@@ -4,16 +4,16 @@ import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
 import me.mayhem.math.Vector;
 import org.jsfml.graphics.Color;
-import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.Shape;
 
 public class Block {
 
     private final Vector position;
-    private final Drawable drawable;
+    private final Shape drawable;
     private final Hitbox hitbox;
     private final Color color;
 
-    protected Block(Vector position, Drawable drawable, Hitbox hitbox, Color color) {
+    protected Block(Vector position, Shape drawable, Hitbox hitbox, Color color) {
         this.position = position;
         this.drawable = drawable;
         this.hitbox = hitbox;
@@ -24,7 +24,7 @@ public class Block {
         return this.position;
     }
 
-    public Drawable getDrawable() {
+    public Shape getDrawable() {
         return this.drawable;
     }
 
@@ -41,7 +41,7 @@ public class Block {
         private Vector position;
         private int width;
         private int height;
-        private Drawable drawable;
+        private Shape drawable;
         private Hitbox hitbox;
         private Color color;
 
@@ -62,7 +62,7 @@ public class Block {
             return this;
         }
 
-        public Builder drawable(Drawable drawable) {
+        public Builder drawable(Shape drawable) {
             this.drawable = drawable;
             return this;
         }
@@ -81,6 +81,8 @@ public class Block {
             if (this.hitbox == null) {
                 this.hitbox = new RectangleHitbox(this.position, this.height, this.width);
             }
+
+            this.drawable.setFillColor(this.color);
 
             return new Block(this.position, this.drawable, this.hitbox, this.color);
         }
