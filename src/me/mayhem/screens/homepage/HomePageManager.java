@@ -28,7 +28,8 @@ public class HomePageManager implements ScreenManager {
         /*this.drawButtons(renderWindow);*/
     }
 
-    public void drawButtons(RenderWindow renderWindow) {
+    @Override
+    public void draw(RenderWindow renderWindow) {
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }
