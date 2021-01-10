@@ -30,7 +30,6 @@ public class Level {
 
     private Player spawnPlayer() {
         return new Player( "dan", new Vector(0, 0));
-
     }
 
     public List<Entity> getEntities() {
