@@ -60,8 +60,9 @@ public class HomePageManager implements ScreenManager {
     private Shape createLoadButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setOrigin(100, 100);
-        shape.setSize(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
+        shape.setSize(new Vector(200,100).toVector());
+        shape.setOrigin(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
+
 
         return shape;
     }
@@ -73,8 +74,9 @@ public class HomePageManager implements ScreenManager {
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setOrigin(100, 100);
-        shape.setSize(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
+        shape.setSize(new Vector(200,100).toVector());
+        shape.setOrigin(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
+
 
         return shape;
     }
