@@ -18,6 +18,12 @@ public abstract class AbstractInteractable extends MouseInputListener implements
 
     private Shape shape;
 
+    /**
+     *
+     * Default constructor passing the shape to check the click location against
+     *
+     * @param shape The shape being displayed on the screen
+     */
     public AbstractInteractable(Shape shape) {
         super();
 
