@@ -12,20 +12,20 @@ import org.jsfml.window.event.Event;
 public class Mayhem {
 
     private static ScreenManager currentScreen;
+    private static RenderWindow mainWindow;
 
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Mayhem");
 
         currentScreen = new HomePageManager(window);
-
         window.setFramerateLimit(30);
+        mainWindow = window;
 
         while (window.isOpen()) {
             window.clear(Color.GREEN);
 
 
-            //TODO: tick drawables
             if (currentScreen != null) {
                 currentScreen.draw(window);
             }
@@ -46,7 +46,7 @@ public class Mayhem {
     }
 
     public static RenderWindow getMainWindow() {
-        return null; //TODO
+        return mainWindow;
     }
 
     public static ScreenManager getCurrentScreen() {
