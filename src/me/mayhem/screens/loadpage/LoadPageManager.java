@@ -1,15 +1,9 @@
 package me.mayhem.screens.loadpage;
 
+import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
-import me.mayhem.ui.AbstractInteractable;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
-import org.jsfml.window.event.Event;
-
-import me.mayhem.math.Vector;
-import me.mayhem.screens.ScreenManager;
 import me.mayhem.ui.Interatable;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
@@ -27,10 +21,10 @@ public class LoadPageManager implements ScreenManager {
         renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
 
         this.createButtons();
-        this.drawButtons(renderWindow);
     }
 
-    private void drawButtons(RenderWindow renderWindow) {
+    @Override
+    public void draw(RenderWindow renderWindow) {
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }

@@ -22,14 +22,10 @@ public class NewGameSettingsPageManager implements ScreenManager {
         renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
 
         this.createButtons();
-        this.drawButtons(renderWindow);
     }
 
-    /**
-     * draws all buttons onto the screen
-     * @param renderWindow the screen that is going to be used to draw onto
-     */
-    private void drawButtons(RenderWindow renderWindow) {
+    @Override
+    public void draw(RenderWindow renderWindow) {
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }
