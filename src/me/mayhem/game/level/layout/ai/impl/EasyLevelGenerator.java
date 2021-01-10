@@ -27,7 +27,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         int height = 10;
 
         return Block.builder()
-                .color(Color.RED)
+                .outlineColor(Color.RED)
                 .drawable(new RectangleShape(new Vector2f(width, height)))
                 .position(position)
                 .width(width)
