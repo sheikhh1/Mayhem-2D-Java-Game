@@ -25,6 +25,12 @@ public interface Interatable {
      */
     void unregister();
 
+    /**
+     *
+     * Draws the stored button onto the target {@link RenderWindow}
+     *
+     * @param renderWindow The window being drawn onto
+     */
     void draw(RenderWindow renderWindow);
 
 }
