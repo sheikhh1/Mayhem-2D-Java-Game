@@ -21,17 +21,17 @@ public class HomePageManager implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         renderWindow.create(new VideoMode(WIDTH, HEIGHT), "Mayhem");
-        CreateButtons();
-        DrawButtons(renderWindow);
+        this.createButtons();
+        this.drawButtons(renderWindow);
     }
 
-
-    private void DrawButtons(RenderWindow renderWindow){
+    private void drawButtons(RenderWindow renderWindow){
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }
     }
-    private void CreateButtons(){
+
+    private void createButtons(){
         HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
         HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
