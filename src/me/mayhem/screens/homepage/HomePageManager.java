@@ -32,11 +32,11 @@ public class HomePageManager implements ScreenManager {
         }
     }
     private void CreateButtons(){
-        quit = new HomepageQuitButton(this.createQuitButton());
-        newPage = new HomePageNewGameButton((this.createNewGameButton()));
-        load = new HomePageLoadButton((this.createLoadButton()));
+        HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
+        HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
+        HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
 
-        buttons = new Interatable[]{newPage,load,quit};
+        this.buttons = new Interatable[] { newPage, load, quit };
     }
     /**
      * creates the quit button, setting its size and position
