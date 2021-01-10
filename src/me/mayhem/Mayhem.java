@@ -20,7 +20,7 @@ public class Mayhem {
         while (window.isOpen()) {
             window.clear(Color.WHITE);
 
-            gameManager.tick();
+            gameManager.draw();
 
             window.display();
 

@@ -11,8 +11,8 @@ import org.jsfml.graphics.RenderWindow;
 public class GameManager {
 
     private final RenderWindow renderWindow;
-    private Level currentLevel;
 
+    private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
@@ -33,8 +33,6 @@ public class GameManager {
         this.playerMousePress = new PlayerMousePressListener();
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
-
-
     }
 
     /**
@@ -46,7 +44,6 @@ public class GameManager {
         InputManager.unregisterInput(this.playerMousePress);
         InputManager.unregisterInput(this.playerKeyPress);
         InputManager.unregisterInput(this.playerKeyRelease);
-
     }
 
     /**
@@ -54,9 +51,8 @@ public class GameManager {
      * Update drawables
      *
      */
-    public void tick() {
+    public void draw() {
         this.currentLevel.getPlayer().update(this.renderWindow);
         this.currentLevel.getLayout().draw(this.renderWindow);
     }
-
 }
