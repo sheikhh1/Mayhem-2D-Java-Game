@@ -9,6 +9,7 @@ import me.mayhem.ui.Interatable;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
+import org.jsfml.graphics.Text;
 import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
@@ -17,7 +18,9 @@ public class HomePageManager implements ScreenManager {
     private static final float WIDTH = 1000F;
 
     private Interatable[] buttons;
-
+    public HomePageManager(RenderWindow window){
+        loadScreen(window);
+    }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
@@ -49,9 +52,9 @@ public class HomePageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setOrigin((WIDTH / 10) * 4, (HEIGHT / 10) * 7);
-
         return shape;
     }
+
 
     /**
      * creates the load button, setting its size and position
