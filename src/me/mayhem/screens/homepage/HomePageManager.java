@@ -10,22 +10,25 @@ import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
+import org.jsfml.system.Vector2f;
+import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
 
     private static final float HEIGHT = 800F;
     private static final float WIDTH = 1000F;
-
+    private RenderWindow window;
     private Interatable[] buttons;
     public HomePageManager(RenderWindow window){
-        loadScreen(window);
+        this.window = window;
+        loadScreen(this.window);
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        // renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
 
         this.createButtons();
-        /*this.drawButtons(renderWindow);*/
+        this.draw(renderWindow);
     }
 
     @Override
@@ -34,7 +37,6 @@ public class HomePageManager implements ScreenManager {
             button.draw(renderWindow);
         }
     }
-
     private void createButtons() {
         HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
@@ -42,7 +44,6 @@ public class HomePageManager implements ScreenManager {
 
         this.buttons = new Interatable[] { newPage, load, quit };
     }
-
     /**
      * creates the quit button, setting its size and position
      * @return the shape of the button
@@ -50,14 +51,12 @@ public class HomePageManager implements ScreenManager {
     private Shape createQuitButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((WIDTH / 10) * 4, (HEIGHT / 10) * 4);
+        shape.setSize(new Vector(400,100).toVector());
+        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 7).toVector());
         shape.setFillColor(Color.RED);
 
         return shape;
     }
-
-
     /**
      * creates the load button, setting its size and position
      * @return returns the shape that is the load button
@@ -65,9 +64,9 @@ public class HomePageManager implements ScreenManager {
     private Shape createLoadButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 2).toVector());
-        shape.setFillColor(Color.RED);
+        shape.setSize(new Vector(400,100).toVector());
+        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 4).toVector());
+        shape.setFillColor(Color.CYAN);
 
         return shape;
     }
@@ -79,9 +78,9 @@ public class HomePageManager implements ScreenManager {
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(20,10).toVector());
-        shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
-        shape.setFillColor(Color.RED);
+        shape.setSize(new Vector(400,100).toVector());
+        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10)).toVector());
+        shape.setFillColor(Color.MAGENTA);
 
         return shape;
     }
@@ -91,5 +90,8 @@ public class HomePageManager implements ScreenManager {
         for (Interatable button : this.buttons) {
             button.unregister();
         }
+    }
+    public RenderWindow getWindow(){
+        return this.window;
     }
 }

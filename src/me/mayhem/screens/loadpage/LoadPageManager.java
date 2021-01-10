@@ -15,7 +15,9 @@ public class LoadPageManager implements ScreenManager {
     private static final float HEIGHT = 800F;
     private static final float WIDTH = 1000F;
     private Interatable[] buttons;
-
+    public LoadPageManager(RenderWindow window){
+        loadScreen(window);
+    }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
