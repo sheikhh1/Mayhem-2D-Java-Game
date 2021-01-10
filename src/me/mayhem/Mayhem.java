@@ -1,12 +1,7 @@
 package me.mayhem;
 
-import me.mayhem.game.entity.player.Player;
-import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
-import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
-import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
-import me.mayhem.math.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -14,10 +9,14 @@ import org.jsfml.window.event.Event;
 
 public class Mayhem {
 
+    private static RenderWindow mainWindow;
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Mayhem");
         window.setFramerateLimit(30);
+
+        mainWindow = window;
 
 
         // Test Commit
@@ -42,6 +41,6 @@ public class Mayhem {
     }
 
     public static RenderWindow getMainWindow() {
-        return null; //TODO
+        return mainWindow;
     }
 }
