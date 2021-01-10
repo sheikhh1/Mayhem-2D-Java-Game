@@ -8,4 +8,6 @@ public interface ScreenManager {
 
     void unloadScreen(RenderWindow renderWindow);
 
+    void draw(RenderWindow renderWindow);
+
 }
