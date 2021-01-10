@@ -13,14 +13,15 @@ import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
 
-    private static final int HEIGHT = 800;
-    private static final int WIDTH = 1000;
+    private static final float HEIGHT = 800F;
+    private static final float WIDTH = 1000F;
 
     private Interatable[] buttons;
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode(WIDTH, HEIGHT), "Mayhem");
+        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+
         this.createButtons();
         this.drawButtons(renderWindow);
     }
@@ -38,14 +39,16 @@ public class HomePageManager implements ScreenManager {
 
         this.buttons = new Interatable[] { newPage, load, quit };
     }
+
     /**
      * creates the quit button, setting its size and position
      * @return the shape of the button
      */
     private Shape createQuitButton() {
         RectangleShape shape = new RectangleShape();
+
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00 * 7));
+        shape.setOrigin((WIDTH / 10) * 4, (HEIGHT / 10) * 7);
 
         return shape;
     }
@@ -56,8 +59,10 @@ public class HomePageManager implements ScreenManager {
      */
     private Shape createLoadButton() {
         RectangleShape shape = new RectangleShape();
+
         shape.setOrigin(100, 100);
-        shape.setSize(new Vector((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00 * 4)).toVector());
+        shape.setSize(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
+
         return shape;
     }
 
@@ -67,11 +72,12 @@ public class HomePageManager implements ScreenManager {
      */
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
+
         shape.setOrigin(100, 100);
-        shape.setSize(new Vector((float) (WIDTH /10.00 * 4), (float) (HEIGHT /10.00)).toVector());
+        shape.setSize(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
+
         return shape;
     }
-
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
