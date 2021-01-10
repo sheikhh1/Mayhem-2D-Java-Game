@@ -41,8 +41,8 @@ public class Block {
         private int height;
         private Shape drawable;
         private Hitbox hitbox;
-        private Color outlineColor;
-        private Color fillColor;
+        private Color outlineColor = Color.WHITE;
+        private Color fillColor = Color.WHITE;
 
         protected Builder() {}
 
