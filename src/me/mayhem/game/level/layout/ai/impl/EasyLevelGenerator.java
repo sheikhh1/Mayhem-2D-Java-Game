@@ -26,6 +26,6 @@ public class EasyLevelGenerator implements LevelGenerator {
         int width = 200;
         int height = 10;
 
-        return new Block(position, new RectangleShape(new Vector2f(width, height)), new RectangleHitbox(position, height, width));
+        return new Block(position, new RectangleShape(new Vector2f(width, height)), new RectangleHitbox(position, height, width), color);
     }
 }
