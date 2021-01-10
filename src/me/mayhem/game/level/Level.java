@@ -25,7 +25,7 @@ public class Level {
         this.player = this.spawnPlayer();
         this.difficulty = difficulty;
         this.spawner = null; //TODO: get from difficulty
-        this.layout = null; //TODO: create layer
+        this.layout = new Layout(this.difficulty);
     }
 
     private Player spawnPlayer() {
