@@ -6,11 +6,10 @@ import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.ui.Interatable;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
-import org.jsfml.graphics.Text;
-import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
 
@@ -23,10 +22,10 @@ public class HomePageManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        // renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
 
         this.createButtons();
-        this.drawButtons(renderWindow);
+        /*this.drawButtons(renderWindow);*/
     }
 
     public void drawButtons(RenderWindow renderWindow) {
@@ -51,7 +50,9 @@ public class HomePageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((WIDTH / 10) * 4, (HEIGHT / 10) * 7);
+        shape.setPosition((WIDTH / 10) * 4, (HEIGHT / 10) * 4);
+        shape.setFillColor(Color.RED);
+
         return shape;
     }
 
@@ -64,8 +65,8 @@ public class HomePageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
-
+        shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 2).toVector());
+        shape.setFillColor(Color.RED);
 
         return shape;
     }
@@ -77,9 +78,9 @@ public class HomePageManager implements ScreenManager {
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
-
+        shape.setSize(new Vector(20,10).toVector());
+        shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10)).toVector());
+        shape.setFillColor(Color.RED);
 
         return shape;
     }

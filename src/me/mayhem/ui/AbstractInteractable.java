@@ -3,7 +3,6 @@ package me.mayhem.ui;
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputManager;
 import me.mayhem.input.impl.mouse.MouseInputListener;
-import org.jsfml.graphics.RenderStates;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
@@ -60,6 +59,6 @@ public abstract class AbstractInteractable extends MouseInputListener implements
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        this.shape.draw(renderWindow, RenderStates.DEFAULT);
+        renderWindow.draw(this.shape);
     }
 }
