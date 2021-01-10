@@ -16,9 +16,6 @@ public class HomePageManager implements ScreenManager {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 1000;
 
-    private HomepageQuitButton quit;
-    private HomePageLoadButton load;
-    private HomePageNewGameButton newPage;
     private Interatable[] buttons;
 
     @Override
@@ -30,9 +27,9 @@ public class HomePageManager implements ScreenManager {
 
 
     private void DrawButtons(RenderWindow renderWindow){
-        quit.draw(renderWindow);
-        newPage.draw(renderWindow);
-        load.draw(renderWindow);
+        for (Interatable button : buttons) {
+            button.draw(renderWindow);
+        }
     }
     private void CreateButtons(){
         quit = new HomepageQuitButton(this.createQuitButton());
