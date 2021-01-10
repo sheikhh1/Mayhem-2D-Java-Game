@@ -5,6 +5,7 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.Layout;
 import me.mayhem.game.level.spawning.EntitySpawner;
+import me.mayhem.math.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,8 @@ public class Level {
     }
 
     private Player spawnPlayer() {
-        return null; //TODO:
+        return new Player( "YouLove2SuckCock", new Vector(0, 0));
+
     }
 
     public List<Entity> getEntities() {
