@@ -12,8 +12,6 @@ import java.util.List;
 
 public class Level {
 
-    // Test Commit
-
     private final List<Entity> entities = new ArrayList<>();
 
     private final Player player;
