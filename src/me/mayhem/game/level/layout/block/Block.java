@@ -11,13 +11,11 @@ public class Block {
     private final Vector position;
     private final Shape drawable;
     private final Hitbox hitbox;
-    private final Color color;
 
-    protected Block(Vector position, Shape drawable, Hitbox hitbox, Color color) {
+    protected Block(Vector position, Shape drawable, Hitbox hitbox) {
         this.position = position;
         this.drawable = drawable;
         this.hitbox = hitbox;
-        this.color = color;
     }
 
     public Vector getPosition() {
@@ -43,7 +41,8 @@ public class Block {
         private int height;
         private Shape drawable;
         private Hitbox hitbox;
-        private Color color;
+        private Color outlineColor;
+        private Color fillColor;
 
         protected Builder() {}
 
@@ -72,8 +71,13 @@ public class Block {
             return this;
         }
 
-        public Builder color(Color color) {
-            this.color = color;
+        public Builder outlineColor(Color outlineColor) {
+            this.outlineColor = outlineColor;
+            return this;
+        }
+
+        public Builder fillColor(Color fillColor) {
+            this.fillColor = fillColor;
             return this;
         }
 
@@ -82,9 +86,10 @@ public class Block {
                 this.hitbox = new RectangleHitbox(this.position, this.height, this.width);
             }
 
-            this.drawable.setFillColor(this.color);
+            this.drawable.setFillColor(this.fillColor);
+            this.drawable.setOutlineColor(this.outlineColor);
 
-            return new Block(this.position, this.drawable, this.hitbox, this.color);
+            return new Block(this.position, this.drawable, this.hitbox);
         }
     }
 }
