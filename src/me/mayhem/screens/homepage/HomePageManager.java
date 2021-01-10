@@ -81,6 +81,8 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        renderWindow.close();
+        for (Interatable button : this.buttons) {
+            button.unregister();
+        }
     }
 }
