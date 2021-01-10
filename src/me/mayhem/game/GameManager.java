@@ -1,17 +1,18 @@
 package me.mayhem.game;
 
-import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
+import me.mayhem.game.level.Level;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
-import me.mayhem.math.Vector;
 import org.jsfml.graphics.RenderWindow;
 
 public class GameManager {
 
     private final RenderWindow renderWindow;
-    private Player myPlayer = new Player("test", new Vector(100,100));
+    private Level currentLevel;
+
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
@@ -19,6 +20,7 @@ public class GameManager {
 
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
+        this.currentLevel = new Level(Difficulty.EASY);
     }
 
     /**
@@ -28,8 +30,8 @@ public class GameManager {
      */
     public void initialize() {
         this.playerMousePress = new PlayerMousePressListener();
-        this.playerKeyPress = new PlayerKeyboardPressListener(this.myPlayer);
-        this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.myPlayer);
+        this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
+        this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
 
 
     }
@@ -52,7 +54,8 @@ public class GameManager {
      *
      */
     public void tick() {
-        this.myPlayer.update(this.renderWindow);
+        this.currentLevel.getPlayer().update(this.renderWindow);
+        this.currentLevel.getLayout().draw(this.renderWindow);
     }
 
 }
