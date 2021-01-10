@@ -17,12 +17,8 @@ public class Mayhem {
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Mayhem");
-        Player myPlayer = new Player("test", new Vector(100,100));
         window.setFramerateLimit(30);
 
-        new PlayerMousePressListener();
-        new PlayerKeyboardPressListener(myPlayer);
-        new PlayerKeyboardReleaseListener(myPlayer);
 
         // Test Commit
 
@@ -30,7 +26,6 @@ public class Mayhem {
             window.clear(Color.WHITE);
 
             //TODO: tick drawables
-            myPlayer.update(window); // Draw Player onto window
             window.display();
 
             for (Event event : window.pollEvents()) {
