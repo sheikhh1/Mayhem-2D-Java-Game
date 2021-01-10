@@ -2,6 +2,7 @@ package me.mayhem;
 
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
+import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
@@ -10,11 +11,13 @@ import org.jsfml.window.event.Event;
 
 public class Mayhem {
 
+    private static ScreenManager currentScreen;
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(640, 480), "Mayhem");
 
-        HomePageManager homepage = new HomePageManager(window);
+        currentScreen = new HomePageManager(window);
 
         window.setFramerateLimit(30);
 
@@ -23,7 +26,9 @@ public class Mayhem {
 
 
             //TODO: tick drawables
-            homepage.drawButtons(window);
+            if (currentScreen != null) {
+                currentScreen.draw(window);
+            }
 
             window.display();
 
@@ -42,5 +47,13 @@ public class Mayhem {
 
     public static RenderWindow getMainWindow() {
         return null; //TODO
+    }
+
+    public static ScreenManager getCurrentScreen() {
+        return currentScreen;
+    }
+
+    public static void setCurrentScreen(ScreenManager currentScreen) {
+        Mayhem.currentScreen = currentScreen;
     }
 }
