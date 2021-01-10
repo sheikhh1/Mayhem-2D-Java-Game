@@ -44,9 +44,7 @@ public abstract class AbstractInteractable extends MouseInputListener implements
 
     @Override
     protected void takeInput(MouseEvent event) {
-        MouseEvent mouseEvent = event.asMouseEvent();
-
-        if (shape.getGlobalBounds().contains(mouseEvent.position.x, mouseEvent.position.y)) {
+        if (shape.getGlobalBounds().contains(event.position.x, event.position.y)) {
             this.call(Mayhem.getMainWindow(), event);
         }
     }
