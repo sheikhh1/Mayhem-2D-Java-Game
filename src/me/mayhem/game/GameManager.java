@@ -27,9 +27,9 @@ public class GameManager {
      *
      */
     public void initialize() {
-        playerMousePress = new PlayerMousePressListener();
-        playerKeyPress = new PlayerKeyboardPressListener(myPlayer);
-        playerKeyRelease = new PlayerKeyboardReleaseListener(myPlayer);
+        this.playerMousePress = new PlayerMousePressListener();
+        this.playerKeyPress = new PlayerKeyboardPressListener(this.myPlayer);
+        this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.myPlayer);
 
 
     }
@@ -40,9 +40,9 @@ public class GameManager {
      *
      */
     public void deinitialize() {
-        InputManager.unregisterInput(playerMousePress);
-        InputManager.unregisterInput(playerKeyPress);
-        InputManager.unregisterInput(playerKeyRelease);
+        InputManager.unregisterInput(this.playerMousePress);
+        InputManager.unregisterInput(this.playerKeyPress);
+        InputManager.unregisterInput(this.playerKeyRelease);
 
     }
 
@@ -52,7 +52,7 @@ public class GameManager {
      *
      */
     public void tick() {
-        myPlayer.update(renderWindow);
+        this.myPlayer.update(this.renderWindow);
     }
 
 }
