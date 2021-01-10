@@ -1,16 +1,12 @@
-package me.mayhem.screens.homepage.items;
+package me.mayhem.screens.loadpage.items;
 
 import me.mayhem.ui.AbstractInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class HomePageNewGameButton extends AbstractInteractable {
-    /**
-     *
-     * @param shape the shape of the button
-     */
-    public HomePageNewGameButton(Shape shape){
+public class LoadPageReturnButton extends AbstractInteractable {
+    public LoadPageReturnButton(Shape shape) {
         super(shape);
     }
 

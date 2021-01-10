@@ -1,16 +1,12 @@
-package me.mayhem.screens.homepage.items;
+package me.mayhem.screens.newgamesettingspages.items;
 
 import me.mayhem.ui.AbstractInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class HomePageNewGameButton extends AbstractInteractable {
-    /**
-     *
-     * @param shape the shape of the button
-     */
-    public HomePageNewGameButton(Shape shape){
+public class SettingsPageMediumButton extends AbstractInteractable {
+    public SettingsPageMediumButton(Shape shape) {
         super(shape);
     }
 

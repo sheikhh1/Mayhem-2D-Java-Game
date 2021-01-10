@@ -10,11 +10,6 @@ public class HomePageLoadButton extends AbstractInteractable {
         super(shape);
     }
 
-    /**
-     * calls a load game page manager
-     * @param window the current renderwindow
-     * @param event the event that has occoured
-     */
     @Override
     protected void call(RenderWindow window, Event event) {
     }
