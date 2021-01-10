@@ -28,6 +28,18 @@ public class InputManager {
 
     /**
      *
+     * Unregisters an {@link InputListener} from all the {@link Event.Type}s specified by itself
+     *
+     * @param listener The listener being unregistered
+     */
+    public static void unregisterInput(InputListener<?> listener) {
+        for (Event.Type type : listener.getTypes()) {
+            registeredListeners.getOrDefault(type, new ArrayList<>()).remove(listener);
+        }
+    }
+
+    /**
+     *
      * Gets all the {@link InputListener}s registered to the specified {@link Event.Type}
      *
      * @param type The type being looked up
