@@ -1,5 +1,7 @@
 package me.mayhem.ui;
 
+import org.jsfml.graphics.RenderWindow;
+
 /**
  *
  * An interface that flags a class as able to self-register and unregister a listener.
@@ -22,5 +24,7 @@ public interface Interatable {
      *
      */
     void unregister();
+
+    void draw(RenderWindow renderWindow);
 
 }
