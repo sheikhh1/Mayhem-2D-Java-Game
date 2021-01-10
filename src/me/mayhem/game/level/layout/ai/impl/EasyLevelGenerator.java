@@ -22,9 +22,9 @@ public class EasyLevelGenerator implements LevelGenerator {
     }
 
     private Block createFloor() {
-        Vector position = new Vector(0, 100);
-        int width = 200;
-        int height = 10;
+        Vector position = new Vector(0, 450);
+        int width = 640;
+        int height = 30;
 
         return Block.builder()
                 .fillColor(Color.RED)
