@@ -29,7 +29,7 @@ public class Level {
     }
 
     private Player spawnPlayer() {
-        return new Player( "YouLove2SuckCock", new Vector(0, 0));
+        return new Player( "dan", new Vector(0, 0));
 
     }
 
