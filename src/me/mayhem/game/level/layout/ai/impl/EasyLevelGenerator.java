@@ -21,6 +21,7 @@ public class EasyLevelGenerator implements LevelGenerator {
     private LevelImageLoader loader = new LevelImageLoader();
     private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/design/Level0.png");
     private List<Block> blocks = new ArrayList<>();
+    private Vector playerSpawnPosition;
 
     @Override
     public List<Block> generateLevel() {
@@ -37,7 +38,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
         int red, green, blue, pixel;
-        red = pixel = green = blue = 0;
+        //red = pixel = green = blue = 0;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
@@ -50,9 +51,14 @@ public class EasyLevelGenerator implements LevelGenerator {
                     blocks.add(createBlock(x*32,y*32));
                 } else if (red == 0 && green == 0 && blue == 255) {
                     // TODO: If Blue Block is found - Set Player Position to x,y
+                    playerSpawnPosition = new Vector(x*32, y*32);
                 }
             }
         }
+    }
+
+    public Vector getPlayerSpawnPosition() {
+        return playerSpawnPosition;
     }
 
     private Block createBlock(float x, float y) {
