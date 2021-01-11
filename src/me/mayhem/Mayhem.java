@@ -4,7 +4,9 @@ import me.mayhem.game.GameManager;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Vector2f;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
@@ -13,7 +15,7 @@ public class Mayhem {
 
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
-        window.create(new VideoMode((int) (640 * 1.5), (int) (480 * 1.5)), "Mayhem", Window.CLOSE | Window.TITLEBAR);
+        window.create(new VideoMode(960, 704), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setFramerateLimit(30);
 
         GameManager gameManager = new GameManager(window);
