@@ -19,7 +19,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage = new Image();
     private LevelImageLoader loader = new LevelImageLoader();
-    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/ai/impl/design/test.png");
+    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/design/Level0.png");
     private List<Block> blocks = new ArrayList<>();
 
     @Override
@@ -48,6 +48,8 @@ public class EasyLevelGenerator implements LevelGenerator {
 
                 if (red == 255 && green == 255 & blue == 255) {
                     blocks.add(createBlock(x*32,y*32));
+                } else if (red == 0 && green == 0 && blue == 255) {
+                    // TODO: If Blue Block is found - Set Player Position to x,y
                 }
             }
         }
