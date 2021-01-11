@@ -11,7 +11,7 @@ public class PlayerPhysics {
     private float fallStrength = 0;
     private Vector currentPosition;
 
-    private float yBound = 400f; // Floor Height (Test)
+    private float yBound = 595f; // TODO: Update from collision Detection
 
     /**
      * Takes current player position from Player Class
