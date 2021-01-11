@@ -10,6 +10,7 @@ import org.jsfml.system.Vector2f;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +19,15 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage= new Image();
     private LevelImageLoader loader = new LevelImageLoader();
+    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/leveldesign/test.png");
     private List<Block> blocks = new ArrayList<>();
 
     @Override
     public List<Block> generateLevel() {
 
-        levelImage = loader.loadLevel("src/me/mayhem/game/level/layout/leveldesign/test.png");
+        levelImage = loader.loadLevel(LEVEL_PATH);
 
-        loadLevel(levelImg);
+        loadLevel(levelImage);
 
         return blocks;
     }
@@ -33,7 +35,7 @@ public class EasyLevelGenerator implements LevelGenerator {
     private void loadLevel(Image level) {
         BufferedImage level1 = level.toBufferedImage();
 
-        int w = level1.getWidth();
+        int levelWidth = level1.getWidth();
         int h = level1.getHeight();
 
         System.out.println(w + " " + h);
@@ -59,7 +61,6 @@ public class EasyLevelGenerator implements LevelGenerator {
 
         return Block.builder()
                 .fillColor(Color.RED)
-                .outlineColor(Color.GREEN)
                 .drawable(new RectangleShape(new Vector2f(width, height)))
                 .position(position)
                 .width(width)
