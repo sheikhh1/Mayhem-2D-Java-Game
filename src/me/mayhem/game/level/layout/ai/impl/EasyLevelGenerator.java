@@ -17,24 +17,23 @@ import java.util.List;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
-    private Image levelImage= new Image();
+    private Image levelImage = new Image();
     private LevelImageLoader loader = new LevelImageLoader();
-    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/leveldesign/test.png");
+    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/ai/impl/design/test.png");
     private List<Block> blocks = new ArrayList<>();
 
     @Override
     public List<Block> generateLevel() {
 
-        levelImage = loader.loadLevel(LEVEL_PATH);
-
-        loadLevel(levelImage);
+        this.levelImage = this.loader.loadLevel(LEVEL_PATH);
+        this.loadLevel();
 
         return blocks;
     }
 
-    private void loadLevel(Image level) {
+    private void loadLevel() {
 
-        BufferedImage bufferedLevel = level.toBufferedImage();
+        BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
         int red, green, blue, pixel;

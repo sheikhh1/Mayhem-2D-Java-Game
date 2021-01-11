@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class LevelImageLoader {
 
-    private Image testLevel;
+    private Image testLevel = new Image();
 
     public Image loadLevel(Path path) {
 
