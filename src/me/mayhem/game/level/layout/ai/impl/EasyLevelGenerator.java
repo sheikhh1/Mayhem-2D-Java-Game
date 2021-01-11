@@ -33,19 +33,19 @@ public class EasyLevelGenerator implements LevelGenerator {
     }
 
     private void loadLevel(Image level) {
-        BufferedImage level1 = level.toBufferedImage();
 
-        int levelWidth = level1.getWidth();
-        int h = level1.getHeight();
+        BufferedImage bufferedLevel = level.toBufferedImage();
+        int levelWidth = bufferedLevel.getWidth();
+        int levelHeight = bufferedLevel.getHeight();
+        int red, green, blue, pixel;
+        red = pixel = green = blue = 0;
 
-        System.out.println(w + " " + h);
-
-        for (int x = 0; x < h; x++) {
-            for (int y = 0; y < w; y++) {
-                int pixel = level1.getRGB(x,y);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
+        for (int x = 0; x < levelHeight; x++) {
+            for (int y = 0; y < levelWidth; y++) {
+                pixel = bufferedLevel.getRGB(x,y);
+                red = (pixel >> 16) & 0xff;
+                green = (pixel >> 8) & 0xff;
+                blue = (pixel) & 0xff;
 
                 if (red == 255 && green == 255 & blue == 255) {
                     blocks.add(createBlock(x*32,y*32));
