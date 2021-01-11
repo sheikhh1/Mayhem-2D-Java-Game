@@ -4,8 +4,10 @@ import org.jsfml.graphics.Image;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
+/**
+ * Class to read and return an image given a specified file path
+ */
 public class LevelImageLoader {
 
     private Image testLevel = new Image();
