@@ -18,14 +18,13 @@ public class Layout {
 
     public void draw(RenderWindow renderWindow) {
         for (Block block : this.blocks) {
-            renderWindow.draw(block.getDrawable());
+            block.draw(renderWindow);
         }
     }
 
     public void moveBlocks(Vector direction) {
         for (Block block : this.blocks) {
             block.getPosition().add(direction);
-            block.getDrawable().setPosition(block.getPosition().toVector());
         }
     }
 }
