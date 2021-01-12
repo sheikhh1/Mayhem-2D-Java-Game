@@ -15,8 +15,9 @@ import java.util.List;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
-    private Image levelImage = new Image();
     private List<Block> blocks = new ArrayList<>();
+
+    private Image levelImage;
     private Vector playerSpawnPosition;
 
     @Override
