@@ -33,7 +33,7 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        playerPhysics.setPlayerPosition(position);
+        playerPhysics.setPlayerMotion(this.getMotion());
     }
 
     public String getName() {
