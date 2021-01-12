@@ -88,4 +88,8 @@ public class Entity {
 
         return null;
     }
+
+    public boolean isJumping() {
+        return this.entityJump;
+    }
 }
