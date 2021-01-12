@@ -13,6 +13,6 @@ public class ButtonInteractable extends AbstractInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        System.out.println("HELLO");
+
     }
 }
