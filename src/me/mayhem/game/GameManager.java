@@ -55,4 +55,13 @@ public class GameManager {
         this.currentLevel.getPlayer().update(this.renderWindow);
         this.currentLevel.getLayout().draw(this.renderWindow);
     }
+
+    /**
+     *
+     * Update entities after drawing and user input complete
+     *
+     */
+    public void tick() {
+
+    }
 }
