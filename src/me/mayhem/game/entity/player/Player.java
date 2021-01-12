@@ -4,7 +4,6 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
-import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
@@ -15,12 +14,6 @@ public class Player extends Entity {
 
     private String name;
     private PlayerAnimation animate = new PlayerAnimation();
-
-    // Determine what the player is currently doing
-    private boolean jumping = false;
-    private boolean forward = false;
-    private boolean back = false;
-    private boolean fall = true;
 
     /**
      * Player Constructor
@@ -35,46 +28,6 @@ public class Player extends Entity {
         this.getEntityPhysics().setEntityMotion(this.getMotion());
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public boolean isJumping() {
-        return this.jumping;
-    }
-
-    public void setJumping(boolean jumping) {
-        this.jumping = jumping;
-    }
-
-    public boolean isForward() {
-        return this.forward;
-    }
-
-    public void setForward(boolean forward) {
-        this.forward = forward;
-    }
-
-    public boolean isBack() {
-        return this.back;
-    }
-
-    public void setBack(boolean back) {
-        this.back = back;
-    }
-
-    public boolean isFall() {
-        return this.fall;
-    }
-
-    public void setFall(boolean fall) {
-        this.fall = fall;
-    }
-
-//    public EntityPhysics getPlayerPhysics() {
-//        return this.entityPhysics;
-//    }
-
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
@@ -83,7 +36,6 @@ public class Player extends Entity {
         if (state == PlayerState.JUMPING){
             this.setJumping(true);
         } else if (state == PlayerState.FORWARD){
-            this.forward = true;
             this.setForward(true);
             this.setBack(false);
         } else if (state == PlayerState.BACK){
