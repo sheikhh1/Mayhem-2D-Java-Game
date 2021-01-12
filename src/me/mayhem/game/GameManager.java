@@ -71,10 +71,9 @@ public class GameManager {
     public void tick() {
         this.handleEntityCollisions();
         this.handleBlockCollisions();
-        this.handleEntityVelocity();
-
 
         Player player = this.currentLevel.getPlayer();
+        player.tick();
 
         if (this.isOffScreen(player.getPosition(), player.getMotion())) {
             int xDiff = 0;
@@ -94,9 +93,18 @@ public class GameManager {
 
             Vector movement = new Vector(xDiff, yDiff);
 
-            player.getMotion().setX(0);
+            if (this.isOffScreenX(player.getPosition(), player.getMotion())) {
+                player.getMotion().setX(0);
+            }
+
+            if (this.isOffScreenY(player.getPosition(), player.getMotion())) {
+                player.getMotion().setY(0);
+            }
+
             this.currentLevel.getLayout().moveBlocks(movement);
         }
+
+        this.handleEntityVelocity();
     }
 
     private void handleEntityCollisions() {
@@ -118,7 +126,6 @@ public class GameManager {
 
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            entity.getMotion().add(GRAVITY);
 
             //TODO: calculate block collisions
         }
@@ -127,11 +134,19 @@ public class GameManager {
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.getPosition().add(entity.getMotion());
+            entity.getMotion().set(0, 0);
         }
     }
 
     private boolean isOffScreen(Vector position, Vector motion) {
-        return (position.getX() + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH ||
-                (position.getY() + motion.getY()) < 0 || (position.getY() + motion.getY()) > Mayhem.SCREEN_HEIGHT;
+        return this.isOffScreenX(position, motion) || this.isOffScreenY(position, motion);
+    }
+
+    private boolean isOffScreenX(Vector position, Vector motion) {
+        return (position.getX() + 30 + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH;
+    }
+
+    private boolean isOffScreenY(Vector position, Vector motion) {
+        return  (position.getY() + motion.getY()) < 0 || (position.getY() + 200 + motion.getY()) > Mayhem.SCREEN_HEIGHT;
     }
 }
