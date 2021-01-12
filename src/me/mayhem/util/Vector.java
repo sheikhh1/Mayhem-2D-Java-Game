@@ -85,4 +85,12 @@ public class Vector {
     public Vector2f toVector() {
         return this.vector2f;
     }
+
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "x=" + this.getX() +
+                ", y=" + this.getY() +
+                '}';
+    }
 }
