@@ -108,17 +108,17 @@ public class Player extends Entity {
         if (this.isFall()) {
             this.playerPhysics.fall();
 
-            if (this.playerPhysics.checkCollision()) {
-                this.setFall(false);
-            }
+//            if (this.playerPhysics.checkCollision()) {
+//                this.setFall(false);
+//            }
         }
 
         if (this.isJumping()) {
             this.playerPhysics.jump();
 
-            if (this.playerPhysics.checkCollision()) {
-                this.setJumping(false);
-            }
+//            if (this.playerPhysics.checkCollision()) {
+//                this.setJumping(false);
+//            }
         }
 
         if (this.isForward()) {
