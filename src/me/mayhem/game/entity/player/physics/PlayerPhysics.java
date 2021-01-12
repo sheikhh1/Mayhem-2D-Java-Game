@@ -48,18 +48,4 @@ public class PlayerPhysics {
         this.playerMotion.add(0, this.fallStrength);
         this.fallStrength += GRAVITY;
     }
-
-    /**
-     * Test Collision Checker
-     * @return true if player has collided with floor, otherwise return false
-     */
-//    public boolean checkCollision() {
-//        if (this.playerMotion.getY() >= this.yBound) {
-//            this.playerMotion.set(this.playerMotion.getX(), this.yBound);
-//            this.jumpStrength = 20f;
-//            return true;
-//        }
-//
-//        return false;
-//    }
 }
