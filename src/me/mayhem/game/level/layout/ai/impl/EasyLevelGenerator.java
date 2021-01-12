@@ -38,29 +38,25 @@ public class EasyLevelGenerator implements LevelGenerator {
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
-        int red;
-        int green;
-        int blue;
-        int pixel;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
-                pixel = bufferedLevel.getRGB(x,y);
-                red = (pixel >> 16) & 0xff;
-                green = (pixel >> 8) & 0xff;
-                blue = (pixel) & 0xff;
+                int pixel = bufferedLevel.getRGB(x, y);
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = (pixel) & 0xff;
 
                 if (red == 255 && green == 255 & blue == 255) {
-                    blocks.add(createBlock(x*32,y*32));
+                    this.blocks.add(this.createBlock(x * 32,y * 32));
                 } else if (red == 0 && green == 0 && blue == 255) {
-                    playerSpawnPosition = new Vector(x*32, y*32);
+                    this.playerSpawnPosition = new Vector(x * 32, y * 32);
                 }
             }
         }
     }
 
     public Vector getPlayerSpawnPosition() {
-        return playerSpawnPosition;
+        return this.playerSpawnPosition;
     }
 
     /**
