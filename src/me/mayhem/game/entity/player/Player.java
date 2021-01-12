@@ -14,6 +14,7 @@ public class Player extends Entity {
 
     private String name;
     private PlayerAnimation animate = new PlayerAnimation();
+    private PlayerState state;
 
     /**
      * Player Constructor
@@ -26,6 +27,7 @@ public class Player extends Entity {
         this.name = name; // Name assigned and stored
 
         this.getEntityPhysics().setEntityMotion(this.getMotion());
+        this.setState(PlayerState.FALLING);
     }
 
     /**
@@ -33,6 +35,7 @@ public class Player extends Entity {
      * @param state - Current state of the player
      */
    public void setState(PlayerState state){
+       this.state = state;
         if (state == PlayerState.JUMPING){
             this.setJumping(true);
         } else if (state == PlayerState.FORWARD){
@@ -46,7 +49,15 @@ public class Player extends Entity {
             animate.setPause(true);
             this.setForward(false);
             this.setBack(false);
+            this.setFalling(false);
+            this.setJumping(false);
+        } else if (state == PlayerState.FALLING) {
+            this.setFalling(true);
         }
+   }
+
+   public PlayerState getState() {
+       return this.state;
    }
 
     /**
@@ -59,7 +70,7 @@ public class Player extends Entity {
     }
 
     public void tick() {
-        if (this.isFall()) {
+        if (this.isFalling()) {
             this.getEntityPhysics().fall();
         }
 

@@ -113,11 +113,11 @@ public class Entity {
         this.entityBack = entityBack;
     }
 
-    public boolean isFall() {
+    public boolean isFalling() {
         return this.entityFall;
     }
 
-    public void setFall(boolean entityFall) {
+    public void setFalling(boolean entityFall) {
         this.entityFall = entityFall;
     }
 
