@@ -1,7 +1,6 @@
 package me.mayhem.screens.homepage.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.screens.loadpage.LoadPageManager;
 import me.mayhem.ui.AbstractInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -15,7 +14,7 @@ public class HomepageQuitButton extends AbstractInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if ( event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
+        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             Mayhem.getCurrentScreen().unloadScreen(window);
             Mayhem.getCurrentScreen().close(window);
         }
