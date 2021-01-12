@@ -1,5 +1,6 @@
 package me.mayhem.game;
 
+import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
@@ -7,6 +8,8 @@ import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
 import org.jsfml.graphics.RenderWindow;
+
+import java.util.Objects;
 
 public class GameManager {
 
@@ -62,6 +65,23 @@ public class GameManager {
      *
      */
     public void tick() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            for (Entity other : this.currentLevel.getEntities()) {
+                if (Objects.equals(entity, other)) {
+                    continue;
+                }
 
+                if (entity.getHitbox().checkForCollision(other.getHitbox())) {
+                    entity.getMotion().set(0, 0);
+                    other.getMotion().set(0, 0);
+
+                    //TODO: call entity collision event
+                }
+            }
+         }
+
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getPosition().add(entity.getMotion());
+        }
     }
 }
