@@ -100,4 +100,10 @@ public class Entity {
     public boolean isForward() {
         return this.entityForward;
     }
+
+    public void setForward(boolean entityForward) {
+        this.entityForward = entityForward;
+    }
+
+    
 }
