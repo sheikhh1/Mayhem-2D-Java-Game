@@ -24,6 +24,10 @@ public class Entity {
     private Hitbox hitbox;
     private List<Attribute<?>> attributes;
     private EntityPhysics entityPhysics;
+    private boolean entityFall = true;
+    private boolean entityForward = false;
+    private boolean entityBack = false;
+    private boolean entityJump = false;
 
     /**
      * Entity Constructor
