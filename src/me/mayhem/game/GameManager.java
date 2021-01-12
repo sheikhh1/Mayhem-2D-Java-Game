@@ -76,7 +76,7 @@ public class GameManager {
 
         Player player = this.currentLevel.getPlayer();
 
-        if (this.isOffScreen(player.getPosition())) {
+        if (this.isOffScreen(player.getPosition(), player.getMotion())) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -94,8 +94,8 @@ public class GameManager {
 
             Vector movement = new Vector(xDiff, yDiff);
 
+            player.getMotion().setX(0);
             this.currentLevel.getLayout().moveBlocks(movement);
-            player.getPosition().add(movement);
         }
     }
 
@@ -130,7 +130,8 @@ public class GameManager {
         }
     }
 
-    private boolean isOffScreen(Vector position) {
-        return position.getX() < 0 || position.getX() > Mayhem.SCREEN_WIDTH || position.getY() < 0 || position.getY() > Mayhem.SCREEN_HEIGHT;
+    private boolean isOffScreen(Vector position, Vector motion) {
+        return (position.getX() + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH ||
+                (position.getY() + motion.getY()) < 0 || (position.getY() + motion.getY()) > Mayhem.SCREEN_HEIGHT;
     }
 }
