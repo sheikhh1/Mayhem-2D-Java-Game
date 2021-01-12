@@ -8,6 +8,7 @@ import me.mayhem.screens.newgamesettingspage.items.SettingsPageHardButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
 import me.mayhem.ui.Interatable;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -61,6 +62,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT - 100));
+        shape.setFillColor(Color.RED);
 
         return shape;
     }
@@ -73,6 +75,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT /10));
+        shape.setFillColor(Color.BLUE);
 
         return shape;
     }
@@ -85,6 +88,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 4);
+        shape.setFillColor(Color.BLACK);
 
         return shape;
     }

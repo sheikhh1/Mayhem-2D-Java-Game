@@ -6,6 +6,7 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
 import me.mayhem.ui.Interatable;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -20,11 +21,10 @@ public class LoadPageManager implements ScreenManager {
         loadScreen(window);
     }
     @Override
-    public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.clear();
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Load Game");
+    public void loadScreen(RenderWindow renderWindow){
 
         this.createButtons();
+        this.draw(renderWindow);
     }
 
     @Override
@@ -57,6 +57,7 @@ public class LoadPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
+        shape.setFillColor(Color.BLACK);
 
         return shape;
     }
@@ -69,6 +70,7 @@ public class LoadPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((0), (HEIGHT - 100));
+        shape.setFillColor(Color.RED);
 
         return shape;
     }
