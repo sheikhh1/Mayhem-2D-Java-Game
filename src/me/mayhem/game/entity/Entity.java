@@ -105,5 +105,9 @@ public class Entity {
         this.entityForward = entityForward;
     }
 
+    public boolean isBack() {
+        return this.entityBack;
+    }
+
     
 }
