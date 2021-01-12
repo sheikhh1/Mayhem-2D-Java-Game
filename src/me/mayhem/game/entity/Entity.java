@@ -51,6 +51,10 @@ public class Entity {
         return this.position;
     }
 
+    public EntityPhysics getEntityPhysics() {
+        return this.entityPhysics;
+    }
+
     public void setPosition(float x, float y) {
         this.position.set(x, y);
     }
