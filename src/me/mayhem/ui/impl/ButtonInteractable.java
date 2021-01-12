@@ -1,4 +1,4 @@
-package me.mayhem.ui.example;
+package me.mayhem.ui.impl;
 
 import me.mayhem.ui.AbstractInteractable;
 import org.jsfml.graphics.RenderWindow;
