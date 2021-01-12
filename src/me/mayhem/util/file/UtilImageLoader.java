@@ -1,6 +1,7 @@
 package me.mayhem.util.file;
 
 import org.jsfml.graphics.Image;
+import org.jsfml.graphics.Texture;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,5 +34,17 @@ public class UtilImageLoader {
         }
 
         return image;
+    }
+
+    public static Texture loadTextureFromStream(InputStream inputStream) {
+        Texture texture = new Texture();
+
+        try {
+            texture.loadFromStream(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return texture;
     }
 }

@@ -8,20 +8,14 @@ import me.mayhem.game.entity.player.physics.PlayerPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
-import java.nio.file.Path;
-
 /**
  * Player Class
  */
 public class Player extends Entity {
 
-    private static final Path PLAYER_ANIMATION = Path.of("src/me/mayhem/game/entity/player/images/PlayerSheet.png");
-
     private String name;
-
-    //TODO: Implement DrawableSprite
     private PlayerPhysics playerPhysics = new PlayerPhysics();
-    private PlayerAnimation animate = new PlayerAnimation(PLAYER_ANIMATION);
+    private PlayerAnimation animate = new PlayerAnimation();
 
     // Determine what the player is currently doing
     private boolean jumping = false;
@@ -39,7 +33,7 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        playerPhysics.setPlayerPosition(position);
+        playerPhysics.setPlayerMotion(this.getMotion());
     }
 
     public String getName() {
