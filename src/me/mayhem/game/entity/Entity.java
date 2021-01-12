@@ -109,5 +109,9 @@ public class Entity {
         return this.entityBack;
     }
 
+    public void setBack(boolean entityBack) {
+        this.entityBack = entityBack;
+    }
+
     
 }
