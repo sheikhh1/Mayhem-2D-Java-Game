@@ -20,7 +20,7 @@ public interface Hitbox {
      * @param other the hitbox for the other entity
      * @return true if the two hitboxes collided
      */
-    boolean collides(Hitbox other);
+    boolean checkForCollision(Hitbox other);
 
     /**
      * returns the entities position as a vector
