@@ -25,6 +25,7 @@ public class Layout {
     public void moveBlocks(Vector direction) {
         for (Block block : this.blocks) {
             block.getPosition().add(direction);
+            block.getDrawable().setPosition(block.getPosition().toVector());
         }
     }
 }
