@@ -113,5 +113,9 @@ public class Entity {
         this.entityBack = entityBack;
     }
 
-    
+    public boolean isFall() {
+        return this.entityFall;
+    }
+
+
 }
