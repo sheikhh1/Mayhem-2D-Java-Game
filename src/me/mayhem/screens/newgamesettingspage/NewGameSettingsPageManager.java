@@ -34,6 +34,11 @@ public class NewGameSettingsPageManager implements ScreenManager {
         }
     }
 
+    @Override
+    public void close(RenderWindow renderWindow) {
+        renderWindow.close();
+    }
+
     /**
      * creates all the buttons that the screen is going to display
      */

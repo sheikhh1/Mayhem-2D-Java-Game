@@ -94,4 +94,8 @@ public class HomePageManager implements ScreenManager {
     public RenderWindow getWindow(){
         return this.window;
     }
+
+    public void close(RenderWindow renderWindow){
+        window.close();
+    }
 }

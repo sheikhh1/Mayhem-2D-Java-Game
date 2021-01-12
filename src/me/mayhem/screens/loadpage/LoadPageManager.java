@@ -32,6 +32,11 @@ public class LoadPageManager implements ScreenManager {
         }
     }
 
+    @Override
+    public void close(RenderWindow renderWindow) {
+
+    }
+
     private void createButtons() {
         //TODO : loop the button for how many saved games there are
         // store this in a list maybe?

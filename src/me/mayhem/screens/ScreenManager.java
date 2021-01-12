@@ -10,4 +10,7 @@ public interface ScreenManager {
 
     void draw(RenderWindow renderWindow);
 
+    void close(RenderWindow renderWindow);
+
+
 }
