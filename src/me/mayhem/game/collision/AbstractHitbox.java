@@ -1,6 +1,6 @@
 package me.mayhem.game.collision;
 
-import me.mayhem.util.math.Vector;
+import me.mayhem.util.Vector;
 
 public abstract class AbstractHitbox implements Hitbox {
 

@@ -3,7 +3,7 @@ package me.mayhem.game.entity;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.util.math.Vector;
+import me.mayhem.util.Vector;
 
 import java.util.Arrays;
 import java.util.List;

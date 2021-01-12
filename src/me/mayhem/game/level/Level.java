@@ -5,7 +5,7 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.Layout;
 import me.mayhem.game.level.spawning.EntitySpawner;
-import me.mayhem.util.math.Vector;
+import me.mayhem.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;

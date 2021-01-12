@@ -1,4 +1,4 @@
-package me.mayhem.util.math;
+package me.mayhem.util;
 
 import org.jsfml.system.Vector2f;
 

@@ -5,7 +5,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
 import me.mayhem.game.entity.player.physics.PlayerPhysics;
-import me.mayhem.util.math.Vector;
+import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
 import java.nio.file.Path;

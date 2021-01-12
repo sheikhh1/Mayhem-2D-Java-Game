@@ -2,7 +2,7 @@ package me.mayhem.game.collision.impl;
 
 import me.mayhem.game.collision.AbstractHitbox;
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.util.math.Vector;
+import me.mayhem.util.Vector;
 import org.jsfml.graphics.FloatRect;
 
 public class RectangleHitbox extends AbstractHitbox {
