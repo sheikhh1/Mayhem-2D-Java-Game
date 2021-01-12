@@ -34,7 +34,8 @@ public class Mayhem {
                     }
                 }
             }
-            //TODO: tick objects/entities
+
+            gameManager.tick();
         }
     }
 
