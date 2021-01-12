@@ -22,7 +22,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     @Override
     public List<Block> generateLevel() {
-        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getResourceAsStream("levels/Level0.png"));
+        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/Level0.png"));
         this.loadLevel();
 
         return blocks;
