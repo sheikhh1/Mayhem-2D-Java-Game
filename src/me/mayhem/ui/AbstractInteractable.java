@@ -15,7 +15,7 @@ import org.jsfml.window.event.MouseEvent;
  */
 public abstract class AbstractInteractable extends MouseInputListener implements Interatable {
 
-    private Shape shape;
+    protected Shape shape;
 
     /**
      *
