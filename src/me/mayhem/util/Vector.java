@@ -42,6 +42,10 @@ public class Vector {
         return this.vector2f.y;
     }
 
+    public void set(Vector vector) {
+        this.set(vector.getX(), vector.getY());
+    }
+
     public void set(float x, float y) {
         this.vector2f = new Vector2f(x, y);
     }
