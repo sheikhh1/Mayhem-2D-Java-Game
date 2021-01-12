@@ -1,4 +1,4 @@
-package me.mayhem.ui;
+package me.mayhem.util.ui;
 
 /**
  *

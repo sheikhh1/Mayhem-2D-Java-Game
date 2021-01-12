@@ -1,7 +1,7 @@
 package me.mayhem.game.collision;
 
 
-import me.mayhem.math.Vector;
+import me.mayhem.util.math.Vector;
 
 /**
  *

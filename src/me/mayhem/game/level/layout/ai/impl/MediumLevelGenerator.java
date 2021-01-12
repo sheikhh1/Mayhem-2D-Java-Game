@@ -2,7 +2,7 @@ package me.mayhem.game.level.layout.ai.impl;
 
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
-import me.mayhem.math.Vector;
+import me.mayhem.util.math.Vector;
 
 import java.util.Collections;
 import java.util.List;

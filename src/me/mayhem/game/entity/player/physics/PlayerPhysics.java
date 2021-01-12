@@ -1,6 +1,6 @@
 package me.mayhem.game.entity.player.physics;
 
-import me.mayhem.math.Vector;
+import me.mayhem.util.math.Vector;
 
 public class PlayerPhysics {
 

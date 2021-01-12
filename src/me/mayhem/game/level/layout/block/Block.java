@@ -2,7 +2,7 @@ package me.mayhem.game.level.layout.block;
 
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
-import me.mayhem.math.Vector;
+import me.mayhem.util.math.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Shape;
 

@@ -2,31 +2,30 @@ package me.mayhem.game.level.layout.ai.impl;
 
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
-import me.mayhem.math.Vector;
+import me.mayhem.util.file.UtilImageLoader;
+import me.mayhem.util.math.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Image;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage = new Image();
-    private LevelImageLoader loader = new LevelImageLoader();
-    private static final Path LEVEL_PATH = Path.of("src/me/mayhem/game/level/layout/design/Level0.png");
+    private UtilImageLoader loader = new UtilImageLoader();
+    private static final Path LEVEL_PATH = Path.of("levels/Level0.png");
     private List<Block> blocks = new ArrayList<>();
     private Vector playerSpawnPosition;
 
     @Override
     public List<Block> generateLevel() {
         // Loads image
-        this.levelImage = this.loader.loadLevel(LEVEL_PATH);
+        this.levelImage = this.loader.loadLevel(getClass().getResource(""));
         this.loadLevel();
 
         return blocks;

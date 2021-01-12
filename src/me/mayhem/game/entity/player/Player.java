@@ -1,12 +1,12 @@
 package me.mayhem.game.entity.player;
 
+import me.mayhem.game.ai.impl.NoPathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.ai.impl.NoPathing;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
 import me.mayhem.game.entity.player.physics.PlayerPhysics;
-import me.mayhem.math.Vector;
-import org.jsfml.graphics.*;
+import me.mayhem.util.math.Vector;
+import org.jsfml.graphics.RenderWindow;
 
 import java.nio.file.Path;
 
