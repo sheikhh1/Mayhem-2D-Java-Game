@@ -4,7 +4,7 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
-import me.mayhem.game.entity.player.physics.PlayerPhysics;
+import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
@@ -14,7 +14,7 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private PlayerPhysics playerPhysics = new PlayerPhysics();
+    private EntityPhysics entityPhysics = new EntityPhysics();
     private PlayerAnimation animate = new PlayerAnimation();
 
     // Determine what the player is currently doing
@@ -33,7 +33,7 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        playerPhysics.setPlayerMotion(this.getMotion());
+        entityPhysics.setEntityMotion(this.getMotion());
     }
 
     public String getName() {
@@ -72,8 +72,8 @@ public class Player extends Entity {
         this.fall = fall;
     }
 
-    public PlayerPhysics getPlayerPhysics() {
-        return this.playerPhysics;
+    public EntityPhysics getPlayerPhysics() {
+        return this.entityPhysics;
     }
 
     /**
@@ -109,7 +109,7 @@ public class Player extends Entity {
 
     public void tick() {
         if (this.isFall()) {
-            this.playerPhysics.fall();
+            this.entityPhysics.fall();
 
 //            if (this.playerPhysics.checkCollision()) {
 //                this.setFall(false);
@@ -117,7 +117,7 @@ public class Player extends Entity {
         }
 
         if (this.isJumping()) {
-            this.playerPhysics.jump();
+            this.entityPhysics.jump();
 
 //            if (this.playerPhysics.checkCollision()) {
 //                this.setJumping(false);
@@ -125,11 +125,11 @@ public class Player extends Entity {
         }
 
         if (this.isForward()) {
-            this.playerPhysics.moveForward();
+            this.entityPhysics.moveForward();
             animate.setRow(11);
             animate.setPause(false);
         } else if (this.isBack()) {
-            this.playerPhysics.moveBack();
+            this.entityPhysics.moveBack();
             animate.setRow(9);
             animate.setPause(false);
         }
