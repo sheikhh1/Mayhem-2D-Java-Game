@@ -12,8 +12,8 @@ import org.jsfml.window.event.Event;
 
 public class Mayhem {
 
-    public static final int SCREEN_WIDTH = 960;
-    public static final int SCREEN_HEIGHT = 704;
+    public static final int SCREEN_WIDTH = 1000;
+    public static final int SCREEN_HEIGHT = 800;
 
     private static ScreenManager currentScreen;
     private static RenderWindow mainWindow;
