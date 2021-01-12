@@ -4,6 +4,7 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
+import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 
 import java.util.Arrays;
@@ -22,6 +23,7 @@ public class Entity {
     private Pathing pathing;
     private Hitbox hitbox;
     private List<Attribute<?>> attributes;
+    private EntityPhysics entityPhysics;
 
     /**
      * Entity Constructor
@@ -38,6 +40,7 @@ public class Entity {
         this.pathing = pathing;
         this.hitbox = new RectangleHitbox(this.position, 20, 20);
         this.attributes = Arrays.asList(attributes);
+        this.entityPhysics = new EntityPhysics();
     }
 
     public EntityType getType() {
