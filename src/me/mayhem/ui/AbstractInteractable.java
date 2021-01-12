@@ -1,7 +1,6 @@
 package me.mayhem.ui;
 
 import me.mayhem.Mayhem;
-import me.mayhem.input.InputManager;
 import me.mayhem.input.impl.mouse.MouseInputListener;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -28,18 +27,6 @@ public abstract class AbstractInteractable extends MouseInputListener implements
         super();
 
         this.shape = shape;
-
-        this.register();
-    }
-
-    @Override
-    public void register() {
-        InputManager.registerInput(this);
-    }
-
-    @Override
-    public void unregister() {
-        InputManager.unregisterInput(this);
     }
 
     @Override
