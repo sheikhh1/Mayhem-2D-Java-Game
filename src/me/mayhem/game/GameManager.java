@@ -117,7 +117,11 @@ public class GameManager {
     }
 
     private void handleBlockCollisions() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getMotion().add(GRAVITY);
 
+            //TODO: calculate block collisions
+        }
     }
 
     private void handleEntityVelocity() {
