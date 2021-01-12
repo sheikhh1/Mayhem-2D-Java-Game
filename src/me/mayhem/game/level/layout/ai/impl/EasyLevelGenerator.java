@@ -35,11 +35,13 @@ public class EasyLevelGenerator implements LevelGenerator {
      * Blue Block = Player Spawning Point
      */
     private void loadLevel() {
-
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
-        int red, green, blue, pixel;
+        int red;
+        int green;
+        int blue;
+        int pixel;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
