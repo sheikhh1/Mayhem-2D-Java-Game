@@ -24,9 +24,9 @@ public class NewGameSettingsPageManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Select difficulty");
 
         this.createButtons();
+        this.draw(renderWindow);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((WIDTH / 10 * 4), (HEIGHT - 100));
+        shape.setPosition((0), (HEIGHT - 100));
         shape.setFillColor(Color.RED);
 
         return shape;
@@ -75,7 +75,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT /10));
-        shape.setFillColor(Color.BLUE);
+        shape.setFillColor(Color.GREEN);
 
         return shape;
     }
@@ -88,7 +88,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 4);
-        shape.setFillColor(Color.BLACK);
+        shape.setFillColor(Color.YELLOW);
 
         return shape;
     }
@@ -100,7 +100,8 @@ public class NewGameSettingsPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((WIDTH / 10 * 4), (HEIGHT/10) * 7);
+        shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 7);
+        shape.setFillColor(Color.RED);
 
         return shape;
     }

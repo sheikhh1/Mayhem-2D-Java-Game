@@ -10,7 +10,7 @@ import org.jsfml.window.event.Event;
 public class HomePageLoadButton extends ButtonInteractable {
 
     public HomePageLoadButton(Shape shape) {
-        super(shape, "fonts/FreeSans.ttf", "Unimportant");
+        super(shape, "fonts/FreeSans.ttf", "Load Game");
     }
 
     @Override

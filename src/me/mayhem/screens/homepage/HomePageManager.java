@@ -1,5 +1,6 @@
 package me.mayhem.screens.homepage;
 
+import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
@@ -28,7 +29,10 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        if (Mayhem.getCurrentScreen() == null){
+            renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        }
+
 
         this.createButtons();
         this.draw(renderWindow);

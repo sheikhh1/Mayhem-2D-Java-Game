@@ -3,18 +3,19 @@ package me.mayhem.screens.homepage.items;
 import me.mayhem.Mayhem;
 import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
 import me.mayhem.ui.AbstractInteractable;
+import me.mayhem.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class HomePageNewGameButton extends AbstractInteractable {
+public class HomePageNewGameButton extends ButtonInteractable {
 
     /**
      *
      * @param shape the shape of the button
      */
     public HomePageNewGameButton(Shape shape){
-        super(shape);
+        super(shape, "fonts/FreeSans.ttf", "New Game");
     }
 
     @Override

@@ -57,7 +57,7 @@ public class LoadPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
-        shape.setFillColor(Color.BLACK);
+        shape.setFillColor(Color.YELLOW);
 
         return shape;
     }
