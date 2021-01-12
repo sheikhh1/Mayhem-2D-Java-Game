@@ -58,18 +58,11 @@ public class Player extends Entity {
         animate.playAnimation(window);
         if (this.isFall()) {
             this.getEntityPhysics().fall();
-
-//            if (this.playerPhysics.checkCollision()) {
-//                this.setFall(false);
-//            }
         }
 
         if (this.isJumping()) {
             this.getEntityPhysics().jump();
 
-//            if (this.playerPhysics.checkCollision()) {
-//                this.setJumping(false);
-//            }
         }
 
         if (this.isForward()) {
