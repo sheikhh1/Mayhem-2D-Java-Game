@@ -20,14 +20,15 @@ public class Level {
     private final Layout layout;
 
     public Level(Difficulty difficulty) {
-        this.player = this.spawnPlayer();
         this.difficulty = difficulty;
         this.spawner = null; //TODO: get from difficulty
         this.layout = new Layout(this.difficulty);
+        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
+
     }
 
-    private Player spawnPlayer() {
-        return new Player( "dan", new Vector(0, 0));
+    private Player spawnPlayer(Vector playerSpawnPosition) {
+        return new Player( "dan", playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {
