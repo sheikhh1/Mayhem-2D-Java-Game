@@ -1,13 +1,12 @@
 package me.mayhem.game.entity.player.animation;
 
-import org.jsfml.graphics.IntRect;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
+import me.mayhem.util.file.UtilImageLoader;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 
 /**
@@ -15,8 +14,8 @@ import java.nio.file.Path;
  */
 public class PlayerAnimation {
 
-    private Texture playerTexture = new Texture();
-    private Sprite playerSprite = new Sprite(playerTexture);
+    private Texture playerTexture;
+    private Sprite playerSprite;
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
@@ -24,11 +23,9 @@ public class PlayerAnimation {
     private Clock animationUpdate = new Clock();
 
     public PlayerAnimation(Path path) {
-        try {
-            playerTexture.loadFromFile(path);
-        } catch(IOException ex) {
-            ex.printStackTrace();
-        }
+
+        playerTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
+        playerSprite = new Sprite(playerTexture);
         // Increase the size of the sprite by 1.3x
         playerSprite.setScale(1.3f,1.3f);
         playerSprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
