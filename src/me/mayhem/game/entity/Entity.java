@@ -96,4 +96,8 @@ public class Entity {
     public void setJumping(boolean entityJump) {
         this.entityJump = entityJump;
     }
+
+    public boolean isForward() {
+        return this.entityForward;
+    }
 }
