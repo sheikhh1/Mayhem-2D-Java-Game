@@ -1,8 +1,9 @@
 package me.mayhem;
 
-import me.mayhem.game.GameManager;
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
+import me.mayhem.screens.ScreenManager;
+import me.mayhem.screens.homepage.HomePageManager;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -14,17 +15,24 @@ public class Mayhem {
     public static final int SCREEN_WIDTH = 960;
     public static final int SCREEN_HEIGHT = 704;
 
+    private static ScreenManager currentScreen;
+    private static RenderWindow mainWindow;
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setFramerateLimit(30);
 
-        GameManager gameManager = new GameManager(window);
+        currentScreen = new HomePageManager(window);
+        window.setFramerateLimit(30);
+        mainWindow = window;
 
         while (window.isOpen()) {
             window.clear(Color.WHITE);
 
-            gameManager.draw();
+            if (currentScreen != null) {
+                currentScreen.draw(window);
+            }
 
             window.display();
 
@@ -37,12 +45,18 @@ public class Mayhem {
                     }
                 }
             }
-
-            gameManager.tick();
         }
     }
 
     public static RenderWindow getMainWindow() {
-        return null; //TODO
+        return mainWindow;
+    }
+
+    public static ScreenManager getCurrentScreen() {
+        return currentScreen;
+    }
+
+    public static void setCurrentScreen(ScreenManager currentScreen) {
+        Mayhem.currentScreen = currentScreen;
     }
 }

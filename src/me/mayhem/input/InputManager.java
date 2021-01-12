@@ -2,7 +2,11 @@ package me.mayhem.input;
 
 import org.jsfml.window.event.Event;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
@@ -22,7 +26,7 @@ public class InputManager {
      */
     public static void registerInput(InputListener<?> listener) {
         for (Event.Type type : listener.getTypes()) {
-            registeredListeners.computeIfAbsent(type, ___ -> new ArrayList<>()).add(listener);
+            registeredListeners.computeIfAbsent(type, ___ -> new CopyOnWriteArrayList<>()).add(listener);
         }
     }
 
@@ -34,7 +38,7 @@ public class InputManager {
      */
     public static void unregisterInput(InputListener<?> listener) {
         for (Event.Type type : listener.getTypes()) {
-            registeredListeners.getOrDefault(type, new ArrayList<>()).remove(listener);
+            registeredListeners.getOrDefault(type, new CopyOnWriteArrayList<>()).remove(listener);
         }
     }
 

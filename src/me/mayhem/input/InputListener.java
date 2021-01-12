@@ -27,7 +27,15 @@ public abstract class InputListener<T extends Event> {
     public InputListener(Event.Type... types) {
         this.types = Arrays.asList(types);
 
+        this.register();
+    }
+
+    public void register() {
         InputManager.registerInput(this);
+    }
+
+    public void unregister() {
+        InputManager.unregisterInput(this);
     }
 
     public List<Event.Type> getTypes() {

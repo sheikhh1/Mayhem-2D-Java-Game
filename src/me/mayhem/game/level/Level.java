@@ -24,7 +24,7 @@ public class Level {
         this.spawner = null; //TODO: get from difficulty
         this.layout = new Layout(this.difficulty);
         this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
-
+        this.entities.add(this.player);
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition) {

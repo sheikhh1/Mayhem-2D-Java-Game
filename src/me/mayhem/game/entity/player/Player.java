@@ -56,6 +56,9 @@ public class Player extends Entity {
      */
     public void update(RenderWindow window) {
         animate.playAnimation(window);
+    }
+
+    public void tick() {
         if (this.isFall()) {
             this.getEntityPhysics().fall();
         }
