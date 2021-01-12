@@ -2,12 +2,12 @@ package me.mayhem.screens.homepage;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
-import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
-import me.mayhem.ui.Interatable;
+import me.mayhem.util.Vector;
+import me.mayhem.util.ui.Interatable;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;

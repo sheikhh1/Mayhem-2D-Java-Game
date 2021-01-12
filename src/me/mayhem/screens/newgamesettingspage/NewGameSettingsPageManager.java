@@ -1,18 +1,17 @@
 package me.mayhem.screens.newgamesettingspage;
 
 import me.mayhem.input.InputListener;
-import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageHardButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
-import me.mayhem.ui.Interatable;
+import me.mayhem.util.Vector;
+import me.mayhem.util.ui.Interatable;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
-import org.jsfml.window.VideoMode;
 
 public class NewGameSettingsPageManager implements ScreenManager {
     private static final float HEIGHT = 800F;

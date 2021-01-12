@@ -2,7 +2,7 @@ package me.mayhem.screens.homepage.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.loadpage.LoadPageManager;
-import me.mayhem.ui.impl.ButtonInteractable;
+import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;

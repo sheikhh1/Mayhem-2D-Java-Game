@@ -1,16 +1,15 @@
 package me.mayhem.screens.loadpage;
 
 import me.mayhem.input.InputListener;
-import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
-import me.mayhem.ui.Interatable;
+import me.mayhem.util.Vector;
+import me.mayhem.util.ui.Interatable;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
-import org.jsfml.window.VideoMode;
 
 public class LoadPageManager implements ScreenManager {
 
