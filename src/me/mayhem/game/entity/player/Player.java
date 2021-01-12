@@ -1,6 +1,6 @@
 package me.mayhem.game.entity.player;
 
-import me.mayhem.game.ai.impl.NoPathing;
+import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
@@ -35,7 +35,7 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.ZERO, new NoPathing());
+        super(EntityType.PLAYER, position, Vector.ZERO, Pathing.NO_PATHING);
 
         this.name = name; // Name assigned and stored
 
