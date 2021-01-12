@@ -48,4 +48,20 @@ public class EntityPhysics {
         this.motion.add(0, this.fallStrength);
         this.fallStrength += GRAVITY;
     }
+
+    /**
+     * Set Jump Strength 
+     * @param jumpStrength
+     */
+    public void setJumpStrength(float jumpStrength) {
+        this.jumpStrength = jumpStrength;
+    }
+
+    /**
+     * Set Fall Strength
+     * @param fallStrength
+     */
+    public void setFallStrength(float fallStrength) {
+        this.fallStrength = fallStrength;
+    }
 }
