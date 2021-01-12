@@ -68,24 +68,8 @@ public class GameManager {
      *
      */
     public void tick() {
-        for (Entity entity : this.currentLevel.getEntities()) {
-            for (Entity other : this.currentLevel.getEntities()) {
-                if (Objects.equals(entity, other)) {
-                    continue;
-                }
-
-                if (entity.getHitbox().checkForCollision(other.getHitbox())) {
-                    entity.getMotion().set(0, 0);
-                    other.getMotion().set(0, 0);
-
-                    //TODO: call entity collision event
-                }
-            }
-         }
-
-        for (Entity entity : this.currentLevel.getEntities()) {
-            entity.getPosition().add(entity.getMotion());
-        }
+        this.handleEntitiyCollisions();
+        this.handleEntityVelocity();
 
         Player player = this.currentLevel.getPlayer();
 
@@ -109,6 +93,29 @@ public class GameManager {
 
             this.currentLevel.getLayout().moveBlocks(movement);
             player.getPosition().add(movement);
+        }
+    }
+
+    private void handleEntitiyCollisions() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            for (Entity other : this.currentLevel.getEntities()) {
+                if (Objects.equals(entity, other)) {
+                    continue;
+                }
+
+                if (entity.getHitbox().checkForCollision(other.getHitbox())) {
+                    entity.getMotion().set(0, 0);
+                    other.getMotion().set(0, 0);
+
+                    //TODO: call entity collision event
+                }
+            }
+        }
+    }
+
+    private void handleEntityVelocity() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getPosition().add(entity.getMotion());
         }
     }
 
