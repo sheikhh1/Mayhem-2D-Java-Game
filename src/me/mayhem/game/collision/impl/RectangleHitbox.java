@@ -16,11 +16,11 @@ public class RectangleHitbox extends AbstractHitbox {
     }
 
     @Override
-    public boolean collides(Hitbox other) {
+    public boolean checkForCollision(Hitbox other) {
         if (this.priority >= other.getPriority()) {
             return this.floatRect.contains(other.asVector().toVector());
         }
 
-        return other.collides(this);
+        return other.checkForCollision(this);
     }
 }

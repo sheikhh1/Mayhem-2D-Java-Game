@@ -11,9 +11,12 @@ import org.jsfml.window.event.Event;
 
 public class Mayhem {
 
+    public static final int SCREEN_WIDTH = 960;
+    public static final int SCREEN_HEIGHT = 704;
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
-        window.create(new VideoMode(960, 704), "Mayhem", Window.CLOSE | Window.TITLEBAR);
+        window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setFramerateLimit(30);
 
         GameManager gameManager = new GameManager(window);
@@ -34,7 +37,8 @@ public class Mayhem {
                     }
                 }
             }
-            //TODO: tick objects/entities
+
+            gameManager.tick();
         }
     }
 

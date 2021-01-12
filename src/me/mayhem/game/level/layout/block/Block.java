@@ -4,6 +4,7 @@ import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 
 public class Block {
@@ -18,12 +19,13 @@ public class Block {
         this.hitbox = hitbox;
     }
 
-    public Vector getPosition() {
-        return this.position;
+    public void draw(RenderWindow renderWindow) {
+        this.drawable.setPosition(this.position.toVector());
+        renderWindow.draw(this.drawable);
     }
 
-    public Shape getDrawable() {
-        return this.drawable;
+    public Vector getPosition() {
+        return this.position;
     }
 
     public Hitbox getHitbox() {

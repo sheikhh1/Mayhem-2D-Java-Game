@@ -1,14 +1,22 @@
 package me.mayhem.game;
 
+import me.mayhem.Mayhem;
+import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
+import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
+import java.util.Objects;
+
 public class GameManager {
+
+    private static final Vector GRAVITY = new Vector(0, 0.098f);
 
     private final RenderWindow renderWindow;
 
@@ -16,7 +24,6 @@ public class GameManager {
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
-
 
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
@@ -54,5 +61,77 @@ public class GameManager {
     public void draw() {
         this.currentLevel.getPlayer().update(this.renderWindow);
         this.currentLevel.getLayout().draw(this.renderWindow);
+    }
+
+    /**
+     *
+     * Update entities after drawing and user input complete
+     *
+     */
+    public void tick() {
+        this.handleEntityCollisions();
+        this.handleBlockCollisions();
+        this.handleEntityVelocity();
+
+
+        Player player = this.currentLevel.getPlayer();
+
+        if (this.isOffScreen(player.getPosition(), player.getMotion())) {
+            int xDiff = 0;
+            int yDiff = 0;
+
+            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
+                xDiff = -1;
+            } else if (player.getPosition().getX() < 0) {
+                xDiff = +1;
+            }
+
+            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
+                yDiff = -1;
+            } else if (player.getPosition().getY() < 0) {
+                yDiff = +1;
+            }
+
+            Vector movement = new Vector(xDiff, yDiff);
+
+            player.getMotion().setX(0);
+            this.currentLevel.getLayout().moveBlocks(movement);
+        }
+    }
+
+    private void handleEntityCollisions() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            for (Entity other : this.currentLevel.getEntities()) {
+                if (Objects.equals(entity, other)) {
+                    continue;
+                }
+
+                if (entity.getHitbox().checkForCollision(other.getHitbox())) {
+                    entity.getMotion().set(Vector.ZERO);
+                    other.getMotion().set(Vector.ZERO);
+
+                    //TODO: call entity collision event
+                }
+            }
+        }
+    }
+
+    private void handleBlockCollisions() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getMotion().add(GRAVITY);
+
+            //TODO: calculate block collisions
+        }
+    }
+
+    private void handleEntityVelocity() {
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getPosition().add(entity.getMotion());
+        }
+    }
+
+    private boolean isOffScreen(Vector position, Vector motion) {
+        return (position.getX() + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH ||
+                (position.getY() + motion.getY()) < 0 || (position.getY() + motion.getY()) > Mayhem.SCREEN_HEIGHT;
     }
 }

@@ -42,6 +42,10 @@ public class Vector {
         return this.vector2f.y;
     }
 
+    public void set(Vector vector) {
+        this.set(vector.getX(), vector.getY());
+    }
+
     public void set(float x, float y) {
         this.vector2f = new Vector2f(x, y);
     }
@@ -56,6 +60,10 @@ public class Vector {
 
     public void add(float x, float y) {
         this.vector2f = new Vector2f(this.getX() + x, this.getY() + y);
+    }
+
+    public void add(Vector vector) {
+        this.add(vector.getX(), vector.getY());
     }
 
     public void subtract(float x, float y) {
@@ -80,5 +88,13 @@ public class Vector {
 
     public Vector2f toVector() {
         return this.vector2f;
+    }
+
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "x=" + this.getX() +
+                ", y=" + this.getY() +
+                '}';
     }
 }
