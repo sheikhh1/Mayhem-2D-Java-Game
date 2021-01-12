@@ -14,7 +14,6 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private EntityPhysics entityPhysics = new EntityPhysics();
     private PlayerAnimation animate = new PlayerAnimation();
 
     // Determine what the player is currently doing
@@ -33,7 +32,7 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        entityPhysics.setEntityMotion(this.getMotion());
+        this.getEntityPhysics().setEntityMotion(this.getMotion());
     }
 
     public String getName() {
@@ -72,9 +71,9 @@ public class Player extends Entity {
         this.fall = fall;
     }
 
-    public EntityPhysics getPlayerPhysics() {
-        return this.entityPhysics;
-    }
+//    public EntityPhysics getPlayerPhysics() {
+//        return this.entityPhysics;
+//    }
 
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed
@@ -106,7 +105,7 @@ public class Player extends Entity {
     public void update(RenderWindow window) {
         animate.playAnimation(window);
         if (this.isFall()) {
-            this.entityPhysics.fall();
+            this.getEntityPhysics().fall();
 
 //            if (this.playerPhysics.checkCollision()) {
 //                this.setFall(false);
@@ -114,7 +113,7 @@ public class Player extends Entity {
         }
 
         if (this.isJumping()) {
-            this.entityPhysics.jump();
+            this.getEntityPhysics().jump();
 
 //            if (this.playerPhysics.checkCollision()) {
 //                this.setJumping(false);
@@ -122,11 +121,11 @@ public class Player extends Entity {
         }
 
         if (this.isForward()) {
-            this.entityPhysics.moveForward();
+            this.getEntityPhysics().moveForward();
             animate.setRow(11);
             animate.setPause(false);
         } else if (this.isBack()) {
-            this.entityPhysics.moveBack();
+            this.getEntityPhysics().moveBack();
             animate.setRow(9);
             animate.setPause(false);
         }
