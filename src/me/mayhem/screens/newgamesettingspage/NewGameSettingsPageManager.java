@@ -1,5 +1,6 @@
 package me.mayhem.screens.newgamesettingspage;
 
+import me.mayhem.input.InputListener;
 import me.mayhem.math.Vector;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
@@ -103,7 +104,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
         for (Interatable button : this.buttons) {
-            button.unregister();
+            ((InputListener<?>) button).unregister();
         }
     }
 }
