@@ -1,12 +1,15 @@
 package me.mayhem.game;
 
+import me.mayhem.Mayhem;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
+import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.Objects;
@@ -83,5 +86,33 @@ public class GameManager {
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.getPosition().add(entity.getMotion());
         }
+
+        Player player = this.currentLevel.getPlayer();
+
+        if (this.isOffScreen(player.getPosition())) {
+            int xDiff = 0;
+            int yDiff = 0;
+
+            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
+                xDiff = -1;
+            } else if (player.getPosition().getX() < 0) {
+                xDiff = +1;
+            }
+
+            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
+                yDiff = -1;
+            } else if (player.getPosition().getY() < 0) {
+                yDiff = +1;
+            }
+
+            Vector movement = new Vector(xDiff, yDiff);
+
+            this.currentLevel.getLayout().moveBlocks(movement);
+            player.getPosition().add(movement);
+        }
+    }
+
+    private boolean isOffScreen(Vector position) {
+        return position.getX() < 0 || position.getX() > Mayhem.SCREEN_WIDTH || position.getY() < 0 || position.getY() > Mayhem.SCREEN_HEIGHT;
     }
 }
