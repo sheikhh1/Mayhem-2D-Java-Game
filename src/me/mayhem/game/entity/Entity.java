@@ -3,6 +3,7 @@ package me.mayhem.game.entity;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
+import me.mayhem.game.collision.impl.RectangleHitbox;
 import me.mayhem.util.Vector;
 
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class Entity {
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = null;
+        this.hitbox = new RectangleHitbox(this.position, 20, 20);
         this.attributes = Arrays.asList(attributes);
     }
 
