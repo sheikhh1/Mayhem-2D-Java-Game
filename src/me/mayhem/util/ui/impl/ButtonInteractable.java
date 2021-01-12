@@ -1,6 +1,6 @@
 package me.mayhem.util.ui.impl;
 
-import me.mayhem.UtilFont;
+import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.ui.AbstractInteractable;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
