@@ -58,6 +58,10 @@ public class Vector {
         this.vector2f = new Vector2f(this.getX() + x, this.getY() + y);
     }
 
+    public void add(Vector vector) {
+        this.add(vector.getX(), vector.getY());
+    }
+
     public void subtract(float x, float y) {
         this.add(-x, -y);
     }
