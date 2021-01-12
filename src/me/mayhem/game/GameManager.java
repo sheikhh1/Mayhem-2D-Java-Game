@@ -107,8 +107,8 @@ public class GameManager {
                 }
 
                 if (entity.getHitbox().checkForCollision(other.getHitbox())) {
-                    entity.getMotion().set(0, 0);
-                    other.getMotion().set(0, 0);
+                    entity.getMotion().set(Vector.ZERO);
+                    other.getMotion().set(Vector.ZERO);
 
                     //TODO: call entity collision event
                 }
