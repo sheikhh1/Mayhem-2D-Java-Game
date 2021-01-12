@@ -117,5 +117,9 @@ public class Entity {
         return this.entityFall;
     }
 
+    public void setFall(boolean entityFall) {
+        this.entityFall = entityFall;
+    }
+
 
 }
