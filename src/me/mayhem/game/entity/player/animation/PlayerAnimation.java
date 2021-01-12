@@ -22,7 +22,7 @@ public class PlayerAnimation {
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
 
-    public PlayerAnimation(Path path) {
+    public PlayerAnimation() {
 
         playerTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
         playerSprite = new Sprite(playerTexture);
