@@ -10,14 +10,12 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 import java.awt.image.BufferedImage;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage = new Image();
-    private static final Path LEVEL_PATH = Path.of("levels/Level0.png");
     private List<Block> blocks = new ArrayList<>();
     private Vector playerSpawnPosition;
 
