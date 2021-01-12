@@ -13,20 +13,6 @@ public interface Interatable {
 
     /**
      *
-     * Registers the Interactable with input handlers
-     *
-     */
-    void register();
-
-    /**
-     *
-     * Unregisters the Interactable with input handlers
-     *
-     */
-    void unregister();
-
-    /**
-     *
      * Draws the stored button onto the target {@link RenderWindow}
      *
      * @param renderWindow The window being drawn onto
