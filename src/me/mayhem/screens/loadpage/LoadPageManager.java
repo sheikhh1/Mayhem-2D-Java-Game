@@ -20,7 +20,8 @@ public class LoadPageManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        renderWindow.clear();
+        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Load Game");
 
         this.createButtons();
     }
@@ -54,7 +55,7 @@ public class LoadPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
+        shape.setPosition(new Vector((WIDTH / 10) * 4, (HEIGHT / 10) * 4).toVector());
 
         return shape;
     }
@@ -66,7 +67,7 @@ public class LoadPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((0), (HEIGHT - 100));
+        shape.setPosition((0), (HEIGHT - 100));
 
         return shape;
     }

@@ -22,7 +22,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Select difficulty");
 
         this.createButtons();
     }
@@ -59,7 +59,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((WIDTH / 10 * 4), (HEIGHT - 100));
+        shape.setPosition((WIDTH / 10 * 4), (HEIGHT - 100));
 
         return shape;
     }
@@ -71,7 +71,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((WIDTH / 10 * 4), (HEIGHT /10));
+        shape.setPosition((WIDTH / 10 * 4), (HEIGHT /10));
 
         return shape;
     }
@@ -83,7 +83,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200,100).toVector());
-        shape.setOrigin((WIDTH / 10 * 4), (HEIGHT/10) * 4);
+        shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 4);
 
         return shape;
     }
