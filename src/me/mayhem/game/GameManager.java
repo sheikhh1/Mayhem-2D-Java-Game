@@ -23,7 +23,6 @@ public class GameManager {
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
-
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
@@ -68,8 +67,10 @@ public class GameManager {
      *
      */
     public void tick() {
-        this.handleEntitiyCollisions();
+        this.handleEntityCollisions();
+        this.handleBlockCollisions();
         this.handleEntityVelocity();
+
 
         Player player = this.currentLevel.getPlayer();
 
@@ -96,7 +97,7 @@ public class GameManager {
         }
     }
 
-    private void handleEntitiyCollisions() {
+    private void handleEntityCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
             for (Entity other : this.currentLevel.getEntities()) {
                 if (Objects.equals(entity, other)) {
@@ -111,6 +112,10 @@ public class GameManager {
                 }
             }
         }
+    }
+
+    private void handleBlockCollisions() {
+
     }
 
     private void handleEntityVelocity() {
