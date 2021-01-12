@@ -92,4 +92,8 @@ public class Entity {
     public boolean isJumping() {
         return this.entityJump;
     }
+
+    public void setJumping(boolean entityJump) {
+        this.entityJump = entityJump;
+    }
 }
