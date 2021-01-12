@@ -9,37 +9,35 @@ public class PlayerPhysics {
 
     private float jumpStrength = 20f;
     private float fallStrength = 0;
-    private Vector currentPosition;
-
-    private float yBound = 595f; // TODO: Update from collision Detection
+    private Vector playerMotion;
 
     /**
-     * Takes current player position from Player Class
-     * @param currentPosition - Player Position
+     * Set Player motion
+     * @param motion - Motion passed by player class
      */
-    public void setPlayerPosition(Vector currentPosition) {
-        this.currentPosition = currentPosition;
+    public void setPlayerMotion(Vector motion) {
+        this.playerMotion = motion;
     }
 
     /**
      * Move Player Forward method by 5 Pixels
      */
     public void moveForward() {
-        this.currentPosition.add(MAX_SPEED,0);
+        this.playerMotion.add(MAX_SPEED,0);
     }
 
     /**
      * Move Player Back method by 5 Pixels
      */
     public void moveBack() {
-        this.currentPosition.subtract(MAX_SPEED,0);
+        this.playerMotion.subtract(MAX_SPEED,0);
     }
 
     /**
      * Jump method for the Player
      */
     public void jump() {
-        this.currentPosition.subtract(0, this.jumpStrength);
+        this.playerMotion.subtract(0, this.jumpStrength);
         this.jumpStrength -= GRAVITY;
     }
 
@@ -47,7 +45,7 @@ public class PlayerPhysics {
      * Basic Fall Method Added
      */
     public void fall() {
-        this.currentPosition.add(0, fallStrength);
+        this.playerMotion.add(0, this.fallStrength);
         this.fallStrength += GRAVITY;
     }
 
@@ -55,13 +53,13 @@ public class PlayerPhysics {
      * Test Collision Checker
      * @return true if player has collided with floor, otherwise return false
      */
-    public boolean checkCollision() {
-        if (this.currentPosition.getY() >= this.yBound) {
-            this.currentPosition.set(this.currentPosition.getX(), this.yBound);
-            this.jumpStrength = 20f;
-            return true;
-        }
-
-        return false;
-    }
+//    public boolean checkCollision() {
+//        if (this.playerMotion.getY() >= this.yBound) {
+//            this.playerMotion.set(this.playerMotion.getX(), this.yBound);
+//            this.jumpStrength = 20f;
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }
