@@ -4,6 +4,7 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
+import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 

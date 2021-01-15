@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.player;
+package me.mayhem.game.entity.player.state;
 
 public enum PlayerState {
 
