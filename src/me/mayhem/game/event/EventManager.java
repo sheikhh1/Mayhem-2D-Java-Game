@@ -46,7 +46,7 @@ public class EventManager {
             Class<? extends Event> eventClass = (Class<? extends Event>) declaredMethod.getParameterTypes()[0];
             EventHandler eventHandler = EventHandler.builder()
                     .parentClass(object.getClass())
-                    .consumer(event -> invokeEvent(event, object, declaredMethod))
+                    .consumer(event -> invokeEvent(event, object, declaredMethod, eventListener))
                     .eventListener(eventListener)
                     .build();
 
@@ -62,7 +62,11 @@ public class EventManager {
      * @param object The object which the method belongs to
      * @param method The method being called when the event occurs
      */
-    private static void invokeEvent(Event event, Object object, Method method) {
+    private static void invokeEvent(Event event, Object object, Method method, EventListener listener) {
+        if (event.isCancelled() && listener.ignoreCancelled()) {
+            return;
+        }
+
         try {
             method.invoke(object, event);
         } catch (IllegalAccessException | InvocationTargetException e) {
