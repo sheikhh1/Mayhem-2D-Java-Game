@@ -9,6 +9,7 @@ import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 import java.io.IOException;
@@ -20,8 +21,13 @@ public class LoadPageManager implements ScreenManager {
     private static final float WIDTH = 1000F;
     private Interatable[] buttons;
     private Sprite[] sprites;
+    private Sound maintheme;
 
     public LoadPageManager(RenderWindow window){
+        loadScreen(window);
+    }
+    public LoadPageManager(RenderWindow window, Sound maintheme){
+        this.maintheme = maintheme;
         loadScreen(window);
     }
     @Override
@@ -34,6 +40,7 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
+
         for(Sprite sprite: sprites){
             renderWindow.draw(sprite);
         }
@@ -45,6 +52,11 @@ public class LoadPageManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
 
+    }
+
+    @Override
+    public Sound getSound() {
+        return maintheme;
     }
 
 

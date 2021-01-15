@@ -8,6 +8,7 @@ import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 import java.io.IOException;
@@ -18,9 +19,12 @@ public class NewGameSettingsPageManager implements ScreenManager {
     private static final float WIDTH = 1000F;
     private Interatable[] buttons;
     private Sprite[] sprites;
+    private Sound maintheme;
 
-    public NewGameSettingsPageManager(RenderWindow window){
+    public NewGameSettingsPageManager(RenderWindow window){loadScreen(window);}
+    public NewGameSettingsPageManager(RenderWindow window, Sound maintheme){
         loadScreen(window);
+        this.maintheme = maintheme;
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
@@ -43,6 +47,11 @@ public class NewGameSettingsPageManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
         renderWindow.close();
+    }
+
+    @Override
+    public Sound getSound() {
+        return maintheme;
     }
 
     public Sprite spriteFromPath(String path){

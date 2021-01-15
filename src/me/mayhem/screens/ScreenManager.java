@@ -1,5 +1,6 @@
 package me.mayhem.screens;
 
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
 
 public interface ScreenManager {
@@ -12,5 +13,6 @@ public interface ScreenManager {
 
     void close(RenderWindow renderWindow);
 
+    Sound getSound();
 
 }
