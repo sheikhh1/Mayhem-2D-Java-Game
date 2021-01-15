@@ -135,6 +135,12 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
+            Vector positionClone = entity.getPosition().clone();
+
+            if (this.isOffScreen(positionClone, entity.getMotion())) {
+                this.fixEntityMotion(entity);
+            }
+
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
         }
@@ -145,10 +151,48 @@ public class GameManager {
     }
 
     private boolean isOffScreenX(Vector position, Vector motion) {
-        return (position.getX() + 30 + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH;
+        return this.isOffScreenLeftX(position, motion, 0) || this.isOffScreenRightX(position, motion, 30);
+    }
+
+    private boolean isOffScreenRightX(Vector position, Vector motion, int width) {
+        return (position.getX() + width + motion.getX()) > Mayhem.SCREEN_WIDTH;
+    }
+
+    private boolean isOffScreenLeftX(Vector position, Vector motion, int width) {
+        return (position.getX() + width + motion.getX()) < 0;
     }
 
     private boolean isOffScreenY(Vector position, Vector motion) {
-        return  (position.getY() + motion.getY()) < 0 || (position.getY() + 200 + motion.getY()) > Mayhem.SCREEN_HEIGHT;
+        return  this.isOffScreenTopY(position, motion, 0) || this.isOffScreenBottomY(position, motion, 200);
+    }
+
+    private boolean isOffScreenBottomY(Vector position, Vector motion, int height) {
+        return (position.getY() + height + motion.getY()) > Mayhem.SCREEN_HEIGHT;
+    }
+
+    private boolean isOffScreenTopY(Vector position, Vector motion, int height) {
+        return (position.getY() + height + motion.getY()) < 0;
+    }
+
+    private void fixEntityMotion(Entity entity) {
+        if (this.isOffScreenRightX(entity.getPosition(), entity.getMotion(), 0)) {
+            float position = entity.getPosition().getX() + entity.getMotion().getX();
+            entity.getMotion().add(position, 0);
+        }
+
+        if (this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), 30)) {
+            float position = (-1) * (entity.getPosition().getX() + 30 + entity.getMotion().getX() - Mayhem.SCREEN_WIDTH);
+            entity.getMotion().add(position, 0);
+        }
+
+        if (this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), 200)) {
+            float position = (-1) * (entity.getPosition().getY() + 200 + entity.getMotion().getY() - Mayhem.SCREEN_HEIGHT);
+            entity.getMotion().add(0, position);
+        }
+
+        if (this.isOffScreenTopY(entity.getPosition(), entity.getMotion(), 0)) {
+            float position = entity.getPosition().getY() + entity.getMotion().getY();
+            entity.getMotion().add(0, position);
+        }
     }
 }

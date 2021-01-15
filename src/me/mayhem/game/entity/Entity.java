@@ -121,5 +121,4 @@ public class Entity {
         this.entityFall = entityFall;
     }
 
-
 }
