@@ -1,7 +1,6 @@
 package me.mayhem.game.level.layout.block;
 
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.game.collision.impl.RectangleHitbox;
 import me.mayhem.game.collision.impl.ShapeHitbox;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
@@ -71,11 +70,6 @@ public class Block {
             return this;
         }
 
-        public Builder hitbox(Hitbox hitbox) {
-            this.hitbox = hitbox;
-            return this;
-        }
-
         public Builder outlineColor(Color outlineColor) {
             this.outlineColor = outlineColor;
             return this;
@@ -87,8 +81,6 @@ public class Block {
         }
 
         public Block build() {
-
-
             this.drawable.setFillColor(this.fillColor);
             this.drawable.setOutlineColor(this.outlineColor);
             this.drawable.setPosition(this.position.toVector());
