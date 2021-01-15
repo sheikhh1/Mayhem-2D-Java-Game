@@ -1,6 +1,5 @@
 package me.mayhem.screens.homepage;
 
-import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
@@ -11,7 +10,6 @@ import me.mayhem.util.sounds.SoundLoader;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
-import org.jsfml.window.VideoMode;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -41,11 +39,6 @@ public class HomePageManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        if (Mayhem.getCurrentScreen() == null){
-            renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
-        }
-
-
         if (this.maintheme == null){
             maintheme = this.createSound("resources/menu/Mainthememusic.wav");
             maintheme.isLoop();
