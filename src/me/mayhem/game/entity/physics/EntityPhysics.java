@@ -64,4 +64,9 @@ public class EntityPhysics {
     public void setFallStrength(float fallStrength) {
         this.fallStrength = fallStrength;
     }
+
+    public void reset() {
+        this.jumpStrength = 2f;
+        this.fallStrength = 0;
+    }
 }

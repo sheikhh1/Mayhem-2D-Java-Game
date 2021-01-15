@@ -51,6 +51,7 @@ public class Player extends Entity {
             this.setBack(false);
             this.setFalling(false);
             this.setJumping(false);
+            this.getEntityPhysics().reset();
         } else if (state == PlayerState.FALLING) {
             this.setFalling(true);
         }
