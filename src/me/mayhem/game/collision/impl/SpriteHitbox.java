@@ -13,16 +13,15 @@ public class SpriteHitbox extends AbstractHitbox {
     public SpriteHitbox(Sprite sprite, Vector position, int height, int width) {
         super(1, position, height, width);
         this.sprite = sprite;
-
     }
 
     @Override
     public boolean checkForCollision(Hitbox other) {
-        return false;
+        return this.asFloatRect().intersection(other.asFloatRect()) != null;
     }
 
     @Override
     public FloatRect asFloatRect() {
-        return null;
+        return new FloatRect(this.sprite.getPosition().x, this.sprite.getPosition().y, this.getHitboxWidth(), this.getHitboxHeight());
     }
 }
