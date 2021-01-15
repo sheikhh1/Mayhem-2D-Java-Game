@@ -4,10 +4,11 @@ import me.mayhem.util.Vector;
 
 public class EntityPhysics {
 
-    private static final float GRAVITY = 0.098f;
+    private static final float DEFAULT_JUMP_STRENGTH = 4f;
+    private static final float GRAVITY = 0.196f;
     private static final float MAX_SPEED = 2f;
 
-    private float jumpStrength = 2f;
+    private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
     private Vector motion;
 
@@ -66,7 +67,7 @@ public class EntityPhysics {
     }
 
     public void reset() {
-        this.jumpStrength = 2f;
+        this.jumpStrength = DEFAULT_JUMP_STRENGTH;
         this.fallStrength = 0;
     }
 }
