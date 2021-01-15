@@ -97,4 +97,9 @@ public class Vector {
                 ", y=" + this.getY() +
                 '}';
     }
+
+    @Override
+    public Vector clone() {
+        return new Vector(this.getX(), this.getY());
+    }
 }
