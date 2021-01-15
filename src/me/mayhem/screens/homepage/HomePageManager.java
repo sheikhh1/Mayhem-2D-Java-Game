@@ -17,9 +17,9 @@ import org.jsfml.graphics.*;
 public class HomePageManager implements ScreenManager {
 
     private RenderWindow window;
+    private Sound mainTheme;
     private Interatable[] buttons;
     private Sprite[] sprites;
-    private Sound maintheme;
 
     public HomePageManager(RenderWindow window){
         this.window = window;
@@ -29,35 +29,28 @@ public class HomePageManager implements ScreenManager {
 
     public HomePageManager(RenderWindow window, Sound music){
         this.window = window;
-        this.maintheme = music;
+        this.mainTheme = music;
 
         this.loadScreen(this.window);
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        if (this.maintheme == null){
-            maintheme = UtilSound.loadSoundFromPath("menu/Mainthememusic.wav");
-            maintheme.isLoop();
-            maintheme.play();
-        }
-
+        this.loadMusic();
         this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
     }
 
-    @Override
-    public void draw(RenderWindow renderWindow) {
-        for (Sprite sprite : this.sprites) {
-            window.draw(sprite);
-        }
+    private void loadMusic() {
+        mainTheme = UtilSound.loadSoundFromPath("menu/Mainthememusic.wav");
 
-        for (Interatable button : this.buttons) {
-            button.draw(renderWindow);
+        if (mainTheme != null) {
+            mainTheme.setLoop(true);
+            mainTheme.play();
         }
     }
 
-    public void createSprites() {
+    private void createSprites() {
         Sprite background = UtilSprite.loadFromPath("menu/otherbackground.jpg");
         Sprite logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
 
@@ -120,6 +113,17 @@ public class HomePageManager implements ScreenManager {
     }
 
     @Override
+    public void draw(RenderWindow renderWindow) {
+        for (Sprite sprite : this.sprites) {
+            window.draw(sprite);
+        }
+
+        for (Interatable button : this.buttons) {
+            button.draw(renderWindow);
+        }
+    }
+
+    @Override
     public void unloadScreen(RenderWindow renderWindow) {
         for (Interatable button : this.buttons) {
             ((InputListener<?>) button).unregister();
@@ -136,6 +140,6 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public Sound getSound() {
-        return maintheme;
+        return mainTheme;
     }
 }
