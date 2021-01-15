@@ -4,6 +4,7 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
+import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 
 import java.util.Arrays;
@@ -22,6 +23,11 @@ public class Entity {
     private Pathing pathing;
     private Hitbox hitbox;
     private List<Attribute<?>> attributes;
+    private EntityPhysics entityPhysics;
+    private boolean entityFall = true;
+    private boolean entityForward = false;
+    private boolean entityBack = false;
+    private boolean entityJump = false;
 
     /**
      * Entity Constructor
@@ -38,6 +44,7 @@ public class Entity {
         this.pathing = pathing;
         this.hitbox = new RectangleHitbox(this.position, 20, 20);
         this.attributes = Arrays.asList(attributes);
+        this.entityPhysics = new EntityPhysics();
     }
 
     public EntityType getType() {
@@ -46,6 +53,10 @@ public class Entity {
 
     public Vector getPosition() {
         return this.position;
+    }
+
+    public EntityPhysics getEntityPhysics() {
+        return this.entityPhysics;
     }
 
     public void setPosition(float x, float y) {
@@ -77,4 +88,38 @@ public class Entity {
 
         return null;
     }
+
+    public boolean isJumping() {
+        return this.entityJump;
+    }
+
+    public void setJumping(boolean entityJump) {
+        this.entityJump = entityJump;
+    }
+
+    public boolean isForward() {
+        return this.entityForward;
+    }
+
+    public void setForward(boolean entityForward) {
+        this.entityForward = entityForward;
+    }
+
+    public boolean isBack() {
+        return this.entityBack;
+    }
+
+    public void setBack(boolean entityBack) {
+        this.entityBack = entityBack;
+    }
+
+    public boolean isFalling() {
+        return this.entityFall;
+    }
+
+    public void setFalling(boolean entityFall) {
+        this.entityFall = entityFall;
+    }
+
+
 }

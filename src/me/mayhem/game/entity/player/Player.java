@@ -4,7 +4,6 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.animation.PlayerAnimation;
-import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
@@ -14,14 +13,8 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private EntityPhysics entityPhysics = new EntityPhysics();
     private PlayerAnimation animate = new PlayerAnimation();
-
-    // Determine what the player is currently doing
-    private boolean jumping = false;
-    private boolean forward = false;
-    private boolean back = false;
-    private boolean fall = true;
+    private PlayerState state;
 
     /**
      * Player Constructor
@@ -33,47 +26,8 @@ public class Player extends Entity {
 
         this.name = name; // Name assigned and stored
 
-        entityPhysics.setEntityMotion(this.getMotion());
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public boolean isJumping() {
-        return this.jumping;
-    }
-
-    public void setJumping(boolean jumping) {
-        this.jumping = jumping;
-    }
-
-    public boolean isForward() {
-        return this.forward;
-    }
-
-    public void setForward(boolean forward) {
-        this.forward = forward;
-    }
-
-    public boolean isBack() {
-        return this.back;
-    }
-
-    public void setBack(boolean back) {
-        this.back = back;
-    }
-
-    public boolean isFall() {
-        return this.fall;
-    }
-
-    public void setFall(boolean fall) {
-        this.fall = fall;
-    }
-
-    public EntityPhysics getPlayerPhysics() {
-        return this.entityPhysics;
+        this.getEntityPhysics().setEntityMotion(this.getMotion());
+        this.setState(PlayerState.FALLING);
     }
 
     /**
@@ -81,10 +35,10 @@ public class Player extends Entity {
      * @param state - Current state of the player
      */
    public void setState(PlayerState state){
+       this.state = state;
         if (state == PlayerState.JUMPING){
             this.setJumping(true);
         } else if (state == PlayerState.FORWARD){
-            this.forward = true;
             this.setForward(true);
             this.setBack(false);
         } else if (state == PlayerState.BACK){
@@ -95,7 +49,15 @@ public class Player extends Entity {
             animate.setPause(true);
             this.setForward(false);
             this.setBack(false);
+            this.setFalling(false);
+            this.setJumping(false);
+        } else if (state == PlayerState.FALLING) {
+            this.setFalling(true);
         }
+   }
+
+   public PlayerState getState() {
+       return this.state;
    }
 
     /**
@@ -108,28 +70,21 @@ public class Player extends Entity {
     }
 
     public void tick() {
-        if (this.isFall()) {
-            this.entityPhysics.fall();
-
-//            if (this.playerPhysics.checkCollision()) {
-//                this.setFall(false);
-//            }
+        if (this.isFalling()) {
+            this.getEntityPhysics().fall();
         }
 
         if (this.isJumping()) {
-            this.entityPhysics.jump();
+            this.getEntityPhysics().jump();
 
-//            if (this.playerPhysics.checkCollision()) {
-//                this.setJumping(false);
-//            }
         }
 
         if (this.isForward()) {
-            this.entityPhysics.moveForward();
+            this.getEntityPhysics().moveForward();
             animate.setRow(11);
             animate.setPause(false);
         } else if (this.isBack()) {
-            this.entityPhysics.moveBack();
+            this.getEntityPhysics().moveBack();
             animate.setRow(9);
             animate.setPause(false);
         }
