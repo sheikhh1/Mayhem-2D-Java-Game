@@ -1,7 +1,6 @@
-package me.mayhem.game.level.layout.ai.audio;
+package me.mayhem.game.ai.audio;
 
-import java.io.IOException;
-import java.nio.file.Paths;
+public class Audio {
 
 /**
  * Audio Class
@@ -19,3 +18,5 @@ import java.nio.file.Paths;
 //        ex.printStackTrace();
 //    }
 //}
+
+}
