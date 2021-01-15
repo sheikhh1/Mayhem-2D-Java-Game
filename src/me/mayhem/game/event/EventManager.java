@@ -67,8 +67,10 @@ public class EventManager {
         }
     }
 
-    public static void callEvent() {
-
+    public static void callEvent(Event event) {
+        for (EventHandler eventHandler : REGISTERED_LISTENERS.get(event.getClass())) {
+            eventHandler.getConsumer().accept(event);
+        }
     }
 
     private static final class EventHandler {
