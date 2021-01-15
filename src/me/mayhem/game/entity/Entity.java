@@ -45,7 +45,7 @@ public class Entity {
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = new RectangleHitbox(this.position, (int) this.getHeight(), (int) this.getWidth(),this.animate.getGlobalBounds());
+        this.hitbox = new RectangleHitbox(this.position, (int) this.getHeight(), (int) this.getWidth(),this.animate.getLocalBounds());
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
     }
