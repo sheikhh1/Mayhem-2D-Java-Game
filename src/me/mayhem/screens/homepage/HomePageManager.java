@@ -16,7 +16,8 @@ import org.jsfml.graphics.*;
 
 public class HomePageManager implements ScreenManager {
 
-    private RenderWindow window;
+    private final RenderWindow window;
+
     private Sound mainTheme;
     private Interatable[] buttons;
     private Sprite[] sprites;
@@ -33,6 +34,7 @@ public class HomePageManager implements ScreenManager {
 
         this.loadScreen(this.window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         this.loadMusic();
