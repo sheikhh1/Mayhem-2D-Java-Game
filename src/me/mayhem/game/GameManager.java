@@ -96,11 +96,12 @@ public class GameManager {
 
             if (this.isOffScreenX(player.getPosition(), player.getMotion())) {
                 player.getMotion().setX(0);
+                player.setState(PlayerState.STANDING);
             }
 
             if (this.isOffScreenY(player.getPosition(), player.getMotion())) {
                 player.getMotion().setY(0);
-                player.setState(PlayerState.STANDING);
+                player.setState(PlayerState.NO_MOTION);
             }
 
             this.currentLevel.getLayout().moveBlocks(movement);
