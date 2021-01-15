@@ -7,10 +7,12 @@ import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.Vector;
+import me.mayhem.util.sounds.SoundLoader;
 import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.sounds.SoundLoader;
 
 
-
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 import org.jsfml.window.VideoMode;
 
@@ -25,6 +27,8 @@ public class HomePageManager implements ScreenManager {
     private RenderWindow window;
     private Interatable[] buttons;
     private Sprite[] sprites;
+    private Sound maintheme;
+
 
     public HomePageManager(RenderWindow window){
         this.window = window;
@@ -32,10 +36,23 @@ public class HomePageManager implements ScreenManager {
         this.loadScreen(this.window);
     }
 
+    public HomePageManager(RenderWindow window, Sound music){
+        this.window = window;
+        this.maintheme = music;
+
+        this.loadScreen(this.window);
+    }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         if (Mayhem.getCurrentScreen() == null){
             renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
+        }
+
+
+        if (this.maintheme == null){
+            maintheme = this.createSound("resources/menu/Mainthememusic.wav");
+            maintheme.isLoop();
+            maintheme.play();
         }
 
         this.createSprites();
@@ -107,6 +124,12 @@ public class HomePageManager implements ScreenManager {
 
         return shape;
     }
+    private Sound createSound(String path){
+
+        SoundLoader main = new SoundLoader();
+        return main.loadSoundFromPath(path);
+
+    }
 
     /**
      * creates the new game button, setting its size and position
@@ -135,5 +158,10 @@ public class HomePageManager implements ScreenManager {
 
     public void close(RenderWindow renderWindow){
         window.close();
+    }
+
+    @Override
+    public Sound getSound() {
+        return maintheme;
     }
 }
