@@ -18,6 +18,8 @@ import java.util.Objects;
 public class GameManager {
 
     private static final Vector GRAVITY = new Vector(0, 0.098f);
+    private static final float CHARACTER_HEIGHT = 45;
+    private static final float CHARACTER_WIDTH = 45;
 
     private final RenderWindow renderWindow;
 
@@ -76,7 +78,7 @@ public class GameManager {
         Player player = this.currentLevel.getPlayer();
         player.tick();
 
-        if (this.isOffScreen(player.getPosition(), player.getMotion())) {
+        if (this.isOffScreen(player)) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -94,12 +96,12 @@ public class GameManager {
 
             Vector movement = new Vector(xDiff, yDiff);
 
-            if (this.isOffScreenX(player.getPosition(), player.getMotion())) {
+            if (this.isOffScreenX(player)) {
                 player.getMotion().setX(0);
                 player.setState(PlayerState.STANDING);
             }
 
-            if (this.isOffScreenY(player.getPosition(), player.getMotion())) {
+            if (this.isOffScreenY(player)) {
                 player.getMotion().setY(0);
                 player.setState(PlayerState.NO_MOTION);
             }
@@ -136,9 +138,7 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            Vector positionClone = entity.getPosition().clone();
-
-            if (this.isOffScreen(positionClone, entity.getMotion())) {
+            if (this.isOffScreen(entity)) {
                 this.fixEntityMotion(entity);
             }
 
@@ -147,12 +147,13 @@ public class GameManager {
         }
     }
 
-    private boolean isOffScreen(Vector position, Vector motion) {
-        return this.isOffScreenX(position, motion) || this.isOffScreenY(position, motion);
+    private boolean isOffScreen(Entity entity) {
+        return this.isOffScreenX(entity) || this.isOffScreenY(entity);
     }
 
-    private boolean isOffScreenX(Vector position, Vector motion) {
-        return this.isOffScreenLeftX(position, motion, 0) || this.isOffScreenRightX(position, motion, 30);
+    private boolean isOffScreenX(Entity entity) {
+        return this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), 0)
+                || this.isOffScreenRightX(entity.getPosition(), entity.getMotion(), (int) entity.getWidth());
     }
 
     private boolean isOffScreenRightX(Vector position, Vector motion, int width) {
@@ -163,8 +164,8 @@ public class GameManager {
         return (position.getX() + width + motion.getX()) < 0;
     }
 
-    private boolean isOffScreenY(Vector position, Vector motion) {
-        return  this.isOffScreenTopY(position, motion, 0) || this.isOffScreenBottomY(position, motion, 200);
+    private boolean isOffScreenY(Entity entity) {
+        return  this.isOffScreenTopY(entity.getPosition(), entity.getMotion(), 0) || this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), (int) entity.getHeight());
     }
 
     private boolean isOffScreenBottomY(Vector position, Vector motion, int height) {
@@ -181,13 +182,13 @@ public class GameManager {
             entity.getMotion().add(position, 0);
         }
 
-        if (this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), 30)) {
-            float position = (-1) * (entity.getPosition().getX() + 30 + entity.getMotion().getX() - Mayhem.SCREEN_WIDTH);
+        if (this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), (int) entity.getWidth())) {
+            float position = (-1) * (entity.getPosition().getX() + entity.getWidth() + entity.getMotion().getX() - Mayhem.SCREEN_WIDTH);
             entity.getMotion().add(position, 0);
         }
 
-        if (this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), 200)) {
-            float position = (-1) * (entity.getPosition().getY() + 200 + entity.getMotion().getY() - Mayhem.SCREEN_HEIGHT);
+        if (this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), (int) entity.getHeight())) {
+            float position = (-1) * (entity.getPosition().getY() + entity.getHeight() + entity.getMotion().getY() - Mayhem.SCREEN_HEIGHT);
             entity.getMotion().add(0, position);
         }
 
