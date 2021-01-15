@@ -17,10 +17,6 @@ import java.util.Objects;
 
 public class GameManager {
 
-    private static final Vector GRAVITY = new Vector(0, 0.098f);
-    private static final float CHARACTER_HEIGHT = 45;
-    private static final float CHARACTER_WIDTH = 45;
-
     private final RenderWindow renderWindow;
 
     private Level currentLevel;
