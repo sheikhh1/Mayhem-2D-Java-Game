@@ -5,6 +5,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
+import org.jsfml.system.Vector2f;
 
 /**
  * Player Class
@@ -21,7 +22,7 @@ public class Player extends Entity {
      */
     public Player(String name, Vector position) {
         super(EntityType.PLAYER, position, Vector.ZERO, Pathing.NO_PATHING);
-
+        this.animate.setSpritePosition(position.toVector());
         this.name = name; // Name assigned and stored
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(PlayerState.FALLING);
