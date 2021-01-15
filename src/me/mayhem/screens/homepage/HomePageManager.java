@@ -49,7 +49,7 @@ public class HomePageManager implements ScreenManager {
             button.draw(renderWindow);
         }
     }
-    private void background(RenderWindow window){
+    private Sprite createBackground(RenderWindow window){
         Texture newTexture = new Texture();
         try {
 
@@ -57,10 +57,18 @@ public class HomePageManager implements ScreenManager {
         } catch(IOException ex) {
             ex.printStackTrace();
         }
+        Sprite backgroundSprite = createSprite(newTexture);]
+        return backgroundSprite;
     }
     public Sprite createSprite(Texture newTexture){
         Sprite newSprite = new Sprite(newTexture);
         return newSprite;
+    }
+
+    public void createSprites(RenderWindow window){
+        Sprite background = createBackground(window);
+
+        this.sprites = new Sprite[] { background };
     }
 
 
