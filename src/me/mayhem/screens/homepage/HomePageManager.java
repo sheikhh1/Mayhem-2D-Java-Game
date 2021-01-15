@@ -49,26 +49,22 @@ public class HomePageManager implements ScreenManager {
             button.draw(renderWindow);
         }
     }
-    private Sprite createBackground(RenderWindow window){
+
+    public Sprite spriteFromPath(String path){
         Texture newTexture = new Texture();
         try {
 
-            newTexture.loadFromFile(Paths.get("resources/menu/Background.jpg"));
+            newTexture.loadFromFile(Paths.get(path));
         } catch(IOException ex) {
             ex.printStackTrace();
         }
-        Sprite backgroundSprite = createSprite(newTexture);]
-        return backgroundSprite;
-    }
-    public Sprite createSprite(Texture newTexture){
-        Sprite newSprite = new Sprite(newTexture);
-        return newSprite;
-    }
 
-    public void createSprites(RenderWindow window){
-        Sprite background = createBackground(window);
-
-        this.sprites = new Sprite[] { background };
+        return new Sprite(newTexture);
+    }
+    public void createSprites(){
+        Sprite background = spriteFromPath("resources/menu/Background.jpg");
+        Sprite logo = spriteFromPath("resources/menu/mayhemLogo.png");
+        this.sprites = new Sprite[] { background, logo };
     }
 
 
