@@ -4,8 +4,10 @@ import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.RectangleHitbox;
+import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.RenderWindow;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 public class Entity {
 
     private final EntityType type;
+    protected final EntityAnimation animate = new EntityAnimation();
 
     private Vector position;
     private Vector motion;
@@ -121,5 +124,21 @@ public class Entity {
         this.entityFall = entityFall;
     }
 
+    public float getHeight() {
+        return this.animate.getHeight();
+    }
+
+    public float getWidth() {
+        return this.animate.getWidth();
+    }
+
+    /**
+     * Updates position of the Player depending on user input
+     * Outputs onto main window
+     * @param window
+     */
+    public void update(RenderWindow window) {
+        animate.playAnimation(window);
+    }
 
 }

@@ -6,17 +6,17 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
+import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
+import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.Objects;
 
 public class GameManager {
-
-    private static final Vector GRAVITY = new Vector(0, 0.098f);
 
     private final RenderWindow renderWindow;
 
@@ -75,7 +75,7 @@ public class GameManager {
         Player player = this.currentLevel.getPlayer();
         player.tick();
 
-        if (this.isOffScreen(player.getPosition(), player.getMotion())) {
+        if (UtilScreen.isOffScreen(player)) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -93,12 +93,14 @@ public class GameManager {
 
             Vector movement = new Vector(xDiff, yDiff);
 
-            if (this.isOffScreenX(player.getPosition(), player.getMotion())) {
+            if (UtilScreen.isOffScreenX(player)) {
                 player.getMotion().setX(0);
+                player.setState(PlayerState.STANDING);
             }
 
-            if (this.isOffScreenY(player.getPosition(), player.getMotion())) {
+            if (UtilScreen.isOffScreenY(player)) {
                 player.getMotion().setY(0);
+                player.setState(PlayerState.NO_MOTION);
             }
 
             this.currentLevel.getLayout().moveBlocks(movement);
@@ -133,20 +135,12 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
+            if (UtilScreen.isOffScreen(entity)) {
+                UtilScreen.fixEntityMotion(entity);
+            }
+
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
         }
-    }
-
-    private boolean isOffScreen(Vector position, Vector motion) {
-        return this.isOffScreenX(position, motion) || this.isOffScreenY(position, motion);
-    }
-
-    private boolean isOffScreenX(Vector position, Vector motion) {
-        return (position.getX() + 30 + motion.getX()) < 0 || (position.getX() + motion.getX()) > Mayhem.SCREEN_WIDTH;
-    }
-
-    private boolean isOffScreenY(Vector position, Vector motion) {
-        return  (position.getY() + motion.getY()) < 0 || (position.getY() + 200 + motion.getY()) > Mayhem.SCREEN_HEIGHT;
     }
 }

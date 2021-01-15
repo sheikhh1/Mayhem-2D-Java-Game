@@ -1,5 +1,6 @@
-package me.mayhem;
+package me.mayhem.util.file;
 
+import me.mayhem.Mayhem;
 import org.jsfml.graphics.Font;
 
 import java.io.IOException;

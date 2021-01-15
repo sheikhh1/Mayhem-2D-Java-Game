@@ -1,13 +1,15 @@
 package me.mayhem.game.entity.physics;
 
+import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
 
 public class EntityPhysics {
 
-    private static final float GRAVITY = 0.098f;
-    private static final float MAX_SPEED = 2f;
+    private static final float DEFAULT_JUMP_STRENGTH = 4f;
+    private static final float GRAVITY = 0.196f;
+    private static final float MAX_SPEED = 3f;
 
-    private float jumpStrength = 2f;
+    private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
     private Vector motion;
 
@@ -63,5 +65,15 @@ public class EntityPhysics {
      */
     public void setFallStrength(float fallStrength) {
         this.fallStrength = fallStrength;
+    }
+
+    public void reset(PlayerState state) {
+        if (state.getIndex() == 0) {
+            this.jumpStrength = DEFAULT_JUMP_STRENGTH;
+            this.fallStrength = 0;
+            this.motion.setY(0);
+        } else {
+            this.motion.setX(0);
+        }
     }
 }

@@ -3,9 +3,8 @@ package me.mayhem.game.entity.player;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.player.animation.PlayerAnimation;
+import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.RenderWindow;
 
 /**
  * Player Class
@@ -13,8 +12,7 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private PlayerAnimation animate = new PlayerAnimation();
-    private PlayerState state;
+    private PlayerState[] states = new PlayerState[2];
 
     /**
      * Player Constructor
@@ -34,40 +32,51 @@ public class Player extends Entity {
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
      */
-   public void setState(PlayerState state){
-       this.state = state;
-        if (state == PlayerState.JUMPING){
-            this.setJumping(true);
-        } else if (state == PlayerState.FORWARD){
-            this.setForward(true);
-            this.setBack(false);
-        } else if (state == PlayerState.BACK){
-            this.setForward(false);
-            this.setBack(true);
-        } else if (state == PlayerState.STANDING){
-            animate.setColumn(0);
-            animate.setPause(true);
-            this.setForward(false);
-            this.setBack(false);
-            this.setFalling(false);
-            this.setJumping(false);
-        } else if (state == PlayerState.FALLING) {
-            this.setFalling(true);
-        }
+   public void setState(PlayerState state) {
+       if (state == null) {
+           return;
+       }
+
+       PlayerState currentState = this.states[state.getIndex()];
+
+       if (currentState == PlayerState.FALLING || currentState == PlayerState.JUMPING) {
+           if (state == PlayerState.NO_MOTION) {
+               this.setJumping(false);
+               this.setFalling(false);
+               this.getEntityPhysics().reset(state);
+               this.states[state.getIndex()] = state;
+           }
+       } else if (currentState == PlayerState.NO_MOTION) {
+           if (state == PlayerState.JUMPING) {
+               this.setJumping(true);
+               this.setFalling(false);
+               this.states[state.getIndex()] = state;
+           } else if (state == PlayerState.FALLING) {
+               this.setFalling(true);
+               this.setJumping(false);
+               this.states[state.getIndex()] = state;
+           }
+       } else {
+           this.states[state.getIndex()] = state;
+
+           if (state == PlayerState.STANDING) {
+               animate.setColumn(0);
+               animate.setPause(true);
+               this.setForward(false);
+               this.setBack(false);
+           } else if (state == PlayerState.BACK) {
+               this.setForward(false);
+               this.setBack(true);
+           } else if (state == PlayerState.FORWARD) {
+               this.setForward(true);
+               this.setBack(false);
+           }
+       }
    }
 
-   public PlayerState getState() {
-       return this.state;
+   public PlayerState getState(int index) {
+       return this.states[index];
    }
-
-    /**
-     * Updates position of the Player depending on user input
-     * Outputs onto main window
-     * @param window
-     */
-    public void update(RenderWindow window) {
-        animate.playAnimation(window);
-    }
 
     public void tick() {
         if (this.isFalling()) {
@@ -76,18 +85,17 @@ public class Player extends Entity {
 
         if (this.isJumping()) {
             this.getEntityPhysics().jump();
-
         }
 
         if (this.isForward()) {
             this.getEntityPhysics().moveForward();
-            animate.setRow(11);
-            animate.setPause(false);
+            this.animate.setRow(11);
+            this.animate.setPause(false);
         } else if (this.isBack()) {
             this.getEntityPhysics().moveBack();
-            animate.setRow(9);
-            animate.setPause(false);
+            this.animate.setRow(9);
+            this.animate.setPause(false);
         }
-        animate.setSpritePosition(this.getPosition().toVector());
+        this.animate.setSpritePosition(this.getPosition().toVector());
     }
 }
