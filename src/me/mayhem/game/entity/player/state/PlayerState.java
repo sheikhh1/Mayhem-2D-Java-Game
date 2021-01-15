@@ -7,6 +7,7 @@ public enum PlayerState {
     STANDING(1),
     JUMPING(0),
     FALLING(0),
+    NO_MOTION(0),
 
     ;
 
