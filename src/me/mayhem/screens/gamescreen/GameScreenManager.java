@@ -25,8 +25,8 @@ public class GameScreenManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        game.draw();
-        game.tick();
+        this.game.draw();
+        this.game.tick();
     }
 
     @Override
