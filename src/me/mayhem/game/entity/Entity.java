@@ -3,11 +3,12 @@ package me.mayhem.game.entity;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.game.collision.impl.RectangleHitbox;
+import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Entity {
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = new RectangleHitbox(this.position, (int) this.getHeight(), (int) this.getWidth(),this.animate.getLocalBounds());
+        this.hitbox = new SpriteHitbox(this.getSprite(),this.position, (int) this.getHeight(), (int) this.getWidth());
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
     }
@@ -131,6 +132,9 @@ public class Entity {
     public float getWidth() {
         return this.animate.getWidth();
     }
+
+    
+
 
     /**
      * Updates position of the Player depending on user input
