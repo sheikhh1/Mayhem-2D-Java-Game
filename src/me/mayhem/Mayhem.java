@@ -4,7 +4,6 @@ import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
-import org.jsfml.audio.Sound;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -25,7 +24,7 @@ public class Mayhem {
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setFramerateLimit(30);
 
-        currentScreen = new HomePageManager(window,null);
+        currentScreen = new HomePageManager(window);
         window.setFramerateLimit(30);
         mainWindow = window;
 

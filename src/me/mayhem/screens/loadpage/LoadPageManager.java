@@ -97,6 +97,7 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public void close(RenderWindow renderWindow) {
+
     }
 
     @Override

@@ -22,13 +22,14 @@ public class HomePageManager implements ScreenManager {
     private Interatable[] buttons;
     private Sprite[] sprites;
 
-    public HomePageManager(RenderWindow window){
+    public HomePageManager(RenderWindow window) {
         this.window = window;
 
+        this.loadMusic();
         this.loadScreen(this.window);
     }
 
-    public HomePageManager(RenderWindow window, Sound music){
+    public HomePageManager(RenderWindow window, Sound music) {
         this.window = window;
         this.mainTheme = music;
 
@@ -37,7 +38,6 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        this.loadMusic();
         this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
@@ -61,7 +61,7 @@ public class HomePageManager implements ScreenManager {
         }
 
         logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 100, (0)).toVector());
-        this.sprites = new Sprite[] { background, logo };
+        this.sprites = new Sprite[]{background, logo};
     }
 
 
@@ -70,47 +70,50 @@ public class HomePageManager implements ScreenManager {
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
         HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
 
-        this.buttons = new Interatable[] { newPage, load, quit };
+        this.buttons = new Interatable[]{newPage, load, quit};
     }
 
     /**
      * creates the quit button, setting its size and position
+     *
      * @return the shape of the button
      */
     private Shape createQuitButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(400,100).toVector());
+        shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 8).toVector());
-        shape.setFillColor(new Color(176,176,176));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
 
     /**
      * creates the load button, setting its size and position
+     *
      * @return returns the shape that is the load button
      */
     private Shape createLoadButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(400,100).toVector());
+        shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 5).toVector());
-        shape.setFillColor(new Color(176,176,176));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
 
     /**
      * creates the new game button, setting its size and position
+     *
      * @return returns the shape that is the newgae button
      */
     private Shape createNewGameButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(400,100).toVector());
+        shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 2).toVector());
-        shape.setFillColor(new Color(176,176,176));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
@@ -127,18 +130,18 @@ public class HomePageManager implements ScreenManager {
     }
 
     @Override
+    public void close(RenderWindow renderWindow) {
+    }
+
+    @Override
     public void unloadScreen(RenderWindow renderWindow) {
         for (Interatable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }
 
-    public RenderWindow getWindow(){
+    public RenderWindow getWindow() {
         return this.window;
-    }
-
-    public void close(RenderWindow renderWindow){
-        window.close();
     }
 
     @Override
