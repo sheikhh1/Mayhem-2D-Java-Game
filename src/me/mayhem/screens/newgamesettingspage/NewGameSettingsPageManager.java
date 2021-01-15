@@ -84,7 +84,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((0), (HEIGHT - 100));
-        shape.setFillColor(Color.RED);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
@@ -97,7 +97,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT /10));
-        shape.setFillColor(Color.GREEN);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
@@ -110,7 +110,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 4);
-        shape.setFillColor(Color.YELLOW);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
@@ -123,7 +123,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         shape.setSize(new Vector(200,100).toVector());
         shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 7);
-        shape.setFillColor(Color.RED);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }

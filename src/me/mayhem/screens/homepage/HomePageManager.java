@@ -90,7 +90,7 @@ public class HomePageManager implements ScreenManager {
 
         shape.setSize(new Vector(400,100).toVector());
         shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 8).toVector());
-        shape.setFillColor(Color.RED);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
@@ -103,7 +103,7 @@ public class HomePageManager implements ScreenManager {
 
         shape.setSize(new Vector(400,100).toVector());
         shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 5).toVector());
-        shape.setFillColor(Color.CYAN);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
@@ -117,7 +117,7 @@ public class HomePageManager implements ScreenManager {
 
         shape.setSize(new Vector(400,100).toVector());
         shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 2).toVector());
-        shape.setFillColor(Color.MAGENTA);
+        shape.setFillColor(new Color(176,176,176));
 
         return shape;
     }
