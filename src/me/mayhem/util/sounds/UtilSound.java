@@ -1,10 +1,10 @@
 package me.mayhem.util.sounds;
 
+import me.mayhem.Mayhem;
 import org.jsfml.audio.Sound;
 import org.jsfml.audio.SoundBuffer;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class UtilSound {
 
@@ -13,7 +13,7 @@ public class UtilSound {
         Sound newSound = new Sound();
 
         try {
-            soundBuffer.loadFromFile(Paths.get(path));
+            soundBuffer.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
             newSound.setBuffer(soundBuffer);
             return newSound;
         } catch (IOException ex) {
