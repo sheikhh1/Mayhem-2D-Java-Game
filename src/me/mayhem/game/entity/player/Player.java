@@ -89,13 +89,13 @@ public class Player extends Entity {
 
         if (this.isForward()) {
             this.getEntityPhysics().moveForward();
-            animate.setRow(11);
-            animate.setPause(false);
+            this.animate.setRow(11);
+            this.animate.setPause(false);
         } else if (this.isBack()) {
             this.getEntityPhysics().moveBack();
-            animate.setRow(9);
-            animate.setPause(false);
+            this.animate.setRow(9);
+            this.animate.setPause(false);
         }
-        animate.setSpritePosition(this.getPosition().toVector());
+        this.animate.setSpritePosition(this.getPosition().toVector());
     }
 }
