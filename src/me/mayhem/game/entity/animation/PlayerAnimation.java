@@ -1,13 +1,12 @@
-package me.mayhem.game.entity.player.animation;
+package me.mayhem.game.entity.animation;
 
 import me.mayhem.util.file.UtilImageLoader;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.IntRect;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
+import org.jsfml.graphics.Texture;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 
 /**
  * Class created to output correct animations depending on user input for the player entity
