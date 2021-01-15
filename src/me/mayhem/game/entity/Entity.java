@@ -118,6 +118,10 @@ public class Entity {
         return this.entityStanding;
     }
 
+    public void setStanding(boolean entityStanding) {
+        this.entityStanding = entityStanding;
+    }
+
     public void setBack(boolean entityBack) {
         this.entityBack = entityBack;
     }
