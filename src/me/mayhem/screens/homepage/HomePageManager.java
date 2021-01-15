@@ -8,11 +8,15 @@ import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+
+
+
+import org.jsfml.graphics.*;
 import org.jsfml.window.VideoMode;
+
+import java.io.IOException;
+import java.nio.file.Paths;
+
 
 public class HomePageManager implements ScreenManager {
 
@@ -20,6 +24,7 @@ public class HomePageManager implements ScreenManager {
     private static final float WIDTH = 1000F;
     private RenderWindow window;
     private Interatable[] buttons;
+    private Sprite[] sprites;
 
     public HomePageManager(RenderWindow window){
         this.window = window;
@@ -44,6 +49,20 @@ public class HomePageManager implements ScreenManager {
             button.draw(renderWindow);
         }
     }
+    private void background(RenderWindow window){
+        Texture newTexture = new Texture();
+        try {
+
+            newTexture.loadFromFile(Paths.get("resources/menu/Background.jpg"));
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public Sprite createSprite(Texture newTexture){
+        Sprite newSprite = new Sprite(newTexture);
+        return newSprite;
+    }
+
 
     private void createButtons() {
         HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
