@@ -9,9 +9,6 @@ import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.sounds.SoundLoader;
 import me.mayhem.util.ui.Interatable;
-import me.mayhem.util.sounds.SoundLoader;
-
-
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 import org.jsfml.window.VideoMode;
@@ -62,10 +59,11 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        for(Sprite sprite: sprites){
+        for (Sprite sprite : this.sprites) {
             window.draw(sprite);
         }
-        for (Interatable button : buttons) {
+
+        for (Interatable button : this.buttons) {
             button.draw(renderWindow);
         }
     }
