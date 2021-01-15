@@ -8,8 +8,11 @@ import org.jsfml.graphics.Shape;
 
 public class ShapeHitbox extends AbstractHitbox {
 
+    private Shape shape;
+
     public ShapeHitbox(Shape shape, Vector position, int height, int width) {
         super(1,position, height, width);
+        this.shape = shape;
     }
 
     @Override
