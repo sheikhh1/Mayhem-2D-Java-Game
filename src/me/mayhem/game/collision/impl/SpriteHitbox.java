@@ -8,8 +8,11 @@ import org.jsfml.graphics.Sprite;
 
 public class SpriteHitbox extends AbstractHitbox {
 
+    private Sprite sprite;
+
     public SpriteHitbox(Sprite sprite, Vector position, int height, int width) {
         super(1, position, height, width);
+        this.sprite = sprite;
 
     }
 
