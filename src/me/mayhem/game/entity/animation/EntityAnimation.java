@@ -11,7 +11,7 @@ import org.jsfml.system.Vector2f;
 /**
  * Class created to output correct animations depending on user input for the player entity
  */
-public class PlayerAnimation {
+public class EntityAnimation {
 
     private Texture playerTexture;
     private Sprite playerSprite;
@@ -21,8 +21,7 @@ public class PlayerAnimation {
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
 
-    public PlayerAnimation() {
-
+    public EntityAnimation() {
         playerTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
         playerSprite = new Sprite(playerTexture);
         // Increase the size of the sprite by 1.3x
@@ -69,6 +68,14 @@ public class PlayerAnimation {
         }
         playerSprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
         window.draw(playerSprite);
+    }
+
+    public float getHeight() {
+        return this.playerTexture.getSize().y;
+    }
+
+    public float getWidth() {
+        return this.playerTexture.getSize().x;
     }
 }
 
