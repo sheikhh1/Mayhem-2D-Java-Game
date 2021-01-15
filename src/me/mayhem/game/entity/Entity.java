@@ -32,6 +32,7 @@ public class Entity {
     private boolean entityForward = false;
     private boolean entityBack = false;
     private boolean entityJump = false;
+    private boolean entityStanding = false;
 
     /**
      * Entity Constructor
@@ -111,6 +112,10 @@ public class Entity {
 
     public boolean isBack() {
         return this.entityBack;
+    }
+
+    public boolean isStanding() {
+        return this.entityStanding;
     }
 
     public void setBack(boolean entityBack) {
