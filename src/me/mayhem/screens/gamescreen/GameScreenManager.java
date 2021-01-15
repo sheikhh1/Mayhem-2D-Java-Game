@@ -2,7 +2,9 @@ package me.mayhem.screens.gamescreen;
 
 import me.mayhem.game.GameManager;
 import me.mayhem.screens.ScreenManager;
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
+
 
 public class GameScreenManager implements ScreenManager {
 
@@ -32,5 +34,10 @@ public class GameScreenManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
 
+    }
+
+    @Override
+    public Sound getSound() {
+        return null;
     }
 }

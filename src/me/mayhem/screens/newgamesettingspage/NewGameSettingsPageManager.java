@@ -1,43 +1,42 @@
 package me.mayhem.screens.newgamesettingspage;
 
+import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageHardButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+import org.jsfml.audio.Sound;
+import org.jsfml.graphics.*;
 
 public class NewGameSettingsPageManager implements ScreenManager {
-    private static final float HEIGHT = 800F;
-    private static final float WIDTH = 1000F;
-    private Interatable[] buttons;
 
-    public NewGameSettingsPageManager(RenderWindow window){
-        loadScreen(window);
+    private final Sound mainTheme;
+
+    private Interatable[] buttons;
+    private Sprite[] sprites;
+
+    public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme){
+        this.mainTheme = mainTheme;
+
+        this.loadScreen(window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-
+        this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
     }
 
-    @Override
-    public void draw(RenderWindow renderWindow) {
-        for (Interatable button : buttons) {
-            button.draw(renderWindow);
-        }
-    }
+    private void createSprites() {
+        Sprite background = UtilSharedResources.getBackground();
 
-    @Override
-    public void close(RenderWindow renderWindow) {
-        renderWindow.close();
+        this.sprites = new Sprite[]{background};
     }
 
     /**
@@ -52,6 +51,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
         this.buttons = new Interatable[] {easy, medium, hard, returnButton };
     }
+
     /**
      *Creates the shape for the return button, including size and position
      * @return returns the shape that is the return button
@@ -59,12 +59,13 @@ public class NewGameSettingsPageManager implements ScreenManager {
     private Shape createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((0), (HEIGHT - 100));
-        shape.setFillColor(Color.RED);
+        shape.setSize(new Vector(200, 100).toVector());
+        shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
+
     /**
      *Creates the shape for the easy button, including size and position
      * @return returns the shape that is the easy button
@@ -72,12 +73,13 @@ public class NewGameSettingsPageManager implements ScreenManager {
     private Shape createEasyButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((WIDTH / 10 * 4), (HEIGHT /10));
-        shape.setFillColor(Color.GREEN);
+        shape.setSize(new Vector(200, 100).toVector());
+        shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
+
     /**
      *Creates the shape for the medium button, including size and position
      * @return returns the shape that is the medium button
@@ -85,12 +87,13 @@ public class NewGameSettingsPageManager implements ScreenManager {
     private Shape createMediumButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 4);
-        shape.setFillColor(Color.YELLOW);
+        shape.setSize(new Vector(200, 100).toVector());
+        shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f) * 4);
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
+
     /**
      *Creates the shape for the hard button, including size and position
      * @return returns the shape that is the Hard button
@@ -98,9 +101,9 @@ public class NewGameSettingsPageManager implements ScreenManager {
     private Shape createHardButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
-        shape.setPosition((WIDTH / 10 * 4), (HEIGHT/10) * 7);
-        shape.setFillColor(Color.RED);
+        shape.setSize(new Vector(200, 100).toVector());
+        shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f) * 7);
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
@@ -110,5 +113,24 @@ public class NewGameSettingsPageManager implements ScreenManager {
         for (Interatable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
+    }
+
+    @Override
+    public void draw(RenderWindow renderWindow) {
+        for (Sprite sprite : this.sprites) {
+            renderWindow.draw(sprite);
+        }
+
+        for (Interatable button : this.buttons) {
+            button.draw(renderWindow);
+        }
+    }
+
+    @Override
+    public void close(RenderWindow renderWindow) {}
+
+    @Override
+    public Sound getSound() {
+        return mainTheme;
     }
 }
