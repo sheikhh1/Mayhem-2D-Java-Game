@@ -37,8 +37,12 @@ public class Player extends Entity {
      */
    public void setState(PlayerState state) {
        this.state = state;
-       if (state == PlayerState.JUMPING) {
 
+       if (this.isInvalidInput(state)) {
+           return;
+       }
+
+       if (state == PlayerState.JUMPING) {
            this.setJumping(true);
        } else if (state == PlayerState.FORWARD) {
            this.setForward(true);
@@ -57,6 +61,18 @@ public class Player extends Entity {
        } else if (state == PlayerState.FALLING) {
            this.setFalling(true);
        }
+   }
+
+   private boolean isInvalidInput(PlayerState input) {
+       if (state == PlayerState.JUMPING && this.isJumping()) {
+           return true;
+       }
+
+       if (state == PlayerState.JUMPING && this.isFalling()) {
+           return true;
+       }
+
+       return false;
    }
 
    public PlayerState getState() {
