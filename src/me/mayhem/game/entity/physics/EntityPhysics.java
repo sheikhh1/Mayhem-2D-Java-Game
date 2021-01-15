@@ -2,15 +2,19 @@ package me.mayhem.game.entity.physics;
 
 import me.mayhem.util.Vector;
 
+import java.util.concurrent.TimeUnit;
+
 public class EntityPhysics {
 
     private static final float DEFAULT_JUMP_STRENGTH = 4f;
     private static final float GRAVITY = 0.196f;
     private static final float MAX_SPEED = 2f;
+    private static final long JUMP_DELAY = TimeUnit.SECONDS.toMillis(1);
 
     private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
     private Vector motion;
+    private long lastJump;
 
     /**
      * Set Player motion
@@ -38,6 +42,10 @@ public class EntityPhysics {
      * Jump method for the Player
      */
     public void jump() {
+        if ((System.currentTimeMillis() - this.lastJump) <= JUMP_DELAY) {
+            return;
+        }
+
         this.motion.subtract(0, this.jumpStrength);
         this.jumpStrength -= GRAVITY;
     }
