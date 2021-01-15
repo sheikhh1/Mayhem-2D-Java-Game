@@ -1,4 +1,4 @@
-package me.mayhem.game.event;
+package me.mayhem.game.event.struct;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

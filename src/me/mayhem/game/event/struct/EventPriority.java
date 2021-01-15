@@ -1,4 +1,4 @@
-package me.mayhem.game.event;
+package me.mayhem.game.event.struct;
 
 public enum EventPriority {
 

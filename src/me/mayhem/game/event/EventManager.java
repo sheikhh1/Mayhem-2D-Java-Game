@@ -1,5 +1,9 @@
 package me.mayhem.game.event;
 
+import me.mayhem.game.event.struct.Event;
+import me.mayhem.game.event.struct.EventListener;
+import me.mayhem.game.event.struct.EventPriority;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -12,7 +16,7 @@ public class EventManager {
 
     public static void registerListener(Object object) {
         for (Method declaredMethod : object.getClass().getDeclaredMethods()) {
-            EventListener eventListener = declaredMethod.getAnnotation(EventListener.class);
+            me.mayhem.game.event.struct.EventListener eventListener = declaredMethod.getAnnotation(me.mayhem.game.event.struct.EventListener.class);
 
             if (eventListener == null) {
                 continue;
@@ -44,7 +48,7 @@ public class EventManager {
 
     public static void unregisterListeners(Object object) {
         for (Method declaredMethod : object.getClass().getDeclaredMethods()) {
-            EventListener eventListener = declaredMethod.getAnnotation(EventListener.class);
+            me.mayhem.game.event.struct.EventListener eventListener = declaredMethod.getAnnotation(EventListener.class);
 
             if (eventListener == null) {
                 continue;
