@@ -23,6 +23,7 @@ public class HomePageNewGameButton extends ButtonInteractable {
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             Mayhem.getCurrentScreen().unloadScreen(window);
             Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window));
+
         }
     }
 }

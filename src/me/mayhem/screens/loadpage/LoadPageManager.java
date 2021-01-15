@@ -2,32 +2,41 @@ package me.mayhem.screens.loadpage;
 
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
+import me.mayhem.screens.homepage.items.HomePageLoadButton;
+import me.mayhem.screens.homepage.items.HomePageNewGameButton;
+import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+import org.jsfml.graphics.*;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class LoadPageManager implements ScreenManager {
 
     private static final float HEIGHT = 800F;
     private static final float WIDTH = 1000F;
     private Interatable[] buttons;
+    private Sprite[] sprites;
+
     public LoadPageManager(RenderWindow window){
         loadScreen(window);
     }
     @Override
     public void loadScreen(RenderWindow renderWindow){
 
+        this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
     }
 
     @Override
     public void draw(RenderWindow renderWindow) {
+        for(Sprite sprite: sprites){
+            renderWindow.draw(sprite);
+        }
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }
@@ -37,6 +46,26 @@ public class LoadPageManager implements ScreenManager {
     public void close(RenderWindow renderWindow) {
 
     }
+
+
+    public Sprite spriteFromPath(String path){
+        Texture newTexture = new Texture();
+        try {
+
+            newTexture.loadFromFile(Paths.get(path));
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return new Sprite(newTexture);
+    }
+
+    public void createSprites(){
+        Sprite background = spriteFromPath("resources/menu/otherbackground.jpg");
+
+        this.sprites = new Sprite[] { background};
+    }
+
 
     private void createButtons() {
         //TODO : loop the button for how many saved games there are
