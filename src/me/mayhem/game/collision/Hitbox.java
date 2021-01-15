@@ -2,6 +2,7 @@ package me.mayhem.game.collision;
 
 
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.FloatRect;
 
 /**
  *
@@ -27,5 +28,7 @@ public interface Hitbox {
      * @return the vector of the entity
      */
     Vector asVector();
+
+    FloatRect asFloatRect();
 
 }
