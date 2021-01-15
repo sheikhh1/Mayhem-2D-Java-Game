@@ -64,6 +64,7 @@ public class EntityAnimation {
             }
         }
         playerSprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,64));
+        System.out.println("Sprite Position" + playerSprite.getPosition());
         window.draw(playerSprite);
     }
 
@@ -77,6 +78,10 @@ public class EntityAnimation {
 
     public FloatRect getGlobalBounds() {
         return this.playerSprite.getGlobalBounds();
+    }
+
+    public FloatRect getLocalBounds() {
+        return this.playerSprite.getLocalBounds();
     }
 }
 
