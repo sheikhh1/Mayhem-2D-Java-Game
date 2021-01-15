@@ -133,7 +133,9 @@ public class Entity {
         return this.animate.getWidth();
     }
 
-    
+    public Sprite getSprite() {
+        return this.animate.getSprite();
+    }
 
 
     /**
