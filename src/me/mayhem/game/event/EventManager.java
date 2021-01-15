@@ -32,7 +32,11 @@ public class EventManager {
             }
 
             Class<? extends Event> eventClass = (Class<? extends Event>) declaredMethod.getParameterTypes()[0];
-            EventHandler eventHandler = new EventHandler(object.getClass(), event -> invokeEvent(event, object, declaredMethod), eventListener.priority(), eventListener.ignoreCancelled());
+            EventHandler eventHandler = EventHandler.builder()
+                    .parentClass(object.getClass())
+                    .consumer(event -> invokeEvent(event, object, declaredMethod))
+                    .eventListener(eventListener)
+                    .build();
 
             REGISTERED_LISTENERS.computeIfAbsent(eventClass, ___ -> new PriorityQueue<>(HANDLER_COMPARATOR)).add(eventHandler);
         }
