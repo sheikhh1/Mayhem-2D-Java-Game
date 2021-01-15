@@ -86,6 +86,7 @@ public class HomePageManager implements ScreenManager {
 
         return shape;
     }
+
     /**
      * creates the load button, setting its size and position
      * @return returns the shape that is the load button
