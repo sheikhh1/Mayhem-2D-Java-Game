@@ -23,7 +23,6 @@ public class Player extends Entity {
         super(EntityType.PLAYER, position, Vector.ZERO, Pathing.NO_PATHING);
 
         this.name = name; // Name assigned and stored
-
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(PlayerState.FALLING);
     }
