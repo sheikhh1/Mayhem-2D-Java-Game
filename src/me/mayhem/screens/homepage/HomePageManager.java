@@ -1,5 +1,6 @@
 package me.mayhem.screens.homepage;
 
+import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
@@ -8,10 +9,8 @@ import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+import org.jsfml.audio.Sound;
+import org.jsfml.graphics.*;
 
 public class HomePageManager implements ScreenManager {
 
@@ -50,7 +49,7 @@ public class HomePageManager implements ScreenManager {
             return;
         }
 
-        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 100, (0)).toVector());
+        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 500, (0)).toVector());
         this.sprites = new Sprite[]{background, logo};
     }
 
