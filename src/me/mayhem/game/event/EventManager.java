@@ -76,5 +76,4 @@ public class EventManager {
             eventHandler.getConsumer().accept(event);
         }
     }
-
 }
