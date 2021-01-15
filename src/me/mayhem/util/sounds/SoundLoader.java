@@ -9,15 +9,19 @@ import java.nio.file.Paths;
 public class SoundLoader {
 
     public static Sound loadSoundFromPath(String path){
+
         SoundBuffer soundBuffer = new SoundBuffer();
         try {
             soundBuffer.loadFromFile(Paths.get(path));
         } catch(IOException ex) {
-            //Something went wrong
 
             ex.printStackTrace();
         }
-        return new Sound(soundBuffer);
+
+        Sound newSound = new Sound();
+        newSound.setBuffer(soundBuffer);
+
+        return newSound;
     }
 
 
