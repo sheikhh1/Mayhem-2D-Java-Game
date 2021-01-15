@@ -6,9 +6,9 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilSprite;
-import me.mayhem.util.sounds.UtilSound;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -25,7 +25,7 @@ public class HomePageManager implements ScreenManager {
     public HomePageManager(RenderWindow window) {
         this.window = window;
 
-        this.loadMusic();
+        mainTheme = UtilSharedResources.getMainTheme();
         this.loadScreen(this.window);
     }
 
@@ -41,15 +41,6 @@ public class HomePageManager implements ScreenManager {
         this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
-    }
-
-    private void loadMusic() {
-        mainTheme = UtilSound.loadSoundFromPath("menu/Mainthememusic.wav");
-
-        if (mainTheme != null) {
-            mainTheme.setLoop(true);
-            mainTheme.play();
-        }
     }
 
     private void createSprites() {
