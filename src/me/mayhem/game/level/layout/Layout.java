@@ -27,4 +27,8 @@ public class Layout {
             block.getPosition().add(direction);
         }
     }
+
+    public List<Block> getBlocks() {
+        return blocks;
+    }
 }
