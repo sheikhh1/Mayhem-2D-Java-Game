@@ -18,14 +18,14 @@ public class LoadPageManager implements ScreenManager {
     private Interatable[] buttons;
     private Sprite[] sprites;
 
-    public LoadPageManager(RenderWindow window, Sound mainTheme){
+    public LoadPageManager(RenderWindow window, Sound mainTheme) {
         this.mainTheme = mainTheme;
 
         this.loadScreen(window);
     }
 
     @Override
-    public void loadScreen(RenderWindow renderWindow){
+    public void loadScreen(RenderWindow renderWindow) {
         this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
@@ -42,35 +42,37 @@ public class LoadPageManager implements ScreenManager {
         // store this in a list maybe?
 
         LoadPageGameSelectButton gameSelect = new LoadPageGameSelectButton(createGameSelectButton());
-        LoadPageReturnButton returnButton= new LoadPageReturnButton(createReturnButton());
+        LoadPageReturnButton returnButton = new LoadPageReturnButton(createReturnButton());
 
-        this.buttons = new Interatable[] { gameSelect, returnButton};
+        this.buttons = new Interatable[]{gameSelect, returnButton};
     }
 
     /**
      * creates the load button, setting its size and position
+     *
      * @return returns the shape that is the load button
      */
     private Shape createGameSelectButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
+        shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 4).toVector());
-        shape.setFillColor(new Color(176,176,176));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
 
     /**
      * creates the quit button, setting its size and position
+     *
      * @return the shape of the button
      */
     private Shape createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
-        shape.setSize(new Vector(200,100).toVector());
+        shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
-        shape.setFillColor(new Color(176,176,176));
+        shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
     }
@@ -84,7 +86,7 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        for(Sprite sprite : this.sprites){
+        for (Sprite sprite : this.sprites) {
             renderWindow.draw(sprite);
         }
 
@@ -94,7 +96,8 @@ public class LoadPageManager implements ScreenManager {
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {}
+    public void close(RenderWindow renderWindow) {
+    }
 
     @Override
     public Sound getSound() {
