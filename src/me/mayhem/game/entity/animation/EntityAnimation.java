@@ -1,10 +1,7 @@
 package me.mayhem.game.entity.animation;
 
 import me.mayhem.util.file.UtilImageLoader;
-import org.jsfml.graphics.IntRect;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
@@ -76,6 +73,10 @@ public class EntityAnimation {
 
     public float getWidth() {
         return this.playerSprite.getGlobalBounds().width;
+    }
+
+    public FloatRect getGlobalBounds() {
+        return this.playerSprite.getGlobalBounds();
     }
 }
 
