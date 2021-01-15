@@ -6,7 +6,7 @@ import org.jsfml.audio.SoundBuffer;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class SoundLoader {
+public class UtilSound {
 
     public static Sound loadSoundFromPath(String path) {
         SoundBuffer soundBuffer = new SoundBuffer();
