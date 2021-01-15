@@ -1,6 +1,5 @@
 package me.mayhem.screens.homepage;
 
-import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
@@ -12,7 +11,6 @@ import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
-import org.jsfml.window.VideoMode;
 
 public class HomePageManager implements ScreenManager {
 
@@ -29,11 +27,6 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        if (Mayhem.getCurrentScreen() == null){
-            renderWindow.create(new VideoMode((int) WIDTH, (int) HEIGHT), "Mayhem");
-        }
-
-
         this.createButtons();
         this.draw(renderWindow);
     }
