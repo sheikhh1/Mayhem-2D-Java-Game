@@ -32,4 +32,12 @@ public abstract class AbstractHitbox implements Hitbox {
     public Vector asVector() {
         return this.position;
     }
+
+    public int getHitboxHeight() {
+        return this.height;
+    }
+
+    public int getHitboxWidth() {
+        return this.width;
+    }
 }
