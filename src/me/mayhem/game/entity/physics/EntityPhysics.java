@@ -7,7 +7,7 @@ public class EntityPhysics {
 
     private static final float DEFAULT_JUMP_STRENGTH = 4f;
     private static final float GRAVITY = 0.196f;
-    private static final float MAX_SPEED = 2f;
+    private static final float MAX_SPEED = 3f;
 
     private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
