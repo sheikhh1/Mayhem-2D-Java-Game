@@ -71,11 +71,11 @@ public class EntityAnimation {
     }
 
     public float getHeight() {
-        return this.playerTexture.getSize().y;
+        return this.playerSprite.getGlobalBounds().height;
     }
 
     public float getWidth() {
-        return this.playerTexture.getSize().x;
+        return this.playerSprite.getGlobalBounds().width;
     }
 }
 
