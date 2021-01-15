@@ -1,13 +1,12 @@
 package me.mayhem.game.event;
 
 import me.mayhem.game.event.struct.Event;
+import me.mayhem.game.event.struct.EventHandler;
 import me.mayhem.game.event.struct.EventListener;
-import me.mayhem.game.event.struct.EventPriority;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.function.Consumer;
 
 public class EventManager {
 
@@ -16,7 +15,7 @@ public class EventManager {
 
     public static void registerListener(Object object) {
         for (Method declaredMethod : object.getClass().getDeclaredMethods()) {
-            me.mayhem.game.event.struct.EventListener eventListener = declaredMethod.getAnnotation(me.mayhem.game.event.struct.EventListener.class);
+            EventListener eventListener = declaredMethod.getAnnotation(me.mayhem.game.event.struct.EventListener.class);
 
             if (eventListener == null) {
                 continue;
@@ -33,22 +32,23 @@ public class EventManager {
             }
 
             Class<? extends Event> eventClass = (Class<? extends Event>) declaredMethod.getParameterTypes()[0];
-
-            EventHandler eventHandler = new EventHandler(object.getClass(), event -> {
-                try {
-                    declaredMethod.invoke(object, event);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }, eventListener.priority(), eventListener.ignoreCancelled());
+            EventHandler eventHandler = new EventHandler(object.getClass(), event -> invokeEvent(event, object, declaredMethod), eventListener.priority(), eventListener.ignoreCancelled());
 
             REGISTERED_LISTENERS.computeIfAbsent(eventClass, ___ -> new PriorityQueue<>(HANDLER_COMPARATOR)).add(eventHandler);
         }
     }
 
+    private static void invokeEvent(Event event, Object object, Method method) {
+        try {
+            method.invoke(object, event);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void unregisterListeners(Object object) {
         for (Method declaredMethod : object.getClass().getDeclaredMethods()) {
-            me.mayhem.game.event.struct.EventListener eventListener = declaredMethod.getAnnotation(EventListener.class);
+            EventListener eventListener = declaredMethod.getAnnotation(EventListener.class);
 
             if (eventListener == null) {
                 continue;
@@ -56,11 +56,7 @@ public class EventManager {
 
             declaredMethod.setAccessible(true);
 
-            if (declaredMethod.getParameterTypes().length != 1) {
-                continue;
-            }
-
-            if (!(Event.class.isAssignableFrom(declaredMethod.getParameterTypes()[0]))) {
+            if (declaredMethod.getParameterTypes().length != 1 || !(Event.class.isAssignableFrom(declaredMethod.getParameterTypes()[0]))) {
                 continue;
             }
 
@@ -74,37 +70,6 @@ public class EventManager {
     public static void callEvent(Event event) {
         for (EventHandler eventHandler : REGISTERED_LISTENERS.get(event.getClass())) {
             eventHandler.getConsumer().accept(event);
-        }
-    }
-
-    private static final class EventHandler {
-
-        private final Class<?> parentClass;
-        private final Consumer<Event> consumer;
-        private final EventPriority priority;
-        private final boolean ignoreCancelled;
-
-        public EventHandler(Class<?> parentClass, Consumer<Event> consumer, EventPriority priority, boolean ignoreCancelled) {
-            this.parentClass = parentClass;
-            this.consumer = consumer;
-            this.priority = priority;
-            this.ignoreCancelled = ignoreCancelled;
-        }
-
-        public Class<?> getParentClass() {
-            return this.parentClass;
-        }
-
-        public Consumer<Event> getConsumer() {
-            return this.consumer;
-        }
-
-        public EventPriority getPriority() {
-            return this.priority;
-        }
-
-        public boolean isIgnoreCancelled() {
-            return this.ignoreCancelled;
         }
     }
 
