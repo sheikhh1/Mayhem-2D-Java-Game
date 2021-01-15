@@ -8,15 +8,16 @@ import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+import org.jsfml.graphics.*;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class NewGameSettingsPageManager implements ScreenManager {
     private static final float HEIGHT = 800F;
     private static final float WIDTH = 1000F;
     private Interatable[] buttons;
+    private Sprite[] sprites;
 
     public NewGameSettingsPageManager(RenderWindow window){
         loadScreen(window);
@@ -24,12 +25,16 @@ public class NewGameSettingsPageManager implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
 
+        this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
     }
 
     @Override
     public void draw(RenderWindow renderWindow) {
+        for(Sprite sprite: sprites){
+            renderWindow.draw(sprite);
+        }
         for (Interatable button : buttons) {
             button.draw(renderWindow);
         }
@@ -38,6 +43,24 @@ public class NewGameSettingsPageManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
         renderWindow.close();
+    }
+
+    public Sprite spriteFromPath(String path){
+        Texture newTexture = new Texture();
+        try {
+
+            newTexture.loadFromFile(Paths.get(path));
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return new Sprite(newTexture);
+    }
+
+    public void createSprites(){
+        Sprite background = spriteFromPath("resources/menu/otherbackground.jpg");
+
+        this.sprites = new Sprite[] { background};
     }
 
     /**
