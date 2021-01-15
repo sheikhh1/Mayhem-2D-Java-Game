@@ -18,6 +18,7 @@ public class Mayhem {
     private static ScreenManager currentScreen;
     private static RenderWindow mainWindow;
 
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
