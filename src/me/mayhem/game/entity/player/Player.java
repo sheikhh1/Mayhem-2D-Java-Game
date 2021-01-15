@@ -15,7 +15,7 @@ public class Player extends Entity {
 
     private String name;
     private PlayerAnimation animate = new PlayerAnimation();
-    private PlayerState state;
+    private PlayerState[] states = new PlayerState[2];
 
     /**
      * Player Constructor
@@ -36,47 +36,49 @@ public class Player extends Entity {
      * @param state - Current state of the player
      */
    public void setState(PlayerState state) {
-       this.state = state;
-
-       if (this.isInvalidInput(state)) {
+       if (state == null) {
            return;
        }
 
-       if (state == PlayerState.JUMPING) {
-           this.setJumping(true);
-       } else if (state == PlayerState.FORWARD) {
-           this.setForward(true);
-           this.setBack(false);
-       } else if (state == PlayerState.BACK) {
-           this.setForward(false);
-           this.setBack(true);
-       } else if (state == PlayerState.STANDING) {
-           animate.setColumn(0);
-           animate.setPause(true);
-           this.setForward(false);
-           this.setBack(false);
-           this.setFalling(false);
-           this.setJumping(false);
-           this.getEntityPhysics().reset();
-       } else if (state == PlayerState.FALLING) {
-           this.setFalling(true);
+       PlayerState currentState = this.states[state.getIndex()];
+
+       if (currentState == PlayerState.FALLING || currentState == PlayerState.JUMPING) {
+           if (state == PlayerState.NO_MOTION) {
+               this.setJumping(false);
+               this.setFalling(false);
+               this.getEntityPhysics().reset(state);
+               this.states[state.getIndex()] = state;
+           }
+       } else if (currentState == PlayerState.NO_MOTION) {
+           if (state == PlayerState.JUMPING) {
+               this.setJumping(true);
+               this.setFalling(false);
+               this.states[state.getIndex()] = state;
+           } else if (state == PlayerState.FALLING) {
+               this.setFalling(true);
+               this.setJumping(false);
+               this.states[state.getIndex()] = state;
+           }
+       } else {
+           this.states[state.getIndex()] = state;
+
+           if (state == PlayerState.STANDING) {
+               animate.setColumn(0);
+               animate.setPause(true);
+               this.setForward(false);
+               this.setBack(false);
+           } else if (state == PlayerState.BACK) {
+               this.setForward(false);
+               this.setBack(true);
+           } else if (state == PlayerState.FORWARD) {
+               this.setForward(true);
+               this.setBack(false);
+           }
        }
    }
 
-   private boolean isInvalidInput(PlayerState input) {
-       if (state == PlayerState.JUMPING && this.isJumping()) {
-           return true;
-       }
-
-       if (state == PlayerState.JUMPING && this.isFalling()) {
-           return true;
-       }
-
-       return false;
-   }
-
-   public PlayerState getState() {
-       return this.state;
+   public PlayerState getState(int index) {
+       return this.states[index];
    }
 
     /**
