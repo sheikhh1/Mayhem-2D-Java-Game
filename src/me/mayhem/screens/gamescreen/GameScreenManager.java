@@ -6,7 +6,7 @@ import org.jsfml.graphics.RenderWindow;
 
 public class GameScreenManager implements ScreenManager {
 
-    GameManager game;
+    private GameManager game;
 
     public GameScreenManager(RenderWindow window) {
         game = new GameManager(window);
