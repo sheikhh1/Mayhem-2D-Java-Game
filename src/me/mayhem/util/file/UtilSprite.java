@@ -12,8 +12,6 @@ public class UtilSprite {
         Texture newTexture = new Texture();
 
         try {
-            System.out.println(path);
-            System.out.println(Mayhem.class.getClassLoader().getResourceAsStream(path));
             newTexture.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
             return new Sprite(newTexture);
         } catch (IOException ex) {
