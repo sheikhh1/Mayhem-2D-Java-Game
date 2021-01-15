@@ -84,13 +84,15 @@ public class Block {
         }
 
         public Block build() {
-            if (this.hitbox == null) {
-                this.hitbox = new RectangleHitbox(this.position, this.height, this.width);
-            }
+
 
             this.drawable.setFillColor(this.fillColor);
             this.drawable.setOutlineColor(this.outlineColor);
             this.drawable.setPosition(this.position.toVector());
+
+            if (this.hitbox == null) {
+                this.hitbox = new RectangleHitbox(this.position, this.height, this.width, this.drawable.getGlobalBounds());
+            }
 
             return new Block(this.position, this.drawable, this.hitbox);
         }
