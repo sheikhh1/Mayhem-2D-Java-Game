@@ -6,10 +6,10 @@ import org.jsfml.graphics.RenderWindow;
 
 public class GameScreenManager implements ScreenManager {
 
-    GameManager game;
+    private GameManager game;
 
     public GameScreenManager(RenderWindow window) {
-        game = new GameManager(window);
+        this.game = new GameManager(window);
         this.draw(window);
     }
 
@@ -25,8 +25,8 @@ public class GameScreenManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        game.draw();
-        game.tick();
+        this.game.draw();
+        this.game.tick();
     }
 
     @Override
