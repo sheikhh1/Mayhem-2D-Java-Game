@@ -8,21 +8,18 @@ import java.nio.file.Paths;
 
 public class SoundLoader {
 
-    public static Sound loadSoundFromPath(String path){
-
+    public static Sound loadSoundFromPath(String path) {
         SoundBuffer soundBuffer = new SoundBuffer();
+        Sound newSound = new Sound();
+
         try {
             soundBuffer.loadFromFile(Paths.get(path));
-        } catch(IOException ex) {
-
+            newSound.setBuffer(soundBuffer);
+            return newSound;
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        Sound newSound = new Sound();
-        newSound.setBuffer(soundBuffer);
-
-        return newSound;
+        return null;
     }
-
-
 }
