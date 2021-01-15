@@ -9,6 +9,7 @@ import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
+import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
@@ -128,8 +129,11 @@ public class GameManager {
 
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
-
-            //TODO: calculate block collisions
+           for(Block block : this.currentLevel.getLayout().getBlocks()){
+               if (entity.getHitbox().checkForCollision(block.getHitbox())) {
+                   System.out.println("collided");
+               }
+           }
         }
     }
 
