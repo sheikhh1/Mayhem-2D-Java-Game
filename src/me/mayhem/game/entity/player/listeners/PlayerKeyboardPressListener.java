@@ -27,13 +27,6 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     @Override
     protected void takeInput(KeyEvent event) {
-        //TODO: Add button functionality for:
-        // Fight
-        // Crouch?
-        // S key
-        // Pick-up
-        // Pause / Show Menu
-
         player.setState(keyHandler.get(event.asKeyEvent().key));
     }
 }

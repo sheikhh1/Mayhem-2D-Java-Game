@@ -41,30 +41,30 @@ public class Player extends Entity {
      */
    public void setState(PlayerState state) {
        this.state = state;
-        if (state == PlayerState.JUMPING) {
-            if ((System.currentTimeMillis() - this.lastJump) <= JUMP_DELAY) {
-                this.setState(PlayerState.STANDING);
-                return;
-            }
+       if (state == PlayerState.JUMPING) {
+           if ((System.currentTimeMillis() - this.lastJump) <= JUMP_DELAY) {
+               this.setState(PlayerState.STANDING);
+               return;
+           }
 
-            this.setJumping(true);
-        } else if (state == PlayerState.FORWARD){
-            this.setForward(true);
-            this.setBack(false);
-        } else if (state == PlayerState.BACK){
-            this.setForward(false);
-            this.setBack(true);
-        } else if (state == PlayerState.STANDING){
-            animate.setColumn(0);
-            animate.setPause(true);
-            this.setForward(false);
-            this.setBack(false);
-            this.setFalling(false);
-            this.setJumping(false);
-            this.getEntityPhysics().reset();
-        } else if (state == PlayerState.FALLING) {
-            this.setFalling(true);
-        }
+           this.setJumping(true);
+       } else if (state == PlayerState.FORWARD) {
+           this.setForward(true);
+           this.setBack(false);
+       } else if (state == PlayerState.BACK) {
+           this.setForward(false);
+           this.setBack(true);
+       } else if (state == PlayerState.STANDING) {
+           animate.setColumn(0);
+           animate.setPause(true);
+           this.setForward(false);
+           this.setBack(false);
+           this.setFalling(false);
+           this.setJumping(false);
+           this.getEntityPhysics().reset();
+       } else if (state == PlayerState.FALLING) {
+           this.setFalling(true);
+       }
    }
 
    public PlayerState getState() {
@@ -87,7 +87,6 @@ public class Player extends Entity {
 
         if (this.isJumping()) {
             this.getEntityPhysics().jump();
-
         }
 
         if (this.isForward()) {

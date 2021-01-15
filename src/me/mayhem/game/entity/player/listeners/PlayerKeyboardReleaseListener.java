@@ -26,6 +26,10 @@ public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
 
     @Override
     protected void takeInput(KeyEvent event) {
+        if (player.getState() == PlayerState.JUMPING || player.getState() == PlayerState.FALLING) {
+            return;
+        }
+
         player.setState(keyReleaseHandler.get(event.asKeyEvent().key));
     }
 }
