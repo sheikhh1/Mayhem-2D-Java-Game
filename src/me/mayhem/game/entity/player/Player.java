@@ -8,19 +8,14 @@ import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Player Class
  */
 public class Player extends Entity {
 
-    private static final long JUMP_DELAY = TimeUnit.SECONDS.toMillis(1);
-
     private String name;
     private PlayerAnimation animate = new PlayerAnimation();
     private PlayerState state;
-    private long lastJump;
 
     /**
      * Player Constructor
@@ -43,10 +38,6 @@ public class Player extends Entity {
    public void setState(PlayerState state) {
        this.state = state;
        if (state == PlayerState.JUMPING) {
-           if ((System.currentTimeMillis() - this.lastJump) <= JUMP_DELAY) {
-               this.setState(PlayerState.STANDING);
-               return;
-           }
 
            this.setJumping(true);
        } else if (state == PlayerState.FORWARD) {
