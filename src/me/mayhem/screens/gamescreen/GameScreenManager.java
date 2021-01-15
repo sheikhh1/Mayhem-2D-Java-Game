@@ -9,7 +9,7 @@ public class GameScreenManager implements ScreenManager {
     private GameManager game;
 
     public GameScreenManager(RenderWindow window) {
-        game = new GameManager(window);
+        this.game = new GameManager(window);
         this.draw(window);
     }
 
