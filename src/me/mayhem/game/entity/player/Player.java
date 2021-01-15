@@ -34,7 +34,7 @@ public class Player extends Entity {
      * Keyboard press listener sends a player state depending on which key has been pressed
      * @param state - Current state of the player
      */
-   public void setState(PlayerState state){
+   public void setState(PlayerState state) {
        this.state = state;
         if (state == PlayerState.JUMPING){
             this.setJumping(true);

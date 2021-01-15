@@ -3,6 +3,7 @@ package me.mayhem.game;
 import me.mayhem.Mayhem;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.entity.player.PlayerState;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
@@ -99,6 +100,7 @@ public class GameManager {
 
             if (this.isOffScreenY(player.getPosition(), player.getMotion())) {
                 player.getMotion().setY(0);
+                player.setState(PlayerState.STANDING);
             }
 
             this.currentLevel.getLayout().moveBlocks(movement);
