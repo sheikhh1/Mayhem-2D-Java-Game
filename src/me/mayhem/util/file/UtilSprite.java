@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class UtilSprite {
 
-    public static Sprite spriteFromPath(String path) {
+    public static Sprite loadFromPath(String path) {
         Texture newTexture = new Texture();
 
         try {
