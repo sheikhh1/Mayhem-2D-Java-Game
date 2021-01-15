@@ -9,18 +9,22 @@ public class RectangleHitbox extends AbstractHitbox {
 
     protected FloatRect floatRect;
 
-    public RectangleHitbox(Vector position, int height, int width) {
+    public RectangleHitbox(Vector position, int height, int width, FloatRect floatRect) {
         super(1, position, height, width);
-
-        this.floatRect = new FloatRect(position.getX(), position.getY(), height, width);
+        this.floatRect = floatRect;
     }
 
     @Override
     public boolean checkForCollision(Hitbox other) {
         if (this.priority >= other.getPriority()) {
-            return this.floatRect.contains(other.asVector().toVector());
+            return this.floatRect.intersection(other.asFloatRect()) != null;
         }
 
         return other.checkForCollision(this);
+    }
+
+    @Override
+    public FloatRect asFloatRect() {
+        return this.floatRect;
     }
 }
