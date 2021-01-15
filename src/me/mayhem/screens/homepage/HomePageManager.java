@@ -1,29 +1,25 @@
 package me.mayhem.screens.homepage;
 
+import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
 import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.Vector;
-import me.mayhem.util.sounds.SoundLoader;
+import me.mayhem.util.file.UtilSprite;
+import me.mayhem.util.sounds.UtilSound;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-
 
 public class HomePageManager implements ScreenManager {
 
-    private static final float HEIGHT = 800F;
-    private static final float WIDTH = 1000F;
     private RenderWindow window;
     private Interatable[] buttons;
     private Sprite[] sprites;
     private Sound maintheme;
-
 
     public HomePageManager(RenderWindow window){
         this.window = window;
@@ -40,7 +36,7 @@ public class HomePageManager implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         if (this.maintheme == null){
-            maintheme = this.createSound("resources/menu/Mainthememusic.wav");
+            maintheme = UtilSound.loadSoundFromPath("menu/Mainthememusic.wav");
             maintheme.isLoop();
             maintheme.play();
         }
@@ -61,22 +57,15 @@ public class HomePageManager implements ScreenManager {
         }
     }
 
-    public Sprite spriteFromPath(String path){
-        Texture newTexture = new Texture();
-        try {
+    public void createSprites() {
+        Sprite background = UtilSprite.loadFromPath("menu/otherbackground.jpg");
+        Sprite logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
 
-            newTexture.loadFromFile(Paths.get(path));
-        } catch(IOException ex) {
-            ex.printStackTrace();
+        if (logo == null || background == null) {
+            return;
         }
 
-        return new Sprite(newTexture);
-    }
-
-    public void createSprites(){
-        Sprite background = spriteFromPath("resources/menu/otherbackground.jpg");
-        Sprite logo = spriteFromPath("resources/menu/mayhemLogo.png");
-        logo.setPosition(new Vector((WIDTH/2) - 100, (0)).toVector());
+        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 100, (0)).toVector());
         this.sprites = new Sprite[] { background, logo };
     }
 
@@ -97,7 +86,7 @@ public class HomePageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400,100).toVector());
-        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 8).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 8).toVector());
         shape.setFillColor(new Color(176,176,176));
 
         return shape;
@@ -110,16 +99,10 @@ public class HomePageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400,100).toVector());
-        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 5).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 5).toVector());
         shape.setFillColor(new Color(176,176,176));
 
         return shape;
-    }
-    private Sound createSound(String path){
-
-        SoundLoader main = new SoundLoader();
-        return main.loadSoundFromPath(path);
-
     }
 
     /**
@@ -130,7 +113,7 @@ public class HomePageManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400,100).toVector());
-        shape.setPosition(new Vector((WIDTH / 10) * 3, (HEIGHT / 10) * 2).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 2).toVector());
         shape.setFillColor(new Color(176,176,176));
 
         return shape;
