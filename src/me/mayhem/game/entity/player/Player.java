@@ -3,10 +3,8 @@ package me.mayhem.game.entity.player;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.player.animation.PlayerAnimation;
 import me.mayhem.game.entity.player.state.PlayerState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.RenderWindow;
 
 /**
  * Player Class
@@ -14,7 +12,6 @@ import org.jsfml.graphics.RenderWindow;
 public class Player extends Entity {
 
     private String name;
-    private PlayerAnimation animate = new PlayerAnimation();
     private PlayerState[] states = new PlayerState[2];
 
     /**
@@ -80,15 +77,6 @@ public class Player extends Entity {
    public PlayerState getState(int index) {
        return this.states[index];
    }
-
-    /**
-     * Updates position of the Player depending on user input
-     * Outputs onto main window
-     * @param window
-     */
-    public void update(RenderWindow window) {
-        animate.playAnimation(window);
-    }
 
     public void tick() {
         if (this.isFalling()) {
