@@ -8,7 +8,6 @@ import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -44,8 +43,8 @@ public class HomePageManager implements ScreenManager {
     }
 
     private void createSprites() {
-        Sprite background = UtilSprite.loadFromPath("menu/otherbackground.jpg");
-        Sprite logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
+        Sprite background = UtilSharedResources.getBackground();
+        Sprite logo = UtilSharedResources.getLogo();
 
         if (logo == null || background == null) {
             return;

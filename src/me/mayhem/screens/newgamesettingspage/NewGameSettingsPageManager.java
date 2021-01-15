@@ -7,8 +7,8 @@ import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageHardButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -34,7 +34,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
     }
 
     private void createSprites() {
-        Sprite background = UtilSprite.loadFromPath("menu/otherbackground.jpg");
+        Sprite background = UtilSharedResources.getBackground();
 
         this.sprites = new Sprite[]{background};
     }

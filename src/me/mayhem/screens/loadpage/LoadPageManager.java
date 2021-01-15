@@ -5,8 +5,8 @@ import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -32,7 +32,7 @@ public class LoadPageManager implements ScreenManager {
     }
 
     private void createSprites() {
-        Sprite background = UtilSprite.loadFromPath("menu/otherbackground.jpg");
+        Sprite background = UtilSharedResources.getBackground();
 
         this.sprites = new Sprite[]{background};
     }
