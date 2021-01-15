@@ -11,6 +11,7 @@ import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
+import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.Objects;
@@ -74,7 +75,7 @@ public class GameManager {
         Player player = this.currentLevel.getPlayer();
         player.tick();
 
-        if (this.isOffScreen(player)) {
+        if (UtilScreen.isOffScreen(player)) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -92,12 +93,12 @@ public class GameManager {
 
             Vector movement = new Vector(xDiff, yDiff);
 
-            if (this.isOffScreenX(player)) {
+            if (UtilScreen.isOffScreenX(player)) {
                 player.getMotion().setX(0);
                 player.setState(PlayerState.STANDING);
             }
 
-            if (this.isOffScreenY(player)) {
+            if (UtilScreen.isOffScreenY(player)) {
                 player.getMotion().setY(0);
                 player.setState(PlayerState.NO_MOTION);
             }
@@ -134,63 +135,12 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            if (this.isOffScreen(entity)) {
-                this.fixEntityMotion(entity);
+            if (UtilScreen.isOffScreen(entity)) {
+                UtilScreen.fixEntityMotion(entity);
             }
 
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
-        }
-    }
-
-    private boolean isOffScreen(Entity entity) {
-        return this.isOffScreenX(entity) || this.isOffScreenY(entity);
-    }
-
-    private boolean isOffScreenX(Entity entity) {
-        return this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), 0)
-                || this.isOffScreenRightX(entity.getPosition(), entity.getMotion(), (int) entity.getWidth());
-    }
-
-    private boolean isOffScreenRightX(Vector position, Vector motion, int width) {
-        return (position.getX() + width + motion.getX()) > Mayhem.SCREEN_WIDTH;
-    }
-
-    private boolean isOffScreenLeftX(Vector position, Vector motion, int width) {
-        return (position.getX() + width + motion.getX()) < 0;
-    }
-
-    private boolean isOffScreenY(Entity entity) {
-        return  this.isOffScreenTopY(entity.getPosition(), entity.getMotion(), 0) || this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), (int) entity.getHeight());
-    }
-
-    private boolean isOffScreenBottomY(Vector position, Vector motion, int height) {
-        return (position.getY() + height + motion.getY()) > Mayhem.SCREEN_HEIGHT;
-    }
-
-    private boolean isOffScreenTopY(Vector position, Vector motion, int height) {
-        return (position.getY() + height + motion.getY()) < 0;
-    }
-
-    private void fixEntityMotion(Entity entity) {
-        if (this.isOffScreenRightX(entity.getPosition(), entity.getMotion(), 0)) {
-            float position = entity.getPosition().getX() + entity.getMotion().getX();
-            entity.getMotion().add(position, 0);
-        }
-
-        if (this.isOffScreenLeftX(entity.getPosition(), entity.getMotion(), (int) entity.getWidth())) {
-            float position = (-1) * (entity.getPosition().getX() + entity.getWidth() + entity.getMotion().getX() - Mayhem.SCREEN_WIDTH);
-            entity.getMotion().add(position, 0);
-        }
-
-        if (this.isOffScreenBottomY(entity.getPosition(), entity.getMotion(), (int) entity.getHeight())) {
-            float position = (-1) * (entity.getPosition().getY() + entity.getHeight() + entity.getMotion().getY() - Mayhem.SCREEN_HEIGHT);
-            entity.getMotion().add(0, position);
-        }
-
-        if (this.isOffScreenTopY(entity.getPosition(), entity.getMotion(), 0)) {
-            float position = entity.getPosition().getY() + entity.getMotion().getY();
-            entity.getMotion().add(0, position);
         }
     }
 }
