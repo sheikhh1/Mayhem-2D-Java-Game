@@ -9,10 +9,12 @@ import org.jsfml.graphics.Shape;
 public class ShapeHitbox extends AbstractHitbox {
 
     private Shape shape;
+    private Vector position;
 
     public ShapeHitbox(Shape shape, Vector position, int height, int width) {
         super(1,position, height, width);
         this.shape = shape;
+        this.position = position;
     }
 
     @Override
@@ -22,6 +24,6 @@ public class ShapeHitbox extends AbstractHitbox {
 
     @Override
     public FloatRect asFloatRect() {
-        return null;
+        return new FloatRect(this.position.getX(), this.position.getY(), this.getHitboxWidth(), this.getHitboxHeight());
     }
 }
