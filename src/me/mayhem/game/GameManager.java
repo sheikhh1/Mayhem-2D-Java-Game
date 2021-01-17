@@ -141,6 +141,9 @@ public class GameManager {
     }
 
     private void handleBlockCollisions() {
+        boolean collisionDetected = false;
+
+
         for (Entity entity : this.currentLevel.getEntities()) {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
@@ -150,6 +153,8 @@ public class GameManager {
                             entity.getPosition().getY() + (entity.getHitbox().asFloatRect().height / 2));
 
                     RectangleShape shape = new RectangleShape();
+
+                    collisionDetected = true;
 
                     shape.setPosition(center.toVector());
                     shape.setSize(new Vector2f(4, 4));
@@ -201,6 +206,9 @@ public class GameManager {
                         this.debugShapes2.remove(vertices);
                     }).start();
                 }
+            }
+            if (!collisionDetected) {
+                entity.setState(EntityState.FALLING);
             }
         }
     }
