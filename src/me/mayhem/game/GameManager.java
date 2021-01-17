@@ -13,6 +13,7 @@ import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
+import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.Objects;
@@ -131,7 +132,9 @@ public class GameManager {
         for (Entity entity : this.currentLevel.getEntities()) {
            for(Block block : this.currentLevel.getLayout().getBlocks()){
                if (entity.getHitbox().checkForCollision(block.getHitbox())) {
-                   System.out.println("collided");
+                   FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
+
+                   entity.getMotion().add(collision.width, collision.height);
                }
            }
         }
