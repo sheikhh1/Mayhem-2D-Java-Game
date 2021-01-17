@@ -17,6 +17,7 @@ public class UtilSharedResources {
 
             if (mainTheme != null) {
                 mainTheme.setLoop(true);
+                mainTheme.setVolume(0.5f);
                 mainTheme.play();
             }
         }
