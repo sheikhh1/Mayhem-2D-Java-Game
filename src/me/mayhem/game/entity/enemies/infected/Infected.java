@@ -1,6 +1,7 @@
 package me.mayhem.game.entity.enemies.infected;
 
 import me.mayhem.game.ai.Pathing;
+import me.mayhem.game.ai.impl.ForwardPathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
@@ -13,14 +14,15 @@ public class Infected extends Entity {
     /**
      * Entity Constructor
      *
-     * @param type       - Type of Entity - eg Player/Enemy
      * @param position   - Current Position of entity relative to the game window
-     * @param motion     - Motion of the entity eg if entity is moving
-     * @param pathing    - Pathing for AI generated movement
-     * @param attributes - Attributes an entity has - eg health
      */
-    public Infected(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
-        super(type, position, motion, pathing, attributes);
+    public Infected(Vector position) {
+        super(EntityType.INFECTED, position, Vector.ZERO, Pathing.FORWARD_PATHING);
+
+    }
+
+    public InfectedState getState(int index){
+        return this.states[index];
     }
 
 }
