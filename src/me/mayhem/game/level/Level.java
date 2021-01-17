@@ -28,7 +28,7 @@ public class Level {
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition) {
-        return new Player( "dan", playerSpawnPosition);
+        return new Player( "danIsGay", playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {
@@ -50,4 +50,6 @@ public class Level {
     public Layout getLayout() {
         return this.layout;
     }
+
+
 }
