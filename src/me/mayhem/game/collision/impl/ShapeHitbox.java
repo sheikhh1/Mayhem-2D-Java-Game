@@ -9,26 +9,25 @@ import org.jsfml.graphics.Shape;
 public class ShapeHitbox extends AbstractHitbox {
 
     private Shape shape;
-    private Vector position;
 
     public ShapeHitbox(Shape shape, Vector position, int height, int width) {
-        super(1,position, height, width);
+        super(1, position, height, width);
+
         this.shape = shape;
-        this.position = position;
     }
 
     @Override
     public boolean checkForCollision(Hitbox other) {
-        return false;
+        return other.getCollision(this) != null;
     }
 
     @Override
     public FloatRect asFloatRect() {
-        return new FloatRect(this.position.getX(), this.position.getY(), this.getHitboxWidth(), this.getHitboxHeight());
+        return this.shape.getGlobalBounds();
     }
 
     @Override
     public FloatRect getCollision(Hitbox other) {
-        return null;
+        return other.asFloatRect().intersection(this.asFloatRect());
     }
 }

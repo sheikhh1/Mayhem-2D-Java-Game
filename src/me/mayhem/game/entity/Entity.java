@@ -7,8 +7,11 @@ import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
+import org.jsfml.system.Vector2f;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +50,7 @@ public class Entity {
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = new SpriteHitbox(this.getSprite(),this.position, (int) this.getHeight(), (int) this.getWidth());
+        this.hitbox = new SpriteHitbox(this.getSprite(), this.position, (int) this.getHeight(), (int) this.getWidth());
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
     }
@@ -153,7 +156,14 @@ public class Entity {
      * @param window
      */
     public void update(RenderWindow window) {
+        RectangleShape rectangleShape = new RectangleShape();
+
+        rectangleShape.setPosition(this.position.toVector());
+        rectangleShape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
+        rectangleShape.setFillColor(Color.GREEN);
+
         animate.playAnimation(window);
+//        window.draw(rectangleShape);
     }
 
 }

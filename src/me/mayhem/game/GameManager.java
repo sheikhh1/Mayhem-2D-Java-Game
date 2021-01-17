@@ -13,8 +13,11 @@ import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Vector2f;
 
 import java.util.Objects;
 
@@ -130,13 +133,25 @@ public class GameManager {
 
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
-           for(Block block : this.currentLevel.getLayout().getBlocks()){
-               if (entity.getHitbox().checkForCollision(block.getHitbox())) {
-                   FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
+            for (Block block : this.currentLevel.getLayout().getBlocks()) {
+                if (block.getPosition().getX() == this.currentLevel.getPlayer().getPosition().getX()) {
+                    RectangleShape shape = new RectangleShape();
 
-                   entity.getMotion().add(collision.width, collision.height);
-               }
-           }
+                    shape.setPosition(block.getPosition().toVector());
+                    shape.setFillColor(Color.GREEN);
+                    shape.setSize(new Vector2f(block.getHitbox().asFloatRect().width, block.getHitbox().asFloatRect().height));
+
+                    this.renderWindow.draw(shape);
+                }
+
+                if (entity.getHitbox().checkForCollision(block.getHitbox())) {
+                    FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
+
+                    System.out.println(collision.toString() + "COLLISION");
+                    entity.getMotion().add(0, collision.height);
+                    ((Player) entity).setState(PlayerState.NO_MOTION);
+                }
+            }
         }
     }
 

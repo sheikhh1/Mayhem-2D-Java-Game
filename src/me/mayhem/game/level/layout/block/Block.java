@@ -4,10 +4,8 @@ import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.ShapeHitbox;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
-import org.jsfml.system.Vector2f;
 
 public class Block {
 
@@ -86,7 +84,7 @@ public class Block {
             this.drawable.setPosition(this.position.toVector());
 
             if (this.hitbox == null) {
-                this.hitbox = new ShapeHitbox(new RectangleShape(new Vector2f(this.height, this.width)), this.position,this.height, this.width);
+                this.hitbox = new ShapeHitbox(this.drawable, this.position, this.height, this.width);
             }
 
             return new Block(this.position, this.drawable, this.hitbox);

@@ -27,6 +27,6 @@ public class SpriteHitbox extends AbstractHitbox {
 
     @Override
     public FloatRect asFloatRect() {
-        return new FloatRect(this.sprite.getPosition().x, this.sprite.getPosition().y, this.getHitboxWidth(), this.getHitboxHeight());
+        return this.sprite.getGlobalBounds();
     }
 }
