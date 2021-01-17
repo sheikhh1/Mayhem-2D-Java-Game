@@ -1,24 +1,21 @@
 package me.mayhem.game;
 
-import me.mayhem.Mayhem;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
-import me.mayhem.game.entity.player.state.PlayerState;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import me.mayhem.util.screen.UtilScreen;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class GameManager {
@@ -29,6 +26,10 @@ public class GameManager {
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
+
+    private List<RectangleShape> debugShapes = new ArrayList<>();
+    private List<VertexArray> debugShapes2 = new ArrayList<>();
+    private boolean doNotMove = false;
 
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
@@ -66,6 +67,14 @@ public class GameManager {
     public void draw() {
         this.currentLevel.getPlayer().update(this.renderWindow);
         this.currentLevel.getLayout().draw(this.renderWindow);
+
+        for (RectangleShape debugShape : this.debugShapes) {
+            this.renderWindow.draw(debugShape);
+        }
+
+        for (VertexArray debugShape : this.debugShapes2) {
+            this.renderWindow.draw(debugShape);
+        }
     }
 
     /**
@@ -80,36 +89,36 @@ public class GameManager {
         Player player = this.currentLevel.getPlayer();
         player.tick();
 
-        if (UtilScreen.isOffScreen(player)) {
-            int xDiff = 0;
-            int yDiff = 0;
-
-            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
-                xDiff = -1;
-            } else if (player.getPosition().getX() < 0) {
-                xDiff = +1;
-            }
-
-            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
-                yDiff = -1;
-            } else if (player.getPosition().getY() < 0) {
-                yDiff = +1;
-            }
-
-            Vector movement = new Vector(xDiff, yDiff);
-
-            if (UtilScreen.isOffScreenX(player)) {
-                player.getMotion().setX(0);
-                player.setState(PlayerState.STANDING);
-            }
-
-            if (UtilScreen.isOffScreenY(player)) {
-                player.getMotion().setY(0);
-                player.setState(PlayerState.NO_MOTION);
-            }
-
-            this.currentLevel.getLayout().moveBlocks(movement);
-        }
+//        if (UtilScreen.isOffScreen(player)) {
+//            int xDiff = 0;
+//            int yDiff = 0;
+//
+//            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
+//                xDiff = -1;
+//            } else if (player.getPosition().getX() < 0) {
+//                xDiff = +1;
+//            }
+//
+//            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
+//                yDiff = -1;
+//            } else if (player.getPosition().getY() < 0) {
+//                yDiff = +1;
+//            }
+//
+//            Vector movement = new Vector(xDiff, yDiff);
+//
+//            if (UtilScreen.isOffScreenX(player)) {
+//                player.getMotion().setX(0);
+//                player.setState(PlayerState.STANDING);
+//            }
+//
+//            if (UtilScreen.isOffScreenY(player)) {
+//                player.getMotion().setY(0);
+//                player.setState(PlayerState.NO_MOTION);
+//            }
+//
+//            this.currentLevel.getLayout().moveBlocks(movement);
+//        }
 
         this.handleEntityVelocity();
     }
@@ -122,8 +131,8 @@ public class GameManager {
                 }
 
                 if (entity.getHitbox().checkForCollision(other.getHitbox())) {
-                    entity.getMotion().set(Vector.ZERO);
-                    other.getMotion().set(Vector.ZERO);
+/*                    entity.getMotion().set(Vector.ZERO);
+                    other.getMotion().set(Vector.ZERO);*/
 
                     //TODO: call entity collision event
                 }
@@ -134,35 +143,69 @@ public class GameManager {
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
-                if (block.getPosition().getX() == this.currentLevel.getPlayer().getPosition().getX()) {
-                    RectangleShape shape = new RectangleShape();
-
-                    shape.setPosition(block.getPosition().toVector());
-                    shape.setFillColor(Color.GREEN);
-                    shape.setSize(new Vector2f(block.getHitbox().asFloatRect().width, block.getHitbox().asFloatRect().height));
-
-                    this.renderWindow.draw(shape);
-                }
-
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
+                    Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
+                    Vector centerEntity = new Vector(entity.getPosition().getX() + (entity.getHitbox().asFloatRect().width / 2),
+                            entity.getPosition().getY() + (entity.getHitbox().asFloatRect().height / 2));
 
-                    System.out.println(collision.toString() + "COLLISION");
-                    entity.getMotion().add(0, collision.height);
-                    ((Player) entity).setState(PlayerState.NO_MOTION);
+                    RectangleShape shape = new RectangleShape();
+
+                    shape.setPosition(center.toVector());
+                    shape.setSize(new Vector2f(4, 4));
+                    shape.setFillColor(Color.GREEN);
+
+                    this.debugShapes.add(shape);
+
+                    RectangleShape shape2 = new RectangleShape();
+
+                    shape2.setPosition(centerEntity.toVector());
+                    shape2.setSize(new Vector2f(4, 4));
+                    shape2.setFillColor(Color.GREEN);
+
+                    this.debugShapes.add(shape2);
+
+                    VertexArray vertices = new VertexArray();
+
+                    vertices.add(new Vertex(shape.getPosition(), Color.CYAN));
+                    vertices.add(new Vertex(shape2.getPosition(), Color.CYAN));
+                    vertices.setPrimitiveType(PrimitiveType.LINES);
+
+                    this.debugShapes2.add(vertices);
+
+                    center.setY(entity.getEntityPhysics().getFallStrength());
+                    center.setX(0);
+
+                    VertexArray resultantVector = new VertexArray();
+
+                    System.out.println(center);
+                    resultantVector.add(new Vertex(centerEntity.toVector(), Color.BLACK));
+                    resultantVector.add(new Vertex(centerEntity.clone().addTemp(center).toVector(), Color.BLACK));
+                    resultantVector.setPrimitiveType(PrimitiveType.LINE_STRIP);
+
+                    this.debugShapes2.add(resultantVector);
+
+                    entity.setState(EntityState.NO_MOTION);
+                    entity.getMotion().subtract(center.getX(), center.getY());
+                    doNotMove = false;
                 }
             }
         }
     }
 
     private void handleEntityVelocity() {
+        if (doNotMove) {
+            return;
+        }
+
         for (Entity entity : this.currentLevel.getEntities()) {
-            if (UtilScreen.isOffScreen(entity)) {
-                UtilScreen.fixEntityMotion(entity);
-            }
+//            if (UtilScreen.isOffScreen(entity)) {
+//                UtilScreen.fixEntityMotion(entity);
+//            }
 
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
         }
     }
+
 }

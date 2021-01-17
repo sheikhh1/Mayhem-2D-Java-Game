@@ -1,7 +1,7 @@
 package me.mayhem.game.entity.player.listeners;
 
 import me.mayhem.game.entity.player.Player;
-import me.mayhem.game.entity.player.state.PlayerState;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.keyboard.KeyboardReleaseListener;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
@@ -15,13 +15,13 @@ import java.util.Map;
 public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
 
     private final Player player;
-    private final Map<Keyboard.Key, PlayerState> keyReleaseHandler = new HashMap<>();
+    private final Map<Keyboard.Key, EntityState> keyReleaseHandler = new HashMap<>();
 
     public PlayerKeyboardReleaseListener(Player player) {
         this.player = player;
 
-        this.keyReleaseHandler.put(Keyboard.Key.A, PlayerState.STANDING);
-        this.keyReleaseHandler.put(Keyboard.Key.D, PlayerState.STANDING);
+        this.keyReleaseHandler.put(Keyboard.Key.A, EntityState.STANDING);
+        this.keyReleaseHandler.put(Keyboard.Key.D, EntityState.STANDING);
     }
 
     @Override

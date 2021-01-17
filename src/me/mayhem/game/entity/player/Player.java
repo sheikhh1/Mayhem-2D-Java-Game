@@ -3,9 +3,8 @@ package me.mayhem.game.entity.player;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.player.state.PlayerState;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
-import org.jsfml.system.Vector2f;
 
 /**
  * Player Class
@@ -13,7 +12,6 @@ import org.jsfml.system.Vector2f;
 public class Player extends Entity {
 
     private String name;
-    private PlayerState[] states = new PlayerState[2];
 
     /**
      * Player Constructor
@@ -25,58 +23,8 @@ public class Player extends Entity {
         this.animate.setSpritePosition(position.toVector());
         this.name = name; // Name assigned and stored
         this.getEntityPhysics().setEntityMotion(this.getMotion());
-        this.setState(PlayerState.FALLING);
+        this.setState(EntityState.FALLING);
     }
-
-    /**
-     * Keyboard press listener sends a player state depending on which key has been pressed
-     * @param state - Current state of the player
-     */
-   public void setState(PlayerState state) {
-       if (state == null) {
-           return;
-       }
-
-       PlayerState currentState = this.states[state.getIndex()];
-
-       if (currentState == PlayerState.FALLING || currentState == PlayerState.JUMPING) {
-           if (state == PlayerState.NO_MOTION) {
-               this.setJumping(false);
-               this.setFalling(false);
-               this.getEntityPhysics().reset(state);
-               this.states[state.getIndex()] = state;
-           }
-       } else if (currentState == PlayerState.NO_MOTION) {
-           if (state == PlayerState.JUMPING) {
-               this.setJumping(true);
-               this.setFalling(false);
-               this.states[state.getIndex()] = state;
-           } else if (state == PlayerState.FALLING) {
-               this.setFalling(true);
-               this.setJumping(false);
-               this.states[state.getIndex()] = state;
-           }
-       } else {
-           this.states[state.getIndex()] = state;
-
-           if (state == PlayerState.STANDING) {
-               animate.setColumn(0);
-               animate.setPause(true);
-               this.setForward(false);
-               this.setBack(false);
-           } else if (state == PlayerState.BACK) {
-               this.setForward(false);
-               this.setBack(true);
-           } else if (state == PlayerState.FORWARD) {
-               this.setForward(true);
-               this.setBack(false);
-           }
-       }
-   }
-
-   public PlayerState getState(int index) {
-       return this.states[index];
-   }
 
     public void tick() {
         if (this.isFalling()) {
