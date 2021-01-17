@@ -37,7 +37,7 @@ public class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
-
+    private EntityState currentState;
     private EntityState[] states = new EntityState[2];
 
     /**
@@ -174,11 +174,11 @@ public class Entity {
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
-        if (state == null) {
+        if (state == null || (currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION) ){
             return;
         }
 
-        EntityState currentState = this.states[state.getIndex()];
+        currentState = this.states[state.getIndex()];
 
         if (currentState == EntityState.FALLING || currentState == EntityState.JUMPING) {
             if (state == EntityState.NO_MOTION) {
