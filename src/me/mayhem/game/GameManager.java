@@ -14,9 +14,9 @@ import me.mayhem.util.Vector;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameManager {
 
@@ -27,8 +27,8 @@ public class GameManager {
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
-    private List<RectangleShape> debugShapes = new ArrayList<>();
-    private List<VertexArray> debugShapes2 = new ArrayList<>();
+    private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
+    private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
     private boolean doNotMove = false;
 
     public GameManager(RenderWindow renderWindow) {
@@ -188,6 +188,18 @@ public class GameManager {
                     entity.setState(EntityState.NO_MOTION);
                     entity.getMotion().subtract(center.getX(), center.getY());
                     doNotMove = false;
+
+                    new Thread(() -> {
+                        try {
+                            Thread.sleep(10_000L);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        this.debugShapes.remove(shape);
+                        this.debugShapes.remove(shape2);
+                        this.debugShapes2.remove(resultantVector);
+                        this.debugShapes2.remove(vertices);
+                    }).start();
                 }
             }
         }
