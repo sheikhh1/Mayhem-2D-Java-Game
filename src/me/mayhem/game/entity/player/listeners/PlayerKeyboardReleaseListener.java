@@ -22,6 +22,7 @@ public class PlayerKeyboardReleaseListener extends KeyboardReleaseListener {
 
         this.keyReleaseHandler.put(Keyboard.Key.A, EntityState.STANDING);
         this.keyReleaseHandler.put(Keyboard.Key.D, EntityState.STANDING);
+        this.keyReleaseHandler.put(Keyboard.Key.W, EntityState.FALLING);
     }
 
     @Override
