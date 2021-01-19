@@ -218,4 +218,8 @@ public class Entity {
     public EntityState getState(int index) {
         return this.states[index];
     }
+
+    public Vector getCenter() {
+        return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
+    }
 }
