@@ -1,4 +1,6 @@
 package me.mayhem.game.ai.audio;
+import org.jsfml.audio.SoundBuffer;
+
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -9,7 +11,7 @@ public class Audio {
  * Generates methods to load the audio files
  */
 
-public class Audio {
+    SoundBuffer soundBuffer;
 
     public void completedgame(){
         try {
