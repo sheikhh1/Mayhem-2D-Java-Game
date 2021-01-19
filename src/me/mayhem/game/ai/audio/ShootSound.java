@@ -15,6 +15,7 @@ public class ShootSound implements AudioPlayer {
         if (sound == null) {
             load("audio/shoot.wav");
         }
+        sound.play();
     }
 
 
@@ -29,7 +30,6 @@ public class ShootSound implements AudioPlayer {
 
             ex.printStackTrace();
         }
-
         Sound newSound = new Sound();
         newSound.setBuffer(soundBuffer);
 
