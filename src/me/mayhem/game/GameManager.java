@@ -31,7 +31,6 @@ public class GameManager {
 
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
-    private boolean doNotMove = false;
 
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
@@ -151,16 +150,24 @@ public class GameManager {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
+                    if (block.getPosition().getY() < (entity.getPosition().getY() + entity.getHeight() - 10)) {
+                        if (block.getPosition().getX() > entity.getPosition().getX()) {
+                            center.setX(+3f);
+                        } else {
+                            center.setX(-3f);
+                        }
 
+                        entity.setState(EntityState.STANDING);
+                    } else {
+                        center.setX(0);
+                    }
 
                     collisionDetected = true;
 
                     center.setY(entity.getEntityPhysics().getFallStrength());
-                    center.setX(0);
 
                     entity.setState(EntityState.NO_MOTION);
                     entity.getMotion().subtract(center.getX(), center.getY());
-                    doNotMove = false;
                 }
             }
 
@@ -171,10 +178,6 @@ public class GameManager {
     }
 
     private void handleEntityVelocity() {
-        if (doNotMove) {
-            return;
-        }
-
         for (Entity entity : this.currentLevel.getEntities()) {
 //            if (UtilScreen.isOffScreen(entity)) {
 //                UtilScreen.fixEntityMotion(entity);
