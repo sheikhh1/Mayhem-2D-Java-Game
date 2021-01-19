@@ -21,9 +21,10 @@ public class Level {
 
     public Level(Difficulty difficulty) {
         this.difficulty = difficulty;
-        this.spawner = null; //TODO: get from difficulty
+        this.spawner = difficulty.getSpawner(); //TODO: get from difficulty
         this.layout = new Layout(this.difficulty);
         this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
+        this.spawner.spawnEntities(this);
         this.entities.add(this.player);
     }
 

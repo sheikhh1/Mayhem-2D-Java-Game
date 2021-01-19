@@ -10,5 +10,8 @@ public class EasyEntitySpawner implements EntitySpawner {
     @Override
     public void spawnEntities(Level level) {
         //TODO:
+        // create something that works based on the constraints of the editor
+        level.getEntities().add(new Infected(new Vector(500,500)));
+
     }
 }
