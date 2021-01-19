@@ -84,11 +84,11 @@ public class GameManager {
      *
      */
     public void tick() {
-        this.handleEntityCollisions();
-        this.handleBlockCollisions();
-
         Player player = this.currentLevel.getPlayer();
         player.tick();
+
+        this.handleEntityCollisions();
+        this.handleBlockCollisions();
 
 //        if (UtilScreen.isOffScreen(player)) {
 //            int xDiff = 0;
@@ -150,23 +150,28 @@ public class GameManager {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
-                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight() - 10)) {
+                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight())) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             center.setX(+3f);
                         } else {
                             center.setX(-3f);
                         }
-
-                        entity.setState(EntityState.STANDING);
                     } else {
                         center.setX(0);
                     }
 
-                    collisionDetected = true;
 
-                    center.setY(entity.getEntityPhysics().getFallStrength());
+                    if (block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight())) {
+                        collisionDetected = true;
 
-                    entity.setState(EntityState.NO_MOTION);
+                        center.setY(entity.getEntityPhysics().getFallStrength());
+
+                        entity.setState(EntityState.NO_MOTION);
+                    } else {
+                        center.setY(0);
+                        entity.setState(EntityState.FALLING);
+                    }
+
                     entity.getMotion().subtract(center.getX(), center.getY());
                 }
             }
