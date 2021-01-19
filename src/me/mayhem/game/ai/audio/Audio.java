@@ -15,16 +15,4 @@ public class Audio {
     AudioInputStream soundStream;
     SoundBuffer soundBuffer;
 
-    public void completedgame(){
-        try {
-
-            soundBuffer.loadFromFile(Paths.get("sound.wav"));
-            System.out.println("Sound duration: " + soundBuffer.getDuration().asSeconds() + " seconds");
-        } catch (IOException ex) {
-            //Something went wrong
-            System.err.println("Failed to load the sound:");
-            ex.printStackTrace();
-        }
-    }
-
 }
