@@ -11,8 +11,10 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.*;
-import org.jsfml.system.Vector2f;
+import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.VertexArray;
 
 import java.util.List;
 import java.util.Objects;
@@ -152,61 +154,17 @@ public class GameManager {
                     Vector centerEntity = new Vector(entity.getPosition().getX() + (entity.getHitbox().asFloatRect().width / 2),
                             entity.getPosition().getY() + (entity.getHitbox().asFloatRect().height / 2));
 
-                    RectangleShape shape = new RectangleShape();
-
                     collisionDetected = true;
-
-                    shape.setPosition(center.toVector());
-                    shape.setSize(new Vector2f(4, 4));
-                    shape.setFillColor(Color.GREEN);
-
-                    this.debugShapes.add(shape);
-
-                    RectangleShape shape2 = new RectangleShape();
-
-                    shape2.setPosition(centerEntity.toVector());
-                    shape2.setSize(new Vector2f(4, 4));
-                    shape2.setFillColor(Color.GREEN);
-
-                    this.debugShapes.add(shape2);
-
-                    VertexArray vertices = new VertexArray();
-
-                    vertices.add(new Vertex(shape.getPosition(), Color.CYAN));
-                    vertices.add(new Vertex(shape2.getPosition(), Color.CYAN));
-                    vertices.setPrimitiveType(PrimitiveType.LINES);
-
-                    this.debugShapes2.add(vertices);
 
                     center.setY(entity.getEntityPhysics().getFallStrength());
                     center.setX(0);
 
-                    VertexArray resultantVector = new VertexArray();
-
-                    System.out.println(center);
-                    resultantVector.add(new Vertex(centerEntity.toVector(), Color.BLACK));
-                    resultantVector.add(new Vertex(centerEntity.clone().addTemp(center).toVector(), Color.BLACK));
-                    resultantVector.setPrimitiveType(PrimitiveType.LINE_STRIP);
-
-                    this.debugShapes2.add(resultantVector);
-
                     entity.setState(EntityState.NO_MOTION);
                     entity.getMotion().subtract(center.getX(), center.getY());
                     doNotMove = false;
-
-                    new Thread(() -> {
-                        try {
-                            Thread.sleep(10_000L);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        this.debugShapes.remove(shape);
-                        this.debugShapes.remove(shape2);
-                        this.debugShapes2.remove(resultantVector);
-                        this.debugShapes2.remove(vertices);
-                    }).start();
                 }
             }
+
             if (!collisionDetected) {
                 entity.setState(EntityState.FALLING);
             }
