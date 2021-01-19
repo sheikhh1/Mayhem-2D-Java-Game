@@ -12,15 +12,13 @@ public class CompletionSound implements AudioPlayer{
     @Override
     public void play() {
         if (sound == null) {
-            load("audio/completedgame.wav");
+            load("audio/completely.wav");
         }
         sound.play();
     }
 
-
     @Override
     public Sound load(String path) {
-
 
         SoundBuffer soundBuffer = new SoundBuffer();
         try {
@@ -36,5 +34,3 @@ public class CompletionSound implements AudioPlayer{
     }
 
 }
-
-
