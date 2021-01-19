@@ -145,14 +145,11 @@ public class GameManager {
     private void handleBlockCollisions() {
         boolean collisionDetected = false;
 
-
         for (Entity entity : this.currentLevel.getEntities()) {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
-                    Vector centerEntity = new Vector(entity.getPosition().getX() + (entity.getHitbox().asFloatRect().width / 2),
-                            entity.getPosition().getY() + (entity.getHitbox().asFloatRect().height / 2));
 
                     collisionDetected = true;
 
