@@ -150,7 +150,7 @@ public class GameManager {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
-                    if (block.getPosition().getY() < (entity.getPosition().getY() + entity.getHeight() - 10)) {
+                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight() - 10)) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             center.setX(+3f);
                         } else {
