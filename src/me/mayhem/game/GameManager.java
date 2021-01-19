@@ -32,6 +32,7 @@ public class GameManager {
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
+
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
@@ -143,44 +144,60 @@ public class GameManager {
 
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            boolean collisionDetected = false;
 
+            boolean wallCollisionLeft= false;
+            boolean wallCollisionRight = false;
+            boolean groundCollision = false;
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
+
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
                     if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight())) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
+                            wallCollisionRight = true;
                             center.setX(+3f);
                         } else {
+                            wallCollisionLeft = true;
                             center.setX(-3f);
+
                         }
                     } else {
                         center.setX(0);
                     }
 
 
+
                     if (block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight())) {
-                        collisionDetected = true;
+                        groundCollision = true;
 
                         center.setY(entity.getEntityPhysics().getFallStrength());
 
-                        entity.setState(EntityState.NO_MOTION);
                     } else {
                         center.setY(0);
-                        entity.setState(EntityState.FALLING);
                     }
 
                     entity.getMotion().subtract(center.getX(), center.getY());
                 }
             }
 
-            if (!collisionDetected) {
+            if (!groundCollision) {
+                entity.setState(EntityState.FALLING);
+            } else {
+                entity.setState(EntityState.NO_MOTION);
+            }
+
+            if (wallCollisionRight || wallCollisionLeft) {
                 entity.setState(EntityState.FALLING);
             }
+
+
         }
+
+
     }
+
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
