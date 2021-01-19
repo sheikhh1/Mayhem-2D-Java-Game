@@ -1,5 +1,4 @@
 package me.mayhem.game.ai.audio;
-
 import java.io.IOException;
 import java.nio.file.Paths;
 
