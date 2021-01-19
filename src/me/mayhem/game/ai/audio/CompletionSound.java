@@ -12,7 +12,7 @@ public class CompletionSound implements AudioPlayer{
     @Override
     public void play() {
         if (sound == null) {
-            load("audio/completely.wav");
+            load("audio/completedgame.wav");
         }
         sound.play();
     }
