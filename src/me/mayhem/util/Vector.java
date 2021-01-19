@@ -67,8 +67,8 @@ public class Vector {
         return this.add(vector.getX(), vector.getY());
     }
 
-    public void subtract(float x, float y) {
-        this.add(-x, -y);
+    public Vector subtract(float x, float y) {
+        return this.add(-x, -y);
     }
 
     public void multiply(float multiple) {
