@@ -6,7 +6,7 @@ import org.jsfml.audio.SoundBuffer;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class CompletionSound implements AudioPlayer {
+public class CompletionSound implements AudioPlayer{
     private Sound sound;
 
     @Override
@@ -36,4 +36,5 @@ public class CompletionSound implements AudioPlayer {
     }
 
 }
+
 
