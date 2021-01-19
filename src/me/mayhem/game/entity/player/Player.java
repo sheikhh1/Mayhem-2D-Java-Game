@@ -1,6 +1,7 @@
 package me.mayhem.game.entity.player;
 
 import me.mayhem.game.ai.Pathing;
+import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.state.EntityState;
@@ -19,9 +20,10 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.ZERO, Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.ZERO, new SpriteHitbox(position, 80, 30), Pathing.NO_PATHING);
+
         this.animate.setSpritePosition(position.toVector());
-        this.name = name; // Name assigned and stored
+        this.name = name;
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
     }
