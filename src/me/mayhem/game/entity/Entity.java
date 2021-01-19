@@ -3,7 +3,6 @@ package me.mayhem.game.entity;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
@@ -48,12 +47,12 @@ public class Entity {
      * @param pathing - Pathing for AI generated movement
      * @param attributes - Attributes an entity has - eg health
      */
-    public Entity(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
+    public Entity(EntityType type, Vector position, Vector motion, Hitbox hitbox, Pathing pathing, Attribute<?>... attributes) {
         this.type = type;
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = new SpriteHitbox(this.getSprite(), this.position, (int) this.getHeight(), (int) this.getWidth());
+        this.hitbox = hitbox;
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
     }
