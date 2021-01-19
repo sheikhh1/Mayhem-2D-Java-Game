@@ -1,8 +1,10 @@
 package me.mayhem.game.ai.audio;
 
+import org.jsfml.audio.Sound;
+
 public interface AudioPlayer {
 
-    public void play();
+    void play();
 
-    void load();
+    Sound load(String path);
 }
