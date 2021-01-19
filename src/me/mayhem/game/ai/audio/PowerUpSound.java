@@ -12,7 +12,7 @@ public class PowerUpSound implements AudioPlayer{
     @Override
     public void play() {
         if (sound == null) {
-            load("audio/powerup.wav");
+            load("audio/shoot.wav");
         }
         sound.play();
     }
