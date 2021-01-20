@@ -1,7 +1,7 @@
 package me.mayhem.game.entity.player.listeners;
 
 import me.mayhem.game.entity.player.Player;
-import me.mayhem.game.entity.player.PlayerState;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
@@ -15,25 +15,18 @@ import java.util.Map;
 public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private Player player;
-    private Map<Keyboard.Key, PlayerState> keyHandler = new HashMap<>();
+    private Map<Keyboard.Key, EntityState> keyHandler = new HashMap<>();
 
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
-        keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
-        keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
+        keyHandler.put(Keyboard.Key.W, EntityState.JUMPING);
+        keyHandler.put(Keyboard.Key.A, EntityState.BACK);
+        keyHandler.put(Keyboard.Key.D, EntityState.FORWARD);
     }
 
     @Override
     protected void takeInput(KeyEvent event) {
-        //TODO: Add button functionality for:
-        // Fight
-        // Crouch?
-        // S key
-        // Pick-up
-        // Pause / Show Menu
-
         player.setState(keyHandler.get(event.asKeyEvent().key));
     }
 }

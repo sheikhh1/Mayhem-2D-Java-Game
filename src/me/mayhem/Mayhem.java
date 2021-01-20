@@ -6,23 +6,29 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.VideoMode;
+import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
 
 public class Mayhem {
 
+    public static final int SCREEN_WIDTH = 1000;
+    public static final int SCREEN_HEIGHT = 800;
+
     private static ScreenManager currentScreen;
     private static RenderWindow mainWindow;
 
+
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
+        window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
+        window.setVerticalSyncEnabled(true);
 
         currentScreen = new HomePageManager(window);
-        window.setFramerateLimit(30);
         mainWindow = window;
 
         while (window.isOpen()) {
             window.clear(Color.WHITE);
-
 
             if (currentScreen != null) {
                 currentScreen.draw(window);
@@ -39,7 +45,6 @@ public class Mayhem {
                     }
                 }
             }
-            //TODO: tick objects/entities
         }
     }
 

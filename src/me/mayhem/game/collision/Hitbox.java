@@ -1,7 +1,8 @@
 package me.mayhem.game.collision;
 
 
-import me.mayhem.math.Vector;
+import me.mayhem.util.Vector;
+import org.jsfml.graphics.FloatRect;
 
 /**
  *
@@ -20,12 +21,20 @@ public interface Hitbox {
      * @param other the hitbox for the other entity
      * @return true if the two hitboxes collided
      */
-    boolean collides(Hitbox other);
+    boolean checkForCollision(Hitbox other);
 
     /**
      * returns the entities position as a vector
      * @return the vector of the entity
      */
     Vector asVector();
+
+    FloatRect asFloatRect();
+
+    Vector getCollision(Hitbox other);
+
+    float getHeight();
+
+    float getWidth();
 
 }

@@ -5,6 +5,7 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.Layout;
 import me.mayhem.game.level.spawning.EntitySpawner;
+import me.mayhem.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +20,15 @@ public class Level {
     private final Layout layout;
 
     public Level(Difficulty difficulty) {
-        this.player = this.spawnPlayer();
         this.difficulty = difficulty;
         this.spawner = null; //TODO: get from difficulty
-        this.layout = null; //TODO: create layer
+        this.layout = new Layout(this.difficulty);
+        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
+        this.entities.add(this.player);
     }
 
-    private Player spawnPlayer() {
-        return null; //TODO:
+    private Player spawnPlayer(Vector playerSpawnPosition) {
+        return new Player( "dan", playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {

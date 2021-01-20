@@ -1,6 +1,6 @@
 package me.mayhem.game.collision;
 
-import me.mayhem.math.Vector;
+import me.mayhem.util.Vector;
 
 public abstract class AbstractHitbox implements Hitbox {
 
@@ -31,5 +31,23 @@ public abstract class AbstractHitbox implements Hitbox {
     @Override
     public Vector asVector() {
         return this.position;
+    }
+
+    public int getHitboxHeight() {
+        return this.height;
+    }
+
+    public int getHitboxWidth() {
+        return this.width;
+    }
+
+    @Override
+    public float getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public float getWidth() {
+        return this.width;
     }
 }
