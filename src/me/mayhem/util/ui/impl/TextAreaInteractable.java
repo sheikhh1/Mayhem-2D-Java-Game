@@ -29,7 +29,7 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
                 return;
             }
 
-            this.written = this.written.substring(this.written.length() - 1);
+            this.written = this.written.substring(0, this.written.length() - 1);
             this.updateText();
             return;
         }
@@ -53,6 +53,9 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
     @Override
     public void draw(RenderWindow renderWindow) {
         renderWindow.draw(super.shape);
-        renderWindow.draw(this.writtenText);
+
+        if (this.writtenText != null) {
+            renderWindow.draw(this.writtenText);
+        }
     }
 }
