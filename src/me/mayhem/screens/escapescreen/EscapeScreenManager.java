@@ -78,7 +78,7 @@ public class EscapeScreenManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/ 10)* 4, (Mayhem.SCREEN_HEIGHT/10 ) * 2).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/ 10f)* 4, (Mayhem.SCREEN_HEIGHT/10f ) * 2).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
@@ -88,7 +88,7 @@ public class EscapeScreenManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/10)* 4, (Mayhem.SCREEN_HEIGHT/10 ) * 6).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/10f)* 4, (Mayhem.SCREEN_HEIGHT/10f ) * 6).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
