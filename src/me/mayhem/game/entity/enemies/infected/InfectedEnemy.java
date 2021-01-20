@@ -4,13 +4,11 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.enemies.infected.state.InfectedState;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
 
 public class InfectedEnemy extends Entity {
-    private InfectedState[] states = new InfectedState[2];
     /**
      * Entity Constructor
      *
@@ -32,9 +30,5 @@ public class InfectedEnemy extends Entity {
         this.animate.setSpritePosition(this.getPosition().toVector());
 
     }
-
-//    public InfectedState getInfectedState(int index){
-//        return this.states[index];
-//    }
 
 }
