@@ -168,6 +168,7 @@ public class GameManager {
                         }
 
                         collisionDetectedX = true;
+                        entity.setAttribute("collided", true);
                     }
 
                     if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
