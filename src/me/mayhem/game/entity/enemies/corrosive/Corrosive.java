@@ -23,4 +23,8 @@ public class Corrosive extends Entity {
         return this.states[index];
     }
 
+    @Override
+    public void tick() {
+
+    }
 }
