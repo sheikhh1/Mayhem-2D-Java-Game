@@ -26,9 +26,7 @@ public class InfectedEnemy extends Entity {
         if (this.isFalling()) {
             this.getEntityPhysics().fall();
         }
-
         this.animate.setSpritePosition(this.getPosition().toVector());
-
     }
 
 }
