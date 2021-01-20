@@ -22,7 +22,9 @@ public class EscapeScreenManager implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         this.createSprites();
+
         this.createButtons();
+
         this.draw(renderWindow);
     }
 
