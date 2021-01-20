@@ -8,14 +8,14 @@ import me.mayhem.game.entity.enemies.infected.state.InfectedState;
 import me.mayhem.util.Vector;
 
 
-public class Infected extends Entity {
+public class InfectedEnemy extends Entity {
     private InfectedState[] states = new InfectedState[2];
     /**
      * Entity Constructor
      *
      * @param position   - Current Position of entity relative to the game window
      */
-    public Infected(Vector position) {
+    public InfectedEnemy(Vector position) {
         super(EntityType.INFECTED, position, Vector.ZERO, new SpriteHitbox(position,0,0), Pathing.FORWARD_PATHING);
 
     }
