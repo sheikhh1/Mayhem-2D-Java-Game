@@ -46,11 +46,6 @@ public abstract class AbstractKeyboardMouseInteractable extends InputListener<Ke
     }
 
     @Override
-    protected void takeInput(KeyEvent event) {
-
-    }
-
-    @Override
     public void draw(RenderWindow renderWindow) {
         renderWindow.draw(this.shape);
     }
