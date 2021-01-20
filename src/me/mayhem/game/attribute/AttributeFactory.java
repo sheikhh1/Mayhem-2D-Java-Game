@@ -45,7 +45,7 @@ public class AttributeFactory {
         for (AttributeTypeData registeredAttribute : REGISTERED_ATTRIBUTES) {
             if (Objects.equals(registeredAttribute.getAttributeType(), object.getClass())) {
                 try {
-                    registeredAttribute.getConstructor().newInstance(identifier, object);
+                    return registeredAttribute.getConstructor().newInstance(identifier, object);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
