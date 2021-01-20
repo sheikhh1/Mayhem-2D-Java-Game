@@ -1,20 +1,29 @@
 package me.mayhem.game.ai.audio.impl;
 
 import me.mayhem.game.ai.audio.AbstractAudioPlayer;
+import me.mayhem.game.entity.player.event.PlayerJumpEvent;
+import me.mayhem.game.event.struct.EventListener;
 import org.jsfml.audio.Sound;
 
 public class GameStartSound extends AbstractAudioPlayer {
+
+    private static final String JUMP_SOUND_PATH = "audio/gamestart.wav";
+
     private Sound sound;
+
+    public GameStartSound() {
+        super();
+
+        this.sound = this.load(JUMP_SOUND_PATH);
+    }
+
+    @EventListener
+    public void onPlayerJump(PlayerJumpEvent event) {
+        this.play();
+    }
 
     @Override
     public void play() {
-        if (sound == null) {
-            this.sound = this.load("audio/gamestart.wav");
-        }
-        sound.play();
+        this.sound.play();
     }
-
 }
-
-
-
