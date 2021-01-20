@@ -1,5 +1,6 @@
 package me.mayhem.game;
 
+import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
@@ -34,6 +35,9 @@ public class GameManager {
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
     public GameManager(RenderWindow renderWindow) {
+        new GameStartSound();
+        new JumpSound();
+
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
@@ -49,7 +53,6 @@ public class GameManager {
         this.playerMousePress = new PlayerMousePressListener();
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
-        new JumpSound();
     }
 
     /**
