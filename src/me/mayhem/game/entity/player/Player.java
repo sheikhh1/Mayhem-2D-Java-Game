@@ -53,6 +53,10 @@ public class Player extends Entity {
 
     @Override
     public void setJumping(boolean entityJump) {
-        EventManager.callEvent(new PlayerJumpEvent(this));
+        super.setJumping(entityJump);
+
+        if (entityJump) {
+            EventManager.callEvent(new PlayerJumpEvent(this));
+        }
     }
 }
