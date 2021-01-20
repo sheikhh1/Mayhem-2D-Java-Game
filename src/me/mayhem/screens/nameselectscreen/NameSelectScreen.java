@@ -25,6 +25,9 @@ public class NameSelectScreen implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
 
+        this.createSprites();
+        this.createButtons();
+        this.draw(renderWindow);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public Sound getSound() {
-        return null;
+        return mainTheme;
     }
 
     private void createSprites() {
