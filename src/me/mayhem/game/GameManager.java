@@ -100,6 +100,11 @@ public class GameManager {
         this.handleEntityCollisions();
         this.handleBlockCollisions();
 
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.getPathing().updatePosition(entity);
+
+        }
+
 //        if (UtilScreen.isOffScreen(player)) {
 //            int xDiff = 0;
 //            int yDiff = 0;
@@ -168,6 +173,7 @@ public class GameManager {
                         }
 
                         collisionDetectedX = true;
+
                         entity.setAttribute("collided", true);
                     }
 
