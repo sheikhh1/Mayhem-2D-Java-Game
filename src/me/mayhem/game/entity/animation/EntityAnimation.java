@@ -1,5 +1,6 @@
 package me.mayhem.game.entity.animation;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
@@ -18,8 +19,13 @@ public class EntityAnimation {
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
 
-    public EntityAnimation() {
-        entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
+    public EntityAnimation(EntityType entityType) {
+        if (entityType == EntityType.PLAYER) {
+            entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
+        } else if (entityType == EntityType.INFECTED) {
+            entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("enemies/Infected.png"));
+        }
+
         entitySprite = new Sprite(entityTexture);
         // Increase the size of the sprite by 1.3x
         entitySprite.setScale(1.3f,1.3f);
