@@ -16,7 +16,7 @@ public class InfectedEnemy extends Entity {
      * @param position   - Current Position of entity relative to the game window
      */
     public InfectedEnemy(Vector position) {
-        super(EntityType.INFECTED, position, Vector.ZERO, new SpriteHitbox(position,0,0), Pathing.FORWARD_PATHING);
+        super(EntityType.INFECTED, position, Vector.ZERO, new SpriteHitbox(position,80,45), Pathing.FORWARD_PATHING);
 
     }
 
