@@ -11,7 +11,10 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.VertexArray;
 import org.jsfml.system.Vector2f;
 
 import java.util.List;
@@ -147,8 +150,7 @@ public class GameManager {
 
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
-                    FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
-                    Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
+                    Vector center = entity.getHitbox().getCollision(block.getHitbox());
 
                     if ((block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight()) &&
                             block.getCenter().getY() > (entity.getPosition().getY())) && !collisionDetectedX) {

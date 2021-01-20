@@ -27,7 +27,9 @@ public class ShapeHitbox extends AbstractHitbox {
     }
 
     @Override
-    public FloatRect getCollision(Hitbox other) {
-        return other.asFloatRect().intersection(this.asFloatRect());
+    public Vector getCollision(Hitbox other) {
+        FloatRect collision = other.asFloatRect().intersection(this.asFloatRect());
+
+        return new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
     }
 }

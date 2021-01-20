@@ -31,7 +31,7 @@ public interface Hitbox {
 
     FloatRect asFloatRect();
 
-    FloatRect getCollision(Hitbox other);
+    Vector getCollision(Hitbox other);
 
     float getHeight();
 
