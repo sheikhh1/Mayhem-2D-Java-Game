@@ -1,6 +1,7 @@
 package me.mayhem.screens.nameselectscreen;
 
 import me.mayhem.Mayhem;
+import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.nameselectscreen.items.NameSelectContinueButton;
 import me.mayhem.screens.nameselectscreen.items.ReturnButton;
@@ -28,7 +29,9 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-
+        for (Interatable button : this.buttons) {
+            ((InputListener<?>) button).unregister();
+        }
     }
 
     @Override
