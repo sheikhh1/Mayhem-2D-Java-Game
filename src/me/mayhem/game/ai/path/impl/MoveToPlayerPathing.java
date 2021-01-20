@@ -1,6 +1,8 @@
 package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
+import me.mayhem.game.attribute.Attribute;
+import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
@@ -21,6 +23,15 @@ public class MoveToPlayerPathing implements Pathing {
         toPlayer.setY(0);
         toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
         entity.getMotion().add(toPlayer);
+
+        Attribute<?> collided = entity.getAttribute("collided");
+
+        if ((collided instanceof BooleanAttribute)) {
+            if (((BooleanAttribute) collided).getValue()) {
+                entity.setState(EntityState.JUMPING);
+                ((BooleanAttribute) collided).setValue(false);
+            }
+        }
 
         this.determineState(entity, toPlayer);
     }
