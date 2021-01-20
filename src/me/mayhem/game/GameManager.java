@@ -11,10 +11,8 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.VertexArray;
+import org.jsfml.graphics.*;
+import org.jsfml.system.Vector2f;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +29,7 @@ public class GameManager {
 
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
+    private boolean stopMotion = false;
 
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
@@ -151,7 +150,8 @@ public class GameManager {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
-                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight()) && !collisionDetectedX) {
+                    if ((block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight()) &&
+                            block.getCenter().getY() > (entity.getPosition().getY())) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             center.setX(+3f);
                         } else {
@@ -164,9 +164,20 @@ public class GameManager {
                     }
 
                     if (block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight()) && !collisionDetected) {
-                        collisionDetected = true;
+                        if (block.getCenter().getX() > entity.getPosition().getX()) {
+                            collisionDetected = true;
+                            RectangleShape shape = new RectangleShape();
 
-                        center.setY(entity.getEntityPhysics().getFallStrength());
+                            shape.setSize(new Vector2f(4, 4));
+                            shape.setPosition(block.getCenter().toVector());
+                            shape.setFillColor(Color.GREEN);
+
+                            this.debugShapes.add(shape);
+                            System.out.println("TEST");
+                            center.setY(entity.getEntityPhysics().getFallStrength());
+                        } else {
+                            center.setY(0);
+                        }
                     } else {
                         center.setY(0);
                     }
@@ -175,15 +186,19 @@ public class GameManager {
                 }
             }
 
-            if (!collisionDetected) {
-                entity.setState(EntityState.FALLING);
-            } else {
+            if (collisionDetected) {
                 entity.setState(EntityState.NO_MOTION);
+            } else {
+                entity.setState(EntityState.FALLING);
             }
         }
     }
 
     private void handleEntityVelocity() {
+        if (stopMotion) {
+            return;
+        }
+
         for (Entity entity : this.currentLevel.getEntities()) {
 //            if (UtilScreen.isOffScreen(entity)) {
 //                UtilScreen.fixEntityMotion(entity);
