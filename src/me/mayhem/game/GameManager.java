@@ -65,7 +65,11 @@ public class GameManager {
      *
      */
     public void draw() {
-        this.currentLevel.getPlayer().update(this.renderWindow);
+
+        for (int i = 0; i < this.currentLevel.getEntities().size(); i++) {
+            this.currentLevel.getEntities().get(i).update(this.renderWindow);
+        }
+
         this.currentLevel.getLayout().draw(this.renderWindow);
 
         for (RectangleShape debugShape : this.debugShapes) {
