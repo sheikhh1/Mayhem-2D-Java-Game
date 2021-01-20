@@ -93,6 +93,20 @@ public abstract class Entity {
         return this.attributes;
     }
 
+    public <T> Attribute<T> getAttribute(String identifier, Class<T> typeClass) {
+        for (Attribute<?> attribute : this.attributes) {
+            if (attribute == null || !Objects.equals(typeClass, attribute.getValue().getClass())) {
+                continue;
+            }
+
+            if (attribute.getIdentifier().equals(identifier)) {
+                return (Attribute<T>) attribute;
+            }
+        }
+
+        return null;
+    }
+
     public Attribute<?> getAttribute(String identifier) {
         for (Attribute<?> attribute : this.attributes) {
             if (attribute == null) {
