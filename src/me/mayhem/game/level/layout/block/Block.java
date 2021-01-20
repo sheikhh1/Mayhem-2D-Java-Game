@@ -29,7 +29,7 @@ public class Block {
     }
 
     public Vector getCenter() {
-        return this.position.clone().add(this.drawable.getGlobalBounds().width, this.drawable.getGlobalBounds().height);
+        return this.position.clone().add(this.drawable.getGlobalBounds().width / 2f, this.drawable.getGlobalBounds().height / 2f);
     }
 
     public Hitbox getHitbox() {
