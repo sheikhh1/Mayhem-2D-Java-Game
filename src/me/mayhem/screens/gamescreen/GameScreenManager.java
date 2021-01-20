@@ -1,6 +1,7 @@
 package me.mayhem.screens.gamescreen;
 
 import me.mayhem.game.GameManager;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.ScreenManager;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
@@ -9,9 +10,11 @@ import org.jsfml.graphics.RenderWindow;
 public class GameScreenManager implements ScreenManager {
 
     GameManager game;
+    private Difficulty difficulty;
 
-    public GameScreenManager(RenderWindow window) {
-        game = new GameManager(window);
+    public GameScreenManager(RenderWindow window, Difficulty difficulty) {
+        this.difficulty = difficulty;
+        game = new GameManager(window, this.difficulty);
         this.draw(window);
     }
 
@@ -34,6 +37,11 @@ public class GameScreenManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
 
+    }
+
+    @Override
+    public Difficulty getDifficulty() {
+        return null;
     }
 
     @Override
