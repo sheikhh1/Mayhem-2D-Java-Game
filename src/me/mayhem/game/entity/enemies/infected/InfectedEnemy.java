@@ -27,7 +27,10 @@ public class InfectedEnemy extends Entity {
         if (this.isFalling()) {
             this.getEntityPhysics().fall();
         }
-        this.getPathing().updatePosition(this);
+
+        if (this.isJumping()) {
+            this.getEntityPhysics().jump();
+        }
 
         if (this.isBack()) {
             this.animate.setRow(9);
