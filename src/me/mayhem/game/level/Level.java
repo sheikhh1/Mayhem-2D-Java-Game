@@ -36,6 +36,10 @@ public class Level {
         return this.entities;
     }
 
+    public void spawnEnemy(Entity entity) {
+        this.entities.add(entity);
+    }
+
     public Player getPlayer() {
         return this.player;
     }
