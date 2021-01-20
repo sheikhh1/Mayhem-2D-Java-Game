@@ -1,6 +1,6 @@
 package me.mayhem.game.entity.player;
 
-import me.mayhem.game.ai.Pathing;
+import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;

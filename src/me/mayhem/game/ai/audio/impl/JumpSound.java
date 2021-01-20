@@ -1,5 +1,6 @@
-package me.mayhem.game.ai.audio;
+package me.mayhem.game.ai.audio.impl;
 
+import me.mayhem.game.ai.audio.AbstractAudioPlayer;
 import org.jsfml.audio.Sound;
 
 public class JumpSound extends AbstractAudioPlayer {
