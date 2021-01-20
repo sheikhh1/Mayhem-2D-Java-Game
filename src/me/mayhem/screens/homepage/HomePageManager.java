@@ -1,6 +1,7 @@
 package me.mayhem.screens.homepage;
 
 import me.mayhem.Mayhem;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
@@ -11,6 +12,7 @@ import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
+import org.jsfml.system.Vector2f;
 
 
 public class HomePageManager implements ScreenManager {
@@ -20,6 +22,7 @@ public class HomePageManager implements ScreenManager {
     private Sound mainTheme;
     private Interatable[] buttons;
     private Sprite[] sprites;
+    private Difficulty difficulty;
 
     public HomePageManager(RenderWindow window) {
         this.window = window;
@@ -28,9 +31,10 @@ public class HomePageManager implements ScreenManager {
         this.loadScreen(this.window);
     }
 
-    public HomePageManager(RenderWindow window, Sound music) {
+    public HomePageManager(RenderWindow window, Sound music, Difficulty difficulty) {
         this.window = window;
         this.mainTheme = music;
+        this.difficulty = difficulty;
 
         this.loadScreen(this.window);
     }
@@ -44,14 +48,16 @@ public class HomePageManager implements ScreenManager {
 
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
+
         Sprite logo = UtilSharedResources.getLogo();
 
         if (logo == null || background == null) {
             return;
         }
 
-        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 100, (0)).toVector());
-        this.sprites = new Sprite[]{background, logo};
+        logo.setPosition(new Vector((0), (0)).toVector());
+
+        this.sprites = new Sprite[]{logo,background };
     }
 
 

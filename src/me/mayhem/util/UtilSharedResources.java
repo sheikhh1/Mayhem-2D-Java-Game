@@ -34,7 +34,7 @@ public class UtilSharedResources {
 
     public static Sprite getLogo() {
         if (logo == null) {
-            logo = UtilSprite.loadFromPath("menu/mayhemLogo.jpg");
+            logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
         }
 
         return background;
