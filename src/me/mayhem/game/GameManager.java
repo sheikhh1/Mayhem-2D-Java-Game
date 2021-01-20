@@ -65,9 +65,8 @@ public class GameManager {
      *
      */
     public void draw() {
-
-        for (int i = 0; i < this.currentLevel.getEntities().size(); i++) {
-            this.currentLevel.getEntities().get(i).update(this.renderWindow);
+        for (Entity entity : this.currentLevel.getEntities()) {
+            entity.update(this.renderWindow);
         }
 
         this.currentLevel.getLayout().draw(this.renderWindow);
