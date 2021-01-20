@@ -33,4 +33,8 @@ public interface Hitbox {
 
     FloatRect getCollision(Hitbox other);
 
+    float getHeight();
+
+    float getWidth();
+
 }
