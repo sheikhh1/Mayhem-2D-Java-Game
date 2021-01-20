@@ -1,6 +1,7 @@
 package me.mayhem.screens.loadpage;
 
 import me.mayhem.Mayhem;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
@@ -98,6 +99,11 @@ public class LoadPageManager implements ScreenManager {
     @Override
     public void close(RenderWindow renderWindow) {
 
+    }
+
+    @Override
+    public Difficulty getDifficulty() {
+        return null;
     }
 
     @Override

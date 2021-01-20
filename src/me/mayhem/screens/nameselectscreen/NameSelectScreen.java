@@ -96,4 +96,8 @@ public class NameSelectScreen implements ScreenManager {
 
         return shape;
     }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
 }

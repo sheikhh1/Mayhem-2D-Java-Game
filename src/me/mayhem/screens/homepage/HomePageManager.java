@@ -130,6 +130,11 @@ public class HomePageManager implements ScreenManager {
     }
 
     @Override
+    public Difficulty getDifficulty() {
+        return null;
+    }
+
+    @Override
     public void unloadScreen(RenderWindow renderWindow) {
         for (Interatable button : this.buttons) {
             ((InputListener<?>) button).unregister();

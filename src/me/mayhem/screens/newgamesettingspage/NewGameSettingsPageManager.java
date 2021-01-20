@@ -132,6 +132,11 @@ public class NewGameSettingsPageManager implements ScreenManager {
     public void close(RenderWindow renderWindow) {}
 
     @Override
+    public Difficulty getDifficulty() {
+        return null;
+    }
+
+    @Override
     public Sound getSound() {
         return mainTheme;
     }
