@@ -28,6 +28,16 @@ public class InfectedEnemy extends Entity {
             this.getEntityPhysics().fall();
         }
         this.getPathing().updatePosition(this);
+
+        if (this.isBack()) {
+            this.animate.setRow(9);
+            this.animate.setPause(false);
+        } else if (this.isForward()){
+            this.animate.setRow(11);
+            this.animate.setPause(false);
+        }
+
+
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
