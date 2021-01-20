@@ -120,6 +120,7 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void close(RenderWindow renderWindow) {
+        this.getSound().stop();
     }
 
     @Override

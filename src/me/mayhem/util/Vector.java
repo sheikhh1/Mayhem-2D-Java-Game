@@ -55,19 +55,20 @@ public class Vector {
     }
 
     public void setY(float y) {
-        this.vector2f = new Vector2f(this.getX(), this.getX());
+        this.vector2f = new Vector2f(this.getX(), y);
     }
 
-    public void add(float x, float y) {
+    public Vector add(float x, float y) {
         this.vector2f = new Vector2f(this.getX() + x, this.getY() + y);
+        return this;
     }
 
-    public void add(Vector vector) {
-        this.add(vector.getX(), vector.getY());
+    public Vector add(Vector vector) {
+        return this.add(vector.getX(), vector.getY());
     }
 
-    public void subtract(float x, float y) {
-        this.add(-x, -y);
+    public Vector subtract(float x, float y) {
+        return this.add(-x, -y);
     }
 
     public void multiply(float multiple) {

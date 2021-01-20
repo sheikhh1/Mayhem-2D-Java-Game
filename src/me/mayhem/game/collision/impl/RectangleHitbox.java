@@ -27,4 +27,9 @@ public class RectangleHitbox extends AbstractHitbox {
     public FloatRect asFloatRect() {
         return this.floatRect;
     }
+
+    @Override
+    public Vector getCollision(Hitbox other) {
+        return null;
+    }
 }

@@ -1,6 +1,6 @@
-package me.mayhem.game.entity.player.state;
+package me.mayhem.game.entity.state;
 
-public enum PlayerState {
+public enum EntityState {
 
     FORWARD(1),
     BACK(1),
@@ -13,7 +13,7 @@ public enum PlayerState {
 
     private int index;
 
-    PlayerState(int index) {
+    EntityState(int index) {
         this.index = index;
     }
 

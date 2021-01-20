@@ -3,12 +3,15 @@ package me.mayhem.game.entity;
 import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
+import org.jsfml.system.Vector2f;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +36,8 @@ public class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private EntityState currentState;
+    private EntityState[] states = new EntityState[2];
 
     /**
      * Entity Constructor
@@ -42,12 +47,12 @@ public class Entity {
      * @param pathing - Pathing for AI generated movement
      * @param attributes - Attributes an entity has - eg health
      */
-    public Entity(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
+    public Entity(EntityType type, Vector position, Vector motion, Hitbox hitbox, Pathing pathing, Attribute<?>... attributes) {
         this.type = type;
         this.position = position;
         this.motion = motion;
         this.pathing = pathing;
-        this.hitbox = new SpriteHitbox(this.getSprite(),this.position, (int) this.getHeight(), (int) this.getWidth());
+        this.hitbox = hitbox;
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
     }
@@ -135,11 +140,11 @@ public class Entity {
     }
 
     public float getHeight() {
-        return this.animate.getHeight();
+        return this.hitbox.getHeight();
     }
 
     public float getWidth() {
-        return this.animate.getWidth();
+        return this.hitbox.getWidth();
     }
 
     public Sprite getSprite() {
@@ -153,7 +158,83 @@ public class Entity {
      * @param window
      */
     public void update(RenderWindow window) {
+        RectangleShape rectangleShape = new RectangleShape();
+
+        rectangleShape.setPosition(this.position.toVector());
+        rectangleShape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
+        rectangleShape.setFillColor(Color.GREEN);
+
         animate.playAnimation(window);
+        /*window.draw(rectangleShape);*/
     }
 
+    /**
+     * Keyboard press listener sends a player state depending on which key has been pressed
+     * @param state - Current state of the player
+     */
+    public void setState(EntityState state) {
+        if (state == null || (currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION) ){
+            return;
+        }
+
+        currentState = this.states[state.getIndex()];
+
+        if (currentState == EntityState.FALLING || currentState == EntityState.JUMPING) {
+            if (state == EntityState.NO_MOTION) {
+                this.setJumping(false);
+                this.setFalling(false);
+                this.getEntityPhysics().reset(state);
+                this.states[state.getIndex()] = state;
+            }
+        } else if (currentState == EntityState.NO_MOTION) {
+            if (state == EntityState.JUMPING) {
+                this.setJumping(true);
+                this.setFalling(false);
+                this.states[state.getIndex()] = state;
+            } else if (state == EntityState.FALLING) {
+                this.setFalling(true);
+                this.setJumping(false);
+                this.states[state.getIndex()] = state;
+            }
+        } else {
+            this.states[state.getIndex()] = state;
+
+            if (state == EntityState.STANDING) {
+                animate.setColumn(0);
+                animate.setPause(true);
+                this.setForward(false);
+                this.setBack(false);
+            } else if (state == EntityState.BACK) {
+                this.setForward(false);
+                this.setBack(true);
+            } else if (state == EntityState.FORWARD) {
+                this.setForward(true);
+                this.setBack(false);
+            }
+        }
+    }
+
+    public EntityState getState(int index) {
+        return this.states[index];
+    }
+
+    public Vector getCenter() {
+        return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
+    }
+
+    public boolean inBoundsY(Vector position) {
+        if (position.getY() > (this.getPosition().getY() + this.getHeight())) {
+            return false;
+        }
+
+        return position.getY() >= this.position.getY();
+    }
+
+    public boolean inBoundsX(Vector position) {
+        if (position.getX() > (this.getPosition().getX() + this.getWidth())) {
+            return false;
+        }
+
+        return position.getX() >= this.getPosition().getX();
+    }
 }

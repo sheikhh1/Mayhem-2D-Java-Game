@@ -4,24 +4,31 @@ import me.mayhem.game.collision.AbstractHitbox;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.Sprite;
 
 public class SpriteHitbox extends AbstractHitbox {
 
-    private Sprite sprite;
-
-    public SpriteHitbox(Sprite sprite, Vector position, int height, int width) {
+    public SpriteHitbox(Vector position, int height, int width) {
         super(1, position, height, width);
-        this.sprite = sprite;
     }
 
     @Override
     public boolean checkForCollision(Hitbox other) {
-        return this.asFloatRect().intersection(other.asFloatRect()) != null;
+        return this.getCollision(other) != null;
+    }
+
+    @Override
+    public Vector getCollision(Hitbox other) {
+        FloatRect collision = other.asFloatRect().intersection(this.asFloatRect());
+
+        if (collision == null) {
+            return null;
+        }
+
+        return new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
     }
 
     @Override
     public FloatRect asFloatRect() {
-        return new FloatRect(this.sprite.getPosition().x, this.sprite.getPosition().y, this.getHitboxWidth(), this.getHitboxHeight());
+        return new FloatRect(this.position.getX(), this.position.getY(), this.width, this.height);
     }
 }
