@@ -6,8 +6,10 @@ import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
 import me.mayhem.game.entity.state.EntityState;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.difficulty.Difficulty;
+import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
@@ -34,6 +36,7 @@ public class GameManager {
     public GameManager(RenderWindow renderWindow) {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
+        EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
         this.initialize();
     }
 
