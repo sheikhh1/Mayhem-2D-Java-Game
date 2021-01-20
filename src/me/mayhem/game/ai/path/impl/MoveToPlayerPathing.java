@@ -22,7 +22,7 @@ public class MoveToPlayerPathing implements Pathing {
         toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
         entity.getMotion().add(toPlayer);
 
-        determineState(entity, toPlayer);
+        this.determineState(entity, toPlayer);
     }
 
     private void determineState(Entity entity, Vector toPlayer) {
