@@ -1,11 +1,11 @@
 package me.mayhem.game.entity.keyCard;
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.ai.Pathing;
+import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.Attribute;
+import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.drawable.Drawable;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
@@ -17,8 +17,9 @@ public class KeyCard extends Entity {
 
     private Sprite sprite;
 
-    public KeyCard(EntityType type, Vector position, Vector motion, Pathing pathing, Attribute<?>... attributes) {
-        super(type, position, motion, pathing, attributes);
+    public KeyCard(Vector position, Attribute<?>... attributes) {
+        super(EntityType.KEY_CARD, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
+
         this.sprite = this.loadFromPath("keyCard.png");
     }
 
