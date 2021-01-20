@@ -1,6 +1,7 @@
 package me.mayhem.game.entity.enemies.corrosive;
 
-import me.mayhem.game.ai.Pathing;
+import me.mayhem.game.ai.path.Pathing;
+import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.enemies.infected.state.InfectedState;
@@ -14,11 +15,11 @@ public class Corrosive extends Entity {
      * @param position   - Current Position of entity relative to the game window
      */
     public Corrosive(Vector position) {
-        super(EntityType.INFECTED, position, Vector.ZERO, Pathing.FORWARD_PATHING);
+        super(EntityType.INFECTED, position, Vector.ZERO, new SpriteHitbox(position, 0,0 ), Pathing.FORWARD_PATHING);
 
     }
 
-    public InfectedState getState(int index){
+    public InfectedState getInfectedState(int index){
         return this.states[index];
     }
 

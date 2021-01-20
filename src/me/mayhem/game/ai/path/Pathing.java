@@ -1,8 +1,8 @@
 package me.mayhem.game.ai.path;
 
-import me.mayhem.game.ai.impl.ForwardPathing;
-import me.mayhem.game.ai.impl.JumpPathing;
-import me.mayhem.game.ai.impl.NoPathing;
+import me.mayhem.game.ai.path.impl.ForwardPathing;
+import me.mayhem.game.ai.path.impl.JumpPathing;
+import me.mayhem.game.ai.path.impl.NoPathing;
 import me.mayhem.game.entity.Entity;
 
 /**
