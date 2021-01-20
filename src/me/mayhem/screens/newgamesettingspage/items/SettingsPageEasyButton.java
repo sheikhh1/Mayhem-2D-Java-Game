@@ -1,6 +1,7 @@
 package me.mayhem.screens.newgamesettingspage.items;
 
 import me.mayhem.Mayhem;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.loadpage.LoadPageManager;
 import me.mayhem.screens.nameselectscreen.NameSelectScreen;
@@ -18,7 +19,7 @@ public class SettingsPageEasyButton extends ButtonInteractable {
     protected void call(RenderWindow window, Event event) {
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound()));
+            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.EASY));
         }
     }
 }
