@@ -144,35 +144,31 @@ public class GameManager {
     private void handleBlockCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
             boolean collisionDetected = false;
-            boolean collisionDectectedX = false;
+            boolean collisionDetectedX = false;
 
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     FloatRect collision = entity.getHitbox().getCollision(block.getHitbox());
                     Vector center = new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
 
-                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight()) && !collisionDectectedX) {
+                    if (block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             center.setX(+3f);
                         } else {
                             center.setX(-3f);
                         }
 
-                        collisionDectectedX = true;
+                        collisionDetectedX = true;
                     } else {
                         center.setX(0);
                     }
 
-
-                    if (block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight())) {
+                    if (block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight()) && !collisionDetected) {
                         collisionDetected = true;
 
                         center.setY(entity.getEntityPhysics().getFallStrength());
-
-                        entity.setState(EntityState.NO_MOTION);
                     } else {
                         center.setY(0);
-                        entity.setState(EntityState.FALLING);
                     }
 
                     entity.getMotion().subtract(center.getX(), center.getY());
@@ -181,6 +177,8 @@ public class GameManager {
 
             if (!collisionDetected) {
                 entity.setState(EntityState.FALLING);
+            } else {
+                entity.setState(EntityState.NO_MOTION);
             }
         }
     }
