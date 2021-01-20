@@ -86,9 +86,6 @@ public class GameManager {
      *
      */
     public void tick() {
-        //Player player = this.currentLevel.getPlayer();
-       // player.tick();
-
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.tick();
         }
