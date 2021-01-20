@@ -61,4 +61,14 @@ public class EscapeScreenManager implements ScreenManager {
 
         return shape;
     }
+
+    private Shape createSaveButton() {
+        RectangleShape shape = new RectangleShape();
+
+        shape.setSize(new Vector(200, 100).toVector());
+        shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
+        shape.setFillColor(new Color(176, 176, 176));
+
+        return shape;
+    }
 }
