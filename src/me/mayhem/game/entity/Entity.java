@@ -14,6 +14,7 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +32,6 @@ public abstract class Entity {
     private Vector motion;
     private Pathing pathing;
     private Hitbox hitbox;
-    private List<Attribute<?>> attributes;
     private EntityPhysics entityPhysics;
     private boolean entityFall = true;
     private boolean entityForward = false;
@@ -40,6 +40,7 @@ public abstract class Entity {
     private boolean entityStanding = false;
     private EntityState currentState;
     private EntityState[] states = new EntityState[2];
+    private List<Attribute<?>> attributes =  new ArrayList<>();
 
     /**
      * Entity Constructor
@@ -55,7 +56,7 @@ public abstract class Entity {
         this.motion = motion;
         this.pathing = pathing;
         this.hitbox = hitbox;
-        this.attributes = Arrays.asList(attributes);
+        this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
     }
@@ -94,6 +95,10 @@ public abstract class Entity {
 
     public Attribute<?> getAttribute(String identifier) {
         for (Attribute<?> attribute : this.attributes) {
+            if (attribute == null) {
+                continue;
+            }
+
             if (attribute.getIdentifier().equals(identifier)) {
                 return attribute;
             }
@@ -106,7 +111,7 @@ public abstract class Entity {
         Attribute<?> alreadyExists = this.getAttribute(identifier);
 
         if (alreadyExists != null) {
-            if (!Objects.equals(alreadyExists.getClass(), value.getClass())) {
+            if (!Objects.equals(alreadyExists.getValue().getClass(), value.getClass())) {
                 return;
             }
 
