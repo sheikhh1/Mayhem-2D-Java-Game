@@ -93,16 +93,12 @@ public class GameManager {
      *
      */
     public void tick() {
-        for (Entity entity : this.currentLevel.getEntities()) {
-            entity.tick();
-        }
-
         this.handleEntityCollisions();
         this.handleBlockCollisions();
 
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.getPathing().updatePosition(entity);
-
+            entity.tick();
         }
 
 //        if (UtilScreen.isOffScreen(player)) {
