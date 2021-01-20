@@ -140,11 +140,11 @@ public class Entity {
     }
 
     public float getHeight() {
-        return this.animate.getHeight();
+        return this.hitbox.getHeight();
     }
 
     public float getWidth() {
-        return this.animate.getWidth();
+        return this.hitbox.getWidth();
     }
 
     public Sprite getSprite() {
@@ -165,7 +165,7 @@ public class Entity {
         rectangleShape.setFillColor(Color.GREEN);
 
         animate.playAnimation(window);
-//        window.draw(rectangleShape);
+        /*window.draw(rectangleShape);*/
     }
 
     /**
