@@ -11,6 +11,10 @@ public class Vector {
 
     public static final Vector ZERO = new Vector(Vector2f.ZERO);
 
+    public static Vector getZero() {
+        return ZERO.clone();
+    }
+
     private Vector2f vector2f;
 
     /**
