@@ -95,6 +95,11 @@ public class Vector {
         return Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2);
     }
 
+    public Vector normalize() {
+        this.divide((float) this.getLength());
+        return this;
+    }
+
     public Vector2f toVector() {
         return this.vector2f;
     }
