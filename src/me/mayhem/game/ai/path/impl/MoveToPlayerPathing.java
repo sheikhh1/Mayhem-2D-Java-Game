@@ -18,7 +18,6 @@ public class MoveToPlayerPathing implements Pathing {
         Vector toPlayer = currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition()).normalize();
 
         toPlayer.setY(0);
-        System.out.println(toPlayer.toString());
         entity.getMotion().add(toPlayer);
     }
 }
