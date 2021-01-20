@@ -2,11 +2,13 @@ package me.mayhem.screens.escapescreen;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
+import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.escapescreen.items.ReturnToGameButton;
 import me.mayhem.screens.nameselectscreen.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
+import me.mayhem.util.ui.Interatable;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -24,7 +26,9 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-
+        for (Interatable button : this.buttons) {
+            ((InputListener<?>) button).unregister();
+        }
     }
 
     @Override
