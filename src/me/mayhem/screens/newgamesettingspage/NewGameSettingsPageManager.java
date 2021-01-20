@@ -1,6 +1,7 @@
 package me.mayhem.screens.newgamesettingspage;
 
 import me.mayhem.Mayhem;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
@@ -19,6 +20,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
     private Interatable[] buttons;
     private Sprite[] sprites;
+
 
     public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme){
         this.mainTheme = mainTheme;

@@ -1,6 +1,7 @@
 package me.mayhem.screens.nameselectscreen;
 
 import me.mayhem.Mayhem;
+import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.nameselectscreen.items.NameSelectContinueButton;
@@ -15,11 +16,12 @@ public class NameSelectScreen implements ScreenManager {
     private Sound mainTheme;
     private Sprite[] sprites;
     private Interatable[] buttons;
+    private Difficulty difficulty;
 
 
-    public NameSelectScreen(RenderWindow window, Sound mainTheme) {
+    public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
-
+        this.difficulty = difficulty;
         this.loadScreen(window);
     }
 

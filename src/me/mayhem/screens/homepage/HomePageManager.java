@@ -22,7 +22,7 @@ public class HomePageManager implements ScreenManager {
     private Sound mainTheme;
     private Interatable[] buttons;
     private Sprite[] sprites;
-    private Difficulty difficulty;
+
 
     public HomePageManager(RenderWindow window) {
         this.window = window;
@@ -31,10 +31,10 @@ public class HomePageManager implements ScreenManager {
         this.loadScreen(this.window);
     }
 
-    public HomePageManager(RenderWindow window, Sound music, Difficulty difficulty) {
+    public HomePageManager(RenderWindow window, Sound music) {
         this.window = window;
         this.mainTheme = music;
-        this.difficulty = difficulty;
+
 
         this.loadScreen(this.window);
     }
