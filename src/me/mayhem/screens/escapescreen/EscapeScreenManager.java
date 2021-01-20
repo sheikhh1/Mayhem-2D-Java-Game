@@ -33,7 +33,13 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
+        for (Sprite sprite : this.sprites) {
+            renderWindow.draw(sprite);
+        }
 
+        for (Interatable button : this.buttons) {
+            button.draw(renderWindow);
+        }
     }
 
     @Override
