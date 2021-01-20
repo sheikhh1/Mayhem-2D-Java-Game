@@ -13,7 +13,7 @@ public class EasyEntitySpawner implements EntitySpawner {
         // create something that works based on the constraints of the editor
 
         for (Vector vector : level.getDifficulty().getGenerator().getEnemySpawnPosition()) {
-            level.spawnEnemy(new InfectedEnemy(vector));
+            level.spawnEnemy(new InfectedEnemy(vector, level));
         }
 
     }
