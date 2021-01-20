@@ -20,7 +20,7 @@ public class KeyCard extends Entity {
     public KeyCard(Vector position, Attribute<?>... attributes) {
         super(EntityType.KEY_CARD, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
 
-        this.sprite = this.loadFromPath("keyCard.png");
+        this.sprite = this.loadFromPath("interactables/keyCard.png");
     }
 
     @Override

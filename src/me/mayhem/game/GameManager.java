@@ -1,9 +1,6 @@
 package me.mayhem.game;
 
-import me.mayhem.Mayhem;
-import me.mayhem.game.ai.Pathing;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.keyCard.KeyCard;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
@@ -71,6 +68,7 @@ public class GameManager {
     public void draw() {
         this.currentLevel.getPlayer().update(this.renderWindow);
         this.currentLevel.getLayout().draw(this.renderWindow);
+        new KeyCard(new Vector(50, 50)).update(this.renderWindow);
 
         for (RectangleShape debugShape : this.debugShapes) {
             this.renderWindow.draw(debugShape);
