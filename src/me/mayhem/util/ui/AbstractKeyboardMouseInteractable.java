@@ -33,11 +33,7 @@ public abstract class AbstractKeyboardMouseInteractable extends InputListener<Ke
         if (event instanceof MouseEvent) {
             MouseEvent mouseEvent = event.asMouseEvent();
 
-            if (shape.getGlobalBounds().contains(mouseEvent.position.x, mouseEvent.position.y)) {
-                this.focussed = true;
-            } else {
-                this.focussed = false;
-            }
+            this.focussed = shape.getGlobalBounds().contains(mouseEvent.position.x, mouseEvent.position.y);
         }
 
         if (this.focussed && (event instanceof KeyEvent)) {
