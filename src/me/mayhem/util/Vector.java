@@ -9,7 +9,7 @@ import org.jsfml.system.Vector2f;
  */
 public class Vector {
 
-    public static final Vector ZERO = new Vector(Vector2f.ZERO);
+    private static final Vector ZERO = new Vector(Vector2f.ZERO);
 
     public static Vector getZero() {
         return ZERO.clone();
