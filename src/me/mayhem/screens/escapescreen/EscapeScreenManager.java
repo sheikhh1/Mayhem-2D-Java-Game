@@ -5,6 +5,8 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.escapescreen.items.ReturnToGameButton;
+import me.mayhem.screens.escapescreen.items.ReturnToMainMenuButton;
+import me.mayhem.screens.escapescreen.items.SaveGameButton;
 import me.mayhem.screens.nameselectscreen.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
@@ -64,6 +66,10 @@ public class EscapeScreenManager implements ScreenManager {
     }
     private void createButtons(){
         ReturnToGameButton toGame = new ReturnToGameButton(createReturnButton());
+        SaveGameButton save = new SaveGameButton(createSaveButton());
+        ReturnToMainMenuButton main = new ReturnToMainMenuButton(createQuitButton());
+
+
 
     }
 
@@ -71,7 +77,7 @@ public class EscapeScreenManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/10)* 4, (Mayhem.SCREEN_HEIGHT/10 ) * 2).toVector());
+        shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH/ 10)* 4, (Mayhem.SCREEN_HEIGHT/10 ) * 2).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
