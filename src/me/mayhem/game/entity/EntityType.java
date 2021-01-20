@@ -4,6 +4,8 @@ public enum EntityType {
 
     PLAYER(200, 1.05f),
 
+    KEY_CARD(200, 1.05f),
+
     ;
 
     private final int maxHealth;
