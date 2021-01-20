@@ -19,6 +19,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage;
     private Vector playerSpawnPosition;
+    private List<Vector> enemySpawnPosition = new ArrayList<>();
 
     @Override
     public List<Block> generateLevel() {
@@ -46,10 +47,12 @@ public class EasyLevelGenerator implements LevelGenerator {
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
 
-                if (red == 255 && green == 255 & blue == 255) {
+                if (red == 255 && green == 255 && blue == 255) {
                     this.blocks.add(this.createBlock(x * 32,y * 32));
                 } else if (red == 0 && green == 0 && blue == 255) {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
+                } else if (red == 255 && green == 0 && blue == 0) {
+                    this.enemySpawnPosition.add(new Vector(x * 32, y * 32));
                 }
             }
         }
@@ -57,6 +60,10 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     public Vector getPlayerSpawnPosition() {
         return this.playerSpawnPosition;
+    }
+
+    public List<Vector> getEnemySpawnPosition() {
+        return this.enemySpawnPosition;
     }
 
     /**
