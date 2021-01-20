@@ -19,7 +19,7 @@ public abstract class AbstractKeyboardMouseInteractable extends InputListener<Ke
     private boolean focussed;
 
     public AbstractKeyboardMouseInteractable(Shape shape) {
-        super(Event.Type.KEY_PRESSED, Event.Type.MOUSE_LEFT);
+        super(Event.Type.KEY_PRESSED, Event.Type.MOUSE_BUTTON_PRESSED);
 
         this.shape = shape;
     }
