@@ -41,7 +41,13 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
             return;
         }
 
-        if (event.key.name().length() > 1 || locked) {
+        if (this.isInvalid(event.key) || locked) {
+            return;
+        }
+
+        if (event.key == Keyboard.Key.SPACE) {
+            this.written +=  " ";
+            this.updateText();
             return;
         }
 
@@ -52,6 +58,14 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
         }
 
         this.updateText();
+    }
+
+    private boolean isInvalid(Keyboard.Key key) {
+        if (key == Keyboard.Key.SPACE) {
+            return false;
+        }
+
+        return key.name().length() > 1;
     }
 
     private void updateText() {
