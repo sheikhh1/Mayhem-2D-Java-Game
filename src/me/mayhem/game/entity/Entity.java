@@ -221,4 +221,20 @@ public class Entity {
     public Vector getCenter() {
         return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
     }
+    
+    public boolean inBounds(Vector position) {
+        if (position.getY() > (this.getPosition().getY() + this.getHeight())) {
+            return false;
+        }
+
+        if (position.getY() < this.getPosition().getY()) {
+            return false;
+        }
+
+        if (position.getX() > (this.getPosition().getX() + this.getWidth())) {
+            return false;
+        }
+
+        return position.getX() >= this.getPosition().getX();
+    }
 }
