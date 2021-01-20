@@ -1,0 +1,18 @@
+package me.mayhem.screens.nameselectscreen.items;
+
+import me.mayhem.screens.nameselectscreen.NameSelectScreen;
+import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.impl.ButtonInteractable;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Shape;
+import org.jsfml.window.event.Event;
+
+public class NameSelectContinueButton extends ButtonInteractable {
+    public NameSelectContinueButton(Shape shape) {
+        super(shape, "fonts/FreeSans.ttf", "confirm name");
+    }
+    @Override
+    protected void call(RenderWindow window, Event event) {
+
+    }
+}
