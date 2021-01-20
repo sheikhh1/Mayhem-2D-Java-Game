@@ -23,16 +23,19 @@ public class MoveToPlayerPathing implements Pathing {
         toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
         entity.getMotion().add(toPlayer);
 
+        this.attemptJumpOverBlocks(entity);
+        this.determineState(entity, toPlayer);
+    }
+
+    private void attemptJumpOverBlocks(Entity entity) {
         BooleanAttribute collided = (BooleanAttribute) entity.getAttribute("collided", Boolean.class);
 
-        if (collided != null) {
-            if (collided.getValue()) {
-                entity.setState(EntityState.JUMPING);
-                collided.setValue(false);
-            }
+        if (collided == null || !collided.getValue()) {
+            return;
         }
 
-        this.determineState(entity, toPlayer);
+        entity.setState(EntityState.JUMPING);
+        collided.setValue(false);
     }
 
     private void determineState(Entity entity, Vector toPlayer) {
