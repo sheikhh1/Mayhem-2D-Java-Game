@@ -23,7 +23,7 @@ import java.util.List;
 public class Entity {
 
     private final EntityType type;
-    protected final EntityAnimation animate = new EntityAnimation();
+    protected final EntityAnimation animate;
 
     private Vector position;
     private Vector motion;
@@ -55,6 +55,7 @@ public class Entity {
         this.hitbox = hitbox;
         this.attributes = Arrays.asList(attributes);
         this.entityPhysics = new EntityPhysics();
+        this.animate = new EntityAnimation(type);
     }
 
     public EntityType getType() {
