@@ -4,6 +4,7 @@ import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
+import me.mayhem.screens.nameselectscreen.items.InputBox;
 import me.mayhem.screens.nameselectscreen.items.NameSelectContinueButton;
 import me.mayhem.screens.nameselectscreen.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
@@ -73,7 +74,7 @@ public class NameSelectScreen implements ScreenManager {
         NameSelectContinueButton continueButton = new NameSelectContinueButton(createContinueButton());
         ReturnButton returnButton = new ReturnButton(createReturnButton());
 
-        buttons = new Interatable[]{continueButton, returnButton};
+        buttons = new Interatable[]{continueButton, returnButton, new InputBox()};
 
     }
 
