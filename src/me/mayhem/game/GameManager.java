@@ -1,7 +1,7 @@
 package me.mayhem.game;
 
+import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.PlayerMousePressListener;
@@ -46,6 +46,7 @@ public class GameManager {
         this.playerMousePress = new PlayerMousePressListener();
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
+        new JumpSound();
     }
 
     /**
