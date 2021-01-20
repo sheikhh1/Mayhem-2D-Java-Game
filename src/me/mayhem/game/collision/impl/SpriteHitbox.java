@@ -20,6 +20,10 @@ public class SpriteHitbox extends AbstractHitbox {
     public Vector getCollision(Hitbox other) {
         FloatRect collision = other.asFloatRect().intersection(this.asFloatRect());
 
+        if (collision == null) {
+            return null;
+        }
+
         return new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
     }
 
