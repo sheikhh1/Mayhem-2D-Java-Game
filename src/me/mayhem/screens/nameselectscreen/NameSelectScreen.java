@@ -22,6 +22,7 @@ public class NameSelectScreen implements ScreenManager {
 
         this.loadScreen(window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
 
