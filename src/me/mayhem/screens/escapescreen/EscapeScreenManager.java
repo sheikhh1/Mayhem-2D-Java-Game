@@ -69,8 +69,7 @@ public class EscapeScreenManager implements ScreenManager {
         SaveGameButton save = new SaveGameButton(createSaveButton());
         ReturnToMainMenuButton main = new ReturnToMainMenuButton(createQuitButton());
 
-
-
+        buttons = new ButtonInteractable[]{toGame,save,main};
     }
 
     private Shape createReturnButton() {
