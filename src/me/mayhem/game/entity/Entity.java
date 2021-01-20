@@ -20,7 +20,7 @@ import java.util.List;
  * Entity Class
  * Used to store all the common information per entity in the game
  */
-public class Entity {
+public abstract class Entity {
 
     private final EntityType type;
     protected final EntityAnimation animate;
@@ -168,6 +168,8 @@ public class Entity {
         animate.playAnimation(window);
         /*window.draw(rectangleShape);*/
     }
+
+    public abstract void tick();
 
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed

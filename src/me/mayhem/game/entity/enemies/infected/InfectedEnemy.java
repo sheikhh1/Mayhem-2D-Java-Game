@@ -18,6 +18,7 @@ public class InfectedEnemy extends Entity {
      */
     public InfectedEnemy(Vector position) {
         super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,80,45), Pathing.FORWARD_PATHING);
+        super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,80,45), Pathing.NO_PATHING);
 
         this.animate.setSpritePosition(position.toVector());
         this.getEntityPhysics().setEntityMotion(this.getMotion());
