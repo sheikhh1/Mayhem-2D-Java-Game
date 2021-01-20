@@ -109,7 +109,7 @@ public class EventManager {
      * @param event The event being called
      */
     public static void callEvent(Event event) {
-        for (EventHandler eventHandler : REGISTERED_LISTENERS.get(event.getClass())) {
+        for (EventHandler eventHandler : REGISTERED_LISTENERS.getOrDefault(event.getClass(), new ArrayDeque<>())) {
             eventHandler.getConsumer().accept(event);
         }
     }

@@ -6,6 +6,9 @@ import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Class created to output correct animations depending on user input for the player entity
  */
@@ -18,18 +21,19 @@ public class EntityAnimation {
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
+    private Map<EntityType, String> textureMap = new HashMap<>();
 
     public EntityAnimation(EntityType entityType) {
-        if (entityType == EntityType.PLAYER) {
-            entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
-        } else if (entityType == EntityType.INFECTED) {
-            entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("enemies/Infected.png"));
-        }
+        this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
+        this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
 
-        entitySprite = new Sprite(entityTexture);
+        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.textureMap.get(entityType)));
+
+
+        this.entitySprite = new Sprite(entityTexture);
         // Increase the size of the sprite by 1.3x
-        entitySprite.setScale(1.3f,1.3f);
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
+        this.entitySprite.setScale(1.3f,1.3f);
+        this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
 
     public void setRow(int row) {

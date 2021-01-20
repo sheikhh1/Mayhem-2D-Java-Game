@@ -75,6 +75,10 @@ public class Vector {
         return this.add(-x, -y);
     }
 
+    public Vector subtract(Vector vector) {
+        return this.subtract(vector.getX(), vector.getY());
+    }
+
     public void multiply(float multiple) {
         this.vector2f = new Vector2f(this.getX() * multiple, this.getY() * multiple);
     }
@@ -89,6 +93,11 @@ public class Vector {
 
     public double getLengthSquared() {
         return Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2);
+    }
+
+    public Vector normalize() {
+        this.divide((float) this.getLength());
+        return this;
     }
 
     public Vector2f toVector() {
