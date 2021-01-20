@@ -10,7 +10,7 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
 
     private final Font font;
     private Text writtenText;
-    private String written;
+    private String written = "";
 
     public TextAreaInteractable(Shape shape, Font font) {
         super(shape);
@@ -31,6 +31,10 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
 
             this.written = this.written.substring(0, this.written.length() - 1);
             this.updateText();
+            return;
+        }
+
+        if (event.key.name().length() > 1) {
             return;
         }
 
