@@ -17,6 +17,7 @@ public class UtilSharedResources {
 
             if (mainTheme != null) {
                 mainTheme.setLoop(true);
+                mainTheme.setVolume(0.5f);
                 mainTheme.play();
             }
         }
@@ -34,7 +35,7 @@ public class UtilSharedResources {
 
     public static Sprite getLogo() {
         if (logo == null) {
-            logo = UtilSprite.loadFromPath("menu/mayhemLogo.PNG");
+            logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
         }
 
         return background;

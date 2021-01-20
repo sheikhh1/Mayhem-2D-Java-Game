@@ -1,6 +1,6 @@
-package me.mayhem.game.ai;
+package me.mayhem.game.ai.path;
 
-import me.mayhem.game.ai.impl.NoPathing;
+import me.mayhem.game.ai.path.impl.NoPathing;
 import me.mayhem.game.entity.Entity;
 
 /**

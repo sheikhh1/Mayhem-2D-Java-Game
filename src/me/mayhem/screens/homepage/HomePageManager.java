@@ -12,7 +12,6 @@ import me.mayhem.util.ui.Interatable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
-
 public class HomePageManager implements ScreenManager {
 
     private final RenderWindow window;
@@ -50,7 +49,7 @@ public class HomePageManager implements ScreenManager {
             return;
         }
 
-        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 100, (0)).toVector());
+        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 500, (0)).toVector());
         this.sprites = new Sprite[]{background, logo};
     }
 
@@ -121,6 +120,7 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void close(RenderWindow renderWindow) {
+        this.getSound().stop();
     }
 
     @Override

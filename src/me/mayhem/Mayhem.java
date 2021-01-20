@@ -22,10 +22,9 @@ public class Mayhem {
     public static void main(String[] args) {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
-        window.setFramerateLimit(30);
+        window.setVerticalSyncEnabled(true);
 
         currentScreen = new HomePageManager(window);
-        window.setFramerateLimit(30);
         mainWindow = window;
 
         while (window.isOpen()) {

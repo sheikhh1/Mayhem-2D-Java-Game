@@ -1,10 +1,7 @@
 package me.mayhem.game.entity.animation;
 
 import me.mayhem.util.file.UtilImageLoader;
-import org.jsfml.graphics.IntRect;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
@@ -66,7 +63,7 @@ public class EntityAnimation {
                 this.setColumn(frameCount % 9);
             }
         }
-        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,64));
+        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
         window.draw(playerSprite);
     }
 
@@ -76,6 +73,18 @@ public class EntityAnimation {
 
     public float getWidth() {
         return this.playerSprite.getGlobalBounds().width;
+    }
+
+    public FloatRect getGlobalBounds() {
+        return this.playerSprite.getGlobalBounds();
+    }
+
+    public FloatRect getLocalBounds() {
+        return this.playerSprite.getLocalBounds();
+    }
+
+    public Sprite getSprite() {
+        return this.playerSprite;
     }
 }
 

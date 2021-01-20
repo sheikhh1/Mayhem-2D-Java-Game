@@ -4,27 +4,14 @@ import org.jsfml.audio.Sound;
 import org.jsfml.audio.SoundBuffer;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
-public class PowerUpSound implements AudioPlayer{
-    private Sound sound;
-
-    @Override
-    public void play() {
-        if (sound == null) {
-            load("audio/powerup.wav");
-        }
-        sound.play();
-    }
-
+public abstract class AbstractAudioPlayer implements AudioPlayer {
 
     @Override
     public Sound load(String path) {
-
-
         SoundBuffer soundBuffer = new SoundBuffer();
         try {
-            soundBuffer.loadFromFile(Paths.get(path));
+            soundBuffer.loadFromStream(this.getClass().getClassLoader().getResourceAsStream(path));
         } catch (IOException ex) {
 
             ex.printStackTrace();
@@ -34,6 +21,4 @@ public class PowerUpSound implements AudioPlayer{
 
         return newSound;
     }
-
 }
-
