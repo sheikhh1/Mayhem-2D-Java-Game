@@ -10,8 +10,6 @@ import me.mayhem.util.Vector;
 public class MoveToPlayerPathing implements Pathing {
 
     private Level currentLevel;
-    private Vector toPlayer;
-    private Entity entity;
 
     public MoveToPlayerPathing(Level currentLevel) {
         this.currentLevel = currentLevel;
@@ -19,22 +17,21 @@ public class MoveToPlayerPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
-        this.entity = entity;
-        toPlayer = currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition());
+        Vector toPlayer = currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition());
         toPlayer.setY(0);
         toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
         entity.getMotion().add(toPlayer);
 
-        this.determineState();
+        determineState(entity, toPlayer);
     }
 
-    private void determineState() {
+    private void determineState(Entity entity, Vector toPlayer) {
         if (toPlayer.getX() < 0 ) {
-            this.entity.setState(EntityState.BACK);
+            entity.setState(EntityState.BACK);
         } else if (toPlayer.getX() > 0){
-            this.entity.setState(EntityState.FORWARD);
+            entity.setState(EntityState.FORWARD);
         } else if (toPlayer.getX() == 0){
-            this.entity.setState(EntityState.STANDING);
+            entity.setState(EntityState.STANDING);
         }
     }
 
