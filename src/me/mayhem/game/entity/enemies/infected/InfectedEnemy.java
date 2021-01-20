@@ -17,12 +17,20 @@ public class InfectedEnemy extends Entity {
      * @param position   - Current Position of entity relative to the game window
      */
     public InfectedEnemy(Vector position) {
-        super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,80,45), Pathing.FORWARD_PATHING);
         super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,80,45), Pathing.NO_PATHING);
 
         this.animate.setSpritePosition(position.toVector());
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
+    }
+
+    public void tick() {
+        if (this.isFalling()) {
+            this.getEntityPhysics().fall();
+        }
+
+        this.animate.setSpritePosition(this.getPosition().toVector());
+
     }
 
 //    public InfectedState getInfectedState(int index){
