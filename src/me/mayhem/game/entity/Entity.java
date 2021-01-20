@@ -2,6 +2,7 @@ package me.mayhem.game.entity;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.Attribute;
+import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
@@ -15,6 +16,7 @@ import org.jsfml.system.Vector2f;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Entity Class
@@ -98,6 +100,20 @@ public abstract class Entity {
         }
 
         return null;
+    }
+
+    public <T> void setAttribute(String identifier, T value) {
+        Attribute<?> alreadyExists = this.getAttribute(identifier);
+
+        if (alreadyExists != null) {
+            if (!Objects.equals(alreadyExists.getClass(), value.getClass())) {
+                return;
+            }
+
+            ((Attribute<T>) alreadyExists).setValue(value);
+        } else {
+            this.attributes.add(AttributeFactory.from(identifier, value));
+        }
     }
 
     public boolean isJumping() {
