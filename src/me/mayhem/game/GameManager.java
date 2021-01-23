@@ -3,6 +3,7 @@ package me.mayhem.game;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;
@@ -145,10 +146,7 @@ public class GameManager {
                 }
 
                 if (entity.getHitbox().checkForCollision(other.getHitbox())) {
-/*                    entity.getMotion().set(Vector.ZERO);
-                    other.getMotion().set(Vector.ZERO);*/
-
-                    //TODO: call entity collision event
+                    EventManager.callEvent(new EntityCollideEvent(entity, other));
                 }
             }
         }
