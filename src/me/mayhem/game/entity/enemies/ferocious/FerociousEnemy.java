@@ -24,7 +24,20 @@ public class FerociousEnemy extends Entity {
 
     @Override
     public void tick() {
+        if (this.isFalling()) {
+            this.getEntityPhysics().fall();
+        }
 
+        if (this.isJumping()) {
+            this.getEntityPhysics().jump();
+        }
+
+        if (this.isBack()) {
+            this.animate.setRow(9);
+            this.animate.setPause(false);
+        } else if (this.isForward()) {
+            this.animate.setRow(11);
+            this.animate.setPause(false);
+        }
     }
-
 }
