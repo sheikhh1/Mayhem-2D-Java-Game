@@ -6,6 +6,8 @@ public enum EntityType {
 
     KEY_CARD(200, 1.05f),
 
+    PROJECTILE(200,1.05f)
+
     ;
 
     private final int maxHealth;
