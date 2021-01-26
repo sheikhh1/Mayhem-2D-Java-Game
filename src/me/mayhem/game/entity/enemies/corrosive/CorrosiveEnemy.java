@@ -21,9 +21,8 @@ public class CorrosiveEnemy extends Entity {
 
     @Override
     public void tick() {
-        if (this.isFalling()) {
-            this.getEntityPhysics().fall();
-        }
+        super.tick();
+
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 }

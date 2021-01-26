@@ -204,7 +204,15 @@ public abstract class Entity {
         /*window.draw(rectangleShape);*/
     }
 
-    public abstract void tick();
+    public void tick() {
+        if (this.isFalling()) {
+            this.getEntityPhysics().fall();
+        }
+
+        if (this.isJumping()) {
+            this.getEntityPhysics().jump();
+        }
+    }
 
     /**
      * Keyboard press listener sends a player state depending on which key has been pressed

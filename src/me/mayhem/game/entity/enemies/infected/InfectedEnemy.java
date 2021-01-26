@@ -24,13 +24,7 @@ public class InfectedEnemy extends Entity {
     }
 
     public void tick() {
-        if (this.isFalling()) {
-            this.getEntityPhysics().fall();
-        }
-
-        if (this.isJumping()) {
-            this.getEntityPhysics().jump();
-        }
+        super.tick();
 
         if (this.isBack()) {
             this.animate.setRow(9);
