@@ -163,8 +163,10 @@ public class GameManager {
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
+                            entity.setAttribute("collidedRight", true);
                             center.setX(+3f);
                         } else {
+                            entity.setAttribute("collidedLeft", true);
                             center.setX(-3f);
                         }
 
