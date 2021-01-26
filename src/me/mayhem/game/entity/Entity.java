@@ -30,6 +30,7 @@ public abstract class Entity {
 
     private Vector position;
     private Vector motion;
+    private Vector facing = new Vector(1, 0);
     private Pathing pathing;
     private Hitbox hitbox;
     private EntityPhysics entityPhysics;
@@ -253,9 +254,11 @@ public abstract class Entity {
             } else if (state == EntityState.BACK) {
                 this.setForward(false);
                 this.setBack(true);
+                this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
                 this.setForward(true);
                 this.setBack(false);
+                this.facing = new Vector(1, 0);
             }
         }
     }
@@ -282,5 +285,9 @@ public abstract class Entity {
         }
 
         return position.getX() >= this.getPosition().getX();
+    }
+
+    public Vector getFacing() {
+        return this.facing;
     }
 }

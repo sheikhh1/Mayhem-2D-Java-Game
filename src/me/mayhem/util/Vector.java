@@ -79,8 +79,9 @@ public class Vector {
         return this.subtract(vector.getX(), vector.getY());
     }
 
-    public void multiply(float multiple) {
+    public Vector multiply(float multiple) {
         this.vector2f = new Vector2f(this.getX() * multiple, this.getY() * multiple);
+        return this;
     }
 
     public void divide(float multiple) {

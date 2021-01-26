@@ -2,6 +2,7 @@ package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.type.BooleanAttribute;
+import me.mayhem.game.attribute.type.LongAttribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
@@ -18,6 +19,11 @@ public class MoveToPlayerPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (this.shouldStopMoving(entity)) {
+            entity.setState(EntityState.STANDING);
+            return;
+        }
+
         Vector toPlayer = currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition());
         toPlayer.setY(0);
         toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
@@ -25,6 +31,16 @@ public class MoveToPlayerPathing implements Pathing {
 
         this.attemptJumpOverBlocks(entity);
         this.determineState(entity, toPlayer);
+    }
+
+    private boolean shouldStopMoving(Entity entity) {
+        LongAttribute stopMotion = (LongAttribute) entity.getAttribute("stopMotion", Long.class);
+
+        if (stopMotion == null) {
+            return false;
+        }
+
+        return System.currentTimeMillis() < stopMotion.getValue();
     }
 
     private void attemptJumpOverBlocks(Entity entity) {

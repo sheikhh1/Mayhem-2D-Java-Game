@@ -5,6 +5,7 @@ public enum EntityType {
     PLAYER(200, 1.05f),
     INFECTED(50,0.8f),
     CORROSIVE(50,0.8f),
+    FEROCIOUS(100, 0.9f),
 
     ;
 
