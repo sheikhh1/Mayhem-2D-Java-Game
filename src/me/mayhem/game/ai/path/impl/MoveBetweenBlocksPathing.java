@@ -16,10 +16,22 @@ public class MoveBetweenBlocksPathing implements Pathing {
             entity.getMotion().add( - EntityPhysics.MAX_SPEED,0);
         } else {
             entity.getMotion().add(EntityPhysics.MAX_SPEED,0);
-
         }
-        //this.determineState(entity);
+        this.determineState(entity);
     }
 
+    public void determineState(Entity entity) {
+        BooleanAttribute collidedLeft = (BooleanAttribute) entity.getAttribute("collidedLeft", Boolean.class);
+        BooleanAttribute collidedRight = (BooleanAttribute) entity.getAttribute("collidedRight", Boolean.class);
 
+        if (collidedLeft != null && collidedLeft.getValue() ) {
+            entity.setState(EntityState.FORWARD);
+            collidedLeft.setValue(false);
+        } else if (collidedRight != null && collidedRight.getValue()) {
+            entity.setState(EntityState.BACK);
+            collidedRight.setValue(false);
+            System.out.println("testing");
+        }
+
+    }
 }
