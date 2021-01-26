@@ -25,9 +25,9 @@ public class GameManager {
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
-    public GameManager(RenderWindow renderWindow, Difficulty difficulty) {
+    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String Playername) {
         this.renderWindow = renderWindow;
-        this.currentLevel = new Level(difficulty);
+        this.currentLevel = new Level(difficulty, Playername);
         this.initialize();
     }
 
