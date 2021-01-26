@@ -83,7 +83,9 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
             this.locked = true;
         }
     }
-
+    public String getWritten(){
+        return written;
+    }
     @Override
     public void draw(RenderWindow renderWindow) {
         renderWindow.draw(super.shape);
