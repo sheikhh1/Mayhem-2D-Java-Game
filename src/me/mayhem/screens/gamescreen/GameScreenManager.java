@@ -12,9 +12,9 @@ public class GameScreenManager implements ScreenManager {
     GameManager game;
     private Difficulty difficulty;
 
-    public GameScreenManager(RenderWindow window, Difficulty difficulty) {
+    public GameScreenManager(RenderWindow window, Difficulty difficulty,String playerName) {
         this.difficulty = difficulty;
-        game = new GameManager(window, this.difficulty);
+        game = new GameManager(window, this.difficulty, playerName);
         this.draw(window);
     }
 
