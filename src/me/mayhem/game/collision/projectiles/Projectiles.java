@@ -17,10 +17,10 @@ import java.io.IOException;
 public class Projectiles extends Entity {
     private Sprite sprite;
 
-    public Projectiles(EntityType type, Vector position, Vector motion, Hitbox hitbox, Pathing pathing, Attribute<?>... attributes) {
+    public Projectiles(EntityType type, Vector position, Vector motion,String image, Hitbox hitbox, Pathing pathing, Attribute<?>... attributes) {
         super(EntityType.PROJECTILE, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
 
-        this.sprite = this.loadFromPath("interactables/greenprojectile.png");
+        this.sprite = this.loadFromPath(image);
     }
     @Override
     public void update(RenderWindow window) {
