@@ -14,10 +14,22 @@ import me.mayhem.util.ui.Interatable;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
+import org.jsfml.window.VideoMode;
+import org.jsfml.window.Window;
 
 public class EscapeScreenManager implements ScreenManager {
     private Sprite[] sprites;
     private ButtonInteractable[] buttons;
+    private ScreenManager prevScreen;
+    public EscapeScreenManager(ScreenManager prev){
+        this.prevScreen = prev;
+
+        RenderWindow window = new RenderWindow();
+        window.create(new VideoMode(Mayhem.SCREEN_WIDTH, Mayhem.SCREEN_HEIGHT), "Settings", org.jsfml.window.Window.CLOSE | org.jsfml.window.Window.TITLEBAR);
+
+        loadScreen(window);
+
+    }
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
@@ -98,5 +110,9 @@ public class EscapeScreenManager implements ScreenManager {
         shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
+    }
+
+    public ScreenManager getPrevScreen() {
+        return prevScreen;
     }
 }
