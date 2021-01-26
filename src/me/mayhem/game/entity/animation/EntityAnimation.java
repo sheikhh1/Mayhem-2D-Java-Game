@@ -27,6 +27,7 @@ public class EntityAnimation {
         this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
         this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
         this.textureMap.put(EntityType.CORROSIVE, "enemies/CorrosiveEnemy.png");
+        this.textureMap.put(EntityType.FEROCIOUS, "enemies/Ferocious.png");
 
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.textureMap.get(entityType)));
 

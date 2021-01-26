@@ -56,7 +56,7 @@ public class EventManager {
 
     /**
      *
-     * Invokes the method from the class witht he event object
+     * Invokes the method from the class with the event object
      *
      * @param event The event occurring
      * @param object The object which the method belongs to
