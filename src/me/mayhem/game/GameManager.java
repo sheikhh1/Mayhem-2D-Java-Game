@@ -165,6 +165,7 @@ public class GameManager {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
+                    Vector collision = entity.getHitbox().getCollision(block.getHitbox());
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
@@ -179,7 +180,7 @@ public class GameManager {
                     }
 
                     if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
-                        if (block.getCenter().getX() > entity.getPosition().getX()) {
+                        if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
                             center.setY(entity.getEntityPhysics().getFallStrength());
                         }
