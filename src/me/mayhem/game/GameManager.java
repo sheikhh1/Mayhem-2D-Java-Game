@@ -5,6 +5,7 @@ import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardReleaseListener;
@@ -106,36 +107,38 @@ public class GameManager {
             entity.tick();
         }
 
-//        if (UtilScreen.isOffScreen(player)) {
-//            int xDiff = 0;
-//            int yDiff = 0;
-//
-//            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
-//                xDiff = -1;
-//            } else if (player.getPosition().getX() < 0) {
-//                xDiff = +1;
-//            }
-//
-//            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
-//                yDiff = -1;
-//            } else if (player.getPosition().getY() < 0) {
-//                yDiff = +1;
-//            }
-//
-//            Vector movement = new Vector(xDiff, yDiff);
-//
-//            if (UtilScreen.isOffScreenX(player)) {
-//                player.getMotion().setX(0);
-//                player.setState(PlayerState.STANDING);
-//            }
-//
-//            if (UtilScreen.isOffScreenY(player)) {
-//                player.getMotion().setY(0);
-//                player.setState(PlayerState.NO_MOTION);
-//            }
-//
-//            this.currentLevel.getLayout().moveBlocks(movement);
-//        }
+        Player player = this.currentLevel.getPlayer();
+
+/*        if (UtilScreen.isOffScreen(player)) {
+            int xDiff = 0;
+            int yDiff = 0;
+
+            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
+                xDiff = -1;
+            } else if (player.getPosition().getX() < 0) {
+                xDiff = +1;
+            }
+
+            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
+                yDiff = -1;
+            } else if (player.getPosition().getY() < 0) {
+                yDiff = +1;
+            }
+
+            Vector movement = new Vector(xDiff, yDiff);
+
+            if (UtilScreen.isOffScreenX(player)) {
+                player.getMotion().setX(0);
+                player.setState(EntityState.STANDING);
+            }
+
+            if (UtilScreen.isOffScreenY(player)) {
+                player.getMotion().setY(0);
+                player.setState(EntityState.NO_MOTION);
+            }
+
+            this.currentLevel.getLayout().moveBlocks(movement);
+        }*/
 
         this.handleEntityVelocity();
     }
