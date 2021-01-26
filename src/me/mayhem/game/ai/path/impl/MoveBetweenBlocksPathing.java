@@ -13,7 +13,7 @@ public class MoveBetweenBlocksPathing implements Pathing {
     public void updatePosition(Entity entity) {
 
         if (entity.getState(1) == EntityState.BACK) {
-            entity.getMotion().add( - EntityPhysics.MAX_SPEED,0);
+            entity.getMotion().add(-EntityPhysics.MAX_SPEED,0);
         } else {
             entity.getMotion().add(EntityPhysics.MAX_SPEED,0);
         }
