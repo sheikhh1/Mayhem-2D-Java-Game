@@ -20,6 +20,7 @@ public class NameSelectScreen implements ScreenManager {
     private Difficulty difficulty;
 
 
+
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
         this.difficulty = difficulty;
@@ -73,9 +74,21 @@ public class NameSelectScreen implements ScreenManager {
 
         NameSelectContinueButton continueButton = new NameSelectContinueButton(createContinueButton());
         ReturnButton returnButton = new ReturnButton(createReturnButton());
+        InputBox input = createInput();
 
-        buttons = new Interatable[]{continueButton, returnButton, new InputBox()};
+        buttons = new Interatable[]{continueButton, returnButton, input};
 
+    }
+    private InputBox createInput(){
+
+        return new InputBox(new Vector((Mayhem.SCREEN_WIDTH/ 10f) * 4, (Mayhem.SCREEN_HEIGHT/ 10f) * 6).toVector());
+    }
+    public String getName(InputBox nameBox){
+
+        return nameBox.getWritten();
+    }
+    public InputBox getInputBox(){
+        return (InputBox)buttons[2];
     }
 
     private Shape createContinueButton() {
