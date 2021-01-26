@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.player.listeners;
+package me.mayhem.game.entity.player.listeners.input;
 
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
