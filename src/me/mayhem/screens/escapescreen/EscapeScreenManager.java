@@ -21,11 +21,11 @@ public class EscapeScreenManager implements ScreenManager {
     private Sprite[] sprites;
     private ButtonInteractable[] buttons;
     private ScreenManager prevScreen;
-    public EscapeScreenManager(ScreenManager prev){
-        this.prevScreen = prev;
+    private Sound mainTheme;
+    public EscapeScreenManager(RenderWindow window, Sound sound, ScreenManager prev){
 
-        RenderWindow window = new RenderWindow();
-        window.create(new VideoMode(Mayhem.SCREEN_WIDTH, Mayhem.SCREEN_HEIGHT), "Settings", org.jsfml.window.Window.CLOSE | org.jsfml.window.Window.TITLEBAR);
+        this.prevScreen = prev;
+        this.mainTheme = sound;
 
         loadScreen(window);
 

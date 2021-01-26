@@ -36,6 +36,6 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private void escapeHandler(){
 
-        Mayhem.setCurrentScreen( new EscapeScreenManager(Mayhem.getCurrentScreen()));
+        Mayhem.setCurrentScreen( new EscapeScreenManager(Mayhem.getMainWindow(), Mayhem.getCurrentScreen().getSound(), Mayhem.getCurrentScreen()));
     }
 }
