@@ -31,7 +31,14 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     @Override
     protected void takeInput(KeyEvent event) {
-        player.setState(keyHandler.get(event.asKeyEvent().key));
+        if (event.asKeyEvent().key == Keyboard.Key.ESCAPE){
+            escapeHandler();
+        }
+        else {
+            player.setState(keyHandler.get(event.asKeyEvent().key));
+        }
+
+
     }
 
     private void escapeHandler(){
