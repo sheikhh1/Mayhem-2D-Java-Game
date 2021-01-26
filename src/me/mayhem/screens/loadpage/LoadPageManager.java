@@ -102,11 +102,6 @@ public class LoadPageManager implements ScreenManager {
     }
 
     @Override
-    public Difficulty getDifficulty() {
-        return null;
-    }
-
-    @Override
     public Sound getSound() {
         return mainTheme;
     }

@@ -51,10 +51,6 @@ public class EscapeScreenManager implements ScreenManager {
 
     }
 
-    @Override
-    public Difficulty getDifficulty() {
-        return null;
-    }
 
     @Override
     public Sound getSound() {

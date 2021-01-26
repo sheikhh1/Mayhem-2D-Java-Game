@@ -39,9 +39,8 @@ public class GameScreenManager implements ScreenManager {
 
     }
 
-    @Override
     public Difficulty getDifficulty() {
-        return null;
+        return difficulty;
     }
 
     @Override

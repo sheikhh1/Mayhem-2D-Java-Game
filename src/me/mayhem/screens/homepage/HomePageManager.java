@@ -129,10 +129,6 @@ public class HomePageManager implements ScreenManager {
     public void close(RenderWindow renderWindow) {
     }
 
-    @Override
-    public Difficulty getDifficulty() {
-        return null;
-    }
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {

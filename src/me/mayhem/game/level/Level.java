@@ -28,6 +28,7 @@ public class Level {
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition, String name) {
+        System.out.println("the player is called "+ name);
         return new Player( name, playerSpawnPosition);
     }
 
