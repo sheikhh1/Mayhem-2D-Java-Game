@@ -22,6 +22,7 @@ public abstract class AbstractAudioPlayer implements AudioPlayer {
             ex.printStackTrace();
         }
         Sound newSound = new Sound();
+        newSound.setVolume(5);
         newSound.setBuffer(soundBuffer);
 
         return newSound;
