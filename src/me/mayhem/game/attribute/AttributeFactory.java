@@ -18,6 +18,7 @@ public class AttributeFactory {
         registerAttribute(FloatAttribute.class);
         registerAttribute(IntegerAttribute.class);
         registerAttribute(StringAttribute.class);
+        registerAttribute(LongAttribute.class);
     }
 
     private static void registerAttribute(Class<? extends Attribute<?>> clazz) {
