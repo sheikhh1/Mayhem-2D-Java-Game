@@ -30,7 +30,7 @@ public abstract class Entity {
 
     private Vector position;
     private Vector motion;
-    private Vector facing;
+    private Vector facing = new Vector(1, 0);
     private Pathing pathing;
     private Hitbox hitbox;
     private EntityPhysics entityPhysics;
