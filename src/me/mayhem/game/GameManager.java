@@ -5,6 +5,7 @@ import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
+import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerMousePressListener;
@@ -40,6 +41,7 @@ public class GameManager {
         new GameStartSound();
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
+        EventManager.registerListener(new PlayerEnemyCollideListener());
 
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(Difficulty.EASY);
