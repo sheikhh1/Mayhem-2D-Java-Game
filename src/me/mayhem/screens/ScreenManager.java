@@ -14,8 +14,6 @@ public interface ScreenManager {
 
     void close(RenderWindow renderWindow);
 
-    Difficulty getDifficulty();
-
     Sound getSound();
 
 }
