@@ -30,7 +30,6 @@ public class MoveBetweenBlocksPathing implements Pathing {
         } else if (collidedRight != null && collidedRight.getValue()) {
             entity.setState(EntityState.BACK);
             collidedRight.setValue(false);
-            System.out.println("testing");
         }
 
     }
