@@ -17,8 +17,8 @@ public class PlayerMouseReleaseListener extends MouseButtonReleaseListener {
     @Override
     protected void takeInput(MouseButtonEvent event) {
         if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
-            this.player.setState(EntityState.NO_MOTION);
-            System.out.println("test 3");
+            //this.player.setState(EntityState.STANDING);
         }
+
     }
 }
