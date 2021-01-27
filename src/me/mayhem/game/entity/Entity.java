@@ -161,6 +161,12 @@ public abstract class Entity {
         return this.entityStanding;
     }
 
+    public boolean isMelee() {
+        return this.entityMelee;
+    }
+
+    
+
     public void setStanding(boolean entityStanding) {
         this.entityStanding = entityStanding;
     }
