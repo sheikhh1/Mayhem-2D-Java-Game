@@ -41,6 +41,10 @@ public class Player extends Entity {
             this.getEntityPhysics().moveBack();
             this.animate.setRow(9);
             this.animate.setPause(false);
+        } else if(this.isMelee()) {
+            System.out.println("here");
+            this.animate.setRow(15);
+            this.animate.setPause(false);
         }
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
