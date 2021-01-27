@@ -16,6 +16,7 @@ public class PlayerMouseReleaseListener extends MouseButtonReleaseListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
+        //TODO: Stop Looping Melee Animation?
         if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
             //this.player.setState(EntityState.STANDING);
         }
