@@ -89,7 +89,6 @@ public class EntityAnimation {
     public void playAnimation(RenderWindow window) {
         //TODO: Fix Timeout (Buggy)
         if(!pause && timeOutClock.getElapsedTime().asMilliseconds() <= timeOut){
-            System.out.println(timeOutClock.getElapsedTime().asMilliseconds() + " " + timeOut);
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
                 frameCount++;
@@ -97,7 +96,6 @@ public class EntityAnimation {
                     frameCount = 0;
                 }
                 this.setColumn(frameCount % this.availableFrames);
-
             }
         } else {
             this.setColumn(0);
