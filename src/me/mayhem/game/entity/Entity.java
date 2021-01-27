@@ -280,8 +280,8 @@ public abstract class Entity {
                 this.facing = new Vector(1, 0);
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
-                System.out.println("test 1");
-                animate.setAvailableFrames(6);
+                this.setBack(false);
+                this.setForward(false);
             }
         }
     }
