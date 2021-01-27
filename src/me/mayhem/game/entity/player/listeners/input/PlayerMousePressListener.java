@@ -26,6 +26,7 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
-            this.player.setState(this.mousePressHandler.get(event.asMouseButtonEvent().button));
+        System.out.println("Mouse Pressed");
+        this.player.setState(this.mousePressHandler.get(event.asMouseButtonEvent().button));
     }
 }
