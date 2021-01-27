@@ -20,7 +20,7 @@ public class EntityAnimation {
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
-    private int availableFrames = 0;
+    private int availableFrames = 1;
     private Clock animationUpdate = new Clock();
     private Map<EntityType, String> textureMap = new HashMap<>();
 

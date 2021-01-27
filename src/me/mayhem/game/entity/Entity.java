@@ -254,8 +254,7 @@ public abstract class Entity {
                 this.states[state.getIndex()] = state;
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
-                this.setForward(false);
-                this.setBack(false);
+                this.setStanding(false);
                 this.states[state.getIndex()] = state;
             }
         } else {
