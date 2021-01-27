@@ -20,13 +20,13 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        keyHandler.put(Keyboard.Key.W, EntityState.JUMPING);
-        keyHandler.put(Keyboard.Key.A, EntityState.BACK);
-        keyHandler.put(Keyboard.Key.D, EntityState.FORWARD);
+        this.keyHandler.put(Keyboard.Key.W, EntityState.JUMPING);
+        this.keyHandler.put(Keyboard.Key.A, EntityState.BACK);
+        this.keyHandler.put(Keyboard.Key.D, EntityState.FORWARD);
     }
 
     @Override
     protected void takeInput(KeyEvent event) {
-        player.setState(keyHandler.get(event.asKeyEvent().key));
+        this.player.setState(keyHandler.get(event.asKeyEvent().key));
     }
 }
