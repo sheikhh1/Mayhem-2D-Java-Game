@@ -20,6 +20,7 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
     protected void takeInput(MouseButtonEvent event) {
         if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
             this.player.setState(EntityState.MELEE);
+            System.out.println("test 1");
         }
     }
 }
