@@ -10,7 +10,7 @@ import org.jsfml.window.event.MouseButtonEvent;
  */
 public class PlayerMousePressListener extends MouseButtonPressListener {
 
-    Player player;
+    private final Player player;
 
     public PlayerMousePressListener(Player player) {
         this.player = player;
