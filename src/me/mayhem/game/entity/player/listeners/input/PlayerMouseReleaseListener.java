@@ -6,20 +6,21 @@ import me.mayhem.input.impl.mouse.MouseButtonReleaseListener;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.MouseButtonEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerMouseReleaseListener extends MouseButtonReleaseListener {
 
-    private Player player;
+    private final Player player;
+    private final Map<Mouse.Button, EntityState> mousePressReleaseHandler = new HashMap<>();
 
     public PlayerMouseReleaseListener(Player player) {
         this.player = player;
+        this.mousePressReleaseHandler.put(Mouse.Button.LEFT, EntityState.NO_MOTION);
     }
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
-        //TODO: Stop Looping Melee Animation?
-        if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
-            //this.player.setState(EntityState.STANDING);
-        }
-
+            this.player.setState(this.mousePressReleaseHandler.get(event.asMouseButtonEvent().button));
     }
 }
