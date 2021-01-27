@@ -1,9 +1,10 @@
 package me.mayhem.game.entity.player.listeners.input;
 
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.mouse.MouseButtonPressListener;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.event.MouseButtonEvent;
-
 /**
  * Mouse Listener for the Player Entity
  */
@@ -17,6 +18,8 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
-        System.out.println("Player has pressed the Mouse");
+        if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
+            this.player.setState(EntityState.MELEE);
+        }
     }
 }
