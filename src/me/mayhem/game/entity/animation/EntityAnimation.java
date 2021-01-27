@@ -76,13 +76,14 @@ public class EntityAnimation {
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
                 frameCount++;
-                if (frameCount > this.availableFrames - 1) frameCount = 0;
+                if (frameCount > this.availableFrames - 1) {
+                    frameCount = 0;
+                }
                 this.setColumn(frameCount % this.availableFrames);
 
-                System.out.println(availableFrames + "sgfdsg");
             }
         }
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 9,this.getRow() * 64,44,76));
         window.draw(entitySprite);
     }
 
