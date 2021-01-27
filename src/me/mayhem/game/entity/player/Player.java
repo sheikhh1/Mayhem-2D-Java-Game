@@ -41,9 +41,15 @@ public class Player extends Entity {
             this.getEntityPhysics().moveBack();
             this.animate.setRow(9);
             this.animate.setPause(false);
-        } else if(this.isMelee()) {
-            System.out.println("here");
+        }
+
+        if(this.isMelee() && this.getFacing().getX() == 1) {
+            animate.setAvailableFrames(6);
             this.animate.setRow(15);
+            this.animate.setPause(false);
+        } else if (isMelee() && this.getFacing().getX() == -1) {
+            animate.setAvailableFrames(6);
+            this.animate.setRow(13);
             this.animate.setPause(false);
         }
         this.animate.setSpritePosition(this.getPosition().toVector());
