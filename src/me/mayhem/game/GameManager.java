@@ -56,7 +56,7 @@ public class GameManager {
      *
      */
     public void initialize() {
-        this.playerMousePress = new PlayerMousePressListener();
+        this.playerMousePress = new PlayerMousePressListener(this.currentLevel.getPlayer());
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
     }
