@@ -39,6 +39,7 @@ public abstract class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private boolean entityMelee = false;
     private EntityState currentState;
     private EntityState[] states = new EntityState[2];
     private List<Attribute<?>> attributes =  new ArrayList<>();
