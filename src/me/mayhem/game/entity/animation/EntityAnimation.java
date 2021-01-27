@@ -20,6 +20,7 @@ public class EntityAnimation {
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
+    private int availableFrames = 0;
     private Clock animationUpdate = new Clock();
     private Map<EntityType, String> textureMap = new HashMap<>();
 
@@ -62,6 +63,10 @@ public class EntityAnimation {
         this.pause = pause;
     }
 
+    public void setAvailableFrames(int availableFrames) {
+        this.availableFrames = availableFrames;
+    }
+
     /**
      * Creates an animation effect and changes sprite texture accordingly every 50ms
      * @param window - Window passed to draw onto
@@ -71,8 +76,10 @@ public class EntityAnimation {
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
                 frameCount++;
-                if (frameCount > 8) frameCount = 0;
-                this.setColumn(frameCount % 9);
+                if (frameCount > this.availableFrames - 1) frameCount = 0;
+                this.setColumn(frameCount % this.availableFrames);
+
+                System.out.println(availableFrames + "sgfdsg");
             }
         }
         entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
