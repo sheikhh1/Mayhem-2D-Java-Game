@@ -165,7 +165,9 @@ public abstract class Entity {
         return this.entityMelee;
     }
 
-    
+    public void setMelee(boolean entityMelee) {
+        this.entityMelee = entityMelee;
+    }
 
     public void setStanding(boolean entityStanding) {
         this.entityStanding = entityStanding;
