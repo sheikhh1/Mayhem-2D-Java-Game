@@ -254,6 +254,8 @@ public abstract class Entity {
                 this.states[state.getIndex()] = state;
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
+                animate.setTimeOut(340);
+                animate.resetTimeOutClock();
                 this.setStanding(false);
                 this.states[state.getIndex()] = state;
             }
@@ -262,17 +264,22 @@ public abstract class Entity {
 
             if (state == EntityState.STANDING) {
                 animate.setColumn(0);
+                animate.resetTimeOutClock();
                 animate.setPause(true);
                 this.setForward(false);
                 this.setBack(false);
                 this.setMelee(false);
             } else if (state == EntityState.BACK) {
+                animate.setTimeOut(1000);
+                animate.resetTimeOutClock();
                 this.setForward(false);
                 this.setBack(true);
                 this.setMelee(false);
                 animate.setAvailableFrames(9);
                 this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
+                animate.setTimeOut(1000);
+                animate.resetTimeOutClock();
                 this.setForward(true);
                 this.setBack(false);
                 this.setMelee(false);
@@ -280,6 +287,8 @@ public abstract class Entity {
                 this.facing = new Vector(1, 0);
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
+                animate.setTimeOut(340);
+                animate.resetTimeOutClock();
                 this.setBack(false);
                 this.setForward(false);
             }
@@ -288,6 +297,10 @@ public abstract class Entity {
 
     public EntityState getState(int index) {
         return this.states[index];
+    }
+
+    public EntityState getPreviousState() {
+        return this.currentState;
     }
 
     public Vector getCenter() {
