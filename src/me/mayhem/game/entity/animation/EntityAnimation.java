@@ -22,6 +22,9 @@ public class EntityAnimation {
     private int frameCount = 0;
     private int availableFrames = 1;
     private Clock animationUpdate = new Clock();
+    private Clock timeOutClock =  new Clock();
+    private int timeOut = 0;
+
     private Map<EntityType, String> textureMap = new HashMap<>();
 
     public EntityAnimation(EntityType entityType) {
@@ -63,6 +66,12 @@ public class EntityAnimation {
         this.pause = pause;
     }
 
+    public void setTimeOut(int timeOut) {
+        this.timeOut = timeOut;
+    }
+
+    
+
     public void setAvailableFrames(int availableFrames) {
         this.availableFrames = availableFrames;
     }
@@ -72,7 +81,9 @@ public class EntityAnimation {
      * @param window - Window passed to draw onto
      */
     public void playAnimation(RenderWindow window) {
-        if(!pause){
+        //TODO: Fix Timeout (Buggy)
+        if(!pause && timeOutClock.getElapsedTime().asMilliseconds() <= timeOut){
+            System.out.println(timeOutClock.getElapsedTime().asMilliseconds() + " " + timeOut);
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
                 frameCount++;
@@ -82,6 +93,8 @@ public class EntityAnimation {
                 this.setColumn(frameCount % this.availableFrames);
 
             }
+        } else {
+            this.setColumn(0);
         }
         entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 9,this.getRow() * 64,44,76));
         window.draw(entitySprite);
