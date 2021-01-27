@@ -74,6 +74,10 @@ public class EntityAnimation {
         return this.timeOut;
     }
 
+    public void resetTimeOutClock() {
+        this.timeOutClock.restart();
+    }
+
     public void setAvailableFrames(int availableFrames) {
         this.availableFrames = availableFrames;
     }
