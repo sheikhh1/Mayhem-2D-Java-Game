@@ -233,6 +233,7 @@ public abstract class Entity {
             return;
         }
 
+
         currentState = this.states[state.getIndex()];
 
         if (currentState == EntityState.FALLING || currentState == EntityState.JUMPING) {
@@ -251,6 +252,11 @@ public abstract class Entity {
                 this.setFalling(true);
                 this.setJumping(false);
                 this.states[state.getIndex()] = state;
+            } else if (state == EntityState.MELEE) {
+                this.setMelee(true);
+                this.setForward(false);
+                this.setBack(false);
+                this.states[state.getIndex()] = state;
             }
         } else {
             this.states[state.getIndex()] = state;
@@ -260,14 +266,23 @@ public abstract class Entity {
                 animate.setPause(true);
                 this.setForward(false);
                 this.setBack(false);
+                this.setMelee(false);
             } else if (state == EntityState.BACK) {
                 this.setForward(false);
                 this.setBack(true);
+                this.setMelee(false);
+                animate.setAvailableFrames(9);
                 this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
                 this.setForward(true);
                 this.setBack(false);
+                this.setMelee(false);
+                animate.setAvailableFrames(9);
                 this.facing = new Vector(1, 0);
+            } else if (state == EntityState.MELEE) {
+                this.setMelee(true);
+                System.out.println("test 1");
+                animate.setAvailableFrames(6);
             }
         }
     }
