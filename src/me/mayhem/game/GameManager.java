@@ -10,6 +10,7 @@ import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerMousePressListener;
+import me.mayhem.game.entity.player.listeners.input.PlayerMouseReleaseListener;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
@@ -34,6 +35,7 @@ public class GameManager {
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
+    private PlayerMouseReleaseListener playerMouseRelease;
 
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
@@ -59,6 +61,7 @@ public class GameManager {
         this.playerMousePress = new PlayerMousePressListener(this.currentLevel.getPlayer());
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
+        this.playerMouseRelease = new PlayerMouseReleaseListener(this.currentLevel.getPlayer());
     }
 
     /**
