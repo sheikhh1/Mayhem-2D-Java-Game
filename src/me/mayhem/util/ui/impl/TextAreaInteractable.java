@@ -10,6 +10,7 @@ import org.jsfml.window.event.KeyEvent;
 public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteractable {
 
     private final Font font;
+
     private Vector position;
     private Text writtenText;
     private String written = "";
@@ -83,9 +84,11 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
             this.locked = true;
         }
     }
+
     public String getWritten(){
         return written;
     }
+
     @Override
     public void draw(RenderWindow renderWindow) {
         renderWindow.draw(super.shape);
