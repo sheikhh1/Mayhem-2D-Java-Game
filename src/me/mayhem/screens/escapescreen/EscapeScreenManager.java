@@ -1,42 +1,36 @@
 package me.mayhem.screens.escapescreen;
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.escapescreen.items.ReturnToGameButton;
 import me.mayhem.screens.escapescreen.items.ReturnToMainMenuButton;
 import me.mayhem.screens.escapescreen.items.SaveGameButton;
-import me.mayhem.screens.nameselectscreen.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interatable;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
-import org.jsfml.window.VideoMode;
-import org.jsfml.window.Window;
 
 public class EscapeScreenManager implements ScreenManager {
+
     private Sprite[] sprites;
     private ButtonInteractable[] buttons;
     private ScreenManager prevScreen;
     private Sound mainTheme;
-    public EscapeScreenManager(RenderWindow window, Sound sound, ScreenManager prev){
 
+    public EscapeScreenManager(RenderWindow window, Sound sound, ScreenManager prev){
         this.prevScreen = prev;
         this.mainTheme = sound;
 
-        loadScreen(window);
-
+        this.loadScreen(window);
     }
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         this.createSprites();
-
         this.createButtons();
-
         this.draw(renderWindow);
     }
 
@@ -63,7 +57,6 @@ public class EscapeScreenManager implements ScreenManager {
 
     }
 
-
     @Override
     public Sound getSound() {
         return null;
@@ -74,6 +67,7 @@ public class EscapeScreenManager implements ScreenManager {
 
         this.sprites = new Sprite[]{background};
     }
+
     private void createButtons(){
         ReturnToGameButton toGame = new ReturnToGameButton(createReturnButton());
         SaveGameButton save = new SaveGameButton(createSaveButton());
