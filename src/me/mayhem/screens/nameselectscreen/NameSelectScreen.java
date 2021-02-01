@@ -14,12 +14,12 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 public class NameSelectScreen implements ScreenManager {
-    private Sound mainTheme;
+
+    private final Sound mainTheme;
+    private final Difficulty difficulty;
+
     private Sprite[] sprites;
     private Interatable[] buttons;
-    private Difficulty difficulty;
-
-
 
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
@@ -29,7 +29,6 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-
         this.createSprites();
         this.createButtons();
         this.draw(renderWindow);
@@ -70,25 +69,23 @@ public class NameSelectScreen implements ScreenManager {
     }
 
     private void createButtons() {
-
-
         NameSelectContinueButton continueButton = new NameSelectContinueButton(createContinueButton());
         ReturnButton returnButton = new ReturnButton(createReturnButton());
         InputBox input = createInput();
 
         buttons = new Interatable[]{continueButton, returnButton, input};
-
     }
-    private InputBox createInput(){
 
-        return new InputBox(new Vector((Mayhem.SCREEN_WIDTH/ 10f) * 4, (Mayhem.SCREEN_HEIGHT/ 10f) * 6).toVector());
+    private InputBox createInput() {
+        return new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 6).toVector());
     }
-    public String getName(InputBox nameBox){
 
+    public String getName(InputBox nameBox) {
         return nameBox.getWritten();
     }
-    public InputBox getInputBox(){
-        return (InputBox)buttons[2];
+
+    public InputBox getInputBox() {
+        return (InputBox) buttons[2];
     }
 
     private Shape createContinueButton() {
@@ -100,8 +97,8 @@ public class NameSelectScreen implements ScreenManager {
 
         return shape;
     }
-    private Shape createReturnButton(){
 
+    private Shape createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
