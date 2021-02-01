@@ -92,6 +92,10 @@ public abstract class Entity {
         return this.hitbox;
     }
 
+    public double getHealth() {
+        return this.health;
+    }
+
     public List<Attribute<?>> getAttributes() {
         return this.attributes;
     }
