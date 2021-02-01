@@ -15,6 +15,10 @@ public class ReturnToGameButton extends ButtonInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
+        if (!(Mayhem.getCurrentScreen() instanceof EscapeScreenManager)) {
+            return;
+        }
+
         EscapeScreenManager screen = (EscapeScreenManager) Mayhem.getCurrentScreen();
 
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
