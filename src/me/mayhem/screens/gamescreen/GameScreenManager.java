@@ -9,29 +9,29 @@ import org.jsfml.graphics.RenderWindow;
 
 public class GameScreenManager implements ScreenManager {
 
-    GameManager game;
+    private GameManager game;
     private Difficulty difficulty;
 
-    public GameScreenManager(RenderWindow window, Difficulty difficulty,String playerName) {
+    public GameScreenManager(RenderWindow window, Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
-        game = new GameManager(window, this.difficulty, playerName);
+        this.game = new GameManager(window, this.difficulty, playerName);
         this.draw(window);
     }
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-
+        this.game.initialize();
     }
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-
+        this.game.deinitialize();
     }
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        game.draw();
-        game.tick();
+        this.game.draw();
+        this.game.tick();
     }
 
     @Override
