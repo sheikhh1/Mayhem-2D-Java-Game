@@ -10,8 +10,8 @@ import org.jsfml.window.event.KeyEvent;
 public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteractable {
 
     private final Font font;
+    private final Vector position;
 
-    private Vector position;
     private Text writtenText;
     private String written = "";
     private boolean locked = false;
