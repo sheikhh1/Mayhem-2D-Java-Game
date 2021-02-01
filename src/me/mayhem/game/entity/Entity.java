@@ -187,9 +187,11 @@ public abstract class Entity {
 
 
     /**
-     * Updates position of the Player depending on user input
+     *
+     * Updates position of the {@link me.mayhem.game.entity.player.Player} depending on user input
      * Outputs onto main window
-     * @param window
+     *
+     * @param window The window being drawn on to
      */
     public void update(RenderWindow window) {
         animate.playAnimation(window);
