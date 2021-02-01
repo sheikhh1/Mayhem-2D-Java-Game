@@ -23,22 +23,23 @@ import java.util.Objects;
 public abstract class Entity {
 
     private final EntityType type;
+    private final Vector position;
+    private final Vector motion;
+    private final Pathing pathing;
+    private final Hitbox hitbox;
+    private final EntityPhysics entityPhysics;
+    private final EntityState[] states = new EntityState[2];
+    private final List<Attribute<?>> attributes =  new ArrayList<>();
+
     protected final EntityAnimation animate;
 
-    private Vector position;
-    private Vector motion;
+    private EntityState currentState;
     private Vector facing = new Vector(1, 0);
-    private Pathing pathing;
-    private Hitbox hitbox;
-    private EntityPhysics entityPhysics;
     private boolean entityFall = true;
     private boolean entityForward = false;
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
-    private EntityState currentState;
-    private EntityState[] states = new EntityState[2];
-    private List<Attribute<?>> attributes =  new ArrayList<>();
 
     /**
      * Entity Constructor
