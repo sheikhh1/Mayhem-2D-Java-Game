@@ -40,6 +40,8 @@ public abstract class Entity {
     private boolean entityJump = false;
     private boolean entityStanding = false;
 
+    private double health;
+
     /**
      *
      * Entity Constructor
@@ -56,6 +58,7 @@ public abstract class Entity {
         this.motion = motion;
         this.pathing = pathing;
         this.hitbox = hitbox;
+        this.health = type.getMaxHealth();
         this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
