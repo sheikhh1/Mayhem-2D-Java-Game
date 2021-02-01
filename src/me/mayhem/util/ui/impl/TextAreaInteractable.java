@@ -85,8 +85,8 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
         }
     }
 
-    public String getWritten(){
-        return written;
+    public String getWritten() {
+        return this.written;
     }
 
     @Override
