@@ -23,8 +23,8 @@ public class ReturnToGameButton extends ButtonInteractable {
 
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             screen.unloadScreen(window);
-            screen.loadScreen(Mayhem.getMainWindow());
-            Mayhem.setCurrentScreen(screen.getPrevScreen());
+            screen.getGameScreen().loadScreen(Mayhem.getMainWindow());
+            Mayhem.setCurrentScreen(screen.getGameScreen());
         }
     }
 }

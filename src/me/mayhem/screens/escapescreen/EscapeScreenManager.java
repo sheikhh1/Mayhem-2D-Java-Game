@@ -106,7 +106,7 @@ public class EscapeScreenManager implements ScreenManager {
         return shape;
     }
 
-    public ScreenManager getPrevScreen() {
+    public ScreenManager getGameScreen() {
         return prevScreen;
     }
 }
