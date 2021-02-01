@@ -21,7 +21,9 @@ import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.screen.UtilScreen;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Text;
 
 import java.util.List;
 import java.util.Objects;
@@ -38,8 +40,6 @@ public class GameManager {
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
-    private final List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
-    private final List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
     public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
         new GameStartSound();
@@ -93,14 +93,6 @@ public class GameManager {
 
         for (Drawable drawnShape : this.drawnShapes) {
             this.renderWindow.draw(drawnShape);
-        }
-
-        for (RectangleShape debugShape : this.debugShapes) {
-            this.renderWindow.draw(debugShape);
-        }
-
-        for (VertexArray debugShape : this.debugShapes2) {
-            this.renderWindow.draw(debugShape);
         }
     }
 
@@ -177,7 +169,6 @@ public class GameManager {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
-                    Vector collision = entity.getHitbox().getCollision(block.getHitbox());
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
