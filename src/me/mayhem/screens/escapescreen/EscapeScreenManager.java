@@ -8,7 +8,7 @@ import me.mayhem.screens.escapescreen.items.ReturnToMainMenuButton;
 import me.mayhem.screens.escapescreen.items.SaveGameButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -36,7 +36,7 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }
@@ -47,7 +47,7 @@ public class EscapeScreenManager implements ScreenManager {
             renderWindow.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }

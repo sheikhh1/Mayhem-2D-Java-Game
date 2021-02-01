@@ -10,7 +10,7 @@ import org.jsfml.graphics.RenderWindow;
  * and as such call subsequent extended classes.
  *
  */
-public interface Interatable {
+public interface Interactable {
 
     /**
      *

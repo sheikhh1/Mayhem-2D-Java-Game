@@ -9,11 +9,11 @@ import org.jsfml.window.event.MouseEvent;
 
 /**
  *
- * Skeletal implementation of the {@link Interatable} interface
+ * Skeletal implementation of the {@link Interactable} interface
  * Handles checking for if the {@link MouseEvent} occurs in the correct location
  *
  */
-public abstract class AbstractKeyboardMouseInteractable extends InputListener<KeyEvent> implements Interatable {
+public abstract class AbstractKeyboardMouseInteractable extends InputListener<KeyEvent> implements Interactable {
 
     protected Shape shape;
     private boolean focussed;

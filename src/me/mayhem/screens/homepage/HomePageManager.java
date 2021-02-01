@@ -1,7 +1,6 @@
 package me.mayhem.screens.homepage;
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.items.HomePageLoadButton;
@@ -9,10 +8,9 @@ import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
-import org.jsfml.system.Vector2f;
 
 
 public class HomePageManager implements ScreenManager {
@@ -20,7 +18,7 @@ public class HomePageManager implements ScreenManager {
     private final RenderWindow window;
 
     private Sound mainTheme;
-    private Interatable[] buttons;
+    private Interactable[] buttons;
     private Sprite[] sprites;
 
 
@@ -66,7 +64,7 @@ public class HomePageManager implements ScreenManager {
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
         HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
 
-        this.buttons = new Interatable[]{newPage, load, quit};
+        this.buttons = new Interactable[]{newPage, load, quit};
     }
 
     /**
@@ -120,7 +118,7 @@ public class HomePageManager implements ScreenManager {
             window.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }
@@ -132,7 +130,7 @@ public class HomePageManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }

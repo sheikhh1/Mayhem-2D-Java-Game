@@ -9,7 +9,7 @@ import me.mayhem.screens.nameselectscreen.items.NameSelectContinueButton;
 import me.mayhem.screens.nameselectscreen.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
@@ -19,7 +19,7 @@ public class NameSelectScreen implements ScreenManager {
     private final Difficulty difficulty;
 
     private Sprite[] sprites;
-    private Interatable[] buttons;
+    private Interactable[] buttons;
 
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
@@ -36,7 +36,7 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }
@@ -47,7 +47,7 @@ public class NameSelectScreen implements ScreenManager {
             renderWindow.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }
@@ -73,11 +73,11 @@ public class NameSelectScreen implements ScreenManager {
         ReturnButton returnButton = new ReturnButton(createReturnButton());
         InputBox input = createInput();
 
-        buttons = new Interatable[]{continueButton, returnButton, input};
+        buttons = new Interactable[]{continueButton, returnButton, input};
     }
 
     private InputBox createInput() {
-        return new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 6).toVector());
+        InputBox inputBox =  new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 6).toVector());
     }
 
     public String getName(InputBox nameBox) {
