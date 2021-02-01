@@ -1,5 +1,6 @@
 package me.mayhem.util.ui.impl;
 
+import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.ui.AbstractMouseInteractable;
 import org.jsfml.graphics.*;
@@ -53,5 +54,10 @@ public abstract class ButtonInteractable extends AbstractMouseInteractable {
         for (Text textLine : this.text) {
             renderWindow.draw(textLine);
         }
+    }
+
+    @Override
+    public void setPosition(Vector vector) {
+        this.shape.setPosition(vector.toVector());
     }
 }
