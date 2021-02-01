@@ -1,8 +1,10 @@
 package me.mayhem.game.entity.player.listeners.input;
 
+import me.mayhem.Mayhem;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
+import me.mayhem.screens.escapescreen.EscapeScreenManager;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
 
@@ -20,13 +22,22 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        keyHandler.put(Keyboard.Key.W, EntityState.JUMPING);
-        keyHandler.put(Keyboard.Key.A, EntityState.BACK);
-        keyHandler.put(Keyboard.Key.D, EntityState.FORWARD);
+        this.keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
+        this.keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
+        this.keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
     }
 
     @Override
     protected void takeInput(KeyEvent event) {
-        player.setState(keyHandler.get(event.asKeyEvent().key));
+        if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
+            this.escapeHandler();
+        } else {
+            player.setState(this.keyHandler.get(event.asKeyEvent().key));
+        }
+    }
+
+    private void escapeHandler() {
+        Mayhem.getCurrentScreen().unloadScreen(Mayhem.getMainWindow());
+        Mayhem.setCurrentScreen(new EscapeScreenManager(Mayhem.getMainWindow(), Mayhem.getCurrentScreen().getSound(), Mayhem.getCurrentScreen()));
     }
 }

@@ -38,14 +38,14 @@ public class GameManager {
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow) {
+    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
         new GameStartSound();
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
         EventManager.registerListener(new PlayerEnemyCollideListener());
 
         this.renderWindow = renderWindow;
-        this.currentLevel = new Level(Difficulty.EASY);
+        this.currentLevel = new Level(difficulty, playerName);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
         this.initialize();
     }

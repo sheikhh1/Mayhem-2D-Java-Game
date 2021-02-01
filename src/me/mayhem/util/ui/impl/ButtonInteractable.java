@@ -1,14 +1,15 @@
 package me.mayhem.util.ui.impl;
 
+import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
-import me.mayhem.util.ui.AbstractInteractable;
+import me.mayhem.util.ui.AbstractMouseInteractable;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ButtonInteractable extends AbstractInteractable {
+public abstract class ButtonInteractable extends AbstractMouseInteractable {
 
     private final Text[] text;
     private final Font font;
@@ -53,5 +54,10 @@ public abstract class ButtonInteractable extends AbstractInteractable {
         for (Text textLine : this.text) {
             renderWindow.draw(textLine);
         }
+    }
+
+    @Override
+    public void setPosition(Vector vector) {
+        this.shape.setPosition(vector.toVector());
     }
 }

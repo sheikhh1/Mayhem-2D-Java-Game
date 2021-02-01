@@ -1,5 +1,6 @@
 package me.mayhem.screens;
 
+import me.mayhem.game.level.difficulty.Difficulty;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
 
