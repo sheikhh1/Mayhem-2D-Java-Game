@@ -185,7 +185,6 @@ public abstract class Entity {
         return this.animate.getSprite();
     }
 
-
     /**
      *
      * Updates position of the {@link me.mayhem.game.entity.player.Player} depending on user input
@@ -208,7 +207,9 @@ public abstract class Entity {
     }
 
     /**
+     *
      * Keyboard press listener sends a player state depending on which key has been pressed
+     *
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
