@@ -209,9 +209,9 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-//            if (UtilScreen.isOffScreen(entity)) {
-//                UtilScreen.fixEntityMotion(entity);
-//            }
+            if (UtilScreen.isOffScreen(entity)) {
+                UtilScreen.fixEntityMotion(entity);
+            }
 
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
