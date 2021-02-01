@@ -9,7 +9,6 @@ import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -123,6 +122,7 @@ public abstract class Entity {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> void setAttribute(String identifier, T value) {
         Attribute<?> alreadyExists = this.getAttribute(identifier);
 
@@ -157,14 +157,6 @@ public abstract class Entity {
         return this.entityBack;
     }
 
-    public boolean isStanding() {
-        return this.entityStanding;
-    }
-
-    public void setStanding(boolean entityStanding) {
-        this.entityStanding = entityStanding;
-    }
-
     public void setBack(boolean entityBack) {
         this.entityBack = entityBack;
     }
@@ -183,10 +175,6 @@ public abstract class Entity {
 
     public float getWidth() {
         return this.hitbox.getWidth();
-    }
-
-    public Sprite getSprite() {
-        return this.animate.getSprite();
     }
 
     /**
@@ -262,10 +250,6 @@ public abstract class Entity {
 
     public EntityState getState(int index) {
         return this.states[index];
-    }
-
-    public Vector getCenter() {
-        return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
     }
 
     public boolean inBoundsY(Vector position) {
