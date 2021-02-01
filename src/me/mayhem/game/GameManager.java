@@ -19,10 +19,9 @@ import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
+import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.screen.UtilScreen;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.VertexArray;
+import org.jsfml.graphics.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,12 +30,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameManager {
 
     private final RenderWindow renderWindow;
+    private final Text playerHealth;
 
     private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
+    private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
     private final List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private final List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
@@ -49,6 +50,10 @@ public class GameManager {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(difficulty, playerName);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
+
+        this.playerHealth = new Text("PLAYER HEALTH: 0/0", UtilFont.loadFont("fonts/FreeMono.ttf"));
+        this.drawnShapes.add(this.playerHealth);
+
         this.initialize();
     }
 
@@ -85,6 +90,10 @@ public class GameManager {
         }
 
         this.currentLevel.getLayout().draw(this.renderWindow);
+
+        for (Drawable drawnShape : this.drawnShapes) {
+            this.renderWindow.draw(drawnShape);
+        }
 
         for (RectangleShape debugShape : this.debugShapes) {
             this.renderWindow.draw(debugShape);
@@ -143,6 +152,7 @@ public class GameManager {
         }
 
         this.handleEntityVelocity();
+        this.playerHealth.setString("PLAYER HEALTH " + player.getHealth() + "/" + player.getType().getMaxHealth());
     }
 
     private void handleEntityCollisions() {
