@@ -19,17 +19,17 @@ public class Level {
     private final EntitySpawner spawner;
     private final Layout layout;
 
-    public Level(Difficulty difficulty) {
+    public Level(Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
-        this.spawner = difficulty.getSpawner(); //TODO: get from difficulty
+        this.spawner = difficulty.getSpawner();
         this.layout = new Layout(this.difficulty);
-        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
+        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(), playerName);
         this.spawner.spawnEntities(this);
         this.entities.add(this.player);
     }
 
-    private Player spawnPlayer(Vector playerSpawnPosition) {
-        return new Player( "danIsGay", playerSpawnPosition);
+    private Player spawnPlayer(Vector playerSpawnPosition, String name) {
+      return new Player(name, playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {

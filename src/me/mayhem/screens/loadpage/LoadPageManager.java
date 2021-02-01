@@ -7,7 +7,7 @@ import me.mayhem.screens.loadpage.items.LoadPageGameSelectButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
@@ -15,7 +15,7 @@ public class LoadPageManager implements ScreenManager {
 
     private final Sound mainTheme;
 
-    private Interatable[] buttons;
+    private Interactable[] buttons;
     private Sprite[] sprites;
 
     public LoadPageManager(RenderWindow window, Sound mainTheme) {
@@ -44,7 +44,7 @@ public class LoadPageManager implements ScreenManager {
         LoadPageGameSelectButton gameSelect = new LoadPageGameSelectButton(createGameSelectButton());
         LoadPageReturnButton returnButton = new LoadPageReturnButton(createReturnButton());
 
-        this.buttons = new Interatable[]{gameSelect, returnButton};
+        this.buttons = new Interactable[]{gameSelect, returnButton};
     }
 
     /**
@@ -79,7 +79,7 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }
@@ -90,7 +90,7 @@ public class LoadPageManager implements ScreenManager {
             renderWindow.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }

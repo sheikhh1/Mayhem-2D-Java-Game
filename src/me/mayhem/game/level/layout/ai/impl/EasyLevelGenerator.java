@@ -15,18 +15,18 @@ import java.util.List;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
-    private List<Block> blocks = new ArrayList<>();
-
     private Image levelImage;
     private Vector playerSpawnPosition;
-    private List<Vector> enemySpawnPosition = new ArrayList<>();
+
+    private final List<Block> blocks = new ArrayList<>();
+    private final List<Vector> enemySpawnPositions = new ArrayList<>();
 
     @Override
     public List<Block> generateLevel() {
         this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/Level0.png"));
         this.loadLevel();
 
-        return blocks;
+        return this.blocks;
     }
 
     /**
@@ -36,6 +36,9 @@ public class EasyLevelGenerator implements LevelGenerator {
      * Blue Block = Player Spawning Point
      */
     private void loadLevel() {
+        this.blocks.clear();
+        this.enemySpawnPositions.clear();
+
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
@@ -52,7 +55,7 @@ public class EasyLevelGenerator implements LevelGenerator {
                 } else if (red == 0 && green == 0 && blue == 255) {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
                 } else if (red == 255 && green == 0 && blue == 0) {
-                    this.enemySpawnPosition.add(new Vector(x * 32, y * 32));
+                    this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
                 }
             }
         }
@@ -62,8 +65,8 @@ public class EasyLevelGenerator implements LevelGenerator {
         return this.playerSpawnPosition;
     }
 
-    public List<Vector> getEnemySpawnPosition() {
-        return this.enemySpawnPosition;
+    public List<Vector> getEnemySpawnPositions() {
+        return this.enemySpawnPositions;
     }
 
     /**

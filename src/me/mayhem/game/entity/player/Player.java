@@ -63,4 +63,8 @@ public class Player extends Entity {
             EventManager.callEvent(new PlayerJumpEvent(this));
         }
     }
+
+    public String getName(){
+       return name;
+    }
 }

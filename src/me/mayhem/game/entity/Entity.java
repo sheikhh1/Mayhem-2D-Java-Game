@@ -8,11 +8,7 @@ import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.system.Vector2f;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,26 +22,31 @@ import java.util.Objects;
 public abstract class Entity {
 
     private final EntityType type;
+    private final Vector position;
+    private final Vector motion;
+    private final Pathing pathing;
+    private final Hitbox hitbox;
+    private final EntityPhysics entityPhysics;
+    private final EntityState[] states = new EntityState[2];
+    private final List<Attribute<?>> attributes =  new ArrayList<>();
+
     protected final EntityAnimation animate;
 
-    private Vector position;
-    private Vector motion;
+    private EntityState currentState;
     private Vector facing = new Vector(1, 0);
-    private Pathing pathing;
-    private Hitbox hitbox;
-    private EntityPhysics entityPhysics;
     private boolean entityFall = true;
     private boolean entityForward = false;
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+
+    private double health;
     private boolean entityMelee = false;
-    private EntityState currentState;
-    private EntityState[] states = new EntityState[2];
-    private List<Attribute<?>> attributes =  new ArrayList<>();
 
     /**
+     *
      * Entity Constructor
+     *
      * @param type - Type of Entity - eg Player/Enemy
      * @param position - Current Position of entity relative to the game window
      * @param motion - Motion of the entity eg if entity is moving
@@ -58,6 +59,7 @@ public abstract class Entity {
         this.motion = motion;
         this.pathing = pathing;
         this.hitbox = hitbox;
+        this.health = type.getMaxHealth();
         this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
@@ -91,10 +93,15 @@ public abstract class Entity {
         return this.hitbox;
     }
 
+    public double getHealth() {
+        return this.health;
+    }
+
     public List<Attribute<?>> getAttributes() {
         return this.attributes;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> Attribute<T> getAttribute(String identifier, Class<T> typeClass) {
         for (Attribute<?> attribute : this.attributes) {
             if (attribute == null || !Objects.equals(typeClass, attribute.getValue().getClass())) {
@@ -123,6 +130,7 @@ public abstract class Entity {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> void setAttribute(String identifier, T value) {
         Attribute<?> alreadyExists = this.getAttribute(identifier);
 
@@ -193,25 +201,15 @@ public abstract class Entity {
         return this.hitbox.getWidth();
     }
 
-    public Sprite getSprite() {
-        return this.animate.getSprite();
-    }
-
-
     /**
-     * Updates position of the Player depending on user input
+     *
+     * Updates position of the {@link me.mayhem.game.entity.player.Player} depending on user input
      * Outputs onto main window
-     * @param window
+     *
+     * @param window The window being drawn on to
      */
     public void update(RenderWindow window) {
-        RectangleShape rectangleShape = new RectangleShape();
-
-        rectangleShape.setPosition(this.position.toVector());
-        rectangleShape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
-        rectangleShape.setFillColor(Color.GREEN);
-
         animate.playAnimation(window);
-        /*window.draw(rectangleShape);*/
     }
 
     public void tick() {
@@ -225,7 +223,9 @@ public abstract class Entity {
     }
 
     /**
+     *
      * Keyboard press listener sends a player state depending on which key has been pressed
+     *
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {

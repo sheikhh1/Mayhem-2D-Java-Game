@@ -1,5 +1,6 @@
 package me.mayhem.game;
 
+import me.mayhem.Mayhem;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
@@ -19,9 +20,11 @@ import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.RectangleShape;
+import me.mayhem.util.file.UtilFont;
+import me.mayhem.util.screen.UtilScreen;
+import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.VertexArray;
+import org.jsfml.graphics.Text;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +33,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameManager {
 
     private final RenderWindow renderWindow;
+    private final Text playerHealth;
 
     private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
@@ -37,18 +41,21 @@ public class GameManager {
     private PlayerKeyboardReleaseListener playerKeyRelease;
     private PlayerMouseReleaseListener playerMouseRelease;
 
-    private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
-    private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
+    private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow) {
+    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
         new GameStartSound();
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
         EventManager.registerListener(new PlayerEnemyCollideListener());
 
         this.renderWindow = renderWindow;
-        this.currentLevel = new Level(Difficulty.EASY);
+        this.currentLevel = new Level(difficulty, playerName);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
+
+        this.playerHealth = new Text("PLAYER HEALTH: 0/0", UtilFont.loadFont("fonts/FreeMono.ttf"));
+        this.drawnShapes.add(this.playerHealth);
+
         this.initialize();
     }
 
@@ -87,12 +94,8 @@ public class GameManager {
 
         this.currentLevel.getLayout().draw(this.renderWindow);
 
-        for (RectangleShape debugShape : this.debugShapes) {
-            this.renderWindow.draw(debugShape);
-        }
-
-        for (VertexArray debugShape : this.debugShapes2) {
-            this.renderWindow.draw(debugShape);
+        for (Drawable drawnShape : this.drawnShapes) {
+            this.renderWindow.draw(drawnShape);
         }
     }
 
@@ -112,7 +115,7 @@ public class GameManager {
 
         Player player = this.currentLevel.getPlayer();
 
-/*        if (UtilScreen.isOffScreen(player)) {
+        if (UtilScreen.isOffScreen(player)) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -141,9 +144,10 @@ public class GameManager {
             }
 
             this.currentLevel.getLayout().moveBlocks(movement);
-        }*/
+        }
 
         this.handleEntityVelocity();
+        this.playerHealth.setString("PLAYER HEALTH " + player.getHealth() + "/" + player.getType().getMaxHealth());
     }
 
     private void handleEntityCollisions() {
@@ -168,7 +172,6 @@ public class GameManager {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
-                    Vector collision = entity.getHitbox().getCollision(block.getHitbox());
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
@@ -209,13 +212,17 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-//            if (UtilScreen.isOffScreen(entity)) {
-//                UtilScreen.fixEntityMotion(entity);
-//            }
+            if (UtilScreen.isOffScreen(entity)) {
+                UtilScreen.fixEntityMotion(entity);
+            }
 
             entity.getPosition().add(entity.getMotion());
             entity.getMotion().set(0, 0);
         }
     }
 
+    public void shutdownLevel() {
+        this.currentLevel.getEntities().clear();
+        this.currentLevel.getLayout().getBlocks().clear();
+    }
 }
