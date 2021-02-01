@@ -17,6 +17,7 @@ public class ReturnToMainMenuButton extends ButtonInteractable {
     @Override
     protected void call(RenderWindow window, Event event) {
         EscapeScreenManager screen = (EscapeScreenManager) Mayhem.getCurrentScreen();
+
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             screen.unloadScreen(window);
             Mayhem.setCurrentScreen(new HomePageManager(window));
