@@ -42,7 +42,9 @@ public abstract class Entity {
     private boolean entityStanding = false;
 
     /**
+     *
      * Entity Constructor
+     *
      * @param type - Type of Entity - eg Player/Enemy
      * @param position - Current Position of entity relative to the game window
      * @param motion - Motion of the entity eg if entity is moving
