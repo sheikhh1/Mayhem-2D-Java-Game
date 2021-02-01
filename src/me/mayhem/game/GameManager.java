@@ -1,5 +1,6 @@
 package me.mayhem.game;
 
+import me.mayhem.Mayhem;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
@@ -18,6 +19,7 @@ import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
+import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.VertexArray;
@@ -35,8 +37,8 @@ public class GameManager {
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
 
-    private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
-    private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
+    private final List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
+    private final List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
     public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
         new GameStartSound();
@@ -109,7 +111,7 @@ public class GameManager {
 
         Player player = this.currentLevel.getPlayer();
 
-/*        if (UtilScreen.isOffScreen(player)) {
+        if (UtilScreen.isOffScreen(player)) {
             int xDiff = 0;
             int yDiff = 0;
 
@@ -138,7 +140,7 @@ public class GameManager {
             }
 
             this.currentLevel.getLayout().moveBlocks(movement);
-        }*/
+        }
 
         this.handleEntityVelocity();
     }
