@@ -94,6 +94,7 @@ public abstract class Entity {
         return this.attributes;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> Attribute<T> getAttribute(String identifier, Class<T> typeClass) {
         for (Attribute<?> attribute : this.attributes) {
             if (attribute == null || !Objects.equals(typeClass, attribute.getValue().getClass())) {
