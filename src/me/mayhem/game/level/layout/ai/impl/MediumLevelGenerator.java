@@ -19,7 +19,7 @@ public class MediumLevelGenerator implements LevelGenerator {
     }
 
     @Override
-    public List<Vector> getEnemySpawnPosition() {
+    public List<Vector> getEnemySpawnPositions() {
         return null;
     }
 }
