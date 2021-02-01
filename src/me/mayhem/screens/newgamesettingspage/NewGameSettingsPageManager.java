@@ -9,7 +9,7 @@ import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
 import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
@@ -17,8 +17,9 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
     private final Sound mainTheme;
 
-    private Interatable[] buttons;
+    private Interactable[] buttons;
     private Sprite[] sprites;
+
 
     public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme){
         this.mainTheme = mainTheme;
@@ -49,7 +50,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
         SettingsPageMediumButton medium = new SettingsPageMediumButton(createMediumButton());
         SettingsPageHardButton hard = new SettingsPageHardButton(createHardButton());
 
-        this.buttons = new Interatable[] {easy, medium, hard, returnButton };
+        this.buttons = new Interactable[] {easy, medium, hard, returnButton };
     }
 
     /**
@@ -110,7 +111,7 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }
@@ -121,13 +122,14 @@ public class NewGameSettingsPageManager implements ScreenManager {
             renderWindow.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }
 
     @Override
     public void close(RenderWindow renderWindow) {}
+
 
     @Override
     public Sound getSound() {

@@ -31,9 +31,9 @@ public class GameManager {
     private List<RectangleShape> debugShapes = new CopyOnWriteArrayList<>();
     private List<VertexArray> debugShapes2 = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow) {
+    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String Playername) {
         this.renderWindow = renderWindow;
-        this.currentLevel = new Level(Difficulty.EASY);
+        this.currentLevel = new Level(difficulty, Playername);
         this.initialize();
     }
 

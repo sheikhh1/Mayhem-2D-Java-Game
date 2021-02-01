@@ -9,11 +9,11 @@ import org.jsfml.window.event.MouseEvent;
 
 /**
  *
- * Skeletal implementation of the {@link Interatable} interface
+ * Skeletal implementation of the {@link Interactable} interface
  * Handles checking for if the {@link MouseEvent} occurs in the correct location
  *
  */
-public abstract class AbstractInteractable extends MouseInputListener implements Interatable {
+public abstract class AbstractMouseInteractable extends MouseInputListener implements Interactable {
 
     protected Shape shape;
 
@@ -23,7 +23,7 @@ public abstract class AbstractInteractable extends MouseInputListener implements
      *
      * @param shape The shape being displayed on the screen
      */
-    public AbstractInteractable(Shape shape) {
+    public AbstractMouseInteractable(Shape shape) {
         super();
 
         this.shape = shape;

@@ -1,24 +1,22 @@
-package me.mayhem.screens.newgamesettingspage.items;
+package me.mayhem.screens.nameselectscreen.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.nameselectscreen.NameSelectScreen;
+import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class SettingsPageHardButton extends ButtonInteractable {
-    public SettingsPageHardButton(Shape shape) {
-        super(shape, "fonts/FreeSans.ttf", "Hard");
+public class ReturnButton extends ButtonInteractable {
+    public ReturnButton(Shape shape) {
+        super(shape, "fonts/FreeSans.ttf", "Return");
     }
-
     @Override
     protected void call(RenderWindow window, Event event) {
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.DIFFICULT));
+            Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
         }
     }
 }
