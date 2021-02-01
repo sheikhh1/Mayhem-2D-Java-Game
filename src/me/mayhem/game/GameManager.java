@@ -215,4 +215,8 @@ public class GameManager {
         }
     }
 
+    public void shutdownLevel() {
+        this.currentLevel.getEntities().clear();
+        this.currentLevel.getLayout().getBlocks().clear();
+    }
 }
