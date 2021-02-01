@@ -65,7 +65,7 @@ public class EscapeScreenManager implements ScreenManager {
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
 
-        this.sprites = new Sprite[]{background};
+        this.sprites = new Sprite[] {background};
     }
 
     private void createButtons(){
@@ -73,7 +73,7 @@ public class EscapeScreenManager implements ScreenManager {
         SaveGameButton save = new SaveGameButton(createSaveButton());
         ReturnToMainMenuButton main = new ReturnToMainMenuButton(createQuitButton());
 
-        buttons = new ButtonInteractable[]{toGame,save,main};
+        buttons = new ButtonInteractable[] {toGame,save,main};
     }
 
     private Shape createReturnButton() {
