@@ -8,11 +8,8 @@ import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
-import org.jsfml.system.Vector2f;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -195,14 +192,7 @@ public abstract class Entity {
      * @param window
      */
     public void update(RenderWindow window) {
-        RectangleShape rectangleShape = new RectangleShape();
-
-        rectangleShape.setPosition(this.position.toVector());
-        rectangleShape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
-        rectangleShape.setFillColor(Color.GREEN);
-
         animate.playAnimation(window);
-        /*window.draw(rectangleShape);*/
     }
 
     public void tick() {
