@@ -38,7 +38,9 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        this.mainTheme.stop();
+        if (this.mainTheme != null) {
+            this.mainTheme.stop();
+        }
 
         for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
