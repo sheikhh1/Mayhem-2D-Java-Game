@@ -22,9 +22,9 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        this.keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
-        this.keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
-        this.keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
+        this.keyHandler.put(Keyboard.Key.W, EntityState.JUMPING);
+        this.keyHandler.put(Keyboard.Key.A, EntityState.BACK);
+        this.keyHandler.put(Keyboard.Key.D, EntityState.FORWARD);
     }
 
     @Override
