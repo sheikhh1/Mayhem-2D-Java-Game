@@ -15,7 +15,5 @@ public class EasyEntitySpawner implements EntitySpawner {
         for (Vector vector : level.getDifficulty().getGenerator().getEnemySpawnPositions()) {
             level.spawnEnemy(new InfectedEnemy(vector.clone(), level));
         }
-
-        System.out.println(level.getDifficulty().getGenerator().getEnemySpawnPositions().toString());
     }
 }
