@@ -97,4 +97,9 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
             renderWindow.draw(this.writtenText);
         }
     }
+
+    @Override
+    public void setPosition(Vector position) {
+        this.shape.setPosition(position.toVector());
+    }
 }
