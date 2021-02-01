@@ -22,9 +22,9 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
     public PlayerKeyboardPressListener(Player player) {
         this.player = player;
 
-        keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
-        keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
-        keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
+        this.keyHandler.put(Keyboard.Key.W, PlayerState.JUMPING);
+        this.keyHandler.put(Keyboard.Key.A, PlayerState.BACK);
+        this.keyHandler.put(Keyboard.Key.D, PlayerState.FORWARD);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
         if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
             escapeHandler();
         } else {
-            player.setState(keyHandler.get(event.asKeyEvent().key));
+            player.setState(this.keyHandler.get(event.asKeyEvent().key));
         }
     }
 
