@@ -23,7 +23,7 @@ public class Level {
         this.difficulty = difficulty;
         this.spawner = difficulty.getSpawner();
         this.layout = new Layout(this.difficulty);
-        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(), name);
+        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(), playerName);
         this.spawner.spawnEntities(this);
         this.entities.add(this.player);
     }
