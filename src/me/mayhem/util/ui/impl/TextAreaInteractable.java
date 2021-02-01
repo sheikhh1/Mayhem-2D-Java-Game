@@ -10,8 +10,8 @@ import org.jsfml.window.event.KeyEvent;
 public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteractable {
 
     private final Font font;
-    private final Vector position;
 
+    private Vector position;
     private Text writtenText;
     private String written = "";
     private boolean locked = false;
@@ -101,5 +101,7 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
     @Override
     public void setPosition(Vector position) {
         this.shape.setPosition(position.toVector());
+        this.position = new Vector(shape.getPosition().x + 20,
+                (shape.getPosition().y + shape.getGlobalBounds().height / 2f));
     }
 }
