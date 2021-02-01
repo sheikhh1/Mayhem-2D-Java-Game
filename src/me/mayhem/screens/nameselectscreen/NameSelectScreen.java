@@ -77,7 +77,11 @@ public class NameSelectScreen implements ScreenManager {
     }
 
     private InputBox createInput() {
-        InputBox inputBox =  new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 6).toVector());
+        InputBox inputBox = new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 6, (Mayhem.SCREEN_HEIGHT / 10f)).toVector());
+
+        inputBox.setPosition(new Vector(200, 200));
+
+        return inputBox;
     }
 
     public String getName(InputBox nameBox) {
