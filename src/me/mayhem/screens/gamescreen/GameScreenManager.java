@@ -39,6 +39,10 @@ public class GameScreenManager implements ScreenManager {
 
     }
 
+    public GameManager getGame() {
+        return this.game;
+    }
+
     public Difficulty getDifficulty() {
         return difficulty;
     }

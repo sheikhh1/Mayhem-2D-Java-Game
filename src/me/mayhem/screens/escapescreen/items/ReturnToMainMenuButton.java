@@ -20,6 +20,7 @@ public class ReturnToMainMenuButton extends ButtonInteractable {
 
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             screen.unloadScreen(window);
+            screen.getGameScreen().getGame().shutdownLevel();
             Mayhem.setCurrentScreen(new HomePageManager(window));
         }
     }

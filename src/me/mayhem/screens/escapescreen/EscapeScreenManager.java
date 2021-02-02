@@ -6,6 +6,7 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.escapescreen.items.ReturnToGameButton;
 import me.mayhem.screens.escapescreen.items.ReturnToMainMenuButton;
 import me.mayhem.screens.escapescreen.items.SaveGameButton;
+import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
@@ -15,12 +16,13 @@ import org.jsfml.graphics.*;
 
 public class EscapeScreenManager implements ScreenManager {
 
+    private final GameScreenManager prevScreen;
+    private final Sound mainTheme;
+
     private Sprite[] sprites;
     private ButtonInteractable[] buttons;
-    private ScreenManager prevScreen;
-    private Sound mainTheme;
 
-    public EscapeScreenManager(RenderWindow window, Sound sound, ScreenManager prev) {
+    public EscapeScreenManager(RenderWindow window, Sound sound, GameScreenManager prev) {
         this.prevScreen = prev;
         this.mainTheme = sound;
 
@@ -36,6 +38,10 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
+        if (this.mainTheme != null) {
+            this.mainTheme.stop();
+        }
+
         for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
@@ -59,7 +65,7 @@ public class EscapeScreenManager implements ScreenManager {
 
     @Override
     public Sound getSound() {
-        return null;
+        return this.mainTheme;
     }
 
     private void createSprites() {
@@ -106,7 +112,7 @@ public class EscapeScreenManager implements ScreenManager {
         return shape;
     }
 
-    public ScreenManager getGameScreen() {
-        return prevScreen;
+    public GameScreenManager getGameScreen() {
+        return this.prevScreen;
     }
 }

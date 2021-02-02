@@ -4,7 +4,9 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.state.EntityState;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
 
 /**
@@ -20,7 +22,7 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.ZERO, new SpriteHitbox(position, 80, 45), Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 80, 35), Pathing.NO_PATHING);
 
         this.animate.setSpritePosition(position.toVector());
         this.name = name;
@@ -29,13 +31,7 @@ public class Player extends Entity {
     }
 
     public void tick() {
-        if (this.isFalling()) {
-            this.getEntityPhysics().fall();
-        }
-
-        if (this.isJumping()) {
-            this.getEntityPhysics().jump();
-        }
+        super.tick();
 
         if (this.isForward()) {
             this.getEntityPhysics().moveForward();
@@ -48,6 +44,16 @@ public class Player extends Entity {
         }
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
+
+    @Override
+    public void setJumping(boolean entityJump) {
+        super.setJumping(entityJump);
+
+        if (entityJump) {
+            EventManager.callEvent(new PlayerJumpEvent(this));
+        }
+    }
+
     public String getName(){
        return name;
     }

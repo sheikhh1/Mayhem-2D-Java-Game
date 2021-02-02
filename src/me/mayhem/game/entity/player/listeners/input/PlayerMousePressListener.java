@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.player.listeners;
+package me.mayhem.game.entity.player.listeners.input;
 
 import me.mayhem.input.impl.mouse.MouseButtonPressListener;
 import org.jsfml.window.event.MouseButtonEvent;

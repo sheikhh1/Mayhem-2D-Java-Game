@@ -9,7 +9,11 @@ import org.jsfml.system.Vector2f;
  */
 public class Vector {
 
-    public static final Vector ZERO = new Vector(Vector2f.ZERO);
+    private static final Vector ZERO = new Vector(Vector2f.ZERO);
+
+    public static Vector getZero() {
+        return ZERO.clone();
+    }
 
     private Vector2f vector2f;
 
@@ -71,8 +75,13 @@ public class Vector {
         return this.add(-x, -y);
     }
 
-    public void multiply(float multiple) {
+    public Vector subtract(Vector vector) {
+        return this.subtract(vector.getX(), vector.getY());
+    }
+
+    public Vector multiply(float multiple) {
         this.vector2f = new Vector2f(this.getX() * multiple, this.getY() * multiple);
+        return this;
     }
 
     public void divide(float multiple) {
@@ -85,6 +94,11 @@ public class Vector {
 
     public double getLengthSquared() {
         return Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2);
+    }
+
+    public Vector normalize() {
+        this.divide((float) this.getLength());
+        return this;
     }
 
     public Vector2f toVector() {
