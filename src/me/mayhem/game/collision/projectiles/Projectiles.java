@@ -18,7 +18,7 @@ public class Projectiles extends Entity {
     private Sprite sprite;
 
     public Projectiles(EntityType type, Vector position, Vector motion,String image, Hitbox hitbox, Pathing pathing, Attribute<?>... attributes) {
-        super(EntityType.PROJECTILE, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
+        super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
 
         this.sprite = this.loadFromPath(image);
     }
