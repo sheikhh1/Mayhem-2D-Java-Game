@@ -1,4 +1,4 @@
-package me.mayhem.game.collision.doors;
+package me.mayhem.game.entity.door;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.path.Pathing;
@@ -13,8 +13,6 @@ import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
 
 import java.io.IOException;
-
-import static java.awt.SystemColor.window;
 
 public class Door extends Entity {
     private Sprite sprite;
