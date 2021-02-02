@@ -6,6 +6,7 @@ import me.mayhem.game.ai.audio.impl.JumpSound;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
+import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
@@ -213,7 +214,19 @@ public class GameManager {
                 UtilScreen.fixEntityMotion(entity);
             }
 
-            entity.getPosition().add(entity.getMotion());
+            Vector motionToAdd = entity.getMotion().clone();
+
+            if (Math.abs(motionToAdd.getX()) > EntityPhysics.MAX_SPEED) {
+                motionToAdd.setX((motionToAdd.getX() / Math.abs(motionToAdd.getX())) * EntityPhysics.MAX_SPEED);
+            }
+
+            if (Math.abs(motionToAdd.getY()) > EntityPhysics.MAX_SPEED) {
+                motionToAdd.setY((motionToAdd.getY() / Math.abs(motionToAdd.getY())) * EntityPhysics.MAX_SPEED);
+            }
+
+            entity.getMotion().subtract(motionToAdd);
+
+            entity.getPosition().add(motionToAdd);
             entity.getMotion().set(0, 0);
         }
     }
