@@ -3,7 +3,9 @@ package me.mayhem.game;
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
+import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
 import me.mayhem.game.entity.player.Player;
@@ -191,6 +193,7 @@ public class GameManager {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
                             center.setY(entity.getEntityPhysics().getFallStrength());
+                            entity.setEntityGrounded(true);
                         }
                     }
 
@@ -202,6 +205,9 @@ public class GameManager {
                 entity.setState(EntityState.NO_MOTION);
             } else {
                 entity.setState(EntityState.FALLING);
+                if (entity.getType() == EntityType.PLAYER) {
+                    entity.setEntityGrounded(false);
+                }
             }
         }
     }
