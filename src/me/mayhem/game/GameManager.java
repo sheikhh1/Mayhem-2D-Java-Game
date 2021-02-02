@@ -185,12 +185,19 @@ public class GameManager {
                         entity.setAttribute("collided", true);
                     }
 
+                    System.out.println("ERROR");
+
                     if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
                             center.setY(entity.getEntityPhysics().getFallStrength());
                         }
                     }
+
+/*                    if (this.isHigherThanEntity(entity, block) && !collisionDetected) {
+                        collisionDetected = true;
+
+                    }*/
 
                     entity.getMotion().subtract(center.getX(), center.getY());
                 }
