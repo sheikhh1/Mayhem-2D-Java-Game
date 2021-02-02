@@ -2,7 +2,6 @@ package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.state.EntityState;
 
 public class HoverPathing implements Pathing {
 
@@ -10,9 +9,9 @@ public class HoverPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
-        updateFunctionCounter++;
-
-        if (updateFunctionCounter <= 50) {
+        //TODO: CHANGE STATES INSTEAD
+        this.updateFunctionCounter++;
+        if (this.updateFunctionCounter <= 50) {
             entity.setJumping(true);
             entity.setFalling(false);
         } else {
@@ -20,7 +19,7 @@ public class HoverPathing implements Pathing {
             entity.setFalling(true);
         }
 
-        if (updateFunctionCounter == 100) updateFunctionCounter = 0;
+        if (this.updateFunctionCounter == 100) this.updateFunctionCounter = 0;
 
     }
 }
