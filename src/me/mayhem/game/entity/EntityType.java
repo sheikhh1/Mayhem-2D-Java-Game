@@ -38,5 +38,7 @@ public enum EntityType {
         return this.imagePath;
     }
 
-  
+    public Texture getEntityTexture() {
+        return this.entityTexture;
+    }
 }
