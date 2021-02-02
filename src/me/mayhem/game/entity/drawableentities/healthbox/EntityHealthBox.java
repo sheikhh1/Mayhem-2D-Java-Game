@@ -18,8 +18,7 @@ public class EntityHealthBox {
 
 
     public EntityHealthBox(Vector entityPosition){
-        totalHealth = createHealthBox(new Vector(entityPosition.getX(), entityPosition.getY() - 30));
-        currentHealth = createCurretHealth(new Vector(entityPosition.getX(), entityPosition.getY() - 30));
+        rePosition(entityPosition);
 
     }
 
@@ -46,6 +45,10 @@ public class EntityHealthBox {
         currentHealth.setSize( new Vector(newsize, HEALTHBOXHEIGHT).toVector());
 
 
+    }
+    public void rePosition(Vector entityPosition){
+        totalHealth = createHealthBox(new Vector(entityPosition.getX(), entityPosition.getY() - 30));
+        currentHealth = createCurretHealth(new Vector(entityPosition.getX(), entityPosition.getY() - 30));
     }
 
     public void draw(RenderWindow window){
