@@ -26,7 +26,7 @@ public abstract class Entity {
     private final Vector motion;
     private final Pathing pathing;
     private final Hitbox hitbox;
-    private final EntityPhysics entityPhysics;
+    protected EntityPhysics entityPhysics;
     private final EntityState[] states = new EntityState[2];
     private final List<Attribute<?>> attributes =  new ArrayList<>();
 
