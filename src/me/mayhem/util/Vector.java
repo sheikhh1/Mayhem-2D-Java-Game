@@ -107,6 +107,11 @@ public class Vector {
         return this.vector2f;
     }
 
+    public Vector max(float x, float y) {
+        this.vector2f = new Vector2f(Math.max(this.vector2f.x, x), Math.max(this.vector2f.y, y));
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Vector{" +
