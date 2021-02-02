@@ -1,5 +1,6 @@
 package me.mayhem.game.level.layout.ai.impl;
 
+import me.mayhem.game.entity.keycard.KeyCard;
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.util.Vector;
@@ -56,6 +57,8 @@ public class EasyLevelGenerator implements LevelGenerator {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
                 } else if (red == 255 && green == 0 && blue == 0) {
                     this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
+                } else if (red == 0 && green == 255 && blue == 0) {
+                    new KeyCard(new RectangleShape(new Vector2f(31, 31)), new Vector(x *32, y * 32));
                 }
             }
         }
@@ -63,6 +66,11 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     public Vector getPlayerSpawnPosition() {
         return this.playerSpawnPosition;
+    }
+
+    @Override
+    public Vector getKeyCardSpawnPosition() {
+        return null;
     }
 
     public List<Vector> getEnemySpawnPositions() {
