@@ -1,5 +1,6 @@
 package me.mayhem.game.entity.player.listeners.input;
 
+import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.mouse.MouseButtonPressListener;
@@ -18,6 +19,7 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
     private final Map<Mouse.Button, EntityState> mousePressHandler = new HashMap<>();
 
 
+
     public PlayerMousePressListener(Player player) {
         this.player = player;
 
@@ -26,6 +28,8 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
-        this.player.setState(this.mousePressHandler.get(event.asMouseButtonEvent().button));
+        if(this.player.isEntityGrounded()) {
+            this.player.setState(this.mousePressHandler.get(event.asMouseButtonEvent().button));
+        }
     }
 }
