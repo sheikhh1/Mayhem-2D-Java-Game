@@ -21,6 +21,6 @@ public class PlayerMouseReleaseListener extends MouseButtonReleaseListener {
 
     @Override
     protected void takeInput(MouseButtonEvent event) {
-            this.player.setState(this.mousePressReleaseHandler.get(event.asMouseButtonEvent().button));
+            //this.player.setState(this.mousePressReleaseHandler.get(event.asMouseButtonEvent().button));
     }
 }
