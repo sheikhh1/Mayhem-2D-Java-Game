@@ -1,7 +1,7 @@
 package me.mayhem.game;
 
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.keyCard.KeyCard;
+import me.mayhem.game.entity.keycard.KeyCard;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.PlayerKeyboardReleaseListener;

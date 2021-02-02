@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.keyCard;
+package me.mayhem.game.entity.keycard;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.path.Pathing;
