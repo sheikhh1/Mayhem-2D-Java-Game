@@ -48,4 +48,7 @@ public class Player extends Entity {
         }
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
+    public String getName(){
+       return name;
+    }
 }

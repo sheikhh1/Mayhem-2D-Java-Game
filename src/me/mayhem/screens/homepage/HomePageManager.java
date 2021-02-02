@@ -8,7 +8,7 @@ import me.mayhem.screens.homepage.items.HomePageNewGameButton;
 import me.mayhem.screens.homepage.items.HomepageQuitButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.ui.Interatable;
+import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
@@ -17,8 +17,9 @@ public class HomePageManager implements ScreenManager {
     private final RenderWindow window;
 
     private Sound mainTheme;
-    private Interatable[] buttons;
+    private Interactable[] buttons;
     private Sprite[] sprites;
+
 
     public HomePageManager(RenderWindow window) {
         this.window = window;
@@ -30,6 +31,7 @@ public class HomePageManager implements ScreenManager {
     public HomePageManager(RenderWindow window, Sound music) {
         this.window = window;
         this.mainTheme = music;
+
 
         this.loadScreen(this.window);
     }
@@ -43,14 +45,16 @@ public class HomePageManager implements ScreenManager {
 
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
+
         Sprite logo = UtilSharedResources.getLogo();
 
         if (logo == null || background == null) {
             return;
         }
 
-        logo.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 2.0f) - 500, (0)).toVector());
-        this.sprites = new Sprite[]{background, logo};
+        logo.setPosition(new Vector((0), (0)).toVector());
+
+        this.sprites = new Sprite[]{logo,background };
     }
 
 
@@ -59,7 +63,7 @@ public class HomePageManager implements ScreenManager {
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
         HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
 
-        this.buttons = new Interatable[]{newPage, load, quit};
+        this.buttons = new Interactable[]{newPage, load, quit};
     }
 
     /**
@@ -113,7 +117,7 @@ public class HomePageManager implements ScreenManager {
             window.draw(sprite);
         }
 
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
     }
@@ -123,9 +127,10 @@ public class HomePageManager implements ScreenManager {
         this.getSound().stop();
     }
 
+
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-        for (Interatable button : this.buttons) {
+        for (Interactable button : this.buttons) {
             ((InputListener<?>) button).unregister();
         }
     }

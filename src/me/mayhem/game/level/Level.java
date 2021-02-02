@@ -19,16 +19,17 @@ public class Level {
     private final EntitySpawner spawner;
     private final Layout layout;
 
-    public Level(Difficulty difficulty) {
+    public Level(Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
         this.spawner = null; //TODO: get from difficulty
         this.layout = new Layout(this.difficulty);
-        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition());
+        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(),playerName);
         this.entities.add(this.player);
     }
 
-    private Player spawnPlayer(Vector playerSpawnPosition) {
-        return new Player( "dan", playerSpawnPosition);
+    private Player spawnPlayer(Vector playerSpawnPosition, String name) {
+        System.out.println("the player is called "+ name);
+        return new Player( name, playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {
