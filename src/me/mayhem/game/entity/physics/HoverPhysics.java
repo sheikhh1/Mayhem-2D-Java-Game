@@ -5,32 +5,21 @@ import me.mayhem.util.Vector;
 
 public class HoverPhysics extends EntityPhysics {
 
-    private static final float DEFAULT_JUMP_STRENGTH = 4f;
+    private static final float HOVER_STRENGTH = 1f;
     private Vector motion;
 
     public void setEntityMotion(Vector motion) {
         this.motion = motion;
     }
 
-    /**
-     * Jump method for the Player
-     */
+
     @Override
     public void jump() {
-        this.motion.add(0, -1);
+        this.motion.subtract(0, HOVER_STRENGTH);
     }
 
-    /**
-     * Basic Fall Method Added
-     */
     @Override
     public void fall() {
-        this.motion.add(0, 1);
+        this.motion.add(0, HOVER_STRENGTH);
     }
-
-    @Override
-    public void reset(EntityState state) {
-
-    }
-
 }
