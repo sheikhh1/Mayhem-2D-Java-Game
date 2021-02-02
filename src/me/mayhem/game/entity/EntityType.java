@@ -20,10 +20,12 @@ public enum EntityType {
 
     private final int maxHealth;
     private final float movementSpeed;
+    private final float hasHealthbar;
 
     EntityType(int maxHealth, float movementSpeed, Boolean hasHealthBar) {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
+        this.hasHealthbar = hasHealthBar
     }
 
     public int getMaxHealth() {
