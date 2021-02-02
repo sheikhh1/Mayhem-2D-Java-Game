@@ -18,7 +18,6 @@ public class HoverPhysics extends EntityPhysics {
     @Override
     public void jump() {
         this.motion.add(0, -1);
-        System.out.println("jump called");
     }
 
     /**
@@ -27,7 +26,6 @@ public class HoverPhysics extends EntityPhysics {
     @Override
     public void fall() {
         this.motion.add(0, 1);
-        System.out.println("fall called");
     }
 
     @Override
