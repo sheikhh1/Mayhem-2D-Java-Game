@@ -1,6 +1,5 @@
 package me.mayhem.game.entity.physics;
 
-import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
 public class HoverPhysics extends EntityPhysics {
