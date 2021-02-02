@@ -6,9 +6,9 @@ public enum EntityType {
 
     PLAYER(200, 1.05f, Boolean.TRUE),
 
-    INFECTED(50,0.8f),
-    CORROSIVE(50,0.8f),
-    FEROCIOUS(100, 0.9f),
+    INFECTED(50,0.8f, Boolean.TRUE ),
+    CORROSIVE(50,0.8f, Boolean.TRUE),
+    FEROCIOUS(100, 0.9f,  Boolean.TRUE),
 
     KEY_CARD(200, 1.05f),
 
