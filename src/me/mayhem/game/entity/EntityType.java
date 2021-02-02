@@ -34,5 +34,9 @@ public enum EntityType {
         return this.movementSpeed;
     }
 
-    
+    public String getImagePath() {
+        return this.imagePath;
+    }
+
+  
 }
