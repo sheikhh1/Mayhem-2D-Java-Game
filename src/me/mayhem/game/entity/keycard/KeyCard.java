@@ -12,9 +12,11 @@ import org.jsfml.system.Vector2f;
 public class KeyCard extends Entity {
 
     private RectangleShape keyCard;
+    private Vector keyCardPosition;
 
     public KeyCard(Vector position) {
-        super(EntityType.KEYCARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HoverPathing);
+        super(EntityType.KEYCARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HOVER_PATHING);
+        this.keyCardPosition = position;
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.NO_MOTION);
         this.keyCard = new RectangleShape(new Vector2f(31, 31));
@@ -24,6 +26,7 @@ public class KeyCard extends Entity {
 
     @Override
     public void update(RenderWindow renderWindow) {
+        this.keyCard.setPosition(this.keyCardPosition.toVector());
        renderWindow.draw(this.keyCard);
     }
 
