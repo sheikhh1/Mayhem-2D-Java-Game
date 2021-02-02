@@ -40,6 +40,10 @@ public class Level {
         this.entities.add(entity);
     }
 
+    public void spawnObstacle(Entity e) {
+        this.entities.add(e);
+    }
+
     public Player getPlayer() {
         return this.player;
     }
@@ -55,6 +59,5 @@ public class Level {
     public Layout getLayout() {
         return this.layout;
     }
-
 
 }

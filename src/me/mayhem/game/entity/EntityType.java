@@ -11,7 +11,9 @@ public enum EntityType {
 
     PROJECTILE(200,1.05f),
 
-    DOOR(200, 1.05f)
+    DOOR(200, 1.05f),
+
+    SPIKES(200, 0.0f)
 
     ;
 

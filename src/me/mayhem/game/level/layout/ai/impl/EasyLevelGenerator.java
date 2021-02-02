@@ -20,10 +20,11 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private final List<Block> blocks = new ArrayList<>();
     private final List<Vector> enemySpawnPositions = new ArrayList<>();
+    private final List<Vector> obstacleSpawnPositions = new ArrayList<>();
 
     @Override
     public List<Block> generateLevel() {
-        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/TEST-MAP.png"));
+        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/Level1.png"));
         this.loadLevel();
 
         return this.blocks;
@@ -34,6 +35,7 @@ public class EasyLevelGenerator implements LevelGenerator {
      * Blocks are then drawn dependent on the color of pixels in the image
      * White Blocks = Terrain
      * Blue Block = Player Spawning Point
+     * Green block = Obstacle (spikes)
      */
     private void loadLevel() {
         this.blocks.clear();
@@ -57,6 +59,8 @@ public class EasyLevelGenerator implements LevelGenerator {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
                 } else if (red == 255 && green == 0 && blue == 0) {
                     this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
+                } else if (red == 0 && green == 255 && blue == 0) {
+                    this.obstacleSpawnPositions.add((new Vector(x * 32, y * 32)));
                 }
             }
         }
@@ -68,6 +72,10 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     public List<Vector> getEnemySpawnPositions() {
         return this.enemySpawnPositions;
+    }
+
+    public List<Vector> getObstacleSpawnPositions() {
+        return this.obstacleSpawnPositions;
     }
 
     /**
