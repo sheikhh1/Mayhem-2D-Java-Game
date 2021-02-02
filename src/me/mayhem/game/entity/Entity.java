@@ -270,7 +270,7 @@ public abstract class Entity {
                 this.setBack(false);
                 this.setMelee(false);
             } else if (state == EntityState.BACK) {
-                animate.setTimeOut(1000);
+                animate.setTimeOut(Integer.MAX_VALUE);
                 animate.resetTimeOutClock();
                 this.setForward(false);
                 this.setBack(true);
@@ -278,7 +278,7 @@ public abstract class Entity {
                 animate.setAvailableFrames(9);
                 this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
-                animate.setTimeOut(1000);
+                animate.setTimeOut(Integer.MAX_VALUE);
                 animate.resetTimeOutClock();
                 this.setForward(true);
                 this.setBack(false);
