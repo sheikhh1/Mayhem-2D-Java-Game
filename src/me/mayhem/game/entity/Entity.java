@@ -329,4 +329,8 @@ public abstract class Entity {
     public boolean isEntityGrounded() {
         return entityGrounded;
     }
+
+    public void setEntityGrounded(boolean entityGrounded) {
+        this.entityGrounded = entityGrounded;
+    }
 }
