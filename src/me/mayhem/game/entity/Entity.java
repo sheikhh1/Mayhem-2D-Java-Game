@@ -289,8 +289,6 @@ public abstract class Entity {
                 this.setMelee(true);
                 animate.setTimeOut(340);
                 animate.resetTimeOutClock();
-                this.setBack(false);
-                this.setForward(false);
             }
         }
     }
