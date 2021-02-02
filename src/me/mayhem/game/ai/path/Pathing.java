@@ -1,6 +1,7 @@
 package me.mayhem.game.ai.path;
 
 import me.mayhem.game.ai.path.impl.ForwardPathing;
+import me.mayhem.game.ai.path.impl.HoverPathing;
 import me.mayhem.game.ai.path.impl.JumpPathing;
 import me.mayhem.game.ai.path.impl.NoPathing;
 import me.mayhem.game.entity.Entity;
@@ -14,6 +15,7 @@ public interface Pathing {
     Pathing NO_PATHING = new NoPathing();
     Pathing FORWARD_PATHING = new ForwardPathing();
     Pathing JUMP_PATHING = new JumpPathing();
+    Pathing HOVER_PATHING = new HoverPathing();
 
     /**
      * updatePosition takes an entity and updates its position
