@@ -220,8 +220,8 @@ public class GameManager {
                 motionToAdd.setX((motionToAdd.getX() / Math.abs(motionToAdd.getX())) * EntityPhysics.MAX_SPEED);
             }
 
-            if (Math.abs(motionToAdd.getY()) > EntityPhysics.MAX_SPEED) {
-                motionToAdd.setY((motionToAdd.getY() / Math.abs(motionToAdd.getY())) * EntityPhysics.MAX_SPEED);
+            if (Math.abs(motionToAdd.getY()) > EntityPhysics.MAX_FALL_SPEED) {
+                motionToAdd.setY((motionToAdd.getY() / Math.abs(motionToAdd.getY())) * EntityPhysics.MAX_FALL_SPEED);
             }
 
             entity.getMotion().subtract(motionToAdd);
