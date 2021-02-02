@@ -4,6 +4,7 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
@@ -14,7 +15,9 @@ import me.mayhem.util.Vector;
  */
 public class Player extends Entity {
 
+    private EntityHealthBox healthBox;
     private String name;
+
 
     /**
      * Player Constructor
@@ -28,6 +31,12 @@ public class Player extends Entity {
         this.name = name;
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
+        if (this.getType().getHasHealthBar()){
+            this.healthBox = new EntityHealthBox(this.getPosition());
+        }
+
+
+
     }
 
     public void tick() {
@@ -43,6 +52,7 @@ public class Player extends Entity {
             this.animate.setPause(false);
         }
         this.animate.setSpritePosition(this.getPosition().toVector());
+        this.healthBox.rePosition(this.getPosition());
     }
 
     @Override
