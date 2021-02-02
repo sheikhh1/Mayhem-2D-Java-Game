@@ -6,7 +6,8 @@ public enum EntityType {
     INFECTED(50,0.8f),
     CORROSIVE(50,0.8f),
     FEROCIOUS(100, 0.9f),
-    PROJECTILE(0, 1f)
+    PROJECTILE(0, 1f),
+    KEYCARD(0, 1f)
 
     ;
 
