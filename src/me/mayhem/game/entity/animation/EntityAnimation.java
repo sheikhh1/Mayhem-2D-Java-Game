@@ -5,9 +5,6 @@ import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Class created to output correct animations depending on user input for the player entity
  */
