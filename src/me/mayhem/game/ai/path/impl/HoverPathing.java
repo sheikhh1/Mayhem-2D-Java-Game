@@ -6,6 +6,6 @@ import me.mayhem.game.entity.Entity;
 public class HoverPathing implements Pathing {
     @Override
     public void updatePosition(Entity entity) {
-        
+
     }
 }
