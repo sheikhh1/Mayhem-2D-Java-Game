@@ -1,7 +1,6 @@
 package me.mayhem.game.entity.animation;
 
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
@@ -14,7 +13,6 @@ import java.util.Map;
  */
 public class EntityAnimation {
 
-    private Texture entityTexture;
     private Sprite entitySprite;
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
@@ -28,15 +26,20 @@ public class EntityAnimation {
     private Map<EntityType, String> textureMap = new HashMap<>();
 
     public EntityAnimation(EntityType entityType) {
-        this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
-        this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
-        this.textureMap.put(EntityType.CORROSIVE, "enemies/CorrosiveEnemy.png");
-        this.textureMap.put(EntityType.FEROCIOUS, "enemies/Ferocious.png");
-
-        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.textureMap.get(entityType)));
 
 
-        this.entitySprite = new Sprite(entityTexture);
+
+//
+//        this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
+//        this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
+//        this.textureMap.put(EntityType.CORROSIVE, "enemies/CorrosiveEnemy.png");
+//        this.textureMap.put(EntityType.FEROCIOUS, "enemies/Ferocious.png");
+//        this.textureMap.put(EntityType.KEYCARD, "interactables/keycard.png");
+//
+//        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.textureMap.get(entityType)));
+
+
+        this.entitySprite = new Sprite(entityType.getEntityTexture());
         // Increase the size of the sprite by 1.3x
         this.entitySprite.setScale(1.3f,1.3f);
         this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
