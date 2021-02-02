@@ -35,4 +35,8 @@ public enum EntityType {
     public float getMovementSpeed() {
         return this.movementSpeed;
     }
+
+    public boolean getHasHealthBar(){
+        return this.hasHealthbar;
+    }
 }
