@@ -15,11 +15,9 @@ public class HoverPathing implements Pathing {
         if (updateFunctionCounter <= 50) {
             entity.setJumping(true);
             entity.setFalling(false);
-            System.out.println("called 1");
         } else {
             entity.setJumping(false);
             entity.setFalling(true);
-            System.out.println("called 2");
         }
 
         if (updateFunctionCounter == 100) updateFunctionCounter = 0;
