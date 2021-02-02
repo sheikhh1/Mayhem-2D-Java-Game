@@ -2,45 +2,50 @@ package me.mayhem.game.entity;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.Attribute;
+import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.system.Vector2f;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Entity Class
  * Used to store all the common information per entity in the game
  */
-public class Entity {
+public abstract class Entity {
 
     private final EntityType type;
-    protected final EntityAnimation animate = new EntityAnimation();
+    private final Vector position;
+    private final Vector motion;
+    private final Pathing pathing;
+    private final Hitbox hitbox;
+    private final EntityPhysics entityPhysics;
+    private final EntityState[] states = new EntityState[2];
+    private final List<Attribute<?>> attributes =  new ArrayList<>();
 
-    private Vector position;
-    private Vector motion;
-    private Pathing pathing;
-    private Hitbox hitbox;
-    private List<Attribute<?>> attributes;
-    private EntityPhysics entityPhysics;
+    protected final EntityAnimation animate;
+
+    private EntityState currentState;
+    private Vector facing = new Vector(1, 0);
     private boolean entityFall = true;
     private boolean entityForward = false;
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
-    private EntityState currentState;
-    private EntityState[] states = new EntityState[2];
+
+    private double health;
 
     /**
+     *
      * Entity Constructor
+     *
      * @param type - Type of Entity - eg Player/Enemy
      * @param position - Current Position of entity relative to the game window
      * @param motion - Motion of the entity eg if entity is moving
@@ -53,8 +58,10 @@ public class Entity {
         this.motion = motion;
         this.pathing = pathing;
         this.hitbox = hitbox;
-        this.attributes = Arrays.asList(attributes);
+        this.health = type.getMaxHealth();
+        this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
+        this.animate = new EntityAnimation(type);
     }
 
     public EntityType getType() {
@@ -85,18 +92,56 @@ public class Entity {
         return this.hitbox;
     }
 
+    public double getHealth() {
+        return this.health;
+    }
+
     public List<Attribute<?>> getAttributes() {
         return this.attributes;
     }
 
+    @SuppressWarnings("unchecked")
+    public <T> Attribute<T> getAttribute(String identifier, Class<T> typeClass) {
+        for (Attribute<?> attribute : this.attributes) {
+            if (attribute == null || !Objects.equals(typeClass, attribute.getValue().getClass())) {
+                continue;
+            }
+
+            if (attribute.getIdentifier().equals(identifier)) {
+                return (Attribute<T>) attribute;
+            }
+        }
+
+        return null;
+    }
+
     public Attribute<?> getAttribute(String identifier) {
         for (Attribute<?> attribute : this.attributes) {
+            if (attribute == null) {
+                continue;
+            }
+
             if (attribute.getIdentifier().equals(identifier)) {
                 return attribute;
             }
         }
 
         return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> void setAttribute(String identifier, T value) {
+        Attribute<?> alreadyExists = this.getAttribute(identifier);
+
+        if (alreadyExists != null) {
+            if (!Objects.equals(alreadyExists.getValue().getClass(), value.getClass())) {
+                return;
+            }
+
+            ((Attribute<T>) alreadyExists).setValue(value);
+        } else {
+            this.attributes.add(AttributeFactory.from(identifier, value));
+        }
     }
 
     public boolean isJumping() {
@@ -119,14 +164,6 @@ public class Entity {
         return this.entityBack;
     }
 
-    public boolean isStanding() {
-        return this.entityStanding;
-    }
-
-    public void setStanding(boolean entityStanding) {
-        this.entityStanding = entityStanding;
-    }
-
     public void setBack(boolean entityBack) {
         this.entityBack = entityBack;
     }
@@ -147,29 +184,31 @@ public class Entity {
         return this.hitbox.getWidth();
     }
 
-    public Sprite getSprite() {
-        return this.animate.getSprite();
-    }
-
-
     /**
-     * Updates position of the Player depending on user input
+     *
+     * Updates position of the {@link me.mayhem.game.entity.player.Player} depending on user input
      * Outputs onto main window
-     * @param window
+     *
+     * @param window The window being drawn on to
      */
     public void update(RenderWindow window) {
-        RectangleShape rectangleShape = new RectangleShape();
-
-        rectangleShape.setPosition(this.position.toVector());
-        rectangleShape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
-        rectangleShape.setFillColor(Color.GREEN);
-
         animate.playAnimation(window);
-        /*window.draw(rectangleShape);*/
+    }
+
+    public void tick() {
+        if (this.isFalling()) {
+            this.getEntityPhysics().fall();
+        }
+
+        if (this.isJumping()) {
+            this.getEntityPhysics().jump();
+        }
     }
 
     /**
+     *
      * Keyboard press listener sends a player state depending on which key has been pressed
+     *
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
@@ -207,19 +246,17 @@ public class Entity {
             } else if (state == EntityState.BACK) {
                 this.setForward(false);
                 this.setBack(true);
+                this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
                 this.setForward(true);
                 this.setBack(false);
+                this.facing = new Vector(1, 0);
             }
         }
     }
 
     public EntityState getState(int index) {
         return this.states[index];
-    }
-
-    public Vector getCenter() {
-        return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
     }
 
     public boolean inBoundsY(Vector position) {
@@ -236,5 +273,9 @@ public class Entity {
         }
 
         return position.getX() >= this.getPosition().getX();
+    }
+
+    public Vector getFacing() {
+        return this.facing;
     }
 }

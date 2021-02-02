@@ -1,10 +1,11 @@
-package me.mayhem.game.entity.player.listeners;
+package me.mayhem.game.entity.player.listeners.input;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
 import me.mayhem.screens.escapescreen.EscapeScreenManager;
+import me.mayhem.screens.gamescreen.GameScreenManager;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
 
@@ -38,6 +39,6 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
 
     private void escapeHandler() {
         Mayhem.getCurrentScreen().unloadScreen(Mayhem.getMainWindow());
-        Mayhem.setCurrentScreen(new EscapeScreenManager(Mayhem.getMainWindow(), Mayhem.getCurrentScreen().getSound(), Mayhem.getCurrentScreen()));
+        Mayhem.setCurrentScreen(new EscapeScreenManager(Mayhem.getMainWindow(), Mayhem.getCurrentScreen().getSound(), (GameScreenManager) Mayhem.getCurrentScreen()));
     }
 }

@@ -1,29 +1,41 @@
 package me.mayhem.game.entity.animation;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class created to output correct animations depending on user input for the player entity
  */
 public class EntityAnimation {
 
-    private Texture playerTexture;
-    private Sprite playerSprite;
+    private Texture entityTexture;
+    private Sprite entitySprite;
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
     private Clock animationUpdate = new Clock();
+    private Map<EntityType, String> textureMap = new HashMap<>();
 
-    public EntityAnimation() {
-        playerTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream("players/PlayerSheet.png"));
-        playerSprite = new Sprite(playerTexture);
+    public EntityAnimation(EntityType entityType) {
+        this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
+        this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
+        this.textureMap.put(EntityType.CORROSIVE, "enemies/CorrosiveEnemy.png");
+        this.textureMap.put(EntityType.FEROCIOUS, "enemies/Ferocious.png");
+
+        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.textureMap.get(entityType)));
+
+
+        this.entitySprite = new Sprite(entityTexture);
         // Increase the size of the sprite by 1.3x
-        playerSprite.setScale(1.3f,1.3f);
-        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
+        this.entitySprite.setScale(1.3f,1.3f);
+        this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
 
     public void setRow(int row) {
@@ -43,7 +55,7 @@ public class EntityAnimation {
     }
 
     public void setSpritePosition(Vector2f position){
-        playerSprite.setPosition(position);
+        entitySprite.setPosition(position);
     }
 
     public void setPause(boolean pause) {
@@ -63,28 +75,28 @@ public class EntityAnimation {
                 this.setColumn(frameCount % 9);
             }
         }
-        playerSprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
-        window.draw(playerSprite);
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
+        window.draw(entitySprite);
     }
 
     public float getHeight() {
-        return this.playerSprite.getGlobalBounds().height;
+        return this.entitySprite.getGlobalBounds().height;
     }
 
     public float getWidth() {
-        return this.playerSprite.getGlobalBounds().width;
+        return this.entitySprite.getGlobalBounds().width;
     }
 
     public FloatRect getGlobalBounds() {
-        return this.playerSprite.getGlobalBounds();
+        return this.entitySprite.getGlobalBounds();
     }
 
     public FloatRect getLocalBounds() {
-        return this.playerSprite.getLocalBounds();
+        return this.entitySprite.getLocalBounds();
     }
 
     public Sprite getSprite() {
-        return this.playerSprite;
+        return this.entitySprite;
     }
 }
 
