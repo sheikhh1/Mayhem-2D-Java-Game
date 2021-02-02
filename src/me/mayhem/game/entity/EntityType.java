@@ -10,11 +10,11 @@ public enum EntityType {
     CORROSIVE(50,0.8f, Boolean.TRUE),
     FEROCIOUS(100, 0.9f,  Boolean.TRUE),
 
-    KEY_CARD(200, 1.05f),
+    KEY_CARD(200, 1.05f, Boolean.FALSE),
 
-    PROJECTILE(200,1.05f),
+    PROJECTILE(200,1.05f, Boolean.FALSE),
 
-    DOOR(200, 1.05f)
+    DOOR(200, 1.05f, Boolean.FALSE)
 
     ;
 
