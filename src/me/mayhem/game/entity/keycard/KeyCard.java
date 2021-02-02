@@ -14,7 +14,7 @@ public class KeyCard extends Entity {
     private RectangleShape keyCard;
 
     public KeyCard(Vector position) {
-        super(EntityType.KEYCARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.NO_PATHING);
+        super(EntityType.KEYCARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HoverPathing);
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.NO_MOTION);
         this.keyCard = new RectangleShape(new Vector2f(31, 31));
