@@ -22,4 +22,9 @@ public class DifficultLevelGenerator implements LevelGenerator {
     public List<Vector> getEnemySpawnPositions() {
         return null;
     }
+
+    @Override
+    public List<Vector> getObstacleSpawnPositions() {
+        return null;
+    }
 }
