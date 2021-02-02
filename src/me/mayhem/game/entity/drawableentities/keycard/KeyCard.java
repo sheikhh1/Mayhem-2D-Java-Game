@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.keycard;
+package me.mayhem.game.entity.drawableentities.keycard;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.path.Pathing;
@@ -18,7 +18,7 @@ public class KeyCard extends Entity {
     private Sprite sprite;
 
     public KeyCard(Vector position, Attribute<?>... attributes) {
-        super(EntityType.KEY_CARD, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
+        super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
 
         this.sprite = this.loadFromPath("interactables/keyCard.png");
     }
