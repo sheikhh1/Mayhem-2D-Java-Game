@@ -15,7 +15,7 @@ public class Door extends Entity {
     private final Sprite sprite;
 
     public Door(Vector position, String image, Attribute<?>... attributes) {
-        super(EntityType.DOOR, position, Vector.ZERO, new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
+        super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
 
         this.sprite = UtilSprite.loadFromPath(image);
     }
