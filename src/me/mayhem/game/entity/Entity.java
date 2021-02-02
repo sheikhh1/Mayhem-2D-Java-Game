@@ -62,6 +62,7 @@ public abstract class Entity {
         this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
+
     }
 
     public EntityType getType() {
