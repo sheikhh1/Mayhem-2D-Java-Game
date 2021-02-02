@@ -39,6 +39,7 @@ public abstract class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private boolean entityGrounded = true;
 
     private double health;
     private boolean entityMelee = false;
@@ -323,5 +324,9 @@ public abstract class Entity {
 
     public Vector getFacing() {
         return this.facing;
+    }
+
+    public boolean isEntityGrounded() {
+        return entityGrounded;
     }
 }
