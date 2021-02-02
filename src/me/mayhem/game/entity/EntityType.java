@@ -1,8 +1,11 @@
 package me.mayhem.game.entity;
 
+import java.security.cert.TrustAnchor;
+
 public enum EntityType {
 
-    PLAYER(200, 1.05f),
+    PLAYER(200, 1.05f, Boolean.TRUE),
+
     INFECTED(50,0.8f),
     CORROSIVE(50,0.8f),
     FEROCIOUS(100, 0.9f),
@@ -18,7 +21,7 @@ public enum EntityType {
     private final int maxHealth;
     private final float movementSpeed;
 
-    EntityType(int maxHealth, float movementSpeed) {
+    EntityType(int maxHealth, float movementSpeed, Boolean hasHealthBar) {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
     }
