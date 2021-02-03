@@ -1,7 +1,7 @@
 package me.mayhem.game.entity.door;
 
 
-import me.mayhem.game.ai.path.Pathing;
+import me.mayhem.game.ai.path.impl.DoorStatePathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
@@ -17,7 +17,7 @@ public class Door extends Entity {
     private Vector doorPosition;
 
     public Door(Vector position, Level level) {
-        super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,130,130), Pathing.NO_PATHING);
+        super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,130,130), new DoorStatePathing(level));
         this.doorPosition = position;
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.mainDoor = new RectangleShape(new Vector2f(130,130));
