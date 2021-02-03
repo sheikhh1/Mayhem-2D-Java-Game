@@ -14,7 +14,7 @@ import me.mayhem.util.Vector;
  */
 public class Player extends Entity {
 
-    private String name;
+    private final String name;
 
     /**
      * Player Constructor
@@ -22,7 +22,7 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 80, 35), Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 65, 35), Pathing.NO_PATHING);
 
         this.animate.setSpritePosition(position.toVector());
         this.name = name;
@@ -52,6 +52,7 @@ public class Player extends Entity {
             this.animate.setRow(13);
             this.animate.setPause(false);
         }
+        
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 

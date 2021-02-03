@@ -5,6 +5,7 @@ import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
+import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
@@ -45,6 +46,8 @@ public abstract class Entity {
     private double health;
     private boolean entityMelee = false;
 
+    EntityHealthBox healthBox;
+
     /**
      *
      * Entity Constructor
@@ -65,6 +68,13 @@ public abstract class Entity {
         this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
+
+        if (this.type.getHasHealthBar()){
+
+            this.healthBox = new EntityHealthBox(this.position);
+        }
+
+
     }
 
     public EntityType getType() {
@@ -212,6 +222,10 @@ public abstract class Entity {
      */
     public void update(RenderWindow window) {
         animate.playAnimation(window);
+
+        if (this.type.getHasHealthBar()) {
+            healthBox.draw(window, this);
+        }
     }
 
     public void tick() {
@@ -326,6 +340,10 @@ public abstract class Entity {
 
     public Vector getFacing() {
         return this.facing;
+    }
+
+    public Vector getCenter() {
+        return this.getPosition().clone().add(this.getWidth() / 2.0f, this.getHeight() / 2.0f);
     }
 
     public boolean isEntityGrounded() {

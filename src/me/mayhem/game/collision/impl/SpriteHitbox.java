@@ -24,7 +24,7 @@ public class SpriteHitbox extends AbstractHitbox {
             return null;
         }
 
-        return new Vector(collision.left + (collision.width / 2), collision.top + collision.height / 2);
+        return new Vector(collision.left, collision.top + collision.height / 2);
     }
 
     @Override

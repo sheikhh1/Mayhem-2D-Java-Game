@@ -2,6 +2,8 @@ package me.mayhem.util;
 
 import org.jsfml.system.Vector2f;
 
+import java.util.Objects;
+
 /**
  *
  * Vector is a proxy class used to reduce dependency on JSFML
@@ -84,8 +86,9 @@ public class Vector {
         return this;
     }
 
-    public void divide(float multiple) {
+    public Vector divide(float multiple) {
         this.multiply(1 / multiple);
+        return this;
     }
 
     public double getLength() {
@@ -116,5 +119,24 @@ public class Vector {
     @Override
     public Vector clone() {
         return new Vector(this.getX(), this.getY());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Vector vector = (Vector) o;
+        return Objects.equals(vector2f, vector.vector2f);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vector2f);
     }
 }

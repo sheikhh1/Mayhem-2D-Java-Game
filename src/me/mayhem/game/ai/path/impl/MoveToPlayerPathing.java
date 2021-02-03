@@ -4,7 +4,6 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.attribute.type.LongAttribute;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
@@ -26,7 +25,7 @@ public class MoveToPlayerPathing implements Pathing {
 
         Vector toPlayer = currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition());
         toPlayer.setY(0);
-        toPlayer.normalize().multiply(EntityPhysics.MAX_SPEED);
+        toPlayer.normalize();
         entity.getMotion().add(toPlayer);
 
         this.attemptJumpOverBlocks(entity);

@@ -22,7 +22,7 @@ public class EntityAnimation {
 
 
     public EntityAnimation(EntityType entityType) {
-        
+
         this.entitySprite = new Sprite(entityType.getEntityTexture());
         // Increase the size of the sprite by 1.3x
         this.entitySprite.setScale(1.3f,1.3f);
@@ -87,7 +87,9 @@ public class EntityAnimation {
         } else {
             this.setColumn(0);
         }
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 9,this.getRow() * 64,44,76));
+
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 18,this.getRow() * 64 + 12,30,76 - 22));
+
         window.draw(entitySprite);
     }
 
@@ -111,4 +113,3 @@ public class EntityAnimation {
         return this.entitySprite;
     }
 }
-

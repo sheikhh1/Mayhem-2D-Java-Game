@@ -5,13 +5,13 @@ import org.jsfml.graphics.Texture;
 
 public enum EntityType {
 
-    PLAYER(200, 1.05f, "players/PlayerSheet.png"),
-    INFECTED(50,0.8f,  "enemies/Infected.png"),
-    CORROSIVE(50,0.8f, "enemies/CorrosiveEnemy.png"),
-    FEROCIOUS(100, 0.9f, "enemies/Ferocious.png"),
-    PROJECTILE(0, 1f, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
-    KEYCARD(0, 1f, "interactables/keycard/KeyCard.png"),
-    DOOR(0, 1f, "interactables/doors/DoorClosed.png")
+    PLAYER(200, 1.05f, true, "players/PlayerSheet.png"),
+    INFECTED(50,0.8f,  true, "enemies/Infected.png"),
+    CORROSIVE(50,0.8f, true, "enemies/CorrosiveEnemy.png"),
+    FEROCIOUS(100, 0.9f, true, "enemies/Ferocious.png"),
+    PROJECTILE(0, 1f, false, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
+    KEYCARD(0, 1f, false, "interactables/keycard/KeyCard.png"),
+    DOOR(0, 1f, false, "interactables/doors/DoorClosed.png")
 
     ;
 
@@ -19,11 +19,13 @@ public enum EntityType {
     private final float movementSpeed;
     private final String imagePath;
     private final Texture entityTexture;
+    private final boolean healthBar;
 
-    EntityType(int maxHealth, float movementSpeed, String imagePath) {
+    EntityType(int maxHealth, float movementSpeed, boolean healthBar, String imagePath) {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
         this.imagePath = imagePath;
+        this.healthBar = healthBar;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
     }
 
@@ -33,6 +35,10 @@ public enum EntityType {
 
     public float getMovementSpeed() {
         return this.movementSpeed;
+    }
+
+    public boolean getHasHealthBar() {
+        return this.healthBar;
     }
 
     public String getImagePath() {
