@@ -114,34 +114,22 @@ public class GameManager {
         Player player = this.currentLevel.getPlayer();
 
         if (UtilScreen.isOffScreen(player)) {
-            int xDiff = 0;
-            int yDiff = 0;
+            Vector screenMotion = new Vector(0, 0);
 
-            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
-                xDiff = -1;
-            } else if (player.getPosition().getX() < 0) {
-                xDiff = +1;
+            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - 62)) {
+                screenMotion.setX(-31);
+            } else if ((player.getPosition().getX() + player.getMotion().getX()) < 62) {
+                screenMotion.setX(+31);
             }
 
-            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
-                yDiff = -1;
-            } else if (player.getPosition().getY() < 0) {
-                yDiff = +1;
+            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - 62)) {
+                screenMotion.setY(-31);
+            } else if ((player.getPosition().getY() + player.getMotion().getY()) < 62) {
+                screenMotion.setY(+31);
             }
 
-            Vector movement = new Vector(xDiff, yDiff);
-
-            if (UtilScreen.isOffScreenX(player)) {
-                player.getMotion().setX(0);
-                player.setState(EntityState.STANDING);
-            }
-
-            if (UtilScreen.isOffScreenY(player)) {
-                player.getMotion().setY(0);
-                player.setState(EntityState.NO_MOTION);
-            }
-
-            this.currentLevel.getLayout().moveBlocks(movement);
+            this.currentLevel.getPlayer().getPosition().add(screenMotion);
+            this.currentLevel.getLayout().moveBlocks(screenMotion);
         }
 
         this.handleEntityVelocity();
