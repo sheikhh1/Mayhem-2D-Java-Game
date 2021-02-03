@@ -17,7 +17,7 @@ public class DoorStatePathing implements Pathing {
     @Override
     public void updatePosition(Entity entity) {
         Vector toPlayer = this.currentLevel.getPlayer().getPosition().clone().subtract(entity.getPosition());
-        System.out.println(Math.abs(toPlayer.getX()));
+
         if (Math.abs(toPlayer.getX()) < 200) {
             entity.setTexture(DoorEnum.OPEN.getDoorTexture());
         } else if (Math.abs(toPlayer.getX()) < 400) {
