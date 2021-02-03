@@ -1,15 +1,11 @@
 package me.mayhem.game.level.spawning.impl;
 
-import me.mayhem.game.entity.Door;
+import me.mayhem.game.entity.door.Door;
 import me.mayhem.game.entity.enemies.infected.InfectedEnemy;
 import me.mayhem.game.entity.keycard.KeyCard;
 import me.mayhem.game.level.Level;
 import me.mayhem.game.level.spawning.EntitySpawner;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.system.Vector2f;
-
-import java.security.Key;
 
 public class EasyEntitySpawner implements EntitySpawner {
 
