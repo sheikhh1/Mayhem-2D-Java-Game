@@ -242,11 +242,6 @@ public abstract class Entity {
                 this.setFalling(false);
                 this.getEntityPhysics().reset(state);
                 this.states[state.getIndex()] = state;
-            } else if (state == EntityState.FALLING) {
-                this.setJumping(false);
-                this.setFalling(true);
-                this.getEntityPhysics().reset(state);
-                this.states[state.getIndex()] = state;
             }
         } else if (currentState == EntityState.NO_MOTION) {
             if (state == EntityState.JUMPING) {
