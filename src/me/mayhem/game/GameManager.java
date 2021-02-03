@@ -105,27 +105,7 @@ public class GameManager {
             entity.tick();
         }
 
-        Player player = this.currentLevel.getPlayer();
-
-        if (UtilScreen.isOffScreen(player)) {
-            Vector screenMotion = new Vector(0, 0);
-
-            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setX(-3);
-            } else if ((player.getPosition().getX() + player.getMotion().getX()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setX(+3);
-            }
-
-            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setY(-3);
-            } else if ((player.getPosition().getY() + player.getMotion().getY()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setY(+3);
-            }
-
-            this.currentLevel.getPlayer().getPosition().add(screenMotion);
-            this.currentLevel.getLayout().moveBlocks(screenMotion);
-        }
-
+        this.handleScreenScrolling();
         this.handleEntityVelocity();
     }
 
@@ -199,6 +179,29 @@ public class GameManager {
 
     private boolean isHigherThanEntity(Entity entity, Block block) {
         return block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight());
+    }
+
+    private void handleScreenScrolling() {
+        Player player = this.currentLevel.getPlayer();
+
+        if (UtilScreen.isOffScreen(player)) {
+            Vector screenMotion = new Vector(0, 0);
+
+            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setX(-3);
+            } else if ((player.getPosition().getX() + player.getMotion().getX()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setX(+3);
+            }
+
+            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setY(-3);
+            } else if ((player.getPosition().getY() + player.getMotion().getY()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setY(+3);
+            }
+
+            this.currentLevel.getPlayer().getPosition().add(screenMotion);
+            this.currentLevel.getLayout().moveBlocks(screenMotion);
+        }
     }
 
     private void handleEntityVelocity() {
