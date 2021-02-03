@@ -207,12 +207,6 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-/*
-            if (UtilScreen.isOffScreen(entity)) {
-                UtilScreen.fixEntityMotion(entity);
-            }
-*/
-
             Vector motionToAdd = entity.getMotion().clone();
 
             if (Math.abs(motionToAdd.getX()) > EntityPhysics.MAX_SPEED) {
