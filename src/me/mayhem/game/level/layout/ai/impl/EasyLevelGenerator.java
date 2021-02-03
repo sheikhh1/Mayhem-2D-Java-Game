@@ -42,6 +42,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
+        Vector newCenter = null;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
@@ -56,7 +57,21 @@ public class EasyLevelGenerator implements LevelGenerator {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
                 } else if (red == 255 && green == 0 && blue == 0) {
                     this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
+                } else if (red == 200 && green == 200 && blue == 200) {
+                    newCenter = new Vector(x * 32, y * 32);
                 }
+            }
+        }
+
+        if (newCenter != null) {
+            for (Block block : this.blocks) {
+                block.getPosition().subtract(newCenter);
+            }
+
+            this.playerSpawnPosition.subtract(newCenter);
+
+            for (Vector enemySpawnPosition : this.enemySpawnPositions) {
+                enemySpawnPosition.subtract(newCenter);
             }
         }
     }
