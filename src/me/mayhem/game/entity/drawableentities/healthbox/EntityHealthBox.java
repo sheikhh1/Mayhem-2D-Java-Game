@@ -1,20 +1,14 @@
 package me.mayhem.game.entity.drawableentities.healthbox;
 
-import me.mayhem.game.ai.path.Pathing;
-import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.drawable.drawablethings.DrawableSquare;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 
-import java.nio.file.Path;
-
 public class EntityHealthBox {
-    public static final int HEALTHBOXWIDTH = 100;
-    public static final int HEALTHBOXHEIGHT = 20;
+    public static final int HEALTHBOXWIDTH = 50;
+    public static final int HEALTHBOXHEIGHT = 10;
 
     private RectangleShape totalHealth;
     private RectangleShape currentHealth;
@@ -52,23 +46,18 @@ public class EntityHealthBox {
 
         currentHealth.setSize( new Vector(newsize, HEALTHBOXHEIGHT).toVector());
     }
-    public void rePosition(Vector entityPosition){
-
-
-        totalHealth.setPosition(new Vector(entityPosition.getX()- 25, entityPosition.getY() - 30).toVector());
-        currentHealth.setPosition(new Vector(entityPosition.getX()- 25, entityPosition.getY() - 30).toVector());
-
+    public void rePosition(Entity entity){
+        totalHealth.setPosition(entity.getCenter().add(-totalHealth.getGlobalBounds().width / 2.3f, -40).toVector());
+        currentHealth.setPosition(entity.getCenter().add(-totalHealth.getGlobalBounds().width / 2.3f, -40).toVector());
     }
 
     public void draw(RenderWindow window, Entity entity){
-
-        rePosition(entity.getPosition());
+        rePosition(entity);
         window.draw(totalHealth);
         window.draw(currentHealth);
     }
 
     public int calculateSize(double currentHealth, double maxHealth){
-
         return (int) ((currentHealth/maxHealth) * 100);// returns the health as a percentage to be drawn
     }
 
