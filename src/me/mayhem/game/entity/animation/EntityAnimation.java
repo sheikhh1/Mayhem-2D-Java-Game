@@ -75,7 +75,15 @@ public class EntityAnimation {
                 this.setColumn(frameCount % 9);
             }
         }
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64,30,76));
+
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 18,this.getRow() * 64 + 12,30,76 - 22));
+/*        RectangleShape rectangleShape = new RectangleShape();
+        rectangleShape.setSize(new Vector2f(entitySprite.getGlobalBounds().width, entitySprite.getGlobalBounds().height));
+        rectangleShape.setPosition(this.entitySprite.getPosition());
+        rectangleShape.setOutlineColor(Color.GREEN);
+        rectangleShape.setFillColor(Color.BLACK);*//*
+
+        window.draw(rectangleShape);*/
         window.draw(entitySprite);
     }
 
