@@ -19,6 +19,7 @@ public class EasyLevelGenerator implements LevelGenerator {
     private Image levelImage;
     private Vector playerSpawnPosition;
     private Vector keyCardSpawnPositon;
+    private Vector doorPosition;
 
     private final List<Block> blocks = new ArrayList<>();
     private final List<Vector> enemySpawnPositions = new ArrayList<>();
@@ -60,6 +61,8 @@ public class EasyLevelGenerator implements LevelGenerator {
                     this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
                 } else if (red == 0 && green == 255 && blue == 0) {
                     this.keyCardSpawnPositon = new Vector(x * 32, y * 32);
+                } else if (red == 0 && green == 255 && blue == 255) {
+                    this.doorPosition = new Vector(x * 32, y * 32);
                 }
             }
         }
