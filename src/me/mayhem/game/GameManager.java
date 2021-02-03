@@ -200,6 +200,15 @@ public class GameManager {
                 screenMotion.setY(+3);
             }
 
+
+            for (Entity entity : this.currentLevel.getEntities()) {
+                if (entity instanceof Player) {
+                    continue;
+                }
+
+                entity.getPosition().add(screenMotion);
+            }
+
             this.currentLevel.getPlayer().getPosition().add(screenMotion);
             this.currentLevel.getLayout().moveBlocks(screenMotion);
         }
