@@ -86,8 +86,9 @@ public class Vector {
         return this;
     }
 
-    public void divide(float multiple) {
+    public Vector divide(float multiple) {
         this.multiply(1 / multiple);
+        return this;
     }
 
     public double getLength() {
