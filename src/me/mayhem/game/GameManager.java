@@ -185,7 +185,7 @@ public class GameManager {
                         entity.setAttribute("collided", true);
                     }
 
-                    System.out.println("ERROR");
+//                    System.out.println("ERROR");
 
                     if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
