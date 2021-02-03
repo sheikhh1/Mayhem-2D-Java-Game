@@ -6,8 +6,10 @@ import me.mayhem.game.level.Level;
 
 public class DoorStatePathing implements Pathing {
 
+    private Level currentLevel;
+
     public DoorStatePathing(Level currentLevel) {
-        
+        this.currentLevel = currentLevel;
     }
 
     @Override
