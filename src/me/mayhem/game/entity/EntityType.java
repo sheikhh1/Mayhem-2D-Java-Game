@@ -11,7 +11,7 @@ public enum EntityType {
     FEROCIOUS(100, 0.9f, "enemies/Ferocious.png"),
     PROJECTILE(0, 1f, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
     KEYCARD(0, 1f, "interactables/keycard/KeyCard.png"),
-    DOOR(0, 1f, "interacables/doors/DoorClosed.png")
+    DOOR(0, 1f, "interactables/doors/DoorClosed.png")
 
     ;
 
