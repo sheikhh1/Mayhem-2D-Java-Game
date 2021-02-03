@@ -296,4 +296,8 @@ public abstract class Entity {
     public Vector getFacing() {
         return this.facing;
     }
+
+    public Vector getCenter() {
+        return this.getPosition().clone().add(this.getWidth() / 2.0f, this.getHeight() / 2.0f);
+    }
 }
