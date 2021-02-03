@@ -21,5 +21,8 @@ public enum DoorEnum {
         this.doorTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
     }
 
+    public Texture getDoorTexture() {
+        return this.doorTexture;
+    }
 
 }
