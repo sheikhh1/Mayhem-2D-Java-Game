@@ -21,14 +21,9 @@ public class Obstacle extends Entity {
         sprite = UtilSprite.loadFromPath("obstacles/Spike.png");
         sprite.setPosition(position.toVector());
 
-        //this.animate.setSpritePosition(position.toVector());
         this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.NO_MOTION);
     }
-
-    /*public void tick() {
-        this.animate.setSpritePosition(this.getPosition().toVector());
-    }*/
 
     @Override
     public Vector getMotion() {
