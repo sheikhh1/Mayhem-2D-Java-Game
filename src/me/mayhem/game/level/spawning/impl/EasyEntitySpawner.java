@@ -20,6 +20,6 @@ public class EasyEntitySpawner implements EntitySpawner {
 
         level.spawnEntity(new KeyCard(level.getDifficulty().getGenerator().getKeyCardSpawnPosition()));
 
-        level.spawnEntity(new Door(level.getDifficulty().getGenerator().getDoorPosition()));
+        level.spawnEntity(new Door(level.getDifficulty().getGenerator().getDoorPosition(), level));
     }
 }
