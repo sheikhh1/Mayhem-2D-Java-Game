@@ -23,8 +23,6 @@ public class Layout {
     }
 
     public void moveBlocks(Vector direction) {
-        System.out.println("MOVING BLOCKS? " + direction);
-
         for (Block block : this.blocks) {
             block.getPosition().add(direction);
         }
