@@ -9,10 +9,7 @@ import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.system.Vector2f;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -205,19 +202,11 @@ public abstract class Entity {
      * @param window The window being drawn on to
      */
     public void update(RenderWindow window) {
-
-        RectangleShape shape = new RectangleShape();
-
-        shape.setSize(new Vector2f(this.getWidth(), this.getHeight()));
-        shape.setPosition(this.getPosition().toVector());
-        shape.setFillColor(Color.BLACK);
-
-        window.draw(shape);
         animate.playAnimation(window);
 
-/*        if (this.type.getHasHealthBar()) {
+        if (this.type.getHasHealthBar()) {
             healthBox.draw(window, this);
-        }*/
+        }
     }
 
     public void tick() {

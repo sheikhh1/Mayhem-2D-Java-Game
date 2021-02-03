@@ -157,6 +157,7 @@ public class GameManager {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             if (entity.isJumping())  {
                                 entity.setJumping(false);
+                                entity.setFalling(true);
                             }
                         }
                     }
