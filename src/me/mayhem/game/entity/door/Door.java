@@ -16,10 +16,10 @@ public class Door extends Entity {
     private Vector doorPosition;
 
     public Door(Vector position) {
-        super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,50,50), Pathing.NO_PATHING);
+        super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,130,130), Pathing.NO_PATHING);
         this.doorPosition = position;
         this.getEntityPhysics().setEntityMotion(this.getMotion());
-        this.mainDoor = new RectangleShape(new Vector2f(50,50));
+        this.mainDoor = new RectangleShape(new Vector2f(130,130));
         this.mainDoor.setPosition(position.toVector());
         this.mainDoor.setTexture(EntityType.DOOR.getEntityTexture());
     }
