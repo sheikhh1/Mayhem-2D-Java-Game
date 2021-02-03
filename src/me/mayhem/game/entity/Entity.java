@@ -318,10 +318,6 @@ public abstract class Entity {
         return this.currentState;
     }
 
-    public Vector getCenter() {
-        return this.position.clone().add(this.getWidth() / 2f, this.getHeight() / 2f);
-    }
-
     public boolean inBoundsY(Vector position) {
         if (position.getY() > (this.getPosition().getY() + this.getHeight())) {
             return false;

@@ -10,7 +10,7 @@ public enum EntityType {
     CORROSIVE(50,0.8f, true, "enemies/CorrosiveEnemy.png"),
     FEROCIOUS(100, 0.9f, true, "enemies/Ferocious.png"),
     PROJECTILE(0, 1f, false, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
-    KEYCARD(0, 1f, false, "interactables/keycard/KeyCard.png"),
+    KEY_CARD(0, 1f, false, "interactables/keycard/KeyCard.png"),
     DOOR(0, 1f, false, "interactables/doors/DoorClosed.png")
 
     ;
