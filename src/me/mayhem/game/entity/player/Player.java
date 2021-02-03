@@ -14,8 +14,7 @@ import me.mayhem.util.Vector;
  */
 public class Player extends Entity {
 
-    private String name;
-
+    private final String name;
 
     /**
      * Player Constructor
