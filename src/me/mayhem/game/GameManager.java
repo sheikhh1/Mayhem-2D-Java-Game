@@ -20,11 +20,9 @@ import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Text;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +31,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameManager {
 
     private final RenderWindow renderWindow;
-    private final Text playerHealth;
 
     private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
@@ -51,9 +48,6 @@ public class GameManager {
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(difficulty, playerName);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
-
-        this.playerHealth = new Text("PLAYER HEALTH: 0/0", UtilFont.loadFont("fonts/FreeMono.ttf"));
-        this.drawnShapes.add(this.playerHealth);
 
         this.initialize();
     }
@@ -116,24 +110,23 @@ public class GameManager {
         if (UtilScreen.isOffScreen(player)) {
             Vector screenMotion = new Vector(0, 0);
 
-            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - 62)) {
+            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - 64)) {
                 screenMotion.setX(-31);
             } else if ((player.getPosition().getX() + player.getMotion().getX()) < 62) {
                 screenMotion.setX(+31);
             }
 
-            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - 62)) {
+            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - 64)) {
                 screenMotion.setY(-31);
             } else if ((player.getPosition().getY() + player.getMotion().getY()) < 62) {
                 screenMotion.setY(+31);
             }
 
-            this.currentLevel.getPlayer().getPosition().add(screenMotion);
+            this.currentLevel.getPlayer().getMotion().set(Vector.getZero());
             this.currentLevel.getLayout().moveBlocks(screenMotion);
         }
 
         this.handleEntityVelocity();
-        this.playerHealth.setString("PLAYER HEALTH " + player.getHealth() + "/" + player.getType().getMaxHealth());
     }
 
     private void handleEntityCollisions() {
@@ -210,9 +203,11 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
+/*
             if (UtilScreen.isOffScreen(entity)) {
                 UtilScreen.fixEntityMotion(entity);
             }
+*/
 
             Vector motionToAdd = entity.getMotion().clone();
 
