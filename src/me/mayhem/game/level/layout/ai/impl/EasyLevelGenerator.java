@@ -77,6 +77,11 @@ public class EasyLevelGenerator implements LevelGenerator {
         return this.keyCardSpawnPositon;
     }
 
+    @Override
+    public Vector getDoorPosition() {
+        return null;
+    }
+
     public List<Vector> getEnemySpawnPositions() {
         return this.enemySpawnPositions;
     }
