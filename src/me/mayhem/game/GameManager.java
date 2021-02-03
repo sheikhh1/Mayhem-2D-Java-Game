@@ -185,7 +185,7 @@ public class GameManager {
                         entity.setAttribute("collided", true);
                     }
 
-                    if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
+                    if (this.isLowerThanEntity(entity, block) && !collisionDetected) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
                             center.setY(entity.getEntityPhysics().getFallStrength());
@@ -215,7 +215,7 @@ public class GameManager {
         }
     }
 
-    private boolean isLowerThenEntity(Entity entity, Block block) {
+    private boolean isLowerThanEntity(Entity entity, Block block) {
         return block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight());
     }
 
