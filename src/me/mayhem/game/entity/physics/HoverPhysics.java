@@ -1,6 +1,5 @@
 package me.mayhem.game.entity.physics;
 
-import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
 public class HoverPhysics extends EntityPhysics {
@@ -21,10 +20,5 @@ public class HoverPhysics extends EntityPhysics {
     @Override
     public void fall() {
         this.motion.add(0, HOVER_STRENGTH);
-    }
-
-    @Override
-    public void reset(EntityState entityState) {
-
     }
 }
