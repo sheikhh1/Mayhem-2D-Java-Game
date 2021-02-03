@@ -234,7 +234,6 @@ public abstract class Entity {
             return;
         }
 
-
         currentState = this.states[state.getIndex()];
 
         if (currentState == EntityState.FALLING || currentState == EntityState.JUMPING) {
