@@ -6,7 +6,7 @@ import me.mayhem.util.Vector;
 
 public class UtilScreen {
 
-    private static final int SCREEN_RADIUS = 64;
+    public static final int SCREEN_RADIUS = 128;
 
     public static boolean isOffScreen(Entity entity) {
         return isOffScreenX(entity) || isOffScreenY(entity);
