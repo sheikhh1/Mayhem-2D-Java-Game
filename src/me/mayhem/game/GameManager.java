@@ -192,6 +192,18 @@ public class GameManager {
                         }
                     }
 
+                    if (this.isHigherThanEntity(entity, block) && !collisionDetected) {
+                        if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
+                            collisionDetected = true;
+
+                            if (entity.isJumping())  {
+                                entity.setJumping(false);
+                                entity.getMotion().setY(EntityPhysics.GRAVITY);
+                                System.out.println("L");
+                            }
+                        }
+                    }
+
                     entity.getMotion().subtract(center.getX(), center.getY());
                 }
             }
@@ -206,6 +218,10 @@ public class GameManager {
 
     private boolean isLowerThenEntity(Entity entity, Block block) {
         return block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight());
+    }
+
+    private boolean isHigherThanEntity(Entity entity, Block block) {
+        return block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight());
     }
 
     private void handleEntityVelocity() {
