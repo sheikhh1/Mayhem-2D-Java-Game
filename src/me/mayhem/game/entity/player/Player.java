@@ -42,6 +42,7 @@ public class Player extends Entity {
             this.animate.setRow(9);
             this.animate.setPause(false);
         }
+
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
