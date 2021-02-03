@@ -1,5 +1,6 @@
 package me.mayhem.game.level.spawning.impl;
 
+import me.mayhem.game.entity.Door;
 import me.mayhem.game.entity.enemies.infected.InfectedEnemy;
 import me.mayhem.game.entity.keycard.KeyCard;
 import me.mayhem.game.level.Level;
@@ -22,5 +23,7 @@ public class EasyEntitySpawner implements EntitySpawner {
         }
 
         level.spawnEntity(new KeyCard(level.getDifficulty().getGenerator().getKeyCardSpawnPosition()));
+
+        level.spawnEntity(new Door(level.getDifficulty().getGenerator().getDoorPosition()));
     }
 }
