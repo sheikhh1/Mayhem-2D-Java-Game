@@ -79,7 +79,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     @Override
     public Vector getDoorPosition() {
-        return null;
+        return this.doorPosition;
     }
 
     public List<Vector> getEnemySpawnPositions() {
