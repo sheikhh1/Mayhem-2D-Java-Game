@@ -19,7 +19,9 @@ public class HoverPathing implements Pathing {
             entity.setFalling(true);
         }
 
-        if (this.updateFunctionCounter == 100) this.updateFunctionCounter = 0;
+        if (this.updateFunctionCounter == 100) {
+            this.updateFunctionCounter = 0;
+        }
 
     }
 }
