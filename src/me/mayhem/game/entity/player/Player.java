@@ -12,7 +12,7 @@ import me.mayhem.util.Vector;
 /**
  * Player Class
  */
-public class Player extends Entity {
+public class Player extends Entity implements PlayerInteract{
 
     private final String name;
 
@@ -67,5 +67,15 @@ public class Player extends Entity {
 
     public String getName(){
        return name;
+    }
+
+    @Override
+    public void attack(Entity enemy) {
+        
+    }
+
+    @Override
+    public void pickUp(Entity keyCard) {
+
     }
 }
