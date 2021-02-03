@@ -80,11 +80,11 @@ public class GameManager {
      *
      */
     public void draw() {
+        this.currentLevel.getLayout().draw(this.renderWindow);
+
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.update(this.renderWindow);
         }
-
-        this.currentLevel.getLayout().draw(this.renderWindow);
 
         for (Drawable drawnShape : this.drawnShapes) {
             this.renderWindow.draw(drawnShape);
