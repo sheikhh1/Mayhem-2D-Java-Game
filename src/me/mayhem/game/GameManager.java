@@ -192,13 +192,10 @@ public class GameManager {
                         }
                     }
 
-                    if (this.isHigherThanEntity(entity, block) && !collisionDetected) {
+                    if (this.isHigherThanEntity(entity, block)) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
-                            collisionDetected = true;
-
                             if (entity.isJumping())  {
                                 entity.setJumping(false);
-                                entity.getMotion().setY(EntityPhysics.GRAVITY);
                             }
                         }
                     }
