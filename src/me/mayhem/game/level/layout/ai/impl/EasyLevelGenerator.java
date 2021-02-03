@@ -1,6 +1,5 @@
 package me.mayhem.game.level.layout.ai.impl;
 
-import me.mayhem.game.entity.keycard.KeyCard;
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.util.Vector;
@@ -75,6 +74,8 @@ public class EasyLevelGenerator implements LevelGenerator {
                 block.getPosition().subtract(newCenter);
             }
 
+            this.keyCardSpawnPositon.subtract(newCenter);
+            this.doorPosition.subtract(newCenter);
             this.playerSpawnPosition.subtract(newCenter);
 
             for (Vector enemySpawnPosition : this.enemySpawnPositions) {
