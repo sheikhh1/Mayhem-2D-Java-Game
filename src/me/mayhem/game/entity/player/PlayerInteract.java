@@ -12,4 +12,10 @@ public interface PlayerInteract {
      * @param enemy
      */
     void attack(Entity enemy);
+
+    /**
+     * Method when picking up a keyCard
+     * @param keyCard
+     */
+    void pickUp(Entity keyCard);
 }
