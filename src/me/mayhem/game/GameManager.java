@@ -199,7 +199,6 @@ public class GameManager {
                             if (entity.isJumping())  {
                                 entity.setJumping(false);
                                 entity.getMotion().setY(EntityPhysics.GRAVITY);
-                                System.out.println("L");
                             }
                         }
                     }
