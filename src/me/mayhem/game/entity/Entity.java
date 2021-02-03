@@ -9,6 +9,7 @@ import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Texture;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -222,6 +223,8 @@ public abstract class Entity {
             this.getEntityPhysics().jump();
         }
     }
+
+    public void setTexture(Texture texture) {}
 
     /**
      *
