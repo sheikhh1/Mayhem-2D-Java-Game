@@ -12,8 +12,8 @@ public class Obstacle extends Entity {
 
     public Obstacle(Vector position, Level level) {
         super(EntityType.SPIKES, position, Vector.getZero(), new SpriteHitbox(position, 48,48 ), Pathing.NO_PATHING);
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.NO_MOTION);
+        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.animate.setSpritePosition(position.toVector());
     }
 

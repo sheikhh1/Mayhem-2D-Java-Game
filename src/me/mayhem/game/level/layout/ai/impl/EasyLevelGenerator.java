@@ -35,6 +35,7 @@ public class EasyLevelGenerator implements LevelGenerator {
      * Blocks are then drawn dependent on the color of pixels in the image
      * White Blocks = Terrain
      * Blue Block = Player Spawning Point
+     * Red Block = Enemy spawn point
      * Orange (255, 128, 0) block = Obstacle (spikes)
      */
     private void loadLevel() {
@@ -54,7 +55,7 @@ public class EasyLevelGenerator implements LevelGenerator {
                 int blue = (pixel) & 0xff;
 
                 if (red == 255 && green == 255 && blue == 255) {
-                    System.out.println("YO BOI");
+                    //System.out.println("YO BOI");
                     this.blocks.add(this.createBlock(x * 32,y * 32));
                 } else if (red == 0 && green == 0 && blue == 255) {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
