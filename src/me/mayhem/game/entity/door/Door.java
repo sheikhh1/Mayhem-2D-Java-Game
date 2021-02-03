@@ -1,8 +1,10 @@
-package me.mayhem.game.entity;
+package me.mayhem.game.entity.door;
 
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
+import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
@@ -16,6 +18,7 @@ public class Door extends Entity {
     public Door(Vector position) {
         super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,50,50), Pathing.NO_PATHING);
         this.doorPosition = position;
+        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.mainDoor = new RectangleShape(new Vector2f(50,50));
         this.mainDoor.setPosition(position.toVector());
         this.mainDoor.setTexture(EntityType.DOOR.getEntityTexture());
