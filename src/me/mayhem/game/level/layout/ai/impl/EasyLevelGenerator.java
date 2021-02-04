@@ -55,7 +55,6 @@ public class EasyLevelGenerator implements LevelGenerator {
                 int blue = (pixel) & 0xff;
 
                 if (red == 255 && green == 255 && blue == 255) {
-                    //System.out.println("YO BOI");
                     this.blocks.add(this.createBlock(x * 32,y * 32));
                 } else if (red == 0 && green == 0 && blue == 255) {
                     this.playerSpawnPosition = new Vector(x * 32, y * 32);
