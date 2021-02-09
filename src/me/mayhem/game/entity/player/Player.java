@@ -8,6 +8,8 @@ import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.Color;
+import org.jsfml.system.Clock;
 
 /**
  * Player Class
@@ -15,6 +17,8 @@ import me.mayhem.util.Vector;
 public class Player extends Entity implements PlayerInteract{
 
     private final String name;
+    private Clock attackedAnimateClock = new Clock();
+    private boolean hasBeenAttacked = false;
 
     /**
      * Player Constructor
@@ -30,8 +34,19 @@ public class Player extends Entity implements PlayerInteract{
         this.setState(EntityState.FALLING);
     }
 
+    public void playerAttacked() {
+        this.hasBeenAttacked = true;
+        this.attackedAnimateClock.restart();
+    }
+
     public void tick() {
         super.tick();
+
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 100 && this.hasBeenAttacked) {
+            this.getAnimation().setColor(Color.WHITE);
+        } else if (this.hasBeenAttacked){
+            this.getAnimation().setColor(Color.RED);
+        }
 
         if (this.isForward()) {
             this.getEntityPhysics().moveForward();
