@@ -114,7 +114,9 @@ public abstract class Entity {
         this.health -= damage;
     }
 
-    
+    public EntityHealthBox getHealthBox() {
+        return this.healthBox;
+    }
 
     public List<Attribute<?>> getAttributes() {
         return this.attributes;
