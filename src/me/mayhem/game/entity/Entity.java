@@ -110,6 +110,12 @@ public abstract class Entity {
         return this.health;
     }
 
+    public void damage(double damage) {
+        this.health -= damage;
+    }
+
+    
+
     public List<Attribute<?>> getAttributes() {
         return this.attributes;
     }
