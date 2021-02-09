@@ -1,7 +1,10 @@
 package me.mayhem.game.entity.animation;
 
 import me.mayhem.game.entity.EntityType;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.IntRect;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 
@@ -17,16 +20,6 @@ public class EntityAnimation {
     private int frameCount = 0;
     private int availableFrames = 1;
     private Clock animationUpdate = new Clock();
-
-    private Map<EntityType, String> textureMap = new HashMap<>();
-
-    public EntityAnimation(EntityType entityType) {
-        this.textureMap.put(EntityType.PLAYER, "players/PlayerSheet.png");
-        this.textureMap.put(EntityType.INFECTED, "enemies/Infected.png");
-        this.textureMap.put(EntityType.CORROSIVE, "enemies/CorrosiveEnemy.png");
-        this.textureMap.put(EntityType.FEROCIOUS, "enemies/Ferocious.png");
-        this.textureMap.put(EntityType.SPIKES, "obstacles/Spike.png");
-
     private Clock timeOutClock =  new Clock();
     private int timeOut = 0;
 
