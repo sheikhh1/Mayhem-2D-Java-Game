@@ -4,12 +4,14 @@ import me.mayhem.game.ai.path.impl.MoveToPlayerPathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.enemies.Enemy;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 
 
-public class InfectedEnemy extends Entity {
+public class InfectedEnemy extends Entity implements Enemy {
     /**
      * Entity Constructor
      *
@@ -38,4 +40,16 @@ public class InfectedEnemy extends Entity {
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
+    @Override
+    public void attack(Player player) {
+        if (this.getFacing().normalize().equals(player.getFacing().normalize())) {
+            System.out.println(this.getFacing().normalize() + " " + player.getFacing().normalize());
+            player.getMotion().add(player.getFacing().clone().add(0, -1).multiply(4));
+            this.getMotion().add(this.getFacing().clone().multiply(-1).multiply(5));
+        } else {
+            System.out.println(this.getFacing().normalize() + " " + player.getFacing().normalize());
+            player.getMotion().add(this.getFacing().clone().add(0, -1).multiply(4));
+            this.getMotion().add(player.getFacing().clone().multiply(5));
+        }
+    }
 }
