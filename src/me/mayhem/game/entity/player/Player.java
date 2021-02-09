@@ -46,6 +46,8 @@ public class Player extends Entity implements PlayerInteract{
             this.getAnimation().setColor(Color.WHITE);
         } else if (this.hasBeenAttacked){
             this.getAnimation().setColor(Color.RED);
+            this.damage(1);
+            this.getHealthBox().redrawHealthBars(this);
         }
 
         if (this.isForward()) {
