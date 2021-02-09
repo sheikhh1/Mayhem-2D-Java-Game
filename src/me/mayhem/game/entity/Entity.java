@@ -110,7 +110,7 @@ public abstract class Entity {
         return this.health;
     }
 
-    public void damage(double damage) {
+    public void damage(Entity cause, double damage) {
         this.health -= damage;
     }
 

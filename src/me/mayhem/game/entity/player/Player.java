@@ -34,9 +34,10 @@ public class Player extends Entity implements PlayerInteract{
         this.setState(EntityState.FALLING);
     }
 
-    public void playerAttacked() {
+    public void playerAttacked(Entity attacker) {
         this.hasBeenAttacked = true;
         this.attackedAnimateClock.restart();
+        this.damage(attacker, 1);
     }
 
     public void tick() {
@@ -46,7 +47,6 @@ public class Player extends Entity implements PlayerInteract{
             this.getAnimation().setColor(Color.WHITE);
         } else if (this.hasBeenAttacked){
             this.getAnimation().setColor(Color.RED);
-            this.damage(1);
             this.getHealthBox().redrawHealthBars(this);
         }
 
