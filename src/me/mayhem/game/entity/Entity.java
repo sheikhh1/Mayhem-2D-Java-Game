@@ -72,7 +72,7 @@ public abstract class Entity {
         this.animate = new EntityAnimation(type);
 
         if (this.type.getHasHealthBar()){
-            this.healthBox = new EntityHealthBox(this.position);
+            this.healthBox = new EntityHealthBox(this, this.position);
         }
     }
 

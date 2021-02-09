@@ -1,6 +1,9 @@
 package me.mayhem.game.entity.drawableentities.healthbox;
 
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
+import me.mayhem.game.event.struct.EventListener;
+import me.mayhem.game.event.struct.EventPriority;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
@@ -11,10 +14,12 @@ public class EntityHealthBox {
     private static final int HEALTH_BOX_WIDTH = 50;
     private static final int HEALTH_BOX_HEIGHT = 10;
 
+    private final Entity parent;
     private final RectangleShape totalHealth;
     private final RectangleShape currentHealth;
 
-    public EntityHealthBox(Vector entityPosition) {
+    public EntityHealthBox(Entity parent, Vector entityPosition) {
+        this.parent = parent;
         this.totalHealth = this.createHealthBox(new Vector(entityPosition.getX() - 25, entityPosition.getY() - 30), Color.RED);
         this.currentHealth = this.createHealthBox(new Vector(entityPosition.getX() - 25, entityPosition.getY() - 30), Color.GREEN);
     }
@@ -27,6 +32,12 @@ public class EntityHealthBox {
         rectangleShape.setFillColor(fillColour);
 
         return rectangleShape;
+    }
+
+    @EventListener(priority = EventPriority.HIGHEST)
+    public void onEntityDamaged(EntityDamageByEntityEvent event) {
+        this.redrawHealthBars(event.getAttacked());
+        this.redrawHealthBars(event.getAttacker());
     }
 
     public void redrawHealthBars(Entity entity) {
