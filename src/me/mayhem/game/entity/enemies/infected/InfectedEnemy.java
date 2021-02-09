@@ -42,13 +42,12 @@ public class InfectedEnemy extends Entity implements Enemy {
 
     @Override
     public void attack(Player player) {
+        player.playerAttacked();
         if (this.getFacing().normalize().equals(player.getFacing().normalize())) {
-            System.out.println(this.getFacing().normalize() + " " + player.getFacing().normalize());
             player.getMotion().add(player.getFacing().clone().add(0, -1).multiply(4));
             this.getMotion().add(this.getFacing().clone().multiply(-1).multiply(5));
         } else {
-            System.out.println(this.getFacing().normalize() + " " + player.getFacing().normalize());
-            player.getMotion().add(this.getFacing().clone().add(0, -1).multiply(4));
+            player.getMotion().add(this.getFacing().clone().add(-10, -1).multiply(4));
             this.getMotion().add(player.getFacing().clone().multiply(5));
         }
     }
