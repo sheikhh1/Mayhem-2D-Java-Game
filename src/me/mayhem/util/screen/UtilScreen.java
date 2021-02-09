@@ -6,6 +6,8 @@ import me.mayhem.util.Vector;
 
 public class UtilScreen {
 
+    public static final int SCREEN_RADIUS = 256;
+
     public static boolean isOffScreen(Entity entity) {
         return isOffScreenX(entity) || isOffScreenY(entity);
     }
@@ -16,11 +18,11 @@ public class UtilScreen {
     }
 
     public static boolean isOffScreenRightX(Vector position, Vector motion, int width) {
-        return (position.getX() + width + motion.getX()) > Mayhem.SCREEN_WIDTH;
+        return (position.getX() + width + motion.getX()) > (Mayhem.SCREEN_WIDTH - SCREEN_RADIUS);
     }
 
     public static boolean isOffScreenLeftX(Vector position, Vector motion) {
-        return (position.getX() + motion.getX()) < 0;
+        return (position.getX() + motion.getX()) < (SCREEN_RADIUS);
     }
 
     public static boolean isOffScreenY(Entity entity) {
@@ -28,7 +30,7 @@ public class UtilScreen {
     }
 
     public static boolean isOffScreenBottomY(Vector position, Vector motion, int height) {
-        return (position.getY() + height + motion.getY()) > Mayhem.SCREEN_HEIGHT;
+        return (position.getY() + height + motion.getY()) > (Mayhem.SCREEN_HEIGHT - SCREEN_RADIUS);
     }
 
     public static boolean isOffScreenTopY(Vector position, Vector motion) {

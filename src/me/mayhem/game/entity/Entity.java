@@ -5,10 +5,12 @@ import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
+import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Texture;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +28,7 @@ public abstract class Entity {
     private final Vector motion;
     private final Pathing pathing;
     private final Hitbox hitbox;
-    private final EntityPhysics entityPhysics;
+    protected EntityPhysics entityPhysics;
     private final EntityState[] states = new EntityState[2];
     private final List<Attribute<?>> attributes =  new ArrayList<>();
 
@@ -39,8 +41,12 @@ public abstract class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private boolean entityGrounded = true;
 
     private double health;
+    private boolean entityMelee = false;
+
+    EntityHealthBox healthBox;
 
     /**
      *
@@ -62,6 +68,13 @@ public abstract class Entity {
         this.attributes.addAll(Arrays.asList(attributes));
         this.entityPhysics = new EntityPhysics();
         this.animate = new EntityAnimation(type);
+
+        if (this.type.getHasHealthBar()){
+
+            this.healthBox = new EntityHealthBox(this.position);
+        }
+
+
     }
 
     public EntityType getType() {
@@ -164,6 +177,22 @@ public abstract class Entity {
         return this.entityBack;
     }
 
+    public boolean isStanding() {
+        return this.entityStanding;
+    }
+
+    public boolean isMelee() {
+        return this.entityMelee;
+    }
+
+    public void setMelee(boolean entityMelee) {
+        this.entityMelee = entityMelee;
+    }
+
+    public void setStanding(boolean entityStanding) {
+        this.entityStanding = entityStanding;
+    }
+
     public void setBack(boolean entityBack) {
         this.entityBack = entityBack;
     }
@@ -193,6 +222,10 @@ public abstract class Entity {
      */
     public void update(RenderWindow window) {
         animate.playAnimation(window);
+
+        if (this.type.getHasHealthBar()) {
+            healthBox.draw(window, this);
+        }
     }
 
     public void tick() {
@@ -204,6 +237,8 @@ public abstract class Entity {
             this.getEntityPhysics().jump();
         }
     }
+
+    public void setTexture(Texture texture) {}
 
     /**
      *
@@ -234,29 +269,53 @@ public abstract class Entity {
                 this.setFalling(true);
                 this.setJumping(false);
                 this.states[state.getIndex()] = state;
+            } else if (state == EntityState.MELEE) {
+                this.setMelee(true);
+                animate.setTimeOut(340);
+                animate.resetTimeOutClock();
+                this.setStanding(false);
+                this.states[state.getIndex()] = state;
             }
         } else {
             this.states[state.getIndex()] = state;
 
             if (state == EntityState.STANDING) {
                 animate.setColumn(0);
+                animate.resetTimeOutClock();
                 animate.setPause(true);
                 this.setForward(false);
                 this.setBack(false);
+                this.setMelee(false);
             } else if (state == EntityState.BACK) {
+                animate.setTimeOut(Integer.MAX_VALUE);
+                animate.resetTimeOutClock();
                 this.setForward(false);
                 this.setBack(true);
+                this.setMelee(false);
+                animate.setAvailableFrames(9);
                 this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
+                animate.setTimeOut(Integer.MAX_VALUE);
+                animate.resetTimeOutClock();
                 this.setForward(true);
                 this.setBack(false);
+                this.setMelee(false);
+                animate.setAvailableFrames(9);
                 this.facing = new Vector(1, 0);
+            } else if (state == EntityState.MELEE) {
+                this.setMelee(true);
+                animate.setTimeOut(340);
+                animate.resetTimeOutClock();
             }
         }
     }
 
     public EntityState getState(int index) {
         return this.states[index];
+    }
+
+    public EntityState getPreviousState() {
+        return this.currentState;
     }
 
     public boolean inBoundsY(Vector position) {
@@ -277,5 +336,17 @@ public abstract class Entity {
 
     public Vector getFacing() {
         return this.facing;
+    }
+
+    public Vector getCenter() {
+        return this.getPosition().clone().add(this.getWidth() / 2.0f, this.getHeight() / 2.0f);
+    }
+
+    public boolean isEntityGrounded() {
+        return entityGrounded;
+    }
+
+    public void setEntityGrounded(boolean entityGrounded) {
+        this.entityGrounded = entityGrounded;
     }
 }

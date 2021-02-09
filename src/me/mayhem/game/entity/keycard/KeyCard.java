@@ -1,45 +1,35 @@
 package me.mayhem.game.entity.keycard;
 
-import me.mayhem.Mayhem;
 import me.mayhem.game.ai.path.Pathing;
-import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.physics.HoverPhysics;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
-
-import java.io.IOException;
+import org.jsfml.system.Vector2f;
 
 public class KeyCard extends Entity {
 
-    private Sprite sprite;
+    private RectangleShape keyCard;
+    private Vector keyCardPosition;
 
-    public KeyCard(Vector position, Attribute<?>... attributes) {
-        super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 0, 0), Pathing.NO_PATHING, attributes);
-
-        this.sprite = this.loadFromPath("interactables/keyCard.png");
+    public KeyCard(Vector position) {
+        super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HOVER_PATHING);
+        super.entityPhysics = new HoverPhysics();
+        this.keyCardPosition = position;
+        this.getEntityPhysics().setEntityMotion(this.getMotion());
+        this.keyCard = new RectangleShape(new Vector2f(31, 31));
+        this.keyCard.setPosition(position.toVector());
+        this.keyCard.setTexture(EntityType.KEY_CARD.getEntityTexture());
     }
 
     @Override
-    public void update(RenderWindow window) {
-        window.draw(this.sprite);
+    public void update(RenderWindow renderWindow) {
+        this.keyCard.setPosition(this.keyCardPosition.toVector());
+        renderWindow.draw(this.keyCard);
     }
 
-    public Sprite loadFromPath(String path) {
-        Texture newTexture = new Texture();
-        Sprite sprite = new Sprite();
 
-        try {
-            newTexture.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
-            sprite.setTexture(newTexture);
-            return sprite;
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
 }

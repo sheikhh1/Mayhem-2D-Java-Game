@@ -17,6 +17,8 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage;
     private Vector playerSpawnPosition;
+    private Vector keyCardSpawnPositon;
+    private Vector doorPosition;
 
     private final List<Block> blocks = new ArrayList<>();
     private final List<Vector> enemySpawnPositions = new ArrayList<>();
@@ -46,6 +48,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
+        Vector newCenter = null;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
@@ -62,13 +65,43 @@ public class EasyLevelGenerator implements LevelGenerator {
                     this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
                 } else if (red == 255 && green == 128 && blue == 0) {
                     this.obstacleSpawnPositions.add(new Vector(x * 32, y * 32));
+                } else if (red == 200 && green == 200 && blue == 200) {
+                    newCenter = new Vector(x * 32, y * 32);
+                } else if (red == 0 && green == 255 && blue == 0) {
+                    this.keyCardSpawnPositon = new Vector(x * 32, y * 32);
+                } else if (red == 0 && green == 255 && blue == 255) {
+                    this.doorPosition = new Vector(x * 32, y * 32);
                 }
+            }
+        }
+
+        if (newCenter != null) {
+            for (Block block : this.blocks) {
+                block.getPosition().subtract(newCenter);
+            }
+
+            this.keyCardSpawnPositon.subtract(newCenter);
+            this.doorPosition.subtract(newCenter);
+            this.playerSpawnPosition.subtract(newCenter);
+
+            for (Vector enemySpawnPosition : this.enemySpawnPositions) {
+                enemySpawnPosition.subtract(newCenter);
             }
         }
     }
 
     public Vector getPlayerSpawnPosition() {
         return this.playerSpawnPosition;
+    }
+
+    @Override
+    public Vector getKeyCardSpawnPosition() {
+        return this.keyCardSpawnPositon;
+    }
+
+    @Override
+    public Vector getDoorPosition() {
+        return this.doorPosition;
     }
 
     public List<Vector> getEnemySpawnPositions() {

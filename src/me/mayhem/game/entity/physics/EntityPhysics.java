@@ -13,7 +13,8 @@ public class EntityPhysics {
 
     private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
-    private Vector motion;
+
+    protected Vector motion;
 
     /**
      * Set Player motion

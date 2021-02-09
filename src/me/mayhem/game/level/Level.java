@@ -36,7 +36,7 @@ public class Level {
         return this.entities;
     }
 
-    public void spawnEnemy(Entity entity) {
+    public void spawnEntity(Entity entity) {
         this.entities.add(entity);
     }
 

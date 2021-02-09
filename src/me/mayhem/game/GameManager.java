@@ -3,7 +3,9 @@ package me.mayhem.game;
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
+import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
 import me.mayhem.game.entity.physics.EntityPhysics;
@@ -12,6 +14,7 @@ import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardReleaseListener;
 import me.mayhem.game.entity.player.listeners.input.PlayerMousePressListener;
+import me.mayhem.game.entity.player.listeners.input.PlayerMouseReleaseListener;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
@@ -20,11 +23,9 @@ import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Text;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,12 +34,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameManager {
 
     private final RenderWindow renderWindow;
-    private final Text playerHealth;
 
     private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
+    private PlayerMouseReleaseListener playerMouseRelease;
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
@@ -52,9 +53,6 @@ public class GameManager {
         this.currentLevel = new Level(difficulty, playerName);
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
 
-        this.playerHealth = new Text("PLAYER HEALTH: 0/0", UtilFont.loadFont("fonts/FreeMono.ttf"));
-        this.drawnShapes.add(this.playerHealth);
-
         this.initialize();
     }
 
@@ -64,9 +62,10 @@ public class GameManager {
      *
      */
     public void initialize() {
-        this.playerMousePress = new PlayerMousePressListener();
+        this.playerMousePress = new PlayerMousePressListener(this.currentLevel.getPlayer());
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
+        this.playerMouseRelease = new PlayerMouseReleaseListener(this.currentLevel.getPlayer());
     }
 
     /**
@@ -86,11 +85,11 @@ public class GameManager {
      *
      */
     public void draw() {
+        this.currentLevel.getLayout().draw(this.renderWindow);
+
         for (Entity entity : this.currentLevel.getEntities()) {
             entity.update(this.renderWindow);
         }
-
-        this.currentLevel.getLayout().draw(this.renderWindow);
 
         for (Drawable drawnShape : this.drawnShapes) {
             this.renderWindow.draw(drawnShape);
@@ -111,41 +110,8 @@ public class GameManager {
             entity.tick();
         }
 
-        Player player = this.currentLevel.getPlayer();
-
-        if (UtilScreen.isOffScreen(player)) {
-            int xDiff = 0;
-            int yDiff = 0;
-
-            if (player.getPosition().getX() > Mayhem.SCREEN_WIDTH) {
-                xDiff = -1;
-            } else if (player.getPosition().getX() < 0) {
-                xDiff = +1;
-            }
-
-            if (player.getPosition().getY() > Mayhem.SCREEN_HEIGHT) {
-                yDiff = -1;
-            } else if (player.getPosition().getY() < 0) {
-                yDiff = +1;
-            }
-
-            Vector movement = new Vector(xDiff, yDiff);
-
-            if (UtilScreen.isOffScreenX(player)) {
-                player.getMotion().setX(0);
-                player.setState(EntityState.STANDING);
-            }
-
-            if (UtilScreen.isOffScreenY(player)) {
-                player.getMotion().setY(0);
-                player.setState(EntityState.NO_MOTION);
-            }
-
-            this.currentLevel.getLayout().moveBlocks(movement);
-        }
-
+        this.handleScreenScrolling();
         this.handleEntityVelocity();
-        this.playerHealth.setString("PLAYER HEALTH " + player.getHealth() + "/" + player.getType().getMaxHealth());
     }
 
     private void handleEntityCollisions() {
@@ -185,12 +151,20 @@ public class GameManager {
                         entity.setAttribute("collided", true);
                     }
 
-//                    System.out.println("ERROR");
-
-                    if (this.isLowerThenEntity(entity, block) && !collisionDetected) {
+                    if (this.isLowerThanEntity(entity, block) && !collisionDetected) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
                             center.setY(entity.getEntityPhysics().getFallStrength());
+                            entity.setEntityGrounded(true);
+                        }
+                    }
+
+                    if (this.isHigherThanEntity(entity, block)) {
+                        if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
+                            if (entity.isJumping())  {
+                                entity.setJumping(false);
+                                entity.setFalling(true);
+                            }
                         }
                     }
 
@@ -207,20 +181,55 @@ public class GameManager {
                 entity.setState(EntityState.NO_MOTION);
             } else {
                 entity.setState(EntityState.FALLING);
+                if (entity.getType() == EntityType.PLAYER) {
+                    entity.setEntityGrounded(false);
+                }
             }
         }
     }
 
-    private boolean isLowerThenEntity(Entity entity, Block block) {
+    private boolean isLowerThanEntity(Entity entity, Block block) {
         return block.getCenter().getY() > (entity.getPosition().getY() + entity.getHeight());
+    }
+
+    private boolean isHigherThanEntity(Entity entity, Block block) {
+        return block.getCenter().getY() < (entity.getPosition().getY() + entity.getHeight());
+    }
+
+    private void handleScreenScrolling() {
+        Player player = this.currentLevel.getPlayer();
+
+        if (UtilScreen.isOffScreen(player)) {
+            Vector screenMotion = new Vector(0, 0);
+
+            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setX(-3);
+            } else if ((player.getPosition().getX() + player.getMotion().getX()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setX(+3);
+            }
+
+            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setY(-3);
+            } else if ((player.getPosition().getY() + player.getMotion().getY()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setY(+3);
+            }
+
+
+            for (Entity entity : this.currentLevel.getEntities()) {
+                if (entity instanceof Player) {
+                    continue;
+                }
+
+                entity.getPosition().add(screenMotion);
+            }
+
+            this.currentLevel.getPlayer().getPosition().add(screenMotion);
+            this.currentLevel.getLayout().moveBlocks(screenMotion);
+        }
     }
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            if (UtilScreen.isOffScreen(entity)) {
-                UtilScreen.fixEntityMotion(entity);
-            }
-
             Vector motionToAdd = entity.getMotion().clone();
 
             if (Math.abs(motionToAdd.getX()) > EntityPhysics.MAX_SPEED) {

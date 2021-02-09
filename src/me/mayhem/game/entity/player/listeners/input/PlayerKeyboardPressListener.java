@@ -33,7 +33,7 @@ public class PlayerKeyboardPressListener extends KeyboardPressListener {
         if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
             this.escapeHandler();
         } else {
-            player.setState(this.keyHandler.get(event.asKeyEvent().key));
+            this.player.setState(this.keyHandler.get(event.asKeyEvent().key));
         }
     }
 

@@ -7,6 +7,7 @@ public enum EntityState {
     STANDING(1),
     JUMPING(0),
     FALLING(0),
+    MELEE(0),
     NO_MOTION(0),
 
     ;
