@@ -6,8 +6,10 @@ import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
+import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Texture;
@@ -111,7 +113,15 @@ public abstract class Entity {
     }
 
     public void damage(Entity cause, double damage) {
-        this.health -= damage;
+        EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(this, cause, damage);
+
+        EventManager.callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
+        this.health -= event.getDamage();
     }
 
     public EntityHealthBox getHealthBox() {
