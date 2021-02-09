@@ -42,7 +42,7 @@ public class EntityHealthBox {
     @EventListener(priority = EventPriority.HIGHEST)
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
         if (Objects.equals(this.parent, event.getAttacked())) {
-            this.redrawHealthBars(event.getAttacker());
+            this.redrawHealthBars(event.getAttacked());
         } else if (Objects.equals(this.parent, event.getAttacker())) {
             this.redrawHealthBars(event.getAttacker());
         }
