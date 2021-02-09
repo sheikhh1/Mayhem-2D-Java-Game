@@ -2,6 +2,7 @@ package me.mayhem.game.entity.drawableentities.healthbox;
 
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.game.event.struct.EventListener;
 import me.mayhem.game.event.struct.EventPriority;
 import me.mayhem.util.Vector;
@@ -24,6 +25,8 @@ public class EntityHealthBox {
         this.parent = parent;
         this.totalHealth = this.createHealthBox(new Vector(entityPosition.getX() - 25, entityPosition.getY() - 30), Color.RED);
         this.currentHealth = this.createHealthBox(new Vector(entityPosition.getX() - 25, entityPosition.getY() - 30), Color.GREEN);
+
+        EventManager.registerListener(this);
     }
 
     private RectangleShape createHealthBox(Vector position, Color fillColour) {
