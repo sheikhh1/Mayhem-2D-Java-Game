@@ -56,6 +56,6 @@ public class EntityHealthBox {
      * @return the percentage health
      */
     public int calculateSize(double currentHealth, double maxHealth) {
-        return (int) ((currentHealth / maxHealth) * 100);
+        return (int) ((currentHealth / maxHealth) * 50);
     }
 }
