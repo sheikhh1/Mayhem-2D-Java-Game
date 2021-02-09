@@ -9,6 +9,8 @@ import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 
+import java.util.Objects;
+
 public class EntityHealthBox {
 
     private static final int HEALTH_BOX_WIDTH = 50;
@@ -36,8 +38,11 @@ public class EntityHealthBox {
 
     @EventListener(priority = EventPriority.HIGHEST)
     public void onEntityDamaged(EntityDamageByEntityEvent event) {
-        this.redrawHealthBars(event.getAttacked());
-        this.redrawHealthBars(event.getAttacker());
+        if (Objects.equals(this.parent, event.getAttacked())) {
+            this.redrawHealthBars(event.getAttacker());
+        } else if (Objects.equals(this.parent, event.getAttacker())) {
+            this.redrawHealthBars(event.getAttacker());
+        }
     }
 
     public void redrawHealthBars(Entity entity) {
