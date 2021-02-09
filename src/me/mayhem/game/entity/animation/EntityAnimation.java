@@ -37,6 +37,10 @@ public class EntityAnimation {
         this.column = column;
     }
 
+    public void setColor(Color spriteColor) {
+        this.entitySprite.setColor(spriteColor);
+    }
+
     public int getRow() {
         return this.row;
     }
