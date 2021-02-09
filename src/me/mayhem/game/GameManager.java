@@ -3,7 +3,6 @@ package me.mayhem.game;
 import me.mayhem.Mayhem;
 import me.mayhem.game.ai.audio.impl.GameStartSound;
 import me.mayhem.game.ai.audio.impl.JumpSound;
-import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.event.EntityCollideEvent;
@@ -167,11 +166,6 @@ public class GameManager {
                             }
                         }
                     }
-
-/*                    if (this.isHigherThanEntity(entity, block) && !collisionDetected) {
-                        collisionDetected = true;
-
-                    }*/
 
                     entity.getMotion().subtract(center.getX(), center.getY());
                 }
