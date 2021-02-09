@@ -34,7 +34,7 @@ public class UtilScreen {
     }
 
     public static boolean isOffScreenTopY(Vector position, Vector motion) {
-        return (position.getY() + motion.getY()) < 0;
+        return (position.getY() + motion.getY()) < SCREEN_RADIUS;
     }
 
     public static void fixEntityMotion(Entity entity) {
