@@ -27,6 +27,14 @@ public enum Direction {
         this.checker = checker;
     }
 
+    /**
+     *
+     * Determines if {@param a} is {@link Direction} {@param b} (i.e. if A is above B)
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public boolean is(Vector a, Vector b) {
         return this.checker.apply(a.clone(), b);
     }
