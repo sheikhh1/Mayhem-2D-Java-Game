@@ -31,4 +31,9 @@ public class SpriteHitbox extends AbstractHitbox {
     public FloatRect asFloatRect() {
         return new FloatRect(this.position.getX(), this.position.getY(), this.width, this.height);
     }
+
+    @Override
+    public String toString() {
+        return asFloatRect().toString();
+    }
 }
