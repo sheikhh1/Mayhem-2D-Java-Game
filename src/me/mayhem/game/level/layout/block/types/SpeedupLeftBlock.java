@@ -11,7 +11,7 @@ import org.jsfml.graphics.Sprite;
 
 public class SpeedupLeftBlock extends Block {
 
-    private static final Vector MOVE_LEFT = new Vector(-5, 0);
+    private static final Vector MOVE_LEFT = new Vector(-10, 0);
 
     public SpeedupLeftBlock(Vector position, Sprite sprite, Hitbox hitbox, int width, int height) {
         super(position, sprite, hitbox, width, height);
