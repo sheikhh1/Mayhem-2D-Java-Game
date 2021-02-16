@@ -6,17 +6,22 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.util.Vector;
+import me.mayhem.util.direction.Direction;
 import org.jsfml.graphics.Sprite;
 
-public class SpeedupBlock extends Block {
+public class SpeedupRightBlock extends Block {
 
-    public SpeedupBlock(Vector position, Sprite sprite, Hitbox hitbox, int width, int height) {
+    public SpeedupRightBlock(Vector position, Sprite sprite, Hitbox hitbox, int width, int height) {
         super(position, sprite, hitbox, width, height);
     }
 
     @Override
     public void onCollide(Entity entity) {
+        if (!Direction.ABOVE.is(entity.getPosition(), this.getPosition())) {
+            return;
+        }
 
+        entity.getMotion().add(entity.getFacing().multiply(2));
     }
 
     public static Builder builder() {
@@ -30,7 +35,7 @@ public class SpeedupBlock extends Block {
                 this.hitbox = new SpriteHitbox(this.position, this.height, this.width);
             }
 
-            return new SpeedupBlock(this.position, BlockTexture.SPEED_UP.getSprite(), this.hitbox, this.width, this.height);
+            return new SpeedupRightBlock(this.position, BlockTexture.SPEED_UP_RIGHT.getSprite(), this.hitbox, this.width, this.height);
         }
     }
 }

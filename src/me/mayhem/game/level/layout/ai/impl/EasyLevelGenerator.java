@@ -5,7 +5,7 @@ import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.game.level.layout.block.types.BouncyBlock;
 import me.mayhem.game.level.layout.block.types.LavaBlock;
-import me.mayhem.game.level.layout.block.types.SpeedupBlock;
+import me.mayhem.game.level.layout.block.types.SpeedupRightBlock;
 import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
@@ -39,7 +39,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
         this.colours.put(BlockTexture.BOUNCY.getRgb(), (x, y) -> this.blocks.add(this.createBouncyBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.LAVA.getRgb(), (x, y) -> this.blocks.add(this.createLavaBlock(x * 32, y * 32)));
-        this.colours.put(BlockTexture.SPEED_UP.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupBlock(x * 32, y * 32)));
+        this.colours.put(BlockTexture.SPEED_UP_RIGHT.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupBlock(x * 32, y * 32)));
     }
 
     @Override
@@ -161,7 +161,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         int width = 31;
         int height = 31;
 
-        return SpeedupBlock.builder()
+        return SpeedupRightBlock.builder()
                 .position(position)
                 .width(width)
                 .height(height)
