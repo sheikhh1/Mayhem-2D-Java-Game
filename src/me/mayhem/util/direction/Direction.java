@@ -9,12 +9,14 @@ public enum Direction {
     ABOVE((a, b) -> {
         Vector between = a.subtract(b).normalize();
 
-        return between.getY() > 0;
+        System.out.println(between.getY());
+
+        return between.getY() < 0;
     }),
     BELOW((a, b) -> {
         Vector between = a.subtract(b).normalize();
 
-        return between.getY() < 0;
+        return between.getY() > 0;
     }),
 
     ;
