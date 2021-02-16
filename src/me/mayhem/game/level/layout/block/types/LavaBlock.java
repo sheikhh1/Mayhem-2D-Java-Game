@@ -16,6 +16,12 @@ public class LavaBlock extends Block {
 
     @Override
     public void onCollide(Entity entity) {
+        Vector directionFromBlock = this.getPosition().clone().subtract(entity.getPosition()).normalize();
+
+        if (directionFromBlock.getY() >= 0) {
+            return;
+        }
+
         entity.damage(entity, 20f);
     }
 
