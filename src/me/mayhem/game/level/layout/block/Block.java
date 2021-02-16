@@ -1,20 +1,19 @@
 package me.mayhem.game.level.layout.block;
 
 import me.mayhem.game.collision.Hitbox;
-import me.mayhem.game.collision.impl.ShapeHitbox;
+import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Shape;
+import org.jsfml.graphics.Sprite;
 
 public class Block {
 
     private final Vector position;
-    private final Shape drawable;
+    private final Sprite drawable;
     private final Hitbox hitbox;
 
-    protected Block(Vector position, Shape drawable, Hitbox hitbox) {
+    protected Block(Vector position, Sprite drawable, Hitbox hitbox) {
         this.position = position;
         this.drawable = drawable;
         this.hitbox = hitbox;
@@ -48,10 +47,8 @@ public class Block {
         protected Vector position;
         protected int width;
         protected int height;
-        protected Shape drawable;
+        protected Sprite sprite;
         protected Hitbox hitbox;
-        protected Color outlineColor = Color.WHITE;
-        protected Color fillColor = Color.WHITE;
 
         protected Builder() {}
 
@@ -70,31 +67,17 @@ public class Block {
             return this;
         }
 
-        public Builder drawable(Shape drawable) {
-            this.drawable = drawable;
-            return this;
-        }
-
-        public Builder outlineColor(Color outlineColor) {
-            this.outlineColor = outlineColor;
-            return this;
-        }
-
-        public Builder fillColor(Color fillColor) {
-            this.fillColor = fillColor;
+        public Builder sprite(Sprite sprite) {
+            this.sprite = sprite;
             return this;
         }
 
         public Block build() {
-            this.drawable.setFillColor(this.fillColor);
-            this.drawable.setOutlineColor(this.outlineColor);
-            this.drawable.setPosition(this.position.toVector());
-
             if (this.hitbox == null) {
-                this.hitbox = new ShapeHitbox(this.drawable, this.position, this.height, this.width);
+                this.hitbox = new SpriteHitbox(this.position, this.height, this.width);
             }
 
-            return new Block(this.position, this.drawable, this.hitbox);
+            return new Block(this.position, this.sprite, this.hitbox);
         }
     }
 }
