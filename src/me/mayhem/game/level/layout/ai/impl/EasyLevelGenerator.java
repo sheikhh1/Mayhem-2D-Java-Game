@@ -3,10 +3,7 @@ package me.mayhem.game.level.layout.ai.impl;
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
-import me.mayhem.game.level.layout.block.types.BouncyBlock;
-import me.mayhem.game.level.layout.block.types.LavaBlock;
-import me.mayhem.game.level.layout.block.types.SpeedupLeftBlock;
-import me.mayhem.game.level.layout.block.types.SpeedupRightBlock;
+import me.mayhem.game.level.layout.block.types.*;
 import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
@@ -42,6 +39,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         this.colours.put(BlockTexture.LAVA.getRgb(), (x, y) -> this.blocks.add(this.createLavaBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.SPEED_UP_RIGHT.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupRightBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.SPEED_UP_LEFT.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupLeftBlock(x * 32, y * 32)));
+        this.colours.put(BlockTexture.WALL_DAMAGE.getRgb(), (x, y) -> this.blocks.add(this.createWallDamageBlock(x * 32, y * 32)));
     }
 
     @Override
@@ -176,6 +174,18 @@ public class EasyLevelGenerator implements LevelGenerator {
         int height = 31;
 
         return SpeedupLeftBlock.builder()
+                .position(position)
+                .width(width)
+                .height(height)
+                .build();
+    }
+
+    private Block createWallDamageBlock(float x, float y) {
+        Vector position = new Vector(x, y);
+        int width = 31;
+        int height = 31;
+
+        return WallDamageBlock.builder()
                 .position(position)
                 .width(width)
                 .height(height)
