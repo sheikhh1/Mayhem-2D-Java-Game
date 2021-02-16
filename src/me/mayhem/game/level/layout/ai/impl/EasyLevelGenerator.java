@@ -2,6 +2,7 @@ package me.mayhem.game.level.layout.ai.impl;
 
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
+import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Color;
@@ -48,10 +49,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
-                int pixel = bufferedLevel.getRGB(x, y);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
+                RGB rgb = RGB.from(bufferedLevel.getRGB(x, y));
 
                 if (red == 255 && green == 255 && blue == 255) {
                     this.blocks.add(this.createBlock(x * 32,y * 32));
