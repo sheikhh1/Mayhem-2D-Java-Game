@@ -1,7 +1,5 @@
 package me.mayhem.util;
 
-import java.util.Objects;
-
 public class RGB {
 
     private final int red;
@@ -42,12 +40,15 @@ public class RGB {
 
         RGB rgb = (RGB) o;
 
-        return this.isEqual(rgb.red, rgb.blue, rgb.green);
+        return this.isEqual(rgb.red, rgb.green, rgb.blue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(red, green, blue);
+        int rgb = red;
+        rgb = (rgb << 8) + green;
+        rgb = (rgb << 8) + blue;
+        return rgb;
     }
 
     @Override
