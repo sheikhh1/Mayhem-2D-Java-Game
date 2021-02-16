@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.enemies.corrosive;
+package me.mayhem.game.entity.entities.enemies.corrosive;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;

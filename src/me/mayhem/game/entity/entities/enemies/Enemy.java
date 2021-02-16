@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.enemies;
+package me.mayhem.game.entity.entities.enemies;
 
 import me.mayhem.game.entity.player.Player;
 
