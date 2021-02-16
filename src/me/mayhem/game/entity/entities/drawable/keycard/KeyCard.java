@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.drawableentities.keycard;
+package me.mayhem.game.entity.entities.drawable.keycard;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.Attribute;

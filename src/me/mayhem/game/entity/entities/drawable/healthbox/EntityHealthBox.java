@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.drawableentities.healthbox;
+package me.mayhem.game.entity.entities.drawable.healthbox;
 
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
