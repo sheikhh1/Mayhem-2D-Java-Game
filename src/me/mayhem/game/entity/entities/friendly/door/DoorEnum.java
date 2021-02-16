@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.door;
+package me.mayhem.game.entity.entities.friendly.door;
 
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Texture;

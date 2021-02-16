@@ -2,7 +2,7 @@ package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.door.DoorEnum;
+import me.mayhem.game.entity.entities.friendly.door.DoorEnum;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 
