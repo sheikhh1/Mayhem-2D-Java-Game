@@ -3,7 +3,6 @@ package me.mayhem.game.level.layout.block;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.ShapeHitbox;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.level.layout.block.types.BouncyBlock;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
@@ -44,15 +43,15 @@ public class Block {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static class Builder {
 
-        private Vector position;
-        private int width;
-        private int height;
-        private Shape drawable;
-        private Hitbox hitbox;
-        private Color outlineColor = Color.WHITE;
-        private Color fillColor = Color.WHITE;
+        protected Vector position;
+        protected int width;
+        protected int height;
+        protected Shape drawable;
+        protected Hitbox hitbox;
+        protected Color outlineColor = Color.WHITE;
+        protected Color fillColor = Color.WHITE;
 
         protected Builder() {}
 
@@ -95,7 +94,7 @@ public class Block {
                 this.hitbox = new ShapeHitbox(this.drawable, this.position, this.height, this.width);
             }
 
-            return new BouncyBlock(this.position, this.drawable, this.hitbox);
+            return new Block(this.position, this.drawable, this.hitbox);
         }
     }
 }
