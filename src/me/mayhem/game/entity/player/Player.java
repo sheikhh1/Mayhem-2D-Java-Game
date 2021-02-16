@@ -34,10 +34,12 @@ public class Player extends Entity implements PlayerInteract{
         this.setState(EntityState.FALLING);
     }
 
-    public void playerAttacked(Entity attacker) {
+    @Override
+    public void damage(Entity cause, double damage) {
+        super.damage(cause, damage);
+
         this.hasBeenAttacked = true;
         this.attackedAnimateClock.restart();
-        this.damage(attacker, 1);
     }
 
     public void tick() {
