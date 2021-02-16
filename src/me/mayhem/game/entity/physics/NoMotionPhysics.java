@@ -5,6 +5,8 @@ import me.mayhem.util.Vector;
 
 public class NoMotionPhysics extends EntityPhysics {
 
+    public static final NoMotionPhysics NO_MOTION = new NoMotionPhysics();
+
     @Override
     public void setEntityMotion(Vector motion) {}
 
