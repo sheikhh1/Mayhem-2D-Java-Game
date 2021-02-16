@@ -7,6 +7,7 @@ import org.jsfml.graphics.Sprite;
 public enum BlockTexture {
 
     BASIC(RGB.of(255, 255, 255), UtilSprite.loadFromPath("blocks/default.png", 1.6f, 1.6f)),
+    BOUNCY(RGB.of(255, 255, 255), UtilSprite.loadFromPath("blocks/bouncy.png", 1.6f, 1.6f)),
 
     ;
 
