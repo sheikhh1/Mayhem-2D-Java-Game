@@ -53,4 +53,11 @@ public class RGB {
     public static RGB of(int red, int green, int blue) {
         return new RGB(red, green, blue);
     }
+
+    public static RGB from(int pixel) {
+        int red = (pixel >> 16) & 0xff;
+        int green = (pixel >> 8) & 0xff;
+        int blue = (pixel) & 0xff;
+        return of(red, green, blue);
+    }
 }
