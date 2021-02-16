@@ -9,6 +9,7 @@ public enum BlockTexture {
     BASIC(RGB.of(255, 255, 255), UtilSprite.loadFromPath("blocks/default.png", 1.6f, 1.6f)),
     BOUNCY(RGB.of(255, 255, 255), UtilSprite.loadFromPath("blocks/bouncy.png", 1.6f, 1.6f)),
     LAVA(RGB.of(255, 63, 0), UtilSprite.loadFromPath("blocks/lava.png", 1.6f, 1.6f)),
+    SPEED_UP(RGB.of(138, 138, 138), UtilSprite.loadFromPath("blocks/speedup.png", 1.6f, 1.6f)),
 
     ;
 
