@@ -16,6 +16,16 @@ public enum Direction {
 
         return between.getY() > 0;
     }),
+    LEFT((a, b) -> {
+        Vector between = a.subtract(b).normalize();
+
+        return between.getX() > 0;
+    }),
+    RIGHT((a, b) -> {
+        Vector between = a.subtract(b).normalize();
+
+        return between.getX() < 0;
+    })
 
     ;
 
