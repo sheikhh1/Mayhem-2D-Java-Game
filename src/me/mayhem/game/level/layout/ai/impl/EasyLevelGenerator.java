@@ -37,6 +37,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(155, 155, 155), (x, y) -> this.blocks.add(this.createBouncyBlock(x * 32, y * 32)));
+        this.colours.put(RGB.of(138, 138, 138), (x, y) -> this.blocks.add(this.createLavaBlock(x * 32, y * 32)));
     }
 
     @Override
