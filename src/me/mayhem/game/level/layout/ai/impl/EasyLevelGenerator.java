@@ -23,7 +23,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage;
     private Vector playerSpawnPosition;
-    private Vector keyCardSpawnPositon;
+    private Vector keyCardSpawnPosition;
     private Vector doorPosition;
     private Vector newCenter = null;
 
@@ -37,7 +37,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new Vector(x * 32, y * 32)));
         this.colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
-        this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPosition = new Vector(x * 32, y * 32));
         this.colours.put(BlockTexture.BOUNCY.getRgb(), (x, y) -> this.blocks.add(this.createBouncyBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.LAVA.getRgb(), (x, y) -> this.blocks.add(this.createLavaBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.SPEED_UP_RIGHT.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupRightBlock(x * 32, y * 32)));
@@ -79,8 +79,8 @@ public class EasyLevelGenerator implements LevelGenerator {
                 block.getPosition().subtract(this.newCenter);
             }
 
-            if (this.keyCardSpawnPositon != null) {
-                this.keyCardSpawnPositon.subtract(this.newCenter);
+            if (this.keyCardSpawnPosition != null) {
+                this.keyCardSpawnPosition.subtract(this.newCenter);
             }
 
             if (this.doorPosition != null) {
@@ -103,7 +103,7 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     @Override
     public Vector getKeyCardSpawnPosition() {
-        return this.keyCardSpawnPositon;
+        return this.keyCardSpawnPosition;
     }
 
     @Override
