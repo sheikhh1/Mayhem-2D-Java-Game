@@ -2,6 +2,7 @@ package me.mayhem.game.level.layout.block;
 
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.ShapeHitbox;
+import me.mayhem.game.entity.Entity;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
@@ -35,6 +36,8 @@ public class Block {
     public Hitbox getHitbox() {
         return this.hitbox;
     }
+
+    public void onCollide(Entity entity) {}
 
     public static Builder builder() {
         return new Builder();
