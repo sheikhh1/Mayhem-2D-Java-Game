@@ -11,6 +11,8 @@ import org.jsfml.graphics.Sprite;
 
 public class SpeedupRightBlock extends Block {
 
+    private static final Vector MOVE_RIGHT = new Vector(5, 0);
+
     public SpeedupRightBlock(Vector position, Sprite sprite, Hitbox hitbox, int width, int height) {
         super(position, sprite, hitbox, width, height);
     }
@@ -21,7 +23,7 @@ public class SpeedupRightBlock extends Block {
             return;
         }
 
-        entity.getMotion().add(entity.getFacing().multiply(2));
+        entity.getMotion().add(MOVE_RIGHT);
     }
 
     public static Builder builder() {
