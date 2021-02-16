@@ -4,6 +4,7 @@ import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.game.level.layout.block.types.BouncyBlock;
+import me.mayhem.game.level.layout.block.types.LavaBlock;
 import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
@@ -134,7 +135,18 @@ public class EasyLevelGenerator implements LevelGenerator {
         int height = 31;
 
         return BouncyBlock.builder()
-                .sprite(BlockTexture.BOUNCY.getSprite())
+                .position(position)
+                .width(width)
+                .height(height)
+                .build();
+    }
+
+    private Block createLavaBlock(float x, float y) {
+        Vector position = new Vector(x, y);
+        int width = 31;
+        int height = 31;
+
+        return LavaBlock.builder()
                 .position(position)
                 .width(width)
                 .height(height)
