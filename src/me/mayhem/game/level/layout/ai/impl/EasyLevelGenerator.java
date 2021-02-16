@@ -30,12 +30,12 @@ public class EasyLevelGenerator implements LevelGenerator {
     private final Map<RGB, BiConsumer<Integer, Integer>> colours = new HashMap<>();
 
     public EasyLevelGenerator() {
-        colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
-        colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
-        colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new Vector(x * 32, y * 32)));
-        colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
-        colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
-        colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
+        this.colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new Vector(x * 32, y * 32)));
+        this.colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
     }
 
     @Override
