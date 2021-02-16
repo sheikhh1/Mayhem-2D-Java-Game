@@ -2,14 +2,12 @@ package me.mayhem.game.level.layout.ai.impl;
 
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
+import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.game.level.layout.block.types.BouncyBlock;
 import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Image;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.system.Vector2f;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -123,8 +121,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         int height = 31;
 
         return Block.builder()
-                .fillColor(Color.RED)
-                .drawable(new RectangleShape(new Vector2f(width, height)))
+                .sprite(BlockTexture.BASIC.getSprite())
                 .position(position)
                 .width(width)
                 .height(height)
@@ -137,8 +134,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         int height = 31;
 
         return BouncyBlock.builder()
-                .fillColor(Color.BLUE)
-                .drawable(new RectangleShape(new Vector2f(width, height)))
+                .sprite(BlockTexture.BOUNCY.getSprite())
                 .position(position)
                 .width(width)
                 .height(height)
