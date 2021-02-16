@@ -6,6 +6,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.layout.block.Block;
+import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Sprite;
 
@@ -32,7 +33,7 @@ public class BouncyBlock extends Block {
                 this.hitbox = new SpriteHitbox(this.position, this.height, this.width);
             }
 
-            return new BouncyBlock(this.position, this.sprite, this.hitbox, this.width, this.height);
+            return new BouncyBlock(this.position, BlockTexture.BOUNCY.getSprite(), this.hitbox, this.width, this.height);
         }
     }
 }
