@@ -75,9 +75,17 @@ public class EasyLevelGenerator implements LevelGenerator {
                 block.getPosition().subtract(this.newCenter);
             }
 
-            this.keyCardSpawnPositon.subtract(this.newCenter);
-            this.doorPosition.subtract(this.newCenter);
-            this.playerSpawnPosition.subtract(this.newCenter);
+            if (this.keyCardSpawnPositon != null) {
+                this.keyCardSpawnPositon.subtract(this.newCenter);
+            }
+
+            if (this.doorPosition != null) {
+                this.doorPosition.subtract(this.newCenter);
+            }
+
+            if (this.playerSpawnPosition != null) {
+                this.playerSpawnPosition.subtract(this.newCenter);
+            }
 
             for (Vector enemySpawnPosition : this.enemySpawnPositions) {
                 enemySpawnPosition.subtract(this.newCenter);
