@@ -5,7 +5,7 @@ import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
-import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
+import me.mayhem.game.entity.entities.drawable.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
