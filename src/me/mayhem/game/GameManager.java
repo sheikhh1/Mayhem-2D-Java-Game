@@ -10,10 +10,7 @@ import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
-import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardPressListener;
-import me.mayhem.game.entity.player.listeners.input.PlayerKeyboardReleaseListener;
-import me.mayhem.game.entity.player.listeners.input.PlayerMousePressListener;
-import me.mayhem.game.entity.player.listeners.input.PlayerMouseReleaseListener;
+import me.mayhem.game.entity.player.listeners.input.*;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
@@ -39,6 +36,7 @@ public class GameManager {
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
     private PlayerMouseReleaseListener playerMouseRelease;
+    private PlayerLostFocusListener playerLostFocus;
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
@@ -65,6 +63,7 @@ public class GameManager {
         this.playerKeyPress = new PlayerKeyboardPressListener(this.currentLevel.getPlayer());
         this.playerKeyRelease = new PlayerKeyboardReleaseListener(this.currentLevel.getPlayer());
         this.playerMouseRelease = new PlayerMouseReleaseListener(this.currentLevel.getPlayer());
+        this.playerLostFocus = new PlayerLostFocusListener(this.currentLevel.getPlayer());
     }
 
     /**
@@ -76,6 +75,8 @@ public class GameManager {
         InputManager.unregisterInput(this.playerMousePress);
         InputManager.unregisterInput(this.playerKeyPress);
         InputManager.unregisterInput(this.playerKeyRelease);
+        InputManager.unregisterInput(this.playerMouseRelease);
+        InputManager.unregisterInput(this.playerLostFocus);
     }
 
     /**
