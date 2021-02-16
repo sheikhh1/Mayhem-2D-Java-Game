@@ -12,7 +12,10 @@ import org.jsfml.system.Vector2f;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class EasyLevelGenerator implements LevelGenerator {
 
@@ -20,9 +23,20 @@ public class EasyLevelGenerator implements LevelGenerator {
     private Vector playerSpawnPosition;
     private Vector keyCardSpawnPositon;
     private Vector doorPosition;
+    private Vector newCenter = null;
 
     private final List<Block> blocks = new ArrayList<>();
     private final List<Vector> enemySpawnPositions = new ArrayList<>();
+    private final Map<RGB, BiConsumer<Integer, Integer>> colours = new HashMap<>();
+
+    public EasyLevelGenerator() {
+        colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
+        colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
+        colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new Vector(x * 32, y * 32)));
+        colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
+        colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPositon = new Vector(x * 32, y * 32));
+        colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
+    }
 
     @Override
     public List<Block> generateLevel() {
@@ -45,39 +59,26 @@ public class EasyLevelGenerator implements LevelGenerator {
         BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
         int levelWidth = bufferedLevel.getWidth();
         int levelHeight = bufferedLevel.getHeight();
-        Vector newCenter = null;
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
                 RGB rgb = RGB.from(bufferedLevel.getRGB(x, y));
 
-                if (red == 255 && green == 255 && blue == 255) {
-                    this.blocks.add(this.createBlock(x * 32,y * 32));
-                } else if (red == 0 && green == 0 && blue == 255) {
-                    this.playerSpawnPosition = new Vector(x * 32, y * 32);
-                } else if (red == 255 && green == 0 && blue == 0) {
-                    this.enemySpawnPositions.add(new Vector(x * 32, y * 32));
-                } else if (red == 200 && green == 200 && blue == 200) {
-                    newCenter = new Vector(x * 32, y * 32);
-                } else if (red == 0 && green == 255 && blue == 0) {
-                    this.keyCardSpawnPositon = new Vector(x * 32, y * 32);
-                } else if (red == 0 && green == 255 && blue == 255) {
-                    this.doorPosition = new Vector(x * 32, y * 32);
-                }
+                this.colours.getOrDefault(rgb, (a, b) -> {}).accept(x, y);
             }
         }
 
-        if (newCenter != null) {
+        if (this.newCenter != null) {
             for (Block block : this.blocks) {
-                block.getPosition().subtract(newCenter);
+                block.getPosition().subtract(this.newCenter);
             }
 
-            this.keyCardSpawnPositon.subtract(newCenter);
-            this.doorPosition.subtract(newCenter);
-            this.playerSpawnPosition.subtract(newCenter);
+            this.keyCardSpawnPositon.subtract(this.newCenter);
+            this.doorPosition.subtract(this.newCenter);
+            this.playerSpawnPosition.subtract(this.newCenter);
 
             for (Vector enemySpawnPosition : this.enemySpawnPositions) {
-                enemySpawnPosition.subtract(newCenter);
+                enemySpawnPosition.subtract(this.newCenter);
             }
         }
     }
