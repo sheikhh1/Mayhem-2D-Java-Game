@@ -7,13 +7,10 @@ import me.mayhem.game.level.Level;
 import me.mayhem.game.level.spawning.EntitySpawner;
 import me.mayhem.util.Vector;
 
-public class EasyEntitySpawner implements EntitySpawner {
+public class SimpleEntitySpawner implements EntitySpawner {
 
     @Override
     public void spawnEntities(Level level) {
-        //TODO:
-        // create something that works based on the constraints of the editor
-
         for (Vector vector : level.getDifficulty().getGenerator().getEnemySpawnPositions()) {
             level.spawnEntity(new InfectedEnemy(vector.clone(), level));
         }
