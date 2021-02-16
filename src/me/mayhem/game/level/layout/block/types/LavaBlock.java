@@ -6,6 +6,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.util.Vector;
+import me.mayhem.util.direction.Direction;
 import org.jsfml.graphics.Sprite;
 
 public class LavaBlock extends Block {
@@ -16,9 +17,7 @@ public class LavaBlock extends Block {
 
     @Override
     public void onCollide(Entity entity) {
-        Vector directionFromBlock = this.getPosition().clone().subtract(entity.getPosition()).normalize();
-
-        if (directionFromBlock.getY() >= 0) {
+        if (!Direction.ABOVE.is(entity.getPosition(), this.getPosition())) {
             return;
         }
 
