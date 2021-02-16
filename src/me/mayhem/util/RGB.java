@@ -50,6 +50,15 @@ public class RGB {
         return Objects.hash(red, green, blue);
     }
 
+    @Override
+    public String toString() {
+        return "RGB{" +
+                "red=" + red +
+                ", green=" + green +
+                ", blue=" + blue +
+                '}';
+    }
+
     public static RGB of(int red, int green, int blue) {
         return new RGB(red, green, blue);
     }
