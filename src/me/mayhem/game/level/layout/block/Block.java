@@ -12,11 +12,15 @@ public class Block {
     private final Vector position;
     private final Sprite drawable;
     private final Hitbox hitbox;
+    private final int width;
+    private final int height;
 
-    protected Block(Vector position, Sprite drawable, Hitbox hitbox) {
+    protected Block(Vector position, Sprite drawable, Hitbox hitbox, int width, int height) {
         this.position = position;
         this.drawable = drawable;
         this.hitbox = hitbox;
+        this.width = width;
+        this.height = height;
     }
 
     public void draw(RenderWindow renderWindow) {
@@ -29,7 +33,7 @@ public class Block {
     }
 
     public Vector getCenter() {
-        return this.position.clone().add(this.drawable.getGlobalBounds().width / 2f, this.drawable.getGlobalBounds().height / 2f);
+        return this.position.clone().add(this.width / 2f, this.height / 2f);
     }
 
     public Hitbox getHitbox() {
@@ -77,7 +81,7 @@ public class Block {
                 this.hitbox = new SpriteHitbox(this.position, this.height, this.width);
             }
 
-            return new Block(this.position, this.sprite, this.hitbox);
+            return new Block(this.position, this.sprite, this.hitbox, this.width, this.height);
         }
     }
 }

@@ -11,8 +11,8 @@ import org.jsfml.graphics.Sprite;
 
 public class BouncyBlock extends Block {
 
-    public BouncyBlock(Vector position, Sprite sprite, Hitbox hitbox) {
-        super(position, sprite, hitbox);
+    public BouncyBlock(Vector position, Sprite sprite, Hitbox hitbox, int width, int height) {
+        super(position, sprite, hitbox, width, height);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BouncyBlock extends Block {
                 this.hitbox = new SpriteHitbox(this.position, this.height, this.width);
             }
 
-            return new BouncyBlock(this.position, this.sprite, this.hitbox);
+            return new BouncyBlock(this.position, this.sprite, this.hitbox, this.width, this.height);
         }
     }
 }
