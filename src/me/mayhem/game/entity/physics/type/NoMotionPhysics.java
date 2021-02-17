@@ -1,14 +1,15 @@
-package me.mayhem.game.entity.physics;
+package me.mayhem.game.entity.physics.type;
 
+import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
 public class NoMotionPhysics extends EntityPhysics {
 
-    public static final NoMotionPhysics NO_MOTION = new NoMotionPhysics();
-
-    @Override
-    public void setEntityMotion(Vector motion) {}
+    public NoMotionPhysics(EntityType entityType, Vector motion) {
+        super(entityType, motion);
+    }
 
     @Override
     public void moveForward() {}

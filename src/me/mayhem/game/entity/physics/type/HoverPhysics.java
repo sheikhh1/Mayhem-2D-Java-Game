@@ -1,4 +1,6 @@
-package me.mayhem.game.entity.physics;
+package me.mayhem.game.entity.physics.type;
+
+import me.mayhem.game.entity.physics.EntityPhysics;
 
 public class HoverPhysics extends EntityPhysics {
 

@@ -4,7 +4,7 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.physics.HoverPhysics;
+import me.mayhem.game.entity.physics.type.HoverPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
