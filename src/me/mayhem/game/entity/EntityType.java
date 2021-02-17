@@ -27,7 +27,6 @@ public enum EntityType {
     private final int maxHealth;
     private final float movementSpeed;
     private final float jumpStrength;
-    private final String imagePath;
     private final Texture entityTexture;
     private final boolean healthBar;
     private final BiFunction<Vector, Level, Entity> spawnMethod;
@@ -36,10 +35,9 @@ public enum EntityType {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
         this.jumpStrength = jumpStrength;
-        this.imagePath = imagePath;
         this.healthBar = healthBar;
         this.spawnMethod = spawnMethod;
-        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
+        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(imagePath));
     }
 
     public int getMaxHealth() {
