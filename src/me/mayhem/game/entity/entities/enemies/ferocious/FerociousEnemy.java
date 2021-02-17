@@ -19,8 +19,8 @@ public class FerociousEnemy extends Entity implements Enemy {
      */
     public FerociousEnemy(Vector position, Level level) {
         super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position, 0, 80), new MoveToPlayerPathing(level));
+
         this.animate.setSpritePosition(position.toVector());
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
     }
 
