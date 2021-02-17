@@ -9,9 +9,8 @@ public class EntityPhysics {
     public static final float GRAVITY = 0.196f;
     public static final float MAX_SPEED = 8f;
     public static final float MAX_FALL_SPEED = 5f;
-    public static final float DEFAULT_JUMP_STRENGTH = 4f;
 
-    private float jumpStrength = DEFAULT_JUMP_STRENGTH;
+    private float jumpStrength;
     private float fallStrength = 0;
 
     protected EntityType entityType;
@@ -21,6 +20,7 @@ public class EntityPhysics {
     public EntityPhysics(EntityType entityType, Vector motion) {
         this.entityType = entityType;
         this.motion = motion;
+        this.jumpStrength = entityType.getJumpStrength();
     }
 
     /**
