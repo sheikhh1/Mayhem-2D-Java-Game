@@ -1,9 +1,11 @@
 package me.mayhem.game.level.layout.ai.impl;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
 import me.mayhem.game.level.layout.block.types.*;
+import me.mayhem.game.level.spawning.SpawnPosition;
 import me.mayhem.util.RGB;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
@@ -20,21 +22,19 @@ public class EasyLevelGenerator implements LevelGenerator {
 
     private Image levelImage;
     private Vector playerSpawnPosition;
-    private Vector keyCardSpawnPosition;
-    private Vector doorPosition;
     private Vector newCenter = null;
 
     private final List<Block> blocks = new ArrayList<>();
-    private final List<Vector> enemySpawnPositions = new ArrayList<>();
+    private final List<SpawnPosition> enemySpawnPositions = new ArrayList<>();
     private final Map<RGB, BiConsumer<Integer, Integer>> colours = new HashMap<>();
 
     public EasyLevelGenerator() {
         this.colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
         this.colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
-        this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new Vector(x * 32, y * 32)));
+        this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.FEROCIOUS.getSpawnMethod())));
         this.colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
-        this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.doorPosition = new Vector(x * 32, y * 32));
-        this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.keyCardSpawnPosition = new Vector(x * 32, y * 32));
+        this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.DOOR.getSpawnMethod())));
+        this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.KEY_CARD.getSpawnMethod())));
         this.colours.put(BlockTexture.BOUNCY.getRgb(), (x, y) -> this.blocks.add(this.createBouncyBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.LAVA.getRgb(), (x, y) -> this.blocks.add(this.createLavaBlock(x * 32, y * 32)));
         this.colours.put(BlockTexture.SPEED_UP_RIGHT.getRgb(), (x, y) -> this.blocks.add(this.createSpeedupRightBlock(x * 32, y * 32)));
@@ -77,20 +77,12 @@ public class EasyLevelGenerator implements LevelGenerator {
                 block.getPosition().subtract(this.newCenter);
             }
 
-            if (this.keyCardSpawnPosition != null) {
-                this.keyCardSpawnPosition.subtract(this.newCenter);
-            }
-
-            if (this.doorPosition != null) {
-                this.doorPosition.subtract(this.newCenter);
-            }
-
             if (this.playerSpawnPosition != null) {
                 this.playerSpawnPosition.subtract(this.newCenter);
             }
 
-            for (Vector enemySpawnPosition : this.enemySpawnPositions) {
-                enemySpawnPosition.subtract(this.newCenter);
+            for (SpawnPosition enemySpawnPosition : this.enemySpawnPositions) {
+                enemySpawnPosition.getPosition().subtract(this.newCenter);
             }
         }
     }
@@ -99,17 +91,7 @@ public class EasyLevelGenerator implements LevelGenerator {
         return this.playerSpawnPosition;
     }
 
-    @Override
-    public Vector getKeyCardSpawnPosition() {
-        return this.keyCardSpawnPosition;
-    }
-
-    @Override
-    public Vector getDoorPosition() {
-        return this.doorPosition;
-    }
-
-    public List<Vector> getEnemySpawnPositions() {
+    public List<SpawnPosition> getEnemySpawnPositions() {
         return this.enemySpawnPositions;
     }
 
