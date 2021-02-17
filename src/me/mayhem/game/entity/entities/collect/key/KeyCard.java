@@ -7,6 +7,7 @@ import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.entities.collect.Collectable;
 import me.mayhem.game.entity.physics.type.HoverPhysics;
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.entity.player.inventory.Item;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
@@ -34,6 +35,11 @@ public class KeyCard extends Entity implements Collectable {
 
     @Override
     public void collected(Player player) {
+        if (this.isDead()) {
+            return;
+        }
+
         this.setDead(true);
+        player.getInventory().getItems().add(new Item(EntityType.KEY_CARD.getEntitySprite(), 1));
     }
 }
