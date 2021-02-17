@@ -1,5 +1,6 @@
 package me.mayhem.game.entity.player.inventory;
 
+import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
@@ -22,7 +23,8 @@ public class Item {
         this.amount = amount;
     }
 
-    public void draw(RenderWindow window) {
+    public void draw(RenderWindow window, Vector vector) {
+        this.sprite.setPosition(vector.toVector());
         window.draw(this.sprite);
     }
 }

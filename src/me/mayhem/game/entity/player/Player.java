@@ -54,8 +54,12 @@ public class Player extends Entity implements PlayerInteract{
     public void update(RenderWindow window) {
         super.update(window);
 
-        for (Item item : this.inventory.getItems()) {
-            item.draw(window);
+        Vector startPosition = new Vector(0, 0);
+
+        for (int i = 0; i < this.inventory.getItems().size(); i++) {
+            Item item = this.inventory.getItems().get(i);
+
+            item.draw(window, startPosition.add(i * 31, 0).clone());
         }
     }
 
