@@ -15,7 +15,7 @@ public class CorrosiveEnemy extends Entity {
      */
     public CorrosiveEnemy(Vector position) {
         super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position, 0,0 ), Pathing.FORWARD_PATHING);
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
+
         this.setState(EntityState.FALLING);
     }
 
