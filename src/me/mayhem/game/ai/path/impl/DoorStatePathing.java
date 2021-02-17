@@ -2,6 +2,7 @@ package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.entities.collect.key.KeyCard;
 import me.mayhem.game.entity.entities.friendly.door.DoorState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
@@ -16,6 +17,10 @@ public class DoorStatePathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (!this.currentLevel.getPlayer().getInventory().contains(KeyCard.KEY_CARD_ID)) {
+            return;
+        }
+
         Vector toPlayer = this.currentLevel.getPlayer().getCenter().subtract(entity.getCenter());
 
         if (toPlayer.getLengthSquared() < 16000) {
