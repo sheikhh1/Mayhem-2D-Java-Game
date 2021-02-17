@@ -1,6 +1,6 @@
 package me.mayhem.game.entity.entities.enemies.ferocious;
 
-import me.mayhem.game.ai.path.impl.MoveToPlayerPathing;
+import me.mayhem.game.ai.path.impl.MoveBetweenBlocksPathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
@@ -22,20 +22,19 @@ public class FerociousEnemy extends Entity implements Enemy {
      * @param position   - Current Position of entity relative to the game window
      */
     public FerociousEnemy(Vector position, Level level) {
-        super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position, 0, 80), new MoveToPlayerPathing(level));
+        super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveBetweenBlocksPathing());
 
         this.animate.setSpritePosition(position.toVector());
         this.setState(EntityState.FALLING);
     }
 
-    @Override
     public void tick() {
         super.tick();
 
         if (this.isBack()) {
             this.animate.setRow(9);
             this.animate.setPause(false);
-        } else if (this.isForward()) {
+        } else if (this.isForward()){
             this.animate.setRow(11);
             this.animate.setPause(false);
         }
@@ -49,11 +48,18 @@ public class FerociousEnemy extends Entity implements Enemy {
             this.animate.setRow(13);
             this.animate.setPause(false);
         }
+
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() > 100) {
+            this.setMelee(false);
+        }
+
+        this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
     @Override
     public void attack(Player player) {
         player.damage(this, 1);
-        this.setMelee(true);
+        this.setState(EntityState.MELEE);
+        this.attackedAnimateClock.restart();
     }
 }
