@@ -213,15 +213,15 @@ public class GameManager {
             Vector screenMotion = new Vector(0, 0);
 
             if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setX(-3);
+                screenMotion.setX(-2);
             } else if ((player.getPosition().getX() + player.getMotion().getX()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setX(+3);
+                screenMotion.setX(+2);
             }
 
             if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setY(-3);
+                screenMotion.setY(-2);
             } else if ((player.getPosition().getY() + player.getMotion().getY()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setY(+3);
+                screenMotion.setY(+2);
             }
 
 
