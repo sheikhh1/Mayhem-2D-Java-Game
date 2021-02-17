@@ -6,10 +6,12 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.player.inventory.Inventory;
+import me.mayhem.game.entity.player.inventory.Item;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Clock;
 
 /**
@@ -46,6 +48,15 @@ public class Player extends Entity implements PlayerInteract{
 
         this.hasBeenAttacked = true;
         this.attackedAnimateClock.restart();
+    }
+
+    @Override
+    public void update(RenderWindow window) {
+        super.update(window);
+
+        for (Item item : this.inventory.getItems()) {
+            item.draw(window);
+        }
     }
 
     public void tick() {
