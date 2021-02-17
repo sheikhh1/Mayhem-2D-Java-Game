@@ -20,16 +20,6 @@ public class DifficultLevelGenerator implements LevelGenerator {
     }
 
     @Override
-    public Vector getKeyCardSpawnPosition() {
-        return null;
-    }
-
-    @Override
-    public Vector getDoorPosition() {
-        return null;
-    }
-
-    @Override
     public List<SpawnPosition> getEnemySpawnPositions() {
         return null;
     }
