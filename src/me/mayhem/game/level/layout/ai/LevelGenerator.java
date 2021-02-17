@@ -20,10 +20,6 @@ public interface LevelGenerator {
      */
     Vector getPlayerSpawnPosition();
 
-    Vector getKeyCardSpawnPosition();
-
-    Vector getDoorPosition();
-
     List<SpawnPosition> getEnemySpawnPositions();
 
 }
