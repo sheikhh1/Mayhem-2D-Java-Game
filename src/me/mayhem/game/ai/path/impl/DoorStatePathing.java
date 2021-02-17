@@ -8,7 +8,7 @@ import me.mayhem.util.Vector;
 
 public class DoorStatePathing implements Pathing {
 
-    private Level currentLevel;
+    private final Level currentLevel;
 
     public DoorStatePathing(Level currentLevel) {
         this.currentLevel = currentLevel;
