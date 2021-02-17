@@ -39,12 +39,6 @@ public class FerociousEnemy extends Entity implements Enemy {
 
     @Override
     public void attack(Player player) {
-        if (this.getFacing().normalize().equals(player.getFacing().normalize())) {
-            player.getMotion().add(player.getFacing().clone().add(0, -1).multiply(4));
-            this.getMotion().add(this.getFacing().clone().multiply(-1).multiply(5));
-        } else {
-            player.getMotion().add(this.getFacing().clone().add(0, -1).multiply(4));
-            this.getMotion().add(player.getFacing().clone().multiply(5));
-        }
+        player.damage(this, 1);
     }
 }
