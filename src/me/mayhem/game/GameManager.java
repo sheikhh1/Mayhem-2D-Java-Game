@@ -224,7 +224,6 @@ public class GameManager {
                 screenMotion.setY(+2);
             }
 
-
             for (Entity entity : this.currentLevel.getEntities()) {
                 if (entity instanceof Player) {
                     continue;
