@@ -89,10 +89,6 @@ public class Player extends Entity implements PlayerInteract{
         }
     }
 
-    public String getName(){
-       return name;
-    }
-
     @Override
     public void attack(Entity enemy) {
         
