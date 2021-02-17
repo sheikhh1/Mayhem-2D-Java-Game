@@ -14,7 +14,7 @@ public class CorrosiveEnemy extends Entity {
      * @param position   - Current Position of entity relative to the game window
      */
     public CorrosiveEnemy(Vector position) {
-        super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position, 0,0 ), Pathing.FORWARD_PATHING);
+        super(EntityType.CORROSIVE, position, Vector.getZero(), new SpriteHitbox(position, 0,0 ), Pathing.FORWARD_PATHING);
 
         this.setState(EntityState.FALLING);
     }
