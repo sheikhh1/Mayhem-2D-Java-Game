@@ -27,14 +27,14 @@ public class EntityPhysics {
      * Move Player Forward method by 5 Pixels
      */
     public void moveForward() {
-        this.motion.add(MAX_SPEED,0);
+        this.motion.add(this.entityType.getMovementSpeed(),0);
     }
 
     /**
      * Move Player Back method by 5 Pixels
      */
     public void moveBack() {
-        this.motion.subtract(MAX_SPEED,0);
+        this.motion.subtract(this.entityType.getMovementSpeed(),0);
     }
 
     /**
