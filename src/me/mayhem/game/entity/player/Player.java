@@ -5,6 +5,7 @@ import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
+import me.mayhem.game.entity.player.inventory.Inventory;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
@@ -18,6 +19,7 @@ public class Player extends Entity implements PlayerInteract{
 
     private final String name;
     private final Clock attackedAnimateClock = new Clock();
+    private final Inventory inventory = new Inventory();
 
     private boolean hasBeenAttacked = false;
 
@@ -32,6 +34,10 @@ public class Player extends Entity implements PlayerInteract{
         this.animate.setSpritePosition(position.toVector());
         this.name = name;
         this.setState(EntityState.FALLING);
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     @Override
