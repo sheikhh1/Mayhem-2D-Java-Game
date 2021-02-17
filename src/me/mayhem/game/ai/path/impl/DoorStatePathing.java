@@ -35,7 +35,7 @@ public class DoorStatePathing implements Pathing {
                 this.open = true;
             }
 
-            if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 150) {
+            if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 500) {
                 entity.setTexture(DoorState.OPEN.getDoorTexture());
             }
         } else {
