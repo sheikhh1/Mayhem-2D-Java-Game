@@ -16,7 +16,7 @@ public class WallDamageBlock extends Block {
 
     @Override
     public void onCollide(Entity entity) {
-        entity.damage(entity, 10f);
+        entity.damage(entity, 1f);
     }
 
     public static Builder builder() {
