@@ -89,7 +89,7 @@ public class EntityAnimation {
             this.setColumn(0);
         }
 
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 18,this.getRow() * 64 + 12,30,76 - 22));
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64 + 12,40,76 - 22));
 
         window.draw(entitySprite);
     }
