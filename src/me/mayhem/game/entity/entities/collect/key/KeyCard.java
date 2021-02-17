@@ -16,7 +16,7 @@ import org.jsfml.system.Vector2f;
 
 public class KeyCard extends Entity implements Collectable {
 
-    private static final String KEY_CARD_ID = "item_key_card";
+    public static final String KEY_CARD_ID = "item_key_card";
 
     private final RectangleShape keyCard;
 
