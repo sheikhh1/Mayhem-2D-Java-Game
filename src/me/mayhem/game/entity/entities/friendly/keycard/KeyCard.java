@@ -16,8 +16,8 @@ public class KeyCard extends Entity {
 
     public KeyCard(Vector position) {
         super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HOVER_PATHING);
-        super.entityPhysics = new HoverPhysics();
 
+        super.entityPhysics = new HoverPhysics(this.getType(), this.getMotion());
         this.keyCard = new RectangleShape(new Vector2f(31, 31));
         this.keyCard.setPosition(position.toVector());
         this.keyCard.setTexture(EntityType.KEY_CARD.getEntityTexture());
