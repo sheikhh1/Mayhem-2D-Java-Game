@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.entities.collectable;
+package me.mayhem.game.entity.entities.collect;
 
 import me.mayhem.game.entity.player.Player;
 

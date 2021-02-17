@@ -1,6 +1,6 @@
 package me.mayhem.game.entity.player.listeners.game;
 
-import me.mayhem.game.entity.entities.collectable.Collectable;
+import me.mayhem.game.entity.entities.collect.Collectable;
 import me.mayhem.game.entity.entities.enemies.Enemy;
 import me.mayhem.game.entity.event.PlayerCollideWithEntityEvent;
 import me.mayhem.game.event.struct.EventListener;

@@ -1,12 +1,13 @@
-package me.mayhem.game.entity.entities.collectable.key;
+package me.mayhem.game.entity.entities.collect.key;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.entities.collectable.Collectable;
+import me.mayhem.game.entity.entities.collect.Collectable;
 import me.mayhem.game.entity.physics.type.HoverPhysics;
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
@@ -16,7 +17,7 @@ public class KeyCard extends Entity implements Collectable {
 
     private final RectangleShape keyCard;
 
-    public KeyCard(Vector position) {
+    public KeyCard(Vector position, Level level) {
         super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HOVER_PATHING);
 
         super.entityPhysics = new HoverPhysics(this.getType(), this.getMotion());
