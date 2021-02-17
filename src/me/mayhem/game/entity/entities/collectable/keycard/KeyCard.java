@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.entities.friendly.keycard;
+package me.mayhem.game.entity.entities.collectable.keycard;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
