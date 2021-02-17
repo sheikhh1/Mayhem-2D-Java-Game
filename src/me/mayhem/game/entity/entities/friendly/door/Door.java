@@ -5,7 +5,6 @@ import me.mayhem.game.ai.path.impl.DoorStatePathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
-import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.physics.type.NoMotionPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
@@ -24,14 +23,10 @@ public class Door extends Entity {
 
         this.setState(EntityState.NO_MOTION);
 
+        super.entityPhysics = new NoMotionPhysics(this.getType(), this.getMotion());
         this.mainDoor = new RectangleShape(new Vector2f(130,130));
         this.mainDoor.setPosition(position.toVector());
         this.mainDoor.setTexture(DoorState.CLOSED.getDoorTexture());
-    }
-
-    @Override
-    public EntityPhysics getEntityPhysics() {
-        return NoMotionPhysics.NO_MOTION;
     }
 
     @Override
