@@ -11,8 +11,6 @@ public class Projectile extends Entity {
 
     public Projectile(Shape circle, Vector position) {
         super(EntityType.PROJECTILE, position, Vector.getZero(), new ShapeHitbox(circle, position, 20, 20), Pathing.NO_PATHING);
-
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
     }
 
     public void tick() {
