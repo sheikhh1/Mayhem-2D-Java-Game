@@ -36,6 +36,15 @@ public class InfectedEnemy extends Entity implements Enemy {
             this.animate.setPause(false);
         }
 
+        if(this.isMelee() && this.getFacing().getX() == 1) {
+            this.animate.setAvailableFrames(6);
+            this.animate.setRow(15);
+            this.animate.setPause(false);
+        } else if (isMelee() && this.getFacing().getX() == -1) {
+            this.animate.setAvailableFrames(6);
+            this.animate.setRow(13);
+            this.animate.setPause(false);
+        }
 
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
@@ -43,5 +52,6 @@ public class InfectedEnemy extends Entity implements Enemy {
     @Override
     public void attack(Player player) {
         player.damage(this, 1);
+        this.setMelee(true);
     }
 }
