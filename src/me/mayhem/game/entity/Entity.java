@@ -47,6 +47,7 @@ public abstract class Entity {
 
     private double health;
     private boolean entityMelee = false;
+    private boolean dead = false;
 
     EntityHealthBox healthBox;
 
@@ -367,5 +368,13 @@ public abstract class Entity {
 
     public void setEntityGrounded(boolean entityGrounded) {
         this.entityGrounded = entityGrounded;
+    }
+
+    public boolean isDead() {
+        return this.dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }
