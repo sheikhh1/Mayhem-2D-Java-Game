@@ -8,6 +8,7 @@ import me.mayhem.game.level.spawning.EntitySpawner;
 import me.mayhem.util.Vector;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Level {
@@ -38,6 +39,7 @@ public class Level {
 
     public void spawnEntity(Entity entity) {
         this.entities.add(entity);
+        this.entities.sort(Comparator.comparing(e -> e.getType().ordinal()));
     }
 
     public Player getPlayer() {
