@@ -8,6 +8,8 @@ import me.mayhem.game.entity.entities.friendly.door.Door;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
+import me.mayhem.util.file.UtilSprite;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
 
 import java.util.function.BiFunction;
@@ -28,6 +30,7 @@ public enum EntityType {
     private final float movementSpeed;
     private final float jumpStrength;
     private final Texture entityTexture;
+    private final Sprite entitySprite;
     private final boolean healthBar;
     private final BiFunction<Vector, Level, Entity> spawnMethod;
 
@@ -38,6 +41,7 @@ public enum EntityType {
         this.healthBar = healthBar;
         this.spawnMethod = spawnMethod;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(imagePath));
+        this.entitySprite = UtilSprite.loadFromPath(imagePath);
     }
 
     public int getMaxHealth() {
@@ -58,6 +62,10 @@ public enum EntityType {
 
     public Texture getEntityTexture() {
         return this.entityTexture;
+    }
+
+    public Sprite getEntitySprite() {
+        return this.entitySprite;
     }
 
     public BiFunction<Vector, Level, Entity> getSpawnMethod() {
