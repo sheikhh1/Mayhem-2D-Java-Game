@@ -2,7 +2,7 @@ package me.mayhem.game.ai.path.impl;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.entities.friendly.door.DoorEnum;
+import me.mayhem.game.entity.entities.friendly.door.DoorState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 
@@ -19,11 +19,11 @@ public class DoorStatePathing implements Pathing {
         Vector toPlayer = this.currentLevel.getPlayer().getCenter().subtract(entity.getCenter());
 
         if (toPlayer.getLengthSquared() < 16000) {
-            entity.setTexture(DoorEnum.OPEN.getDoorTexture());
+            entity.setTexture(DoorState.OPEN.getDoorTexture());
         } else if (toPlayer.getLengthSquared() < 16000) {
-            entity.setTexture(DoorEnum.OPENING.getDoorTexture());
+            entity.setTexture(DoorState.OPENING.getDoorTexture());
         } else {
-            entity.setTexture(DoorEnum.CLOSED.getDoorTexture());
+            entity.setTexture(DoorState.CLOSED.getDoorTexture());
 
         }
     }

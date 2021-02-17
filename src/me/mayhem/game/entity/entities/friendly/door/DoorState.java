@@ -3,7 +3,7 @@ package me.mayhem.game.entity.entities.friendly.door;
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Texture;
 
-public enum DoorEnum {
+public enum DoorState {
 
     OPEN(1, "interactables/doors/DoorOpen.png"),
     CLOSED(0, "interactables/doors/DoorClosed.png"),
@@ -15,7 +15,7 @@ public enum DoorEnum {
     private final Texture doorTexture;
 
 
-    DoorEnum(int doorState, String imagePath) {
+    DoorState(int doorState, String imagePath) {
         this.doorState = doorState;
         this.imagePath = imagePath;
         this.doorTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));

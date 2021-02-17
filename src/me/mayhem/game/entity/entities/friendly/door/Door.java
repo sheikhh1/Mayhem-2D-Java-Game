@@ -26,7 +26,7 @@ public class Door extends Entity {
 
         this.mainDoor = new RectangleShape(new Vector2f(130,130));
         this.mainDoor.setPosition(position.toVector());
-        this.mainDoor.setTexture(DoorEnum.CLOSED.getDoorTexture());
+        this.mainDoor.setTexture(DoorState.CLOSED.getDoorTexture());
     }
 
     @Override
