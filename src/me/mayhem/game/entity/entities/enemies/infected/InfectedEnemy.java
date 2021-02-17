@@ -12,6 +12,7 @@ import me.mayhem.util.Vector;
 
 
 public class InfectedEnemy extends Entity implements Enemy {
+
     /**
      * Entity Constructor
      *
@@ -21,7 +22,6 @@ public class InfectedEnemy extends Entity implements Enemy {
         super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,80,40), new MoveToPlayerPathing(level));
 
         this.animate.setSpritePosition(position.toVector());
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
     }
 
