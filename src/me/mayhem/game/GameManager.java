@@ -167,7 +167,7 @@ public class GameManager {
                     if (this.isLowerThanEntity(entity, block) && !collisionDetected) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
                             collisionDetected = true;
-                            center.setY(entity.getEntityPhysics().getFallStrength());
+                            center.setY(entity.getEntityPhysics().getFallStrength() * 2);
                             entity.setEntityGrounded(true);
                             block.onCollide(entity);
                         }
