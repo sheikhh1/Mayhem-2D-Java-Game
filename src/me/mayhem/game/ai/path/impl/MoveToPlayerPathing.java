@@ -18,6 +18,10 @@ public class MoveToPlayerPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (entity.isMelee()) {
+            return;
+        }
+
         if (this.shouldStopMoving(entity)) {
             entity.setState(EntityState.STANDING);
             return;
