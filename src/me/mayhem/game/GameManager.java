@@ -7,6 +7,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.event.EntityCollideEvent;
 import me.mayhem.game.entity.event.impl.PlayerCollisionListener;
+import me.mayhem.game.entity.listener.EntityDeathListener;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
@@ -45,6 +46,7 @@ public class GameManager {
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
         EventManager.registerListener(new PlayerEnemyCollideListener());
+        new EntityDeathListener();
 
         this.renderWindow = renderWindow;
         this.currentLevel = new Level(difficulty, playerName);
