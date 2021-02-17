@@ -9,9 +9,12 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
+import org.jsfml.system.Clock;
 
 
 public class InfectedEnemy extends Entity implements Enemy {
+
+    private final Clock attackedAnimateClock = new Clock();
 
     /**
      * Entity Constructor
@@ -46,6 +49,10 @@ public class InfectedEnemy extends Entity implements Enemy {
             this.animate.setPause(false);
         }
 
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() > 100) {
+            this.setMelee(false);
+        }
+
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
@@ -53,5 +60,6 @@ public class InfectedEnemy extends Entity implements Enemy {
     public void attack(Player player) {
         player.damage(this, 1);
         this.setState(EntityState.MELEE);
+        this.attackedAnimateClock.restart();
     }
 }
