@@ -17,14 +17,13 @@ import org.jsfml.system.Vector2f;
 
 public class Door extends Entity {
 
-    private RectangleShape mainDoor;
-    private Vector doorPosition;
+    private final RectangleShape mainDoor;
 
     public Door(Vector position, Level level) {
         super(EntityType.DOOR, position, Vector.getZero(), new SpriteHitbox(position,130,130), new DoorStatePathing(level));
-        this.doorPosition = position;
+
         this.setState(EntityState.NO_MOTION);
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
+
         this.mainDoor = new RectangleShape(new Vector2f(130,130));
         this.mainDoor.setPosition(position.toVector());
         this.mainDoor.setTexture(DoorEnum.CLOSED.getDoorTexture());
@@ -42,7 +41,7 @@ public class Door extends Entity {
 
     @Override
     public void update(RenderWindow renderWindow) {
-        this.mainDoor.setPosition(this.doorPosition.toVector());
+        this.mainDoor.setPosition(this.getPosition().toVector());
         renderWindow.draw(this.mainDoor);
     }
 }
