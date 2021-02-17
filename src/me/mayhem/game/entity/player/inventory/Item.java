@@ -6,13 +6,19 @@ import org.jsfml.graphics.Sprite;
 
 public class Item {
 
+    private final String identifier;
     private final Sprite sprite;
 
     private int amount;
 
-    public Item(Sprite sprite, int amount) {
+    public Item(String identifier, Sprite sprite, int amount) {
+        this.identifier = identifier;
         this.sprite = sprite;
         this.amount = amount;
+    }
+
+    public String getIdentifier() {
+        return this.identifier;
     }
 
     public int getAmount() {
