@@ -3,7 +3,6 @@ package me.mayhem.game.level.layout.block.types;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
-import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.layout.block.texture.BlockTexture;
@@ -18,7 +17,7 @@ public class BouncyBlock extends Block {
 
     @Override
     public void onCollide(Entity entity) {
-        entity.getEntityPhysics().setJumpStrength(EntityPhysics.DEFAULT_JUMP_STRENGTH * 2);
+        entity.getEntityPhysics().setJumpStrength(entity.getType().getJumpStrength() * 2);
         entity.setState(EntityState.JUMPING);
     }
 
