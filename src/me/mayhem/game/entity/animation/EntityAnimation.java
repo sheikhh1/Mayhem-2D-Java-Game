@@ -63,10 +63,6 @@ public class EntityAnimation {
         this.timeOut = timeOut;
     }
 
-    public int getTimeOut() {
-        return this.timeOut;
-    }
-
     public void resetTimeOutClock() {
         this.timeOutClock.restart();
     }
