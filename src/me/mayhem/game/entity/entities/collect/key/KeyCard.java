@@ -16,6 +16,8 @@ import org.jsfml.system.Vector2f;
 
 public class KeyCard extends Entity implements Collectable {
 
+    private static final String KEY_CARD_ID = "item_key_card";
+
     private final RectangleShape keyCard;
 
     public KeyCard(Vector position, Level level) {
@@ -40,6 +42,6 @@ public class KeyCard extends Entity implements Collectable {
         }
 
         this.setDead(true);
-        player.getInventory().getItems().add(new Item(EntityType.KEY_CARD.getEntitySprite(), 1));
+        player.getInventory().getItems().add(new Item(KEY_CARD_ID, EntityType.KEY_CARD.getEntitySprite(), 1));
     }
 }
