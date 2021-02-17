@@ -26,7 +26,7 @@ public class Player extends Entity implements PlayerInteract{
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 65, 35), Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 30), Pathing.NO_PATHING);
 
         this.animate.setSpritePosition(position.toVector());
         this.name = name;
