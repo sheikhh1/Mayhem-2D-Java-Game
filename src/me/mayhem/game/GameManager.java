@@ -88,6 +88,10 @@ public class GameManager {
         this.currentLevel.getLayout().draw(this.renderWindow);
 
         for (Entity entity : this.currentLevel.getEntities()) {
+            if (entity.isDead()) {
+                continue;
+            }
+
             entity.update(this.renderWindow);
         }
 
