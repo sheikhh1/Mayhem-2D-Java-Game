@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class EasyLevelGenerator implements LevelGenerator {
+public class ImageLevelGenerator implements LevelGenerator {
 
     private Image levelImage;
     private Vector playerSpawnPosition;
@@ -28,7 +28,7 @@ public class EasyLevelGenerator implements LevelGenerator {
     private final List<SpawnPosition> enemySpawnPositions = new ArrayList<>();
     private final Map<RGB, BiConsumer<Integer, Integer>> colours = new HashMap<>();
 
-    public EasyLevelGenerator() {
+    public ImageLevelGenerator() {
         this.colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
         this.colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.INFECTED.getSpawnMethod())));
