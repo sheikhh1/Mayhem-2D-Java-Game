@@ -68,7 +68,7 @@ public abstract class Entity {
         this.hitbox = hitbox;
         this.health = type.getMaxHealth();
         this.attributes.addAll(Arrays.asList(attributes));
-        this.entityPhysics = new EntityPhysics();
+        this.entityPhysics = new EntityPhysics(this.type, motion);
         this.animate = new EntityAnimation(type);
 
         if (this.type.getHasHealthBar()){

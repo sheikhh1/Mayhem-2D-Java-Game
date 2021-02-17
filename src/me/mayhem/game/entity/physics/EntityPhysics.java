@@ -1,5 +1,6 @@
 package me.mayhem.game.entity.physics;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
@@ -13,13 +14,12 @@ public class EntityPhysics {
     private float jumpStrength = DEFAULT_JUMP_STRENGTH;
     private float fallStrength = 0;
 
+    protected EntityType entityType;
     protected Vector motion;
 
-    /**
-     * Set Player motion
-     * @param motion - Motion passed by player class
-     */
-    public void setEntityMotion(Vector motion) {
+
+    public EntityPhysics(EntityType entityType, Vector motion) {
+        this.entityType = entityType;
         this.motion = motion;
     }
 
