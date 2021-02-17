@@ -1,6 +1,6 @@
 package me.mayhem.game.level.spawning.impl;
 
-import me.mayhem.game.entity.entities.collectable.keycard.KeyCard;
+import me.mayhem.game.entity.entities.collectable.key.KeyCard;
 import me.mayhem.game.entity.entities.enemies.infected.InfectedEnemy;
 import me.mayhem.game.entity.entities.friendly.door.Door;
 import me.mayhem.game.level.Level;
