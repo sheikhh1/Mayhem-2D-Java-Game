@@ -12,7 +12,7 @@ import org.jsfml.system.Vector2f;
 
 public class KeyCard extends Entity {
 
-    private RectangleShape keyCard;
+    private final RectangleShape keyCard;
 
     public KeyCard(Vector position) {
         super(EntityType.KEY_CARD, position, Vector.getZero(), new SpriteHitbox(position, 31, 31), Pathing.HOVER_PATHING);
