@@ -31,7 +31,7 @@ public class Level {
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition, String name) {
-      return new Player(name, playerSpawnPosition);
+        return new Player(name, playerSpawnPosition);
     }
 
     public List<Entity> getEntities() {
@@ -58,6 +58,4 @@ public class Level {
     public Layout getLayout() {
         return this.layout;
     }
-
-
 }
