@@ -4,13 +4,14 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.entities.collectable.Collectable;
 import me.mayhem.game.entity.physics.type.HoverPhysics;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Vector2f;
 
-public class KeyCard extends Entity {
+public class KeyCard extends Entity implements Collectable {
 
     private final RectangleShape keyCard;
 
