@@ -5,25 +5,27 @@ import org.jsfml.graphics.Texture;
 
 public enum EntityType {
 
-    PLAYER(200, 1.75f, true, "players/PlayerSheet.png"),
-    INFECTED(50,0.8f,  true, "enemies/Infected.png"),
-    CORROSIVE(50,0.8f, true, "enemies/CorrosiveEnemy.png"),
-    FEROCIOUS(100, 0.9f, true, "enemies/Ferocious.png"),
-    PROJECTILE(0, 1f, false, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
-    KEY_CARD(0, 1f, false, "interactables/keycard/KeyCard.png"),
-    DOOR(0, 1f, false, "interactables/doors/DoorClosed.png")
+    PLAYER(200, 1.75f, 4f, true, "players/PlayerSheet.png"),
+    INFECTED(50,0.8f, 4f, true, "enemies/Infected.png"),
+    CORROSIVE(50,0.8f, 4f, true, "enemies/CorrosiveEnemy.png"),
+    FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferocious.png"),
+    PROJECTILE(0, 1f, 4f, false, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
+    KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png"),
+    DOOR(0, 1f, 4f, false, "interactables/doors/DoorClosed.png")
 
     ;
 
     private final int maxHealth;
     private final float movementSpeed;
+    private final float jumpStrength;
     private final String imagePath;
     private final Texture entityTexture;
     private final boolean healthBar;
 
-    EntityType(int maxHealth, float movementSpeed, boolean healthBar, String imagePath) {
+    EntityType(int maxHealth, float movementSpeed, float jumpStrength, boolean healthBar, String imagePath) {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
+        this.jumpStrength = jumpStrength;
         this.imagePath = imagePath;
         this.healthBar = healthBar;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
@@ -35,6 +37,10 @@ public enum EntityType {
 
     public float getMovementSpeed() {
         return this.movementSpeed;
+    }
+
+    public float getJumpStrength() {
+        return this.jumpStrength;
     }
 
     public boolean getHasHealthBar() {
