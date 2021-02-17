@@ -6,6 +6,7 @@ import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.entities.collectable.Collectable;
 import me.mayhem.game.entity.physics.type.HoverPhysics;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
@@ -28,5 +29,10 @@ public class KeyCard extends Entity implements Collectable {
     public void update(RenderWindow renderWindow) {
         this.keyCard.setPosition(this.getPosition().toVector());
         renderWindow.draw(this.keyCard);
+    }
+
+    @Override
+    public void collected(Player player) {
+        this.setDead(true);
     }
 }
