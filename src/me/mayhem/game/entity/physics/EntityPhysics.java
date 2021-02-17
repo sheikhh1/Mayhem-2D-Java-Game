@@ -71,7 +71,7 @@ public class EntityPhysics {
 
     public void reset(EntityState state) {
         if (state.getIndex() == 0) {
-            this.jumpStrength = DEFAULT_JUMP_STRENGTH;
+            this.jumpStrength = this.entityType.getJumpStrength();
             this.fallStrength = 0;
             this.motion.setY(0);
         } else {
