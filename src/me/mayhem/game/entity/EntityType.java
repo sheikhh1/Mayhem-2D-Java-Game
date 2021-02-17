@@ -41,7 +41,7 @@ public enum EntityType {
         this.healthBar = healthBar;
         this.spawnMethod = spawnMethod;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(imagePath));
-        this.entitySprite = UtilSprite.loadFromPath(imagePath);
+        this.entitySprite = UtilSprite.loadFromPath(imagePath, 0.25f, 0.25f);
     }
 
     public int getMaxHealth() {
