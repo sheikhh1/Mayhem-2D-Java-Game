@@ -30,7 +30,6 @@ public class Player extends Entity implements PlayerInteract{
 
         this.animate.setSpritePosition(position.toVector());
         this.name = name;
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
         this.setState(EntityState.FALLING);
     }
 
