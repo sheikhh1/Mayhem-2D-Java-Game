@@ -21,7 +21,7 @@ public class LavaBlock extends Block {
             return;
         }
 
-        entity.damage(entity, 20f);
+        entity.damage(entity, 1f);
     }
 
     public static Builder builder() {
