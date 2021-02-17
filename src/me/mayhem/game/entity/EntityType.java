@@ -5,7 +5,7 @@ import org.jsfml.graphics.Texture;
 
 public enum EntityType {
 
-    PLAYER(200, 1.05f, true, "players/PlayerSheet.png"),
+    PLAYER(200, 1.75f, true, "players/PlayerSheet.png"),
     INFECTED(50,0.8f,  true, "enemies/Infected.png"),
     CORROSIVE(50,0.8f, true, "enemies/CorrosiveEnemy.png"),
     FEROCIOUS(100, 0.9f, true, "enemies/Ferocious.png"),
