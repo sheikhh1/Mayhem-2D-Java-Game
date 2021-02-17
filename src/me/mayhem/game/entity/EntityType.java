@@ -1,17 +1,26 @@
 package me.mayhem.game.entity;
 
+import me.mayhem.game.entity.entities.collect.key.KeyCard;
+import me.mayhem.game.entity.entities.enemies.corrosive.CorrosiveEnemy;
+import me.mayhem.game.entity.entities.enemies.ferocious.FerociousEnemy;
+import me.mayhem.game.entity.entities.enemies.infected.InfectedEnemy;
+import me.mayhem.game.entity.entities.friendly.door.Door;
+import me.mayhem.game.level.Level;
+import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Texture;
 
+import java.util.function.BiFunction;
+
 public enum EntityType {
 
-    PLAYER(200, 1.75f, 6f, true, "players/PlayerSheet.png"),
-    INFECTED(50,0.8f, 4f, true, "enemies/Infected.png"),
-    CORROSIVE(50,0.8f, 4f, true, "enemies/CorrosiveEnemy.png"),
-    FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferocious.png"),
-    PROJECTILE(0, 1f, 4f, false, "players/PlayerSheet.png"), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
-    KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png"),
-    DOOR(0, 1f, 4f, false, "interactables/doors/DoorClosed.png")
+    PLAYER(200, 1.75f, 6f, true, "players/PlayerSheet.png", null),
+    INFECTED(50,0.8f, 4f, true, "enemies/Infected.png", InfectedEnemy::new),
+    CORROSIVE(50,0.8f, 4f, true, "enemies/CorrosiveEnemy.png", CorrosiveEnemy::new),
+    FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferocious.png", FerociousEnemy::new),
+    PROJECTILE(0, 1f, 4f, false, "players/PlayerSheet.png", null), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
+    KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png", KeyCard::new),
+    DOOR(0, 1f, 4f, false, "interactables/doors/DoorClosed.png", Door::new)
 
     ;
 
@@ -21,13 +30,15 @@ public enum EntityType {
     private final String imagePath;
     private final Texture entityTexture;
     private final boolean healthBar;
+    private final BiFunction<Vector, Level, Entity> spawnMethod;
 
-    EntityType(int maxHealth, float movementSpeed, float jumpStrength, boolean healthBar, String imagePath) {
+    EntityType(int maxHealth, float movementSpeed, float jumpStrength, boolean healthBar, String imagePath, BiFunction<Vector, Level, Entity> spawnMethod) {
         this.maxHealth = maxHealth;
         this.movementSpeed = movementSpeed;
         this.jumpStrength = jumpStrength;
         this.imagePath = imagePath;
         this.healthBar = healthBar;
+        this.spawnMethod = spawnMethod;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
     }
 
@@ -47,11 +58,11 @@ public enum EntityType {
         return this.healthBar;
     }
 
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
     public Texture getEntityTexture() {
         return this.entityTexture;
+    }
+
+    public BiFunction<Vector, Level, Entity> getSpawnMethod() {
+        return this.spawnMethod;
     }
 }
