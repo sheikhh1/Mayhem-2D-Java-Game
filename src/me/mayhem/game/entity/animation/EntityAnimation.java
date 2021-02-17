@@ -10,21 +10,20 @@ import org.jsfml.system.Vector2f;
  */
 public class EntityAnimation {
 
-    private Sprite entitySprite;
+    private final Sprite entitySprite;
+    private final Clock animationUpdate = new Clock();
+    private final Clock timeOutClock =  new Clock();
+
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
     private int availableFrames = 1;
-    private Clock animationUpdate = new Clock();
-    private Clock timeOutClock =  new Clock();
     private int timeOut = 0;
 
 
     public EntityAnimation(EntityType entityType) {
-
         this.entitySprite = new Sprite(entityType.getEntityTexture());
-        // Increase the size of the sprite by 1.3x
         this.entitySprite.setScale(1.3f,1.3f);
         this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
