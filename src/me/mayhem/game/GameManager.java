@@ -24,6 +24,7 @@ import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -89,12 +90,17 @@ public class GameManager {
     public void draw() {
         this.currentLevel.getLayout().draw(this.renderWindow);
 
-        for (Entity entity : this.currentLevel.getEntities()) {
+        Iterator<Entity> iterator = this.currentLevel.getEntities().iterator();
+
+        while (iterator.hasNext()) {
+            Entity entity = iterator.next();
+
             if (entity.isDead()) {
+                iterator.remove();
                 continue;
             }
 
-            entity.update(this.renderWindow);
+            entity.update(renderWindow);
         }
 
         for (Drawable drawnShape : this.drawnShapes) {
