@@ -24,10 +24,9 @@ public class EntityAnimation {
     private int availableFrames = 1;
     private int timeOut = 0;
 
-
     public EntityAnimation(EntityType entityType) {
         this.entitySprite = new Sprite(entityType.getEntityTexture());
-        this.entitySprite.setScale(1.3f,1.3f);
+        this.entitySprite.setScale(1.1f,1.1f);
         this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
 
