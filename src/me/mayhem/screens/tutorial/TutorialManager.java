@@ -1,6 +1,7 @@
 package me.mayhem.screens.tutorial;
 
 import me.mayhem.Mayhem;
+import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.tutorial.items.TutorialReturnButton;
 import me.mayhem.util.UtilSharedResources;
@@ -24,12 +25,16 @@ public class TutorialManager implements ScreenManager {
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-
+        createSprites();
+        createButtons();
+        draw(renderWindow);
     }
 
     @Override
     public void unloadScreen(RenderWindow renderWindow) {
-
+        for (Interactable button : this.buttons) {
+            ((InputListener<?>) button).unregister();
+        }
     }
 
     @Override
