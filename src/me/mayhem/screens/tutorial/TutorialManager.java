@@ -91,14 +91,14 @@ public class TutorialManager implements ScreenManager {
         Sprite keyCard = UtilSharedResources.getKeyCard();
         Sprite door = UtilSharedResources.getDoor();
 
-        WSAD.setPosition(new Vector(200, 400).toVector());
+        WSAD.setPosition(new Vector(440, 40).toVector());
         WSAD.setScale(new Vector(0.5f,0.5f).toVector());
 
 
-        keyCard.setPosition(new Vector(400, 400).toVector());
+        keyCard.setPosition(new Vector(260, 310).toVector());
         keyCard.setScale(new Vector(0.3f,0.3f).toVector());
 
-        door.setPosition(new Vector(600, 600).toVector());
+        door.setPosition(new Vector(800, 350).toVector());
         door.setScale(new Vector(0.5f,0.5f).toVector());
 
     this.sprites = new Sprite[]{background, WSAD, keyCard, door};
@@ -113,8 +113,10 @@ public class TutorialManager implements ScreenManager {
 
             Text text = new Text(writing[i], UtilFont.loadFont("fonts/FreeSans.ttf"));
             Float width = text.getLocalBounds().width;
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)), (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
             text.setScale(new Vector(1,1).toVector());
+            text.setStyle(TextStyle.BOLD);
+            text.setColor(Color.CYAN);
 
             this.texts[i] = text;
 
@@ -123,7 +125,7 @@ public class TutorialManager implements ScreenManager {
 
     private String[] initialiseText(){
         String line1 = "Welcome to Mayhem";
-        String line2 = "In mayhem you must use the WSAD keys to move your character";
+        String line2 = "In Mayhem you must use the WSAD keys to move your character";
         String line3 = "Collect the KeyCard  and take it to the elevator to progress";
         String line4 = "Can you make it out in time to save the world?";
 
