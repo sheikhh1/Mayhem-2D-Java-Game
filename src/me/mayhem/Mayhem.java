@@ -4,6 +4,7 @@ import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
+import me.mayhem.util.file.UtilFont;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -44,6 +45,7 @@ public class Mayhem {
                     }
                 }
             }
+
         }
     }
 
