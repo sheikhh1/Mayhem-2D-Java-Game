@@ -78,7 +78,7 @@ public abstract class Entity {
 
         this.animate.setSpritePosition(position.toVector());
         this.setState(EntityState.FALLING);
-        this.setState(EntityState.FORWARD);
+        this.setState(EntityState.STANDING);
     }
 
     public EntityAnimation getAnimation() {
