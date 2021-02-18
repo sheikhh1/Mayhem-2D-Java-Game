@@ -7,7 +7,6 @@ import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.player.inventory.Inventory;
 import me.mayhem.game.entity.player.inventory.Item;
-import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
@@ -33,9 +32,7 @@ public class Player extends Entity implements PlayerInteract{
     public Player(String name, Vector position) {
         super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 30), Pathing.NO_PATHING);
 
-        this.animate.setSpritePosition(position.toVector());
         this.name = name;
-        this.setState(EntityState.FALLING);
     }
 
     public Inventory getInventory() {
