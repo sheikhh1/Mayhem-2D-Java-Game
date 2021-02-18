@@ -22,7 +22,7 @@ public class EntityAnimation {
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
     private int availableFrames = 1;
-    private int timeOut = 0;
+    private int timeOut = Integer.MAX_VALUE;
 
     public EntityAnimation(EntityType entityType) {
         this.entitySprite = new Sprite(entityType.getEntityTexture());
