@@ -3,10 +3,7 @@ package me.mayhem.screens.newgamesettingspage;
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.newgamesettingspage.items.SettingsPageEasyButton;
-import me.mayhem.screens.newgamesettingspage.items.SettingsPageHardButton;
-import me.mayhem.screens.newgamesettingspage.items.SettingsPageMediumButton;
-import me.mayhem.screens.newgamesettingspage.items.SettingsPageReturnButton;
+import me.mayhem.screens.newgamesettingspage.items.*;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
@@ -49,8 +46,10 @@ public class NewGameSettingsPageManager implements ScreenManager {
         SettingsPageEasyButton easy = new SettingsPageEasyButton(createEasyButton());
         SettingsPageMediumButton medium = new SettingsPageMediumButton(createMediumButton());
         SettingsPageHardButton hard = new SettingsPageHardButton(createHardButton());
+        SettingsPageTutorialButton tutorialButton = new SettingsPageTutorialButton(createTutorialButton());
 
-        this.buttons = new Interactable[] {easy, medium, hard, returnButton };
+
+        this.buttons = new Interactable[] {easy, medium, hard, returnButton, tutorialButton };
     }
 
     /**
@@ -107,6 +106,15 @@ public class NewGameSettingsPageManager implements ScreenManager {
         shape.setFillColor(new Color(176, 176, 176));
 
         return shape;
+    }
+    public Shape createTutorialButton(){
+        CircleShape circ = new CircleShape();
+
+        circ.setRadius(50);
+        circ.setPosition(new Vector(Mayhem.SCREEN_WIDTH - 150, 100).toVector());
+        circ.setFillColor(new Color(176, 176, 176));
+
+        return circ;
     }
 
     @Override

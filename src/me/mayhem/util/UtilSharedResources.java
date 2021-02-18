@@ -10,6 +10,10 @@ public class UtilSharedResources {
     private static Sound mainTheme = null;
     private static Sprite background = null;
     private static Sprite logo = null;
+    private static Sprite WSAD = null;
+    private static Sprite door = null;
+    private static Sprite card = null;
+
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
@@ -38,6 +42,26 @@ public class UtilSharedResources {
             logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
         }
 
-        return background;
+        return logo;
+    }
+    public static Sprite getWSAD(){
+        if (WSAD == null){
+            WSAD = UtilSprite.loadFromPath("menu/WSAD.png");
+        }
+        return WSAD;
+    }
+    public static Sprite getDoor(){
+        if (door == null){
+            door = UtilSprite.loadFromPath("interactables/doors/DoorClosed.png");
+        }
+
+        return door;
+    }
+    public static Sprite getKeyCard(){
+        if (card == null){
+            card = UtilSprite.loadFromPath("interactables/Keycard/KeyCard.png");
+        }
+
+        return  card;
     }
 }
