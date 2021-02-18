@@ -38,6 +38,6 @@ public class UtilSharedResources {
             logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
         }
 
-        return background;
+        return logo;
     }
 }
