@@ -5,6 +5,7 @@ import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
+import me.mayhem.util.direction.UtilVector;
 
 public class CorrosivePathing implements Pathing {
 
@@ -16,6 +17,9 @@ public class CorrosivePathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (UtilVector.getDistanceSquared(entity.getPosition(), this.currentLevel.getPlayer().getPosition()) <= 60000) {
+            return;
+        }
 
         if (entity.getState(1) == EntityState.BACK) {
             entity.getMotion().add(-1, 0);
