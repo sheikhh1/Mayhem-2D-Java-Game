@@ -22,9 +22,9 @@ public class CorrosivePathing implements Pathing {
             Vector toPlayer = entity.getPosition().clone().subtract(this.currentLevel.getPlayer().getPosition()).normalize();
 
             if (toPlayer.getX() == 1) {
-                entity.setState(EntityState.BACK);
-            } else {
                 entity.setState(EntityState.FORWARD);
+            } else {
+                entity.setState(EntityState.BACK);
             }
             return;
         }
