@@ -11,8 +11,10 @@ public class MoveBetweenBlocksPathing implements Pathing {
     public void updatePosition(Entity entity) {
         if (entity.getState(1) == EntityState.BACK) {
             entity.getMotion().add(-1, 0);
-        } else {
+        } else if (entity.getState(1) == EntityState.FORWARD) {
             entity.getMotion().add(1, 0);
+        } else {
+            entity.setState(EntityState.FORWARD);
         }
 
         this.determineState(entity);
