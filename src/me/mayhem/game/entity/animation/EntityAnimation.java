@@ -75,7 +75,6 @@ public class EntityAnimation {
      * @param window - Window passed to draw onto
      */
     public void playAnimation(RenderWindow window) {
-        //TODO: Fix Timeout (Buggy)
         if(!pause && timeOutClock.getElapsedTime().asMilliseconds() <= timeOut){
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
