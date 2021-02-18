@@ -23,11 +23,16 @@ public class CorrosivePathing implements Pathing {
 
             if (toPlayer.getX() == 1) {
                 entity.setState(EntityState.FORWARD);
+                entity.getAnimation().setTimeOut(1);
             } else {
                 entity.setState(EntityState.BACK);
+                entity.getAnimation().setTimeOut(1);
             }
+
             return;
         }
+
+        entity.getAnimation().setTimeOut(Integer.MAX_VALUE);
 
         if (entity.getState(1) == EntityState.BACK) {
             entity.getMotion().add(-1, 0);
