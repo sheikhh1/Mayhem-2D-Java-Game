@@ -91,7 +91,15 @@ public class TutorialManager implements ScreenManager {
         Sprite keyCard = UtilSharedResources.getKeyCard();
         Sprite door = UtilSharedResources.getDoor();
 
+        WSAD.setPosition(new Vector(200, 400).toVector());
+        WSAD.setScale(new Vector(0.5f,0.5f).toVector());
 
+
+        keyCard.setPosition(new Vector(400, 400).toVector());
+        keyCard.setScale(new Vector(0.3f,0.3f).toVector());
+
+        door.setPosition(new Vector(600, 600).toVector());
+        door.setScale(new Vector(0.5f,0.5f).toVector());
 
     this.sprites = new Sprite[]{background, WSAD, keyCard, door};
     }
