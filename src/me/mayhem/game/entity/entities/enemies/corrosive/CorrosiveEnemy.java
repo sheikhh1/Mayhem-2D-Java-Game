@@ -22,9 +22,6 @@ public class CorrosiveEnemy extends Entity implements Enemy {
      */
     public CorrosiveEnemy(Vector position, Level level) {
         super(EntityType.CORROSIVE, position, Vector.getZero(), new SpriteHitbox(position,55,40), new CorrosivePathing(level));
-
-        this.animate.setSpritePosition(position.toVector());
-        this.setState(EntityState.FALLING);
     }
 
     public void tick() {

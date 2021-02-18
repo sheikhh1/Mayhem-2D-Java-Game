@@ -25,7 +25,6 @@ public class FerociousEnemy extends Entity implements Enemy {
         super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveBetweenBlocksPathing());
 
         this.animate.setSpritePosition(position.toVector());
-        this.setState(EntityState.FALLING);
     }
 
     public void tick() {

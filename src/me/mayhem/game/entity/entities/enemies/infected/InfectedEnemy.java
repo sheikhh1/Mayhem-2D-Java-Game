@@ -23,9 +23,6 @@ public class InfectedEnemy extends Entity implements Enemy {
      */
     public InfectedEnemy(Vector position, Level level) {
         super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveToPlayerPathing(level));
-
-        this.animate.setSpritePosition(position.toVector());
-        this.setState(EntityState.FALLING);
     }
 
     public void tick() {

@@ -72,9 +72,13 @@ public abstract class Entity {
         this.entityPhysics = new EntityPhysics(this.type, motion);
         this.animate = new EntityAnimation(type);
 
-        if (this.type.getHasHealthBar()){
+        if (this.type.getHasHealthBar()) {
             this.healthBox = new EntityHealthBox(this, this.position);
         }
+
+        this.animate.setSpritePosition(position.toVector());
+        this.setState(EntityState.FALLING);
+        this.setState(EntityState.FORWARD);
     }
 
     public EntityAnimation getAnimation() {
