@@ -21,7 +21,7 @@ public class CorrosiveEnemy extends Entity implements Enemy {
      * @param position   - Current Position of entity relative to the game window
      */
     public CorrosiveEnemy(Vector position, Level level) {
-        super(EntityType.CORROSIVE, position, Vector.getZero(), new SpriteHitbox(position, 0,0 ), new MoveBetweenBlocksPathing());
+        super(EntityType.CORROSIVE, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveBetweenBlocksPathing());
 
         this.animate.setSpritePosition(position.toVector());
         this.setState(EntityState.FALLING);
