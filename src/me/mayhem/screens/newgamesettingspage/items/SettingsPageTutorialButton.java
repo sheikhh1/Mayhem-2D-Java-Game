@@ -10,7 +10,7 @@ import org.jsfml.window.event.Event;
 
 public class SettingsPageTutorialButton extends ButtonInteractable {
     public SettingsPageTutorialButton(Shape shape) {
-        super(shape, "fonts/FreeSans.ttf", "How To Play");
+        super(shape, "fonts/FreeSans.ttf", "?");
     }
     @Override
     protected void call(RenderWindow window, Event event) {
