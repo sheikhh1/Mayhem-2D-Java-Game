@@ -10,6 +10,7 @@ public class UtilSharedResources {
     private static Sound mainTheme = null;
     private static Sprite background = null;
     private static Sprite logo = null;
+    private static Sprite WSAD = null;
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
@@ -39,5 +40,11 @@ public class UtilSharedResources {
         }
 
         return logo;
+    }
+    public static Sprite getWSAD(){
+        if (WSAD == null){
+            WSAD = UtilSprite.loadFromPath(("menu/WSAD.png"));
+        }
+        return WSAD;
     }
 }
