@@ -7,7 +7,6 @@ import me.mayhem.game.entity.state.EntityState;
 
 public class MoveBetweenBlocksPathing implements Pathing {
 
-
     @Override
     public void updatePosition(Entity entity) {
         if (entity.getState(1) == EntityState.BACK) {
