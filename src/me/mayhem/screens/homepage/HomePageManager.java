@@ -52,7 +52,7 @@ public class HomePageManager implements ScreenManager {
             return;
         }
 
-        logo.setPosition(new Vector((0), (0)).toVector());
+        logo.setPosition(new Vector(400, 100).toVector());
 
         this.sprites = new Sprite[]{logo,background };
     }
