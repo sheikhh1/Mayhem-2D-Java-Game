@@ -5,6 +5,7 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.tutorial.items.TutorialReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
+import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
@@ -63,8 +64,13 @@ public class TutorialManager implements ScreenManager {
     }
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
+        Sprite WSAD = UtilSharedResources.getWSAD();
+        Sprite keyCard = UtilSharedResources.getKeyCard();
+        Sprite door = UtilSharedResources.getDoor();
 
-        this.sprites = new Sprite[]{background};
+
+
+    this.sprites = new Sprite[]{background, WSAD, keyCard, door};
     }
 
 }
