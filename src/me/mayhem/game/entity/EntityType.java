@@ -22,7 +22,8 @@ public enum EntityType {
     FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferocious.png", FerociousEnemy::new),
     PROJECTILE(0, 1f, 4f, false, "players/PlayerSheet.png", null), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
     KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png", KeyCard::new),
-    DOOR(0, 1f, 4f, false, "interactables/doors/DoorClosed.png", Door::new)
+    DOOR(0, 0f, 0f, false, "interactables/doors/DoorClosed.png", Door::new),
+    SPIKES(0, 0f, 0f, false, "obstacles/Spike.png", Door::new),
 
     ;
 
