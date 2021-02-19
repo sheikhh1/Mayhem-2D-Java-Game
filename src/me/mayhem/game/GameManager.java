@@ -24,6 +24,7 @@ import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Text;
+import org.jsfml.system.Vector2f;
 
 import java.util.Iterator;
 import java.util.List;
@@ -52,7 +53,10 @@ public class GameManager {
         new EntityDeathListener();
 
         this.renderWindow = renderWindow;
+        this.timerText = new Text();
+        this.timerText.setPosition(new Vector2f(0, renderWindow.getDefaultView().getViewport().width - 100));
         this.currentLevel = new Level(difficulty, playerName);
+
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
 
         this.initialize();
