@@ -89,6 +89,9 @@ public class Player extends Entity {
     }
 
     public void attack(Entity enemy) {
-        enemy.damage(this, 1);
+        if (!enemy.isDead()) {
+            enemy.damage(this, 1);
+        }
+
     }
 }
