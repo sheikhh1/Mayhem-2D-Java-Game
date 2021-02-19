@@ -110,10 +110,14 @@ public class Player extends Entity implements PlayerInteract {
     public void setMelee(boolean entityMelee) {
         super.setMelee(entityMelee);
 
+        if (!entityMelee) {
+            return;
+        }
+
         double closestEntity = Integer.MAX_VALUE;
         Entity closest = null;
 
-        for (Entity nearbyEntity : this.level.getNearbyEntities(this, 15000)) {
+        for (Entity nearbyEntity : this.level.getNearbyEntities(this, 40000)) {
             if (UtilVector.inSight(this, nearbyEntity)) {
                 double distance = UtilVector.getDistanceSquared(this.getPosition(), nearbyEntity.getPosition());
 
@@ -131,7 +135,7 @@ public class Player extends Entity implements PlayerInteract {
 
     @Override
     public void attack(Entity enemy) {
-        enemy.damage(this, 200);
+        enemy.damage(this, 1);
     }
 
     @Override
