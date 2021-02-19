@@ -9,6 +9,7 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
+import org.jsfml.window.event.MouseEvent;
 
 public class Mayhem {
 
@@ -36,6 +37,8 @@ public class Mayhem {
             window.display();
 
             for (Event event : window.pollEvents()) {
+                setActive(window, event);
+
                 if (event.type == Event.Type.CLOSED) {
                     window.close();
                 } else {
@@ -43,6 +46,17 @@ public class Mayhem {
                         listener.onEvent(event);
                     }
                 }
+            }
+
+        }
+    }
+
+    private static void setActive(RenderWindow window, Event event) {
+        if (event instanceof MouseEvent) {
+            try {
+                window.setActive(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

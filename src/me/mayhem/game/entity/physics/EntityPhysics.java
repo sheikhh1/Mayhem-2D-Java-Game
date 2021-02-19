@@ -1,41 +1,40 @@
 package me.mayhem.game.entity.physics;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 
 public class EntityPhysics {
 
     public static final float GRAVITY = 0.196f;
-    public static final float MAX_SPEED = 3f;
+    public static final float MAX_SPEED = 8f;
     public static final float MAX_FALL_SPEED = 5f;
 
-    private static final float DEFAULT_JUMP_STRENGTH = 4f;
-
-    private float jumpStrength = DEFAULT_JUMP_STRENGTH;
+    private float jumpStrength;
     private float fallStrength = 0;
 
+    protected EntityType entityType;
     protected Vector motion;
 
-    /**
-     * Set Player motion
-     * @param motion - Motion passed by player class
-     */
-    public void setEntityMotion(Vector motion) {
+
+    public EntityPhysics(EntityType entityType, Vector motion) {
+        this.entityType = entityType;
         this.motion = motion;
+        this.jumpStrength = entityType.getJumpStrength();
     }
 
     /**
      * Move Player Forward method by 5 Pixels
      */
     public void moveForward() {
-        this.motion.add(MAX_SPEED,0);
+        this.motion.add(this.entityType.getMovementSpeed(),0);
     }
 
     /**
      * Move Player Back method by 5 Pixels
      */
     public void moveBack() {
-        this.motion.subtract(MAX_SPEED,0);
+        this.motion.subtract(this.entityType.getMovementSpeed(),0);
     }
 
     /**
@@ -72,7 +71,7 @@ public class EntityPhysics {
 
     public void reset(EntityState state) {
         if (state.getIndex() == 0) {
-            this.jumpStrength = DEFAULT_JUMP_STRENGTH;
+            this.jumpStrength = this.entityType.getJumpStrength();
             this.fallStrength = 0;
             this.motion.setY(0);
         } else {

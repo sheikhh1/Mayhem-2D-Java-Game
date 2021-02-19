@@ -1,6 +1,7 @@
 package me.mayhem.game.level.layout.ai;
 
 import me.mayhem.game.level.layout.block.Block;
+import me.mayhem.game.level.spawning.SpawnPosition;
 import me.mayhem.util.Vector;
 
 import java.util.List;
@@ -19,11 +20,6 @@ public interface LevelGenerator {
      */
     Vector getPlayerSpawnPosition();
 
-    Vector getKeyCardSpawnPosition();
-
-    Vector getDoorPosition();
-
-    List<Vector> getEnemySpawnPositions();
-    List<Vector> getObstacleSpawnPositions();
+    List<SpawnPosition> getEnemySpawnPositions();
 
 }

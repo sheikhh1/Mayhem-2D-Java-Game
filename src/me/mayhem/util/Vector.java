@@ -52,8 +52,9 @@ public class Vector {
         this.set(vector.getX(), vector.getY());
     }
 
-    public void set(float x, float y) {
+    public Vector set(float x, float y) {
         this.vector2f = new Vector2f(x, y);
+        return this;
     }
 
     public void setX(float x) {
@@ -100,7 +101,13 @@ public class Vector {
     }
 
     public Vector normalize() {
-        this.divide((float) this.getLength());
+        double length = this.getLength();
+
+        if (length == 0) {
+            return this.set(0, 0);
+        }
+
+        this.divide((float) length);
         return this;
     }
 

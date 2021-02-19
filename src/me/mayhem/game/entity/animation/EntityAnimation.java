@@ -1,7 +1,7 @@
 package me.mayhem.game.entity.animation;
 
 import me.mayhem.game.entity.EntityType;
-import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
@@ -13,21 +13,20 @@ import org.jsfml.system.Vector2f;
  */
 public class EntityAnimation {
 
-    private Sprite entitySprite;
+    private final Sprite entitySprite;
+    private final Clock animationUpdate = new Clock();
+    private final Clock timeOutClock =  new Clock();
+
     private int row = 11; // Row of PlayerSheet.png
     private int column = 0;// Column of PlayerSheet.png
     private boolean pause = true; // Required to pause or resume the animations
     private int frameCount = 0;
     private int availableFrames = 1;
-    private Clock animationUpdate = new Clock();
-    private Clock timeOutClock =  new Clock();
-    private int timeOut = 0;
+    private int timeOut = Integer.MAX_VALUE;
 
     public EntityAnimation(EntityType entityType) {
-
         this.entitySprite = new Sprite(entityType.getEntityTexture());
-        // Increase the size of the sprite by 1.3x
-        this.entitySprite.setScale(1.3f,1.3f);
+        this.entitySprite.setScale(1.1f,1.1f);
         this.entitySprite.setTextureRect(new IntRect(this.getColumn() * 64,this.getRow() * 64,64,64));
     }
 
@@ -37,6 +36,10 @@ public class EntityAnimation {
 
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    public void setColor(Color spriteColor) {
+        this.entitySprite.setColor(spriteColor);
     }
 
     public int getRow() {
@@ -59,10 +62,6 @@ public class EntityAnimation {
         this.timeOut = timeOut;
     }
 
-    public int getTimeOut() {
-        return this.timeOut;
-    }
-
     public void resetTimeOutClock() {
         this.timeOutClock.restart();
     }
@@ -76,7 +75,6 @@ public class EntityAnimation {
      * @param window - Window passed to draw onto
      */
     public void playAnimation(RenderWindow window) {
-        //TODO: Fix Timeout (Buggy)
         if(!pause && timeOutClock.getElapsedTime().asMilliseconds() <= timeOut){
             if (animationUpdate.getElapsedTime().asMilliseconds() >= 50){
                 animationUpdate.restart();
@@ -90,7 +88,7 @@ public class EntityAnimation {
             this.setColumn(0);
         }
 
-        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 18,this.getRow() * 64 + 12,30,76 - 22));
+        entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64 + 12,40,76 - 22));
 
         window.draw(entitySprite);
     }
@@ -101,14 +99,6 @@ public class EntityAnimation {
 
     public float getWidth() {
         return this.entitySprite.getGlobalBounds().width;
-    }
-
-    public FloatRect getGlobalBounds() {
-        return this.entitySprite.getGlobalBounds();
-    }
-
-    public FloatRect getLocalBounds() {
-        return this.entitySprite.getLocalBounds();
     }
 
     public Sprite getSprite() {

@@ -5,16 +5,24 @@ import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
-import me.mayhem.game.entity.state.EntityState;
+import me.mayhem.game.entity.player.inventory.Inventory;
+import me.mayhem.game.entity.player.inventory.Item;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Clock;
 
 /**
  * Player Class
  */
-public class Player extends Entity {
+public class Player extends Entity implements PlayerInteract{
 
     private final String name;
+    private final Clock attackedAnimateClock = new Clock();
+    private final Inventory inventory = new Inventory();
+
+    private boolean hasBeenAttacked = false;
 
     /**
      * Player Constructor
@@ -22,16 +30,44 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position) {
-        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 65, 35), Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 30), Pathing.NO_PATHING);
 
-        this.animate.setSpritePosition(position.toVector());
         this.name = name;
-        this.getEntityPhysics().setEntityMotion(this.getMotion());
-        this.setState(EntityState.FALLING);
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    @Override
+    public void damage(Entity cause, double damage) {
+        super.damage(cause, damage);
+
+        this.hasBeenAttacked = true;
+        this.attackedAnimateClock.restart();
+    }
+
+    @Override
+    public void update(RenderWindow window) {
+        super.update(window);
+
+        Vector startPosition = new Vector(0, 0);
+
+        for (int i = 0; i < this.inventory.getItems().size(); i++) {
+            Item item = this.inventory.getItems().get(i);
+
+            item.draw(window, startPosition.add(i * 31, 0).clone());
+        }
     }
 
     public void tick() {
         super.tick();
+
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 100 && this.hasBeenAttacked) {
+            this.getAnimation().setColor(Color.WHITE);
+        } else if (this.hasBeenAttacked){
+            this.getAnimation().setColor(Color.RED);
+        }
 
         if (this.isForward()) {
             this.getEntityPhysics().moveForward();
@@ -65,7 +101,13 @@ public class Player extends Entity {
         }
     }
 
-    public String getName(){
-       return name;
+    @Override
+    public void attack(Entity enemy) {
+        
+    }
+
+    @Override
+    public void pickUp(Entity keyCard) {
+
     }
 }

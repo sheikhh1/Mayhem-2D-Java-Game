@@ -38,8 +38,6 @@ public class LoadPageManager implements ScreenManager {
     }
 
     private void createButtons() {
-        //TODO : loop the button for how many saved games there are
-        // store this in a list maybe?
 
         LoadPageGameSelectButton gameSelect = new LoadPageGameSelectButton(createGameSelectButton());
         LoadPageReturnButton returnButton = new LoadPageReturnButton(createReturnButton());

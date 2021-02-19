@@ -1,8 +1,10 @@
 package me.mayhem.util;
 
+import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
 import org.jsfml.audio.Sound;
+import org.jsfml.graphics.Font;
 import org.jsfml.graphics.Sprite;
 
 public class UtilSharedResources {
@@ -10,6 +12,10 @@ public class UtilSharedResources {
     private static Sound mainTheme = null;
     private static Sprite background = null;
     private static Sprite logo = null;
+    private static Sprite WSAD = null;
+    private static Sprite door = null;
+    private static Sprite card = null;
+    private static Font mainFont = null;
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
@@ -38,6 +44,37 @@ public class UtilSharedResources {
             logo = UtilSprite.loadFromPath("menu/mayhemLogo.png");
         }
 
-        return background;
+        return logo;
+    }
+
+    public static Sprite getWSAD() {
+        if (WSAD == null) {
+            WSAD = UtilSprite.loadFromPath("menu/WSAD.png");
+        }
+        return WSAD;
+    }
+
+    public static Sprite getDoor() {
+        if (door == null) {
+            door = UtilSprite.loadFromPath("interactables/doors/DoorClosed.png");
+        }
+
+        return door;
+    }
+
+    public static Sprite getKeyCard() {
+        if (card == null) {
+            card = UtilSprite.loadFromPath("interactables/Keycard/KeyCard.png");
+        }
+
+        return card;
+    }
+
+    public static Font getMainFont() {
+        if (mainFont == null) {
+            mainFont = UtilFont.loadFont("fonts/FreeSans.ttf");
+        }
+
+        return mainFont;
     }
 }

@@ -5,9 +5,11 @@ import me.mayhem.game.attribute.Attribute;
 import me.mayhem.game.attribute.AttributeFactory;
 import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.entity.animation.EntityAnimation;
-import me.mayhem.game.entity.drawableentities.healthbox.EntityHealthBox;
+import me.mayhem.game.entity.entities.drawable.healthbox.EntityHealthBox;
+import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
 import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Texture;
@@ -45,6 +47,7 @@ public abstract class Entity {
 
     private double health;
     private boolean entityMelee = false;
+    private boolean dead = false;
 
     EntityHealthBox healthBox;
 
@@ -66,15 +69,20 @@ public abstract class Entity {
         this.hitbox = hitbox;
         this.health = type.getMaxHealth();
         this.attributes.addAll(Arrays.asList(attributes));
-        this.entityPhysics = new EntityPhysics();
+        this.entityPhysics = new EntityPhysics(this.type, motion);
         this.animate = new EntityAnimation(type);
 
-        if (this.type.getHasHealthBar()){
-
-            this.healthBox = new EntityHealthBox(this.position);
+        if (this.type.getHasHealthBar()) {
+            this.healthBox = new EntityHealthBox(this, this.position);
         }
 
+        this.animate.setSpritePosition(position.toVector());
+        this.setState(EntityState.FALLING);
+        this.setState(EntityState.STANDING);
+    }
 
+    public EntityAnimation getAnimation() {
+        return this.animate;
     }
 
     public EntityType getType() {
@@ -107,6 +115,22 @@ public abstract class Entity {
 
     public double getHealth() {
         return this.health;
+    }
+
+    public void damage(Entity cause, double damage) {
+        EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(this, cause, damage);
+
+        EventManager.callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
+        this.health -= event.getDamage();
+    }
+
+    public EntityHealthBox getHealthBox() {
+        return this.healthBox;
     }
 
     public List<Attribute<?>> getAttributes() {
@@ -348,5 +372,13 @@ public abstract class Entity {
 
     public void setEntityGrounded(boolean entityGrounded) {
         this.entityGrounded = entityGrounded;
+    }
+
+    public boolean isDead() {
+        return this.dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }
