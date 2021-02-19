@@ -308,7 +308,6 @@ public abstract class Entity {
         } else if (this.isDead() && this.deathAnimateClock.getElapsedTime().asMilliseconds() > 1100 ) {
             this.setDeathAnimateComplete(true);
         } else if (this.isDead()) {
-            System.out.println("here");
             this.animate.setEntityDead(true);
             this.animate.setPause(true);
         }
