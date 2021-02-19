@@ -311,7 +311,7 @@ public abstract class Entity {
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
-        if (state == null || (currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION) ){
+        if (state == null || (currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION)) {
             return;
         }
 
