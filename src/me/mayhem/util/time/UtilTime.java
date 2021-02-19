@@ -1,15 +1,15 @@
 package me.mayhem.util.time;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Duration;
 
 public class UtilTime {
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("hh:mm:ss");
-
     public static String formatTime(long difference) {
-        return DATE_FORMAT.format(new Date(difference));
-    }
+        Duration duration = Duration.ofMillis(difference);
 
+        return String.format("%d:%02d:%02d",
+                duration.toHours(),
+                duration.toMinutesPart(),
+                duration.toSecondsPart());
+    }
 }
