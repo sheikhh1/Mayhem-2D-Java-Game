@@ -40,14 +40,6 @@ public class Player extends Entity {
     }
 
     @Override
-    public void damage(Entity cause, double damage) {
-        super.damage(cause, damage);
-
-        this.attacked = true;
-        this.attackedAnimateClock.restart();
-    }
-
-    @Override
     public void update(RenderWindow window) {
         super.update(window);
 

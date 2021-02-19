@@ -133,6 +133,8 @@ public abstract class Entity {
         }
 
         this.health -= event.getDamage();
+        this.attacked = true;
+        this.attackedAnimateClock.restart();
     }
 
     public EntityHealthBox getHealthBox() {
