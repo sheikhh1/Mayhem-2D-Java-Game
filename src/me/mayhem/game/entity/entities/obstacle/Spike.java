@@ -10,11 +10,11 @@ import me.mayhem.util.file.UtilSprite;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
-public class Obstacle extends Entity {
+public class Spike extends Entity {
 
     private final Sprite sprite;
 
-    public Obstacle(Vector position, Level level) {
+    public Spike(Vector position, Level level) {
         super(EntityType.SPIKES, position, Vector.getZero(), new SpriteHitbox(position, 48,48 ), Pathing.NO_PATHING);
 
         sprite = UtilSprite.loadFromPath("obstacles/Spike.png");
