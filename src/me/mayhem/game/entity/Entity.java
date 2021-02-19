@@ -286,13 +286,17 @@ public abstract class Entity {
         }
 
         if (this.isMelee() && this.getFacing().getX() == 1) {
-            animate.setAvailableFrames(6);
+            this.animate.setAvailableFrames(6);
             this.animate.setRow(15);
             this.animate.setPause(false);
         } else if (isMelee() && this.getFacing().getX() == -1) {
-            animate.setAvailableFrames(6);
+            this.animate.setAvailableFrames(6);
             this.animate.setRow(13);
             this.animate.setPause(false);
+        }
+
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() > 100) {
+            this.setMelee(false);
         }
 
         this.animate.setSpritePosition(this.getPosition().toVector());
