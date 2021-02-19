@@ -18,7 +18,7 @@ import org.jsfml.system.Clock;
 /**
  * Player Class
  */
-public class Player extends Entity implements PlayerInteract {
+public class Player extends Entity {
 
     private final Clock attackedAnimateClock = new Clock();
     private final Inventory inventory = new Inventory();
@@ -133,7 +133,6 @@ public class Player extends Entity implements PlayerInteract {
         }
     }
 
-    @Override
     public void attack(Entity enemy) {
         enemy.damage(this, 1);
     }
