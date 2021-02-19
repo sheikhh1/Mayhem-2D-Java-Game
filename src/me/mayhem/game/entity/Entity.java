@@ -322,7 +322,11 @@ public abstract class Entity {
         return this.deathAnimationComplete;
     }
 
-    
+    public void setDeathAnimateComplete(boolean setComplete) {
+        this.deathAnimationComplete = setComplete;
+    }
+
+  
 
     /**
      *
