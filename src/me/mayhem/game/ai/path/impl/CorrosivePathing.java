@@ -21,12 +21,12 @@ public class CorrosivePathing implements Pathing {
         if (UtilVector.getDistanceSquared(entity.getPosition(), this.currentLevel.getPlayer().getPosition()) <= 60000) {
             Vector toPlayer = entity.getPosition().clone().subtract(this.currentLevel.getPlayer().getPosition()).normalize();
 
-            if (toPlayer.getX() == 1) {
-                entity.setState(EntityState.FORWARD);
-                entity.getAnimation().setTimeOut(1);
+            if (toPlayer.getX() < 0) {
+                entity.getAnimation().setRow(11);
+                entity.setState(EntityState.STANDING);
             } else {
-                entity.setState(EntityState.BACK);
-                entity.getAnimation().setTimeOut(1);
+                entity.getAnimation().setRow(9);
+                entity.setState(EntityState.STANDING);
             }
 
             return;
