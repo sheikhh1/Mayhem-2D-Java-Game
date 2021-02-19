@@ -46,26 +46,26 @@ public class UtilSharedResources {
         return logo;
     }
 
-    public static Sprite getWSAD(){
-        if (WSAD == null){
+    public static Sprite getWSAD() {
+        if (WSAD == null) {
             WSAD = UtilSprite.loadFromPath("menu/WSAD.png");
         }
         return WSAD;
     }
 
-    public static Sprite getDoor(){
-        if (door == null){
+    public static Sprite getDoor() {
+        if (door == null) {
             door = UtilSprite.loadFromPath("interactables/doors/DoorClosed.png");
         }
 
         return door;
     }
 
-    public static Sprite getKeyCard(){
-        if (card == null){
+    public static Sprite getKeyCard() {
+        if (card == null) {
             card = UtilSprite.loadFromPath("interactables/Keycard/KeyCard.png");
         }
 
-        return  card;
+        return card;
     }
 }
