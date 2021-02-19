@@ -22,12 +22,8 @@ public class Obstacle extends Entity {
     }
 
     @Override
-    public Vector getMotion() {
-        return Vector.getZero();
-    }
-
-    @Override
     public void update(RenderWindow r) {
+        this.sprite.setPosition(this.getPosition().toVector());
         r.draw(this.sprite);
     }
 }
