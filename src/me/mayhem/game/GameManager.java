@@ -23,6 +23,7 @@ import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Text;
 
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +33,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameManager {
 
     private final RenderWindow renderWindow;
+    private final Text timerText;
 
     private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
