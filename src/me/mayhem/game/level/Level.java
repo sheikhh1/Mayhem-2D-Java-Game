@@ -20,6 +20,7 @@ public class Level {
     private final Difficulty difficulty;
     private final EntitySpawner spawner;
     private final Layout layout;
+    private final long startTime;
 
     public Level(Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
