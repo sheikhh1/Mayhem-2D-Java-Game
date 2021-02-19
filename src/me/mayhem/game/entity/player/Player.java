@@ -11,22 +11,17 @@ import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import me.mayhem.util.direction.UtilVector;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.system.Clock;
 
 /**
  * Player Class
  */
 public class Player extends Entity {
 
-    private final Clock attackedAnimateClock = new Clock();
     private final Inventory inventory = new Inventory();
 
     private final String name;
     private final Level level;
-
-    private boolean hasBeenAttacked = false;
 
     /**
      * Player Constructor
@@ -48,7 +43,7 @@ public class Player extends Entity {
     public void damage(Entity cause, double damage) {
         super.damage(cause, damage);
 
-        this.hasBeenAttacked = true;
+        this.attacked = true;
         this.attackedAnimateClock.restart();
     }
 
@@ -63,38 +58,6 @@ public class Player extends Entity {
 
             item.draw(window, startPosition.add(i * 31, 0).clone());
         }
-    }
-
-    public void tick() {
-        super.tick();
-
-        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 100 && this.hasBeenAttacked) {
-            this.getAnimation().setColor(Color.WHITE);
-        } else if (this.hasBeenAttacked){
-            this.getAnimation().setColor(Color.RED);
-        }
-
-        if (this.isForward()) {
-            this.getEntityPhysics().moveForward();
-            this.animate.setRow(11);
-            this.animate.setPause(false);
-        } else if (this.isBack()) {
-            this.getEntityPhysics().moveBack();
-            this.animate.setRow(9);
-            this.animate.setPause(false);
-        }
-
-        if(this.isMelee() && this.getFacing().getX() == 1) {
-            animate.setAvailableFrames(6);
-            this.animate.setRow(15);
-            this.animate.setPause(false);
-        } else if (isMelee() && this.getFacing().getX() == -1) {
-            animate.setAvailableFrames(6);
-            this.animate.setRow(13);
-            this.animate.setPause(false);
-        }
-        
-        this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
     @Override

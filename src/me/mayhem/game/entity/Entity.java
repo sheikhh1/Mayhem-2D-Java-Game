@@ -11,8 +11,10 @@ import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Texture;
+import org.jsfml.system.Clock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +32,7 @@ public abstract class Entity {
     private final Vector motion;
     private final Pathing pathing;
     private final Hitbox hitbox;
-    protected EntityPhysics entityPhysics;
+
     private final EntityState[] states = new EntityState[2];
     private final List<Attribute<?>> attributes =  new ArrayList<>();
 
@@ -49,7 +51,11 @@ public abstract class Entity {
     private boolean entityMelee = false;
     private boolean dead = false;
 
-    EntityHealthBox healthBox;
+    protected boolean attacked = false;
+    protected EntityPhysics entityPhysics;
+    protected EntityHealthBox healthBox;
+
+    protected final Clock attackedAnimateClock = new Clock();
 
     /**
      *
@@ -260,6 +266,34 @@ public abstract class Entity {
         if (this.isJumping()) {
             this.getEntityPhysics().jump();
         }
+
+        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 100 && this.attacked) {
+            this.getAnimation().setColor(Color.WHITE);
+        } else if (this.attacked){
+            this.getAnimation().setColor(Color.RED);
+        }
+
+        if (this.isForward()) {
+            this.getEntityPhysics().moveForward();
+            this.animate.setRow(11);
+            this.animate.setPause(false);
+        } else if (this.isBack()) {
+            this.getEntityPhysics().moveBack();
+            this.animate.setRow(9);
+            this.animate.setPause(false);
+        }
+
+        if(this.isMelee() && this.getFacing().getX() == 1) {
+            animate.setAvailableFrames(6);
+            this.animate.setRow(15);
+            this.animate.setPause(false);
+        } else if (isMelee() && this.getFacing().getX() == -1) {
+            animate.setAvailableFrames(6);
+            this.animate.setRow(13);
+            this.animate.setPause(false);
+        }
+
+        this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
     public void setTexture(Texture texture) {}
