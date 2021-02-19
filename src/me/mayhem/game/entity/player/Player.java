@@ -16,7 +16,7 @@ import org.jsfml.system.Clock;
 /**
  * Player Class
  */
-public class Player extends Entity implements PlayerInteract{
+public class Player extends Entity implements PlayerInteract {
 
     private final String name;
     private final Clock attackedAnimateClock = new Clock();
