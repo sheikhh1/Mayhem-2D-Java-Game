@@ -22,6 +22,7 @@ import me.mayhem.input.InputManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
+import me.mayhem.util.time.UtilTime;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
@@ -269,7 +270,7 @@ public class GameManager {
     }
 
     private void updateTimer() {
-        this.timerText.setString("EXAMPLE TEXT");
+        this.timerText.setString(UtilTime.formatTime(this.currentLevel.getElapsedTime()));
     }
 
     public void shutdownLevel() {
