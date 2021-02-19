@@ -27,34 +27,6 @@ public class FerociousEnemy extends Entity implements Enemy {
         this.animate.setSpritePosition(position.toVector());
     }
 
-    public void tick() {
-        super.tick();
-
-        if (this.isBack()) {
-            this.animate.setRow(9);
-            this.animate.setPause(false);
-        } else if (this.isForward()){
-            this.animate.setRow(11);
-            this.animate.setPause(false);
-        }
-
-        if(this.isMelee() && this.getFacing().getX() == 1) {
-            this.animate.setAvailableFrames(6);
-            this.animate.setRow(15);
-            this.animate.setPause(false);
-        } else if (isMelee() && this.getFacing().getX() == -1) {
-            this.animate.setAvailableFrames(6);
-            this.animate.setRow(13);
-            this.animate.setPause(false);
-        }
-
-        if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() > 100) {
-            this.setMelee(false);
-        }
-
-        this.animate.setSpritePosition(this.getPosition().toVector());
-    }
-
     @Override
     public void attack(Player player) {
         player.damage(this, 1);
