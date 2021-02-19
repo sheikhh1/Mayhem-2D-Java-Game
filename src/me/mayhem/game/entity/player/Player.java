@@ -29,7 +29,7 @@ public class Player extends Entity {
      * @param position - Current position of the player
      */
     public Player(String name, Vector position, Level level) {
-        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 30), Pathing.NO_PATHING);
+        super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 35), Pathing.NO_PATHING);
 
         this.name = name;
         this.level = level;
