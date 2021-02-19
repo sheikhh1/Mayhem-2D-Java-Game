@@ -7,10 +7,12 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.Layout;
 import me.mayhem.game.level.spawning.EntitySpawner;
 import me.mayhem.util.Vector;
+import me.mayhem.util.direction.UtilVector;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class Level {
 
@@ -37,7 +39,7 @@ public class Level {
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition, String name) {
-        return new Player(name, playerSpawnPosition);
+        return new Player(name, playerSpawnPosition, this);
     }
 
     public List<Entity> getEntities() {
@@ -71,5 +73,21 @@ public class Level {
 
     public long getElapsedTime() {
         return (System.currentTimeMillis() - this.startTime);
+    }
+
+    public List<Entity> getNearbyEntities(Entity entity, double distanceSquared) {
+        List<Entity> nearby = new ArrayList<>();
+
+        for (Entity otherEntity : this.entities) {
+            if (Objects.equals(otherEntity, entity)) {
+                continue;
+            }
+
+            if (UtilVector.getDistanceSquared(entity.getPosition(), otherEntity.getPosition()) <= distanceSquared) {
+                nearby.add(otherEntity);
+            }
+        }
+
+        return nearby;
     }
 }
