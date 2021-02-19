@@ -23,12 +23,17 @@ public class Level {
     private final long startTime;
 
     public Level(Difficulty difficulty, String playerName) {
+        this(difficulty, playerName, System.currentTimeMillis());
+    }
+
+    public Level(Difficulty difficulty, String playerName, long startTime) {
         this.difficulty = difficulty;
         this.spawner = difficulty.getSpawner();
         this.layout = new Layout(this.difficulty);
         this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(), playerName);
         this.spawner.spawnEntities(this);
         this.entities.add(this.player);
+        this.startTime = startTime;
     }
 
     private Player spawnPlayer(Vector playerSpawnPosition, String name) {
