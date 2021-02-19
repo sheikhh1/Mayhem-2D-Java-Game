@@ -336,11 +336,11 @@ public abstract class Entity {
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
-        if (state == null || (currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION)) {
+        if (state == null || (this.currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION)) {
             return;
         }
 
-        currentState = this.states[state.getIndex()];
+        this.currentState = this.states[state.getIndex()];
 
         if (currentState == EntityState.FALLING || currentState == EntityState.JUMPING) {
             if (state == EntityState.NO_MOTION) {
@@ -363,32 +363,32 @@ public abstract class Entity {
             this.states[state.getIndex()] = state;
 
             if (state == EntityState.STANDING) {
-                animate.setColumn(0);
-                animate.resetTimeOutClock();
-                animate.setPause(true);
+                this.animate.setColumn(0);
+                this.animate.resetTimeOutClock();
+                this.animate.setPause(true);
                 this.setForward(false);
                 this.setBack(false);
                 this.setMelee(false);
             } else if (state == EntityState.BACK) {
-                animate.setTimeOut(Integer.MAX_VALUE);
-                animate.resetTimeOutClock();
+                this.animate.setTimeOut(Integer.MAX_VALUE);
+                this.animate.resetTimeOutClock();
                 this.setForward(false);
                 this.setBack(true);
                 this.setMelee(false);
-                animate.setAvailableFrames(9);
+                this.animate.setAvailableFrames(9);
                 this.facing = new Vector(-1, 0);
             } else if (state == EntityState.FORWARD) {
-                animate.setTimeOut(Integer.MAX_VALUE);
-                animate.resetTimeOutClock();
+                this.animate.setTimeOut(Integer.MAX_VALUE);
+                this.animate.resetTimeOutClock();
                 this.setForward(true);
                 this.setBack(false);
                 this.setMelee(false);
-                animate.setAvailableFrames(9);
+                this.animate.setAvailableFrames(9);
                 this.facing = new Vector(1, 0);
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
-                animate.setTimeOut(340);
-                animate.resetTimeOutClock();
+                this.animate.setTimeOut(340);
+                this.animate.resetTimeOutClock();
             }
         }
     }

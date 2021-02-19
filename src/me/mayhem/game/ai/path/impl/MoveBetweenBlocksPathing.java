@@ -23,7 +23,10 @@ public class MoveBetweenBlocksPathing implements Pathing {
             entity.setState(EntityState.BACK);
             collidedRight.setValue(false);
         } else {
-            entity.setState(EntityState.FORWARD);
+
+            if (entity.getState(1) == EntityState.STANDING) {
+                entity.setState(EntityState.FORWARD);
+            }
         }
     }
 }

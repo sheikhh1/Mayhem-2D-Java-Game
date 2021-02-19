@@ -38,8 +38,8 @@ public class GameManager {
 
     private final RenderWindow renderWindow;
     private final Text timerText;
+    private final Level currentLevel;
 
-    private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;

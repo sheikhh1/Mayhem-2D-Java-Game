@@ -15,7 +15,7 @@ public class Spike extends Entity {
     private final Sprite sprite;
 
     public Spike(Vector position, Level level) {
-        super(EntityType.SPIKES, position, Vector.getZero(), new SpriteHitbox(position, 48,48 ), Pathing.NO_PATHING);
+        super(EntityType.SPIKES, position, Vector.getZero(), new SpriteHitbox(position, 48, 48), Pathing.NO_PATHING);
 
         sprite = UtilSprite.loadFromPath("obstacles/Spike.png");
         sprite.setPosition(position.toVector());
