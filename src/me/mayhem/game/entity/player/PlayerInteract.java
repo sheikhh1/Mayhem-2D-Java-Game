@@ -18,4 +18,5 @@ public interface PlayerInteract {
      * @param keyCard
      */
     void pickUp(Entity keyCard);
+
 }
