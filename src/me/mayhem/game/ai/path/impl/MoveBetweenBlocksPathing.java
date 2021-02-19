@@ -16,14 +16,22 @@ public class MoveBetweenBlocksPathing implements Pathing {
         BooleanAttribute collidedLeft = (BooleanAttribute) entity.getAttribute("collidedLeft", Boolean.class);
         BooleanAttribute collidedRight = (BooleanAttribute) entity.getAttribute("collidedRight", Boolean.class);
 
+        System.out.println(collidedLeft);
+        System.out.println(collidedRight);
+
         if (collidedLeft != null && collidedLeft.getValue()) {
             entity.setState(EntityState.FORWARD);
+            System.out.println(entity.getState(1));
             collidedLeft.setValue(false);
         } else if (collidedRight != null && collidedRight.getValue()) {
             entity.setState(EntityState.BACK);
+            System.out.println(entity.getState(1));
             collidedRight.setValue(false);
         } else {
-            entity.setState(EntityState.FORWARD);
+
+            if (entity.getState(1) == EntityState.STANDING) {
+                entity.setState(EntityState.FORWARD);
+            }
         }
     }
 }
