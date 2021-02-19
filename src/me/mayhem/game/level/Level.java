@@ -64,4 +64,8 @@ public class Level {
     public Layout getLayout() {
         return this.layout;
     }
+
+    public long getElapsedTime() {
+        return (System.currentTimeMillis() - this.startTime);
+    }
 }
