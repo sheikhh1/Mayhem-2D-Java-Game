@@ -26,8 +26,10 @@ public class CorrosiveEnemy extends Entity implements Enemy {
 
     @Override
     public void attack(Player player) {
-        player.damage(this, 1);
-        this.setState(EntityState.MELEE);
-        this.attackedAnimateClock.restart();
+        if (!player.isDead()) {
+            player.damage(this, 1);
+            this.setState(EntityState.MELEE);
+            this.attackedAnimateClock.restart();
+        }
     }
 }
