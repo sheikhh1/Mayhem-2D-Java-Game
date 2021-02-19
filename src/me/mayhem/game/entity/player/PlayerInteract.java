@@ -13,10 +13,4 @@ public interface PlayerInteract {
      */
     void attack(Entity enemy);
 
-    /**
-     * Method when picking up a keyCard
-     * @param keyCard
-     */
-    void pickUp(Entity keyCard);
-
 }

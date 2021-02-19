@@ -137,9 +137,4 @@ public class Player extends Entity implements PlayerInteract {
     public void attack(Entity enemy) {
         enemy.damage(this, 1);
     }
-
-    @Override
-    public void pickUp(Entity keyCard) {
-
-    }
 }
