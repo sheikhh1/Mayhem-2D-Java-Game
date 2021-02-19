@@ -34,6 +34,7 @@ public class ImageLevelGenerator implements LevelGenerator {
         this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.INFECTED.getSpawnMethod())));
         this.colours.put(RGB.of(225, 225, 225), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.FEROCIOUS.getSpawnMethod())));
         this.colours.put(RGB.of(215, 215, 215), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.CORROSIVE.getSpawnMethod())));
+        this.colours.put(RGB.of(255, 128, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.SPIKES.getSpawnMethod())));
         this.colours.put(RGB.of(200, 200, 200), (x, y) -> this.newCenter = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(0, 255, 255), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.DOOR.getSpawnMethod())));
         this.colours.put(RGB.of(0, 255, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.KEY_CARD.getSpawnMethod())));
