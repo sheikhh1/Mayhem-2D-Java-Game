@@ -135,6 +135,7 @@ public class GameManager {
 
         this.handleScreenScrolling();
         this.handleEntityVelocity();
+        this.updateTimer();
     }
 
     private void handleEntityCollisions() {
@@ -265,6 +266,10 @@ public class GameManager {
             entity.getPosition().add(motionToAdd);
             entity.getMotion().set(0, 0);
         }
+    }
+
+    private void updateTimer() {
+        this.timerText.setString("EXAMPLE TEXT");
     }
 
     public void shutdownLevel() {
