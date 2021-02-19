@@ -110,6 +110,10 @@ public abstract class Entity {
     }
 
     public Vector getMotion() {
+        if (this.isDead()) {
+            return Vector.getZero();
+        }
+
         return this.motion;
     }
 

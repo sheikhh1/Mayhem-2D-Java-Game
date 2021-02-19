@@ -18,7 +18,7 @@ public class MoveToPlayerPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
-        if (entity.isMelee()) {
+        if (entity.isMelee() || entity.isDead()) {
             return;
         }
 

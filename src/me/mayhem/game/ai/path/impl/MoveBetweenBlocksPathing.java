@@ -9,6 +9,10 @@ public class MoveBetweenBlocksPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (entity.isMelee() || entity.isDead()) {
+            return;
+        }
+
         this.determineState(entity);
     }
 

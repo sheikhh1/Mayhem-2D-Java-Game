@@ -18,6 +18,10 @@ public class CorrosivePathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
+        if (entity.isMelee() || entity.isDead()) {
+            return;
+        }
+
         if (UtilVector.getDistanceSquared(entity.getPosition(), this.currentLevel.getPlayer().getPosition()) <= 60000) {
             Vector toPlayer = entity.getPosition().clone().subtract(this.currentLevel.getPlayer().getPosition()).normalize();
 
