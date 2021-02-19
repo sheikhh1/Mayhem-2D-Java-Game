@@ -55,6 +55,7 @@ public class GameManager {
         this.renderWindow = renderWindow;
         this.timerText = new Text();
         this.timerText.setPosition(new Vector2f(0, renderWindow.getDefaultView().getViewport().width - 100));
+        this.drawnShapes.add(timerText);
         this.currentLevel = new Level(difficulty, playerName);
 
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
