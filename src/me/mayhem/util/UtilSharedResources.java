@@ -3,6 +3,7 @@ package me.mayhem.util;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
 import org.jsfml.audio.Sound;
+import org.jsfml.graphics.Font;
 import org.jsfml.graphics.Sprite;
 
 public class UtilSharedResources {
@@ -13,7 +14,7 @@ public class UtilSharedResources {
     private static Sprite WSAD = null;
     private static Sprite door = null;
     private static Sprite card = null;
-
+    private static Font mainFont = null;
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
