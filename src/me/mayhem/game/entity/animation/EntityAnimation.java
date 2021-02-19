@@ -90,11 +90,12 @@ public class EntityAnimation {
                 this.setColumn(frameCount % this.availableFrames);
             }
         } else {
-            if (this.entityDead) {
-                this.setColumn(5);
-            } else {
-                this.setColumn(0);
-            }
+            this.setColumn(0);
+        }
+
+        if (this.entityDead) {
+            this.setColumn(5);
+            this.setRow(20);
         }
 
         entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64 + 12,40,76 - 22));

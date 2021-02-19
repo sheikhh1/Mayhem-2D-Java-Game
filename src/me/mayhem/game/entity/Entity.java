@@ -307,9 +307,6 @@ public abstract class Entity {
             this.animate.setPause(false);
         } else if (this.isDead() && this.deathAnimateClock.getElapsedTime().asMilliseconds() > 1100 ) {
             this.setDeathAnimateComplete(true);
-        } else if (this.isDead()) {
-            this.animate.setEntityDead(true);
-            this.animate.setPause(true);
         }
 
         this.animate.setSpritePosition(this.getPosition().toVector());
@@ -336,6 +333,10 @@ public abstract class Entity {
      * @param state - Current state of the player
      */
     public void setState(EntityState state) {
+        if (this.isDead()) {
+            return;
+        }
+
         if (state == null || (this.currentState == EntityState.NO_MOTION && state == EntityState.NO_MOTION)) {
             return;
         }
@@ -439,5 +440,7 @@ public abstract class Entity {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+        this.animate.setEntityDead(dead);
+        this.animate.setPause(dead);
     }
 }

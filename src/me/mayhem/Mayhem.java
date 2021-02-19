@@ -28,7 +28,7 @@ public class Mayhem {
         mainWindow = window;
 
         while (window.isOpen()) {
-            window.clear(Color.WHITE);
+            window.clear(Color.BLACK);
 
             if (currentScreen != null) {
                 currentScreen.draw(window);
