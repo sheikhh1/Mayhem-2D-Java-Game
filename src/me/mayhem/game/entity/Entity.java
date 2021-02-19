@@ -318,6 +318,10 @@ public abstract class Entity {
 
     public void setTexture(Texture texture) {}
 
+    public boolean getDeathAnimateComplete() {
+        return this.deathAnimationComplete;
+    }
+
     
 
     /**
