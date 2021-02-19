@@ -19,8 +19,10 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Text;
@@ -54,7 +56,9 @@ public class GameManager {
 
         this.renderWindow = renderWindow;
         this.timerText = new Text();
-        this.timerText.setPosition(new Vector2f(0, renderWindow.getDefaultView().getViewport().width - 100));
+        this.timerText.setPosition(new Vector2f(Mayhem.SCREEN_WIDTH - 200, 0));
+        this.timerText.setColor(Color.BLACK);
+        this.timerText.setFont(UtilSharedResources.getMainFont());
         this.drawnShapes.add(timerText);
         this.currentLevel = new Level(difficulty, playerName);
 
