@@ -142,8 +142,12 @@ public class GameManager {
 
     private void handleEntityCollisions() {
         for (Entity entity : this.currentLevel.getEntities()) {
+            if (entity.isDead()) {
+                continue;
+            }
+
             for (Entity other : this.currentLevel.getEntities()) {
-                if (Objects.equals(entity, other)) {
+                if (Objects.equals(entity, other) || other.isDead()) {
                     continue;
                 }
 
