@@ -50,12 +50,14 @@ public abstract class Entity {
     private double health;
     private boolean entityMelee = false;
     private boolean dead = false;
+    private boolean deathAnimationComplete = false;
 
     protected boolean attacked = false;
     protected EntityPhysics entityPhysics;
     protected EntityHealthBox healthBox;
 
     protected final Clock attackedAnimateClock = new Clock();
+    protected final Clock deathAnimateClock = new Clock();
 
     /**
      *
@@ -299,10 +301,24 @@ public abstract class Entity {
             this.setMelee(false);
         }
 
+        if (this.deathAnimateClock.getElapsedTime().asMilliseconds() < 310 && this.isDead()) {
+            this.animate.setAvailableFrames(6);
+            this.animate.setRow(20);
+            this.animate.setPause(false);
+        } else if (this.isDead() && this.deathAnimateClock.getElapsedTime().asMilliseconds() > 1100 ) {
+            this.setDeathAnimateComplete(true);
+        } else if (this.isDead()) {
+            System.out.println("here");
+            this.animate.setEntityDead(true);
+            this.animate.setPause(true);
+        }
+
         this.animate.setSpritePosition(this.getPosition().toVector());
     }
 
     public void setTexture(Texture texture) {}
+
+    
 
     /**
      *
