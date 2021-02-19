@@ -5,6 +5,7 @@ import me.mayhem.game.entity.entities.enemies.corrosive.CorrosiveEnemy;
 import me.mayhem.game.entity.entities.enemies.ferocious.FerociousEnemy;
 import me.mayhem.game.entity.entities.enemies.infected.InfectedEnemy;
 import me.mayhem.game.entity.entities.friendly.door.Door;
+import me.mayhem.game.entity.obstacles.Obstacle;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;
@@ -23,7 +24,7 @@ public enum EntityType {
     PROJECTILE(0, 1f, 4f, false, "players/PlayerSheet.png", null), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
     KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png", KeyCard::new),
     DOOR(0, 0f, 0f, false, "interactables/doors/DoorClosed.png", Door::new),
-    SPIKES(0, 0f, 0f, false, "obstacles/Spike.png", Door::new),
+    SPIKES(0, 0f, 0f, false, "obstacles/Spike.png", Obstacle::new),
 
     ;
 
