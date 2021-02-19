@@ -12,11 +12,11 @@ public class UtilVector {
     public static boolean inSight(Entity entity, Entity other) {
         Vector betweenEntities = entity.getPosition().clone().subtract(other.getPosition()).normalize();
 
-        if (betweenEntities.getX() > 0 && entity.getFacing().getX() > 0) {
+        if (betweenEntities.getX() < 0 && entity.getFacing().getX() > 0) {
             return true;
         }
 
-        if (betweenEntities.getX() < 0 && entity.getFacing().getX() < 0) {
+        if (betweenEntities.getX() > 0 && entity.getFacing().getX() < 0) {
             return true;
         }
 
