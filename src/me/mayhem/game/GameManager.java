@@ -108,10 +108,11 @@ public class GameManager {
             Entity entity = iterator.next();
 
             if (entity.isDead()) {
-                iterator.remove();
-                continue;
+                if(entity.getDeathAnimateComplete()) {
+                    iterator.remove();
+                    continue;
+                }
             }
-
             entity.update(renderWindow);
         }
 
