@@ -22,8 +22,8 @@ public class Obstacle extends Entity {
     }
 
     @Override
-    public void update(RenderWindow r) {
+    public void update(RenderWindow window) {
         this.sprite.setPosition(this.getPosition().toVector());
-        r.draw(this.sprite);
+        window.draw(this.sprite);
     }
 }
