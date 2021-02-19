@@ -23,6 +23,7 @@ public class EntityAnimation {
     private int frameCount = 0;
     private int availableFrames = 1;
     private int timeOut = Integer.MAX_VALUE;
+    public boolean entityDead = false;
 
     public EntityAnimation(EntityType entityType) {
         this.entitySprite = new Sprite(entityType.getEntityTexture());
@@ -58,6 +59,10 @@ public class EntityAnimation {
         this.pause = pause;
     }
 
+    public void setEntityDead(boolean entityDead) {
+        this.entityDead = entityDead;
+    }
+
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
     }
@@ -85,7 +90,11 @@ public class EntityAnimation {
                 this.setColumn(frameCount % this.availableFrames);
             }
         } else {
-            this.setColumn(0);
+            if (this.entityDead) {
+                this.setColumn(5);
+            } else {
+                this.setColumn(0);
+            }
         }
 
         entitySprite.setTextureRect(new IntRect(this.getColumn() * 64 + 16,this.getRow() * 64 + 12,40,76 - 22));
