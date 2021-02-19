@@ -102,6 +102,13 @@ public class Player extends Entity implements PlayerInteract {
     }
 
     @Override
+    public void setMelee(boolean entityMelee) {
+        super.setMelee(entityMelee);
+
+
+    }
+
+    @Override
     public void attack(Entity enemy) {
         
     }
