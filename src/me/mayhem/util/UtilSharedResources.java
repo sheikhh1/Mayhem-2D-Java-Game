@@ -1,5 +1,6 @@
 package me.mayhem.util;
 
+import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
 import org.jsfml.audio.Sound;
@@ -67,5 +68,13 @@ public class UtilSharedResources {
         }
 
         return card;
+    }
+
+    public static Font getMainFont() {
+        if (mainFont == null) {
+            mainFont = UtilFont.loadFont("fonts/FreeSans.ttf");
+        }
+
+        return mainFont;
     }
 }
