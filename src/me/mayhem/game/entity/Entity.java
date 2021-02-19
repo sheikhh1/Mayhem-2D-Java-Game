@@ -269,7 +269,7 @@ public abstract class Entity {
 
         if (this.attackedAnimateClock.getElapsedTime().asMilliseconds() >= 100 && this.attacked) {
             this.getAnimation().setColor(Color.WHITE);
-        } else if (this.attacked){
+        } else if (this.attacked) {
             this.getAnimation().setColor(Color.RED);
         }
 
@@ -283,7 +283,7 @@ public abstract class Entity {
             this.animate.setPause(false);
         }
 
-        if(this.isMelee() && this.getFacing().getX() == 1) {
+        if (this.isMelee() && this.getFacing().getX() == 1) {
             animate.setAvailableFrames(6);
             this.animate.setRow(15);
             this.animate.setPause(false);
