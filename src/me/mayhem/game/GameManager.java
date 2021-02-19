@@ -38,8 +38,8 @@ public class GameManager {
 
     private final RenderWindow renderWindow;
     private final Text timerText;
+    private final Level currentLevel;
 
-    private Level currentLevel;
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
     private PlayerKeyboardReleaseListener playerKeyRelease;
@@ -166,9 +166,11 @@ public class GameManager {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             entity.setAttribute("collidedRight", true);
                             center.setX(+3f);
+                            System.out.println("GOING RIGHT");
                         } else {
                             entity.setAttribute("collidedLeft", true);
                             center.setX(-3f);
+                            System.out.println("GOING LEFT");
                         }
 
                         collisionDetectedX = true;
