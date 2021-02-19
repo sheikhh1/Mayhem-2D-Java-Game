@@ -5,7 +5,7 @@ import me.mayhem.game.entity.entities.enemies.corrosive.CorrosiveEnemy;
 import me.mayhem.game.entity.entities.enemies.ferocious.FerociousEnemy;
 import me.mayhem.game.entity.entities.enemies.infected.InfectedEnemy;
 import me.mayhem.game.entity.entities.friendly.door.Door;
-import me.mayhem.game.entity.obstacles.Obstacle;
+import me.mayhem.game.entity.entities.obstacle.Obstacle;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilImageLoader;

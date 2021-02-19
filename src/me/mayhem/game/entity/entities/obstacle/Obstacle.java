@@ -1,4 +1,4 @@
-package me.mayhem.game.entity.obstacles;
+package me.mayhem.game.entity.entities.obstacle;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
