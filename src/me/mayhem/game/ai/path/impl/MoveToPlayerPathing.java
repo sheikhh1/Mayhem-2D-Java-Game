@@ -31,7 +31,11 @@ public class MoveToPlayerPathing implements Pathing {
         toPlayer.setY(0);
         toPlayer.normalize();
 
-        entity.getMotion().add(toPlayer);
+        if (toPlayer.getX() > 0) {
+            entity.setState(EntityState.FORWARD);
+        } else {
+            entity.setState(EntityState.BACK);
+        }
 
         this.attemptJumpOverBlocks(entity);
         this.determineState(entity, toPlayer);
