@@ -3,20 +3,12 @@ package me.mayhem.screens.tutorial;
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
 import me.mayhem.screens.tutorial.items.TutorialReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilFont;
-import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.ui.Interactable;
-import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
-import org.jsfml.system.Vector2f;
-
-import javax.security.auth.login.CredentialNotFoundException;
-import java.util.ArrayList;
 
 public class TutorialManager implements ScreenManager {
 
@@ -111,7 +103,7 @@ public class TutorialManager implements ScreenManager {
 
         for (int i = 0; i <= writing.length - 1; i++){
 
-            Text text = new Text(writing[i], UtilFont.loadFont("fonts/FreeSans.ttf"));
+            Text text = new Text(writing[i], UtilSharedResources.getMainFont());
             Float width = text.getLocalBounds().width;
             text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
             text.setScale(new Vector(1,1).toVector());
