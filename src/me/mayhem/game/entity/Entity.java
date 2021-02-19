@@ -326,7 +326,9 @@ public abstract class Entity {
         this.deathAnimationComplete = setComplete;
     }
 
-  
+    public void restartDeathClock() {
+        this.deathAnimateClock.restart();
+    }
 
     /**
      *
