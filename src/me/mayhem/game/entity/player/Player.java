@@ -8,6 +8,7 @@ import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.player.inventory.Inventory;
 import me.mayhem.game.entity.player.inventory.Item;
 import me.mayhem.game.event.EventManager;
+import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
@@ -18,9 +19,11 @@ import org.jsfml.system.Clock;
  */
 public class Player extends Entity implements PlayerInteract {
 
-    private final String name;
     private final Clock attackedAnimateClock = new Clock();
     private final Inventory inventory = new Inventory();
+
+    private final String name;
+    private final Level level;
 
     private boolean hasBeenAttacked = false;
 
@@ -29,10 +32,11 @@ public class Player extends Entity implements PlayerInteract {
      * @param name - Name of Player (Assigned by user)
      * @param position - Current position of the player
      */
-    public Player(String name, Vector position) {
+    public Player(String name, Vector position, Level level) {
         super(EntityType.PLAYER, position, Vector.getZero(), new SpriteHitbox(position, 55, 30), Pathing.NO_PATHING);
 
         this.name = name;
+        this.level = level;
     }
 
     public Inventory getInventory() {
