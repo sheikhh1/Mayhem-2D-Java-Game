@@ -293,12 +293,6 @@ public abstract class Entity {
                 this.setFalling(true);
                 this.setJumping(false);
                 this.states[state.getIndex()] = state;
-            } else if (state == EntityState.MELEE) {
-                this.setMelee(true);
-                animate.setTimeOut(340);
-                animate.resetTimeOutClock();
-                this.setStanding(false);
-                this.states[state.getIndex()] = state;
             }
         } else {
             this.states[state.getIndex()] = state;
