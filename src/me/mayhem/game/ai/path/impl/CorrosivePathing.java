@@ -33,13 +33,6 @@ public class CorrosivePathing implements Pathing {
         }
 
         entity.getAnimation().setTimeOut(Integer.MAX_VALUE);
-
-        if (entity.getState(1) == EntityState.BACK) {
-            entity.getMotion().add(-1, 0);
-        } else {
-            entity.getMotion().add(1, 0);
-        }
-
         this.determineState(entity);
     }
 
@@ -53,6 +46,8 @@ public class CorrosivePathing implements Pathing {
         } else if (collidedRight != null && collidedRight.getValue()) {
             entity.setState(EntityState.BACK);
             collidedRight.setValue(false);
+        } else {
+            entity.setState(EntityState.FORWARD);
         }
     }
 }
