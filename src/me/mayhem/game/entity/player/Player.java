@@ -10,6 +10,7 @@ import me.mayhem.game.entity.player.inventory.Item;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
+import me.mayhem.util.direction.UtilVector;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Clock;
@@ -109,12 +110,28 @@ public class Player extends Entity implements PlayerInteract {
     public void setMelee(boolean entityMelee) {
         super.setMelee(entityMelee);
 
+        double closestEntity = Integer.MAX_VALUE;
+        Entity closest = null;
 
+        for (Entity nearbyEntity : this.level.getNearbyEntities(this, 15000)) {
+            if (UtilVector.inSight(this, nearbyEntity)) {
+                double distance = UtilVector.getDistanceSquared(this.getPosition(), nearbyEntity.getPosition());
+
+                if (distance < closestEntity) {
+                    closestEntity = distance;
+                    closest = nearbyEntity;
+                }
+            }
+        }
+
+        if (closest != null) {
+            this.attack(closest);
+        }
     }
 
     @Override
     public void attack(Entity enemy) {
-        
+        enemy.damage(this, 200);
     }
 
     @Override
