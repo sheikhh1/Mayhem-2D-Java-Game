@@ -9,14 +9,6 @@ public class MoveBetweenBlocksPathing implements Pathing {
 
     @Override
     public void updatePosition(Entity entity) {
-        if (entity.getState(1) == EntityState.BACK) {
-            entity.getMotion().add(-1, 0);
-        } else if (entity.getState(1) == EntityState.FORWARD) {
-            entity.getMotion().add(1, 0);
-        } else {
-            entity.setState(EntityState.FORWARD);
-        }
-
         this.determineState(entity);
     }
 
@@ -30,6 +22,8 @@ public class MoveBetweenBlocksPathing implements Pathing {
         } else if (collidedRight != null && collidedRight.getValue()) {
             entity.setState(EntityState.BACK);
             collidedRight.setValue(false);
+        } else {
+            entity.setState(EntityState.FORWARD);
         }
     }
 }
