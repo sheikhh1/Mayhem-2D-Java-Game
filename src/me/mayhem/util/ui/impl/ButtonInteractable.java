@@ -60,4 +60,9 @@ public abstract class ButtonInteractable extends AbstractMouseInteractable {
     public void setPosition(Vector vector) {
         this.shape.setPosition(vector.toVector());
     }
+
+    public  void setText(String filename){
+        this.text = this.createText(filename);
+    }
 }
+
