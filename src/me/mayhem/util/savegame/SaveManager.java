@@ -28,7 +28,7 @@ public class SaveManager {
     }
 
     private boolean save(){
-        WriteFile writer = new WriteFile();
+        Writefile writer = new Writefile();
         writer.write(filetoWrite, data);
         return false;
     }
