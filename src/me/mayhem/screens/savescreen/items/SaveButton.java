@@ -29,7 +29,7 @@ public class SaveButton extends ButtonInteractable {
             }
             else{
                 System.out.println(("pressed"));
-                SaveManager save = new SaveManager(screen, screen.getPrevScreen().getGameScreen());
+                SaveManager save = new SaveManager(screen, screen.getPrevScreen().getPrev());
                 Mayhem.getCurrentScreen().unloadScreen(window);
                 Mayhem.setCurrentScreen(new HomePageManager(window));
             }

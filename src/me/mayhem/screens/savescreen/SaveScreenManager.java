@@ -10,6 +10,7 @@ import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.nameselectscreen.items.InputBox;
 import me.mayhem.screens.savescreen.items.ReturnButton;
 import me.mayhem.screens.savescreen.items.SaveButton;
+import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
@@ -20,14 +21,14 @@ import org.jsfml.graphics.*;
 
 public class SaveScreenManager implements ScreenManager {
 
-    private EscapeScreenManager prevScreen;
+    private WinScreenManager prevScreen;
     private Sound mainTheme;
     private Text text;
 
     private Sprite[] sprites;
     private Interactable[] buttons;
 
-    public SaveScreenManager(RenderWindow window, Sound sound, EscapeScreenManager prev){
+    public SaveScreenManager(RenderWindow window, Sound sound, WinScreenManager prev){
 
         this.prevScreen = prev;
         this.mainTheme = sound;
@@ -136,7 +137,7 @@ public class SaveScreenManager implements ScreenManager {
         return text;
     }
 
-    public EscapeScreenManager getPrevScreen() {
+    public WinScreenManager getPrevScreen() {
         return prevScreen;
     }
 }

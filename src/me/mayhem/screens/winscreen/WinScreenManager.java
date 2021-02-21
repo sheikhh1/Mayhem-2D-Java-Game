@@ -5,6 +5,7 @@ import me.mayhem.Mayhem;
 import me.mayhem.game.GameManager;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
+import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.winscreen.items.WinContinueButton;
 import me.mayhem.screens.winscreen.items.WinQuitButton;
 import me.mayhem.screens.winscreen.items.WinSaveButton;
@@ -19,13 +20,13 @@ import javax.security.auth.login.CredentialNotFoundException;
 
 public class WinScreenManager implements ScreenManager {
     private Sound mainTheme;
-    private GameManager prev;
+    private GameScreenManager prev;
 
     private Interactable[] buttons;
     private Sprite[] sprites;
 
 
-    public WinScreenManager(RenderWindow window, Sound maintheme, GameManager prev){
+    public WinScreenManager(RenderWindow window, Sound maintheme, GameScreenManager prev){
         this.mainTheme = maintheme;
         this.prev = prev;
 
@@ -107,5 +108,9 @@ public class WinScreenManager implements ScreenManager {
 
         sprites = new Sprite[]{backGround};
 
+    }
+
+    public GameScreenManager getPrev() {
+        return prev;
     }
 }

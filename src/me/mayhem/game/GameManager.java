@@ -282,4 +282,8 @@ public class GameManager {
         this.currentLevel.getEntities().clear();
         this.currentLevel.getLayout().getBlocks().clear();
     }
+
+    public String LevelNumber(){
+
+    }
 }
