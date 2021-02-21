@@ -39,6 +39,7 @@ public class GameManager {
     private final RenderWindow renderWindow;
     private final Text timerText;
     private final Level currentLevel;
+    private Integer levelsCompleted;
 
     private PlayerMousePressListener playerMousePress;
     private PlayerKeyboardPressListener playerKeyPress;
@@ -283,7 +284,9 @@ public class GameManager {
         this.currentLevel.getLayout().getBlocks().clear();
     }
 
-    public String LevelNumber(){
+    public String getCurrentLevel() {
 
+        return currentLevel.getLayout().getLayoutId();
     }
+    public String getLevelsCompleted(){return levelsCompleted.toString();}
 }

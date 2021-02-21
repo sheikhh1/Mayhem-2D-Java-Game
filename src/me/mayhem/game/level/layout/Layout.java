@@ -11,6 +11,7 @@ import java.util.List;
 public class Layout {
 
     private final List<Block> blocks = new ArrayList<>();
+    private Integer layoutID;
 
     public Layout(Difficulty difficulty) {
         this.blocks.addAll(difficulty.getGenerator().generateLevel());
@@ -31,4 +32,6 @@ public class Layout {
     public List<Block> getBlocks() {
         return blocks;
     }
+
+    public String getLayoutId(){ return layoutID.toString();}
 }
