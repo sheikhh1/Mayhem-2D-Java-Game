@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class ButtonInteractable extends AbstractMouseInteractable {
 
-    private final Text[] text;
+    private  Text[] text;
     private final Font font;
 
     public ButtonInteractable(Shape shape, Font font, String... text) {
@@ -61,7 +61,7 @@ public abstract class ButtonInteractable extends AbstractMouseInteractable {
         this.shape.setPosition(vector.toVector());
     }
 
-    public  void setText(String filename){
+    public  void setText(String... filename){
         this.text = this.createText(filename);
     }
 }
