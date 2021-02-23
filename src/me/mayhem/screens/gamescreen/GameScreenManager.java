@@ -5,12 +5,14 @@ import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.ScreenManager;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 
 public class GameScreenManager implements ScreenManager {
 
     private GameManager game;
     private Difficulty difficulty;
+
 
     public GameScreenManager(RenderWindow window, Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
@@ -51,4 +53,5 @@ public class GameScreenManager implements ScreenManager {
     public Sound getSound() {
         return null;
     }
+
 }
