@@ -16,6 +16,7 @@ public class UtilSharedResources {
     private static Sprite door = null;
     private static Sprite card = null;
     private static Font mainFont = null;
+    private static Sprite inGameBackgound = null;
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
@@ -76,5 +77,8 @@ public class UtilSharedResources {
         }
 
         return mainFont;
+    }
+    public static Sprite getInGameBackground(){
+
     }
 }
