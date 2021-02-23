@@ -3,6 +3,7 @@ package me.mayhem.game.ai.path.impl;
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.entities.projectile.Projectile;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
@@ -33,6 +34,7 @@ public class CorrosivePathing implements Pathing {
                 entity.setState(EntityState.STANDING);
             }
 
+            this.currentLevel.spawnEntity(new Projectile(entity.getPosition(), "bluefireball.png"));
             return;
         }
 
