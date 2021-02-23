@@ -13,7 +13,12 @@ public class EntityDeathListener {
     @EventListener
     public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (event.getAttacked().getHealth() <= 0) {
-            event.getAttacked().restartDeathClock();
+            event.setDamage(0);
+
+            if (!event.getAttacked().isDead()) {
+                event.getAttacked().restartDeathClock();
+            }
+
             event.getAttacked().setDead(true);
         }
     }
