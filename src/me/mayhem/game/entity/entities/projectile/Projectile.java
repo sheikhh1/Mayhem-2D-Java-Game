@@ -1,4 +1,4 @@
-package me.mayhem.game.collision.projectiles;
+package me.mayhem.game.entity.entities.projectile;
 
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.Attribute;
