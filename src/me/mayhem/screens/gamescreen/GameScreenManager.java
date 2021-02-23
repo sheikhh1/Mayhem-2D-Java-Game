@@ -11,8 +11,8 @@ import org.jsfml.graphics.Sprite;
 
 public class GameScreenManager implements ScreenManager {
 
-    private GameManager game;
-    private Difficulty difficulty;
+    private final GameManager game;
+    private final Difficulty difficulty;
     private final Sprite sprite;
 
     public GameScreenManager(RenderWindow window, Difficulty difficulty, String playerName) {
