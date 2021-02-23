@@ -2,7 +2,9 @@ package me.mayhem.game.level;
 
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.event.EntitySpawnEvent;
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.layout.Layout;
 import me.mayhem.game.level.spawning.EntitySpawner;
@@ -47,6 +49,14 @@ public class Level {
     }
 
     public void spawnEntity(Entity entity) {
+        EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
+
+        EventManager.callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         this.entities.add(entity);
         this.entities.sort(Comparator.comparingInt(e -> EntityType.values().length - e.getType().ordinal()));
     }
