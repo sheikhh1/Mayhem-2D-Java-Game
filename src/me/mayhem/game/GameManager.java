@@ -23,7 +23,10 @@ import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
 import me.mayhem.util.time.UtilTime;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Text;
 import org.jsfml.system.Vector2f;
 
 import java.util.Iterator;
@@ -42,8 +45,6 @@ public class GameManager {
     private PlayerKeyboardReleaseListener playerKeyRelease;
     private PlayerMouseReleaseListener playerMouseRelease;
     private PlayerLostFocusListener playerLostFocus;
-
-    private Sprite[] sprites;
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
@@ -102,10 +103,6 @@ public class GameManager {
         this.currentLevel.getLayout().draw(this.renderWindow);
 
         Iterator<Entity> iterator = this.currentLevel.getEntities().iterator();
-
-        for ( Sprite sprite : sprites){
-            renderWindow.draw(sprite);
-        }
 
         while (iterator.hasNext()) {
             Entity entity = iterator.next();
@@ -284,11 +281,5 @@ public class GameManager {
     public void shutdownLevel() {
         this.currentLevel.getEntities().clear();
         this.currentLevel.getLayout().getBlocks().clear();
-    }
-    public void createSprites(){
-        Sprite background = UtilSharedResources.getInGameBackground();
-
-        sprites = new Sprite[]{background};
-
     }
 }

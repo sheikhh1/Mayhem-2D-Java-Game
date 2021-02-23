@@ -1,6 +1,5 @@
 package me.mayhem.util;
 
-import jdk.jshell.execution.Util;
 import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
@@ -79,9 +78,14 @@ public class UtilSharedResources {
 
         return mainFont;
     }
-    public static Sprite getInGameBackground(){
-        if (inGameBackgound == null){
-            inGameBackgound = UtilSprite.loadFromPath("");
+
+    public static Sprite getInGameBackground() {
+        if (inGameBackgound == null) {
+            inGameBackgound = UtilSprite.loadFromPath("gamebackground/space.jpg");
+            System.out.println(inGameBackgound + " ");
         }
+
+        System.out.println(inGameBackgound);
+        return inGameBackgound;
     }
 }
