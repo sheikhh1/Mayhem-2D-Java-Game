@@ -58,7 +58,7 @@ public class GameManager {
         this.renderWindow = renderWindow;
         this.timerText = new Text();
         this.timerText.setPosition(new Vector2f(Mayhem.SCREEN_WIDTH - 100, 0));
-        this.timerText.setColor(Color.BLACK);
+        this.timerText.setColor(Color.WHITE);
         this.timerText.setFont(UtilSharedResources.getMainFont());
         this.drawnShapes.add(timerText);
         this.currentLevel = new Level(difficulty, playerName);
