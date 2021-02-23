@@ -81,11 +81,9 @@ public class UtilSharedResources {
 
     public static Sprite getInGameBackground() {
         if (inGameBackgound == null) {
-            inGameBackgound = UtilSprite.loadFromPath("gamebackground/space.jpg");
-            System.out.println(inGameBackgound + " ");
+            inGameBackgound = UtilSprite.loadFromPath("gamebackground/space.jpg", 2.0f, 2.0f);
         }
 
-        System.out.println(inGameBackgound);
         return inGameBackgound;
     }
 }
