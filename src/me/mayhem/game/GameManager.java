@@ -286,7 +286,7 @@ public class GameManager {
         this.currentLevel.getLayout().getBlocks().clear();
     }
     public void createSprites(){
-        Sprite background;
+        Sprite background = UtilSharedResources.getInGameBackground();
 
         sprites = new Sprite[]{background};
 
