@@ -1,6 +1,11 @@
 package me.mayhem.save;
 
+import me.mayhem.Mayhem;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +41,15 @@ public class SaveFileManager {
     }
 
     public static void save(SaveData saveData) {
-        //TODO: write to file
+        Mayhem.THREAD_POOL.submit(() -> {
+            try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(saveData.getFile()))) {
+                fileWriter.append("name:").append(saveData.getName()).append(System.lineSeparator())
+                        .append("difficulty:").append(saveData.getDifficulty().name()).append(System.lineSeparator())
+                        .append("id:").append(String.valueOf(saveData.getId()));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
