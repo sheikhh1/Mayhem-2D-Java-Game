@@ -18,8 +18,8 @@ import org.jsfml.graphics.Sprite;
 
 public class WinScreenManager implements ScreenManager {
 
-    private final Sprite[] sprites = new Sprite[] {UtilSharedResources.getBackground()};
-    private final Interactable[] buttons = new Interactable[] {
+    private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
+    private final Interactable[] buttons = new Interactable[]{
             createQuitButton(),
             createContinueButton(),
             createSaveButton()
