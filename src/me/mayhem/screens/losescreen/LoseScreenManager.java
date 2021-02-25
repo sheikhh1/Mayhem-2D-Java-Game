@@ -28,10 +28,13 @@ public class LoseScreenManager implements ScreenManager {
     };
 
     private final Sound mainTheme;
+    private final int levelId;
+
     private Text[] texts;
 
-    public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev) {
+    public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager previous) {
         this.mainTheme = mainTheme;
+        this.levelId = previous.getId();
 
         this.loadScreen(window);
     }
@@ -71,6 +74,10 @@ public class LoseScreenManager implements ScreenManager {
     @Override
     public Sound getSound() {
         return this.mainTheme;
+    }
+
+    public int getLevelId() {
+        return this.levelId;
     }
 
     private LoseReturnButton createReturnButton() {
