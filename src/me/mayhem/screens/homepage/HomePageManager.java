@@ -24,14 +24,13 @@ public class HomePageManager implements ScreenManager {
     public HomePageManager(RenderWindow window) {
         this.window = window;
 
-        mainTheme = UtilSharedResources.getMainTheme();
+        this.mainTheme = UtilSharedResources.getMainTheme();
         this.loadScreen(this.window);
     }
 
     public HomePageManager(RenderWindow window, Sound music) {
         this.window = window;
         this.mainTheme = music;
-
 
         this.loadScreen(this.window);
     }
