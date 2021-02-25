@@ -3,56 +3,61 @@ package me.mayhem.screens.loadpage;
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.loadpage.items.*;
+import me.mayhem.screens.loadpage.items.LoadGameFileButton;
+import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
+import me.mayhem.screens.loadpage.items.NextButton;
+import me.mayhem.screens.loadpage.items.PrevButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
-import org.w3c.dom.css.Rect;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoadPageManager implements ScreenManager {
 
+    private static final int FILE_HEIGHT = (int) (Mayhem.SCREEN_HEIGHT - 100 / 3.0f);
+
+    private final Sprite[] sprites = new Sprite[] {UtilSharedResources.getBackground()};
+
     private final Sound mainTheme;
+    private final int page;
+    private final List<Interactable> buttons = new ArrayList<>();
 
-    private Interactable[] buttons;
-    private Sprite[] sprites;
-    private LoadGameButtons saves;
-    private int savepage = 0;
-    private RectangleShape whitespace;
-
-
-    public LoadPageManager(RenderWindow window, Sound mainTheme) {
+    public LoadPageManager(RenderWindow window, Sound mainTheme, int page) {
         this.mainTheme = mainTheme;
+        this.page = page;
 
         this.loadScreen(window);
     }
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        this.createSprites();
-        this.createButtons();
+        this.loadPageFiles();
         this.draw(renderWindow);
     }
 
-    private void createSprites() {
-        Sprite background = UtilSharedResources.getBackground();
+    private void loadPageFiles() {
+        this.buttons.add(this.createNextButton());
+        this.buttons.add(this.createPrevButton());
+        this.buttons.add(this.createReturnButton());
 
-        this.sprites = new Sprite[]{background};
+        for (int i = 0; i < 3; i++) {
+            SaveData saveData = SaveFileManager.getSaveFiles().get(this.page + i);
+            this.buttons.add(new LoadGameFileButton(this.createLoadGameShape(new Vector(400, 100 + i * 200)), saveData));
+        }
     }
 
-    private void createButtons() {
+    private Shape createLoadGameShape(Vector position) {
+        RectangleShape rect = new RectangleShape();
 
-        LoadPageReturnButton returnButton = new LoadPageReturnButton(createReturnButton());
-        NextButton next = new NextButton(createNextButton());
-        PrevButton prev = new PrevButton(createPrevButton());
+        rect.setPosition(position.toVector());
+        rect.setSize(new Vector(200, 100).toVector());
+        rect.setFillColor(new Color(176, 176, 176));
 
-
-        this.saves = new LoadGameButtons();
-
-        this.buttons = new Interactable[]{returnButton,next,prev};
+        return rect;
     }
 
     /**
@@ -60,33 +65,34 @@ public class LoadPageManager implements ScreenManager {
      *
      * @return the shape of the button
      */
-    private Shape createReturnButton() {
+    private LoadPageReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new LoadPageReturnButton(shape);
     }
-    private Shape createPrevButton(){
+
+    private PrevButton createPrevButton() {
         RectangleShape rect = new RectangleShape();
 
-        rect.setPosition(new Vector(200,600).toVector());
-        rect.setSize(new Vector(200,100).toVector());
+        rect.setPosition(new Vector(200, 600).toVector());
+        rect.setSize(new Vector(200, 100).toVector());
         rect.setFillColor(new Color(176, 176, 176));
 
-        return rect;
-
+        return new PrevButton(rect);
     }
-    private Shape createNextButton(){
+
+    private NextButton createNextButton() {
         RectangleShape rect = new RectangleShape();
 
-        rect.setPosition(new Vector(600,600).toVector());
-        rect.setSize(new Vector(200,100).toVector());
+        rect.setPosition(new Vector(600, 600).toVector());
+        rect.setSize(new Vector(200, 100).toVector());
         rect.setFillColor(new Color(176, 176, 176));
 
-        return rect;
+        return new NextButton(rect);
     }
 
     @Override
@@ -98,53 +104,21 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-
-
         for (Sprite sprite : this.sprites) {
             renderWindow.draw(sprite);
         }
 
         for (Interactable button : this.buttons) {
-
             button.draw(renderWindow);
         }
-
-        saves.draw(renderWindow, savepage);
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {
+    public void close(RenderWindow renderWindow) {}
 
-    }
     @Override
     public Sound getSound() {
         return mainTheme;
     }
 
-    public void setSavepage(int savepage) {
-        this.savepage = savepage;
-    }
-    public int getSavepage(){
-        return savepage;
-    }
-    private RectangleShape createBackgroundshape(){
-        RectangleShape rect = new RectangleShape();
-
-        rect.setPosition(new Vector(200,100).toVector());
-        rect.setSize(new Vector(600,600).toVector());
-        rect.setFillColor(Color.BLUE);
-
-        return rect;
-    }
-    public int getMaxSavepages(){
-        System.out.println("number of save pages " + Math.ceil(saves.getNumberOfSave()/3));
-        return (int) Math.ceil(saves.getNumberOfSave()/3);
-    }
-
-    public void setpagechange(boolean pagechange){
-        this.saves.setPageChange(pagechange);
-    }
-    public boolean getPageChange(){
-        return this.saves.isPageChange();
-    }
 }
