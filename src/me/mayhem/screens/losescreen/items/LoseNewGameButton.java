@@ -22,6 +22,6 @@ public class LoseNewGameButton extends ButtonInteractable {
 
         LoseScreenManager screen = (LoseScreenManager) Mayhem.getCurrentScreen();
         screen.unloadScreen(window);
-        Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getDifficulty(), screen.getLevelId(), screen.getName()));
+        Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getSaveData()));
     }
 }
