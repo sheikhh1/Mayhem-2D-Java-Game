@@ -9,7 +9,11 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class ReturnToMainMenuButton extends ButtonInteractable {
-
+    /**
+     * a button that allows you to go back to the main menu
+     *
+     * @param shape the shape that you create the button out of
+     */
     public ReturnToMainMenuButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Main Menu ");
     }
