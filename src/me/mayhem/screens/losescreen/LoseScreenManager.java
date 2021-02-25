@@ -11,29 +11,33 @@ import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
 import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
-import org.jsfml.audio.SoundBuffer;
 import org.jsfml.graphics.*;
 
-import javax.annotation.processing.RoundEnvironment;
-
 public class LoseScreenManager implements ScreenManager {
+
+    private static final String[] DEATH_TEXT = new String[]{
+            "You have died",
+            "Click retry to start the level agian or ",
+            "return to the main menu"
+    };
+
+    private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
+
+    private final Sound mainTheme;
+
     private Interactable[] buttons;
-    private Sprite[] sprites;
     private Text[] texts;
 
-    private Sound mainTheme;
-
-
-    public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev){
+    public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev) {
         this.mainTheme = mainTheme;
 
-        loadScreen(window);
-
+        this.loadScreen(window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        createButtons();
-        createSprites();
+        this.createButtons();
+        this.createText();
 
         draw(renderWindow);
     }
@@ -54,26 +58,29 @@ public class LoseScreenManager implements ScreenManager {
         for (Interactable button : this.buttons) {
             button.draw(renderWindow);
         }
+
+        for (Text text : this.texts) {
+            renderWindow.draw(text);
+        }
     }
 
     @Override
     public void close(RenderWindow renderWindow) {
-
     }
 
     @Override
     public Sound getSound() {
-        return null;
+        return this.mainTheme;
     }
 
-    private void createButtons(){
+    private void createButtons() {
         LoseReturnButton returnButton = new LoseReturnButton(createReturnButton());
         LoseNewGameButton newGameButton = new LoseNewGameButton(createRetryButton());
 
-        buttons = new Interactable[]{returnButton,newGameButton};
+        buttons = new Interactable[]{returnButton, newGameButton};
     }
 
-    private Shape createReturnButton(){
+    private Shape createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
@@ -83,7 +90,8 @@ public class LoseScreenManager implements ScreenManager {
         return shape;
 
     }
-    private Shape createRetryButton(){
+
+    private Shape createRetryButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
@@ -93,40 +101,20 @@ public class LoseScreenManager implements ScreenManager {
         return shape;
     }
 
+    private void createText() {
+        this.texts = new Text[DEATH_TEXT.length];
 
-    private void createSprites(){
-        Sprite background = UtilSharedResources.getBackground();
+        for (int i = 0; i <= DEATH_TEXT.length - 1; i++) {
 
-        this.sprites = new Sprite[]{background};
-    }
+            Text text = new Text(DEATH_TEXT[i], UtilFont.loadFont("fonts/FreeSans.ttf"));
+            float width = text.getLocalBounds().width;
 
-    private void createText(){
-        String[] writing = initialiseText();
-
-        this.texts = new Text[writing.length];
-
-        for (int i = 0; i <= writing.length - 1; i++){
-
-            Text text = new Text(writing[i], UtilFont.loadFont("fonts/FreeSans.ttf"));
-            Float width = text.getLocalBounds().width;
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
-            text.setScale(new Vector(1,1).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH / 2f) - (width / 2)) - 20, (Mayhem.SCREEN_HEIGHT / 6f) * i + 2).toVector());
+            text.setScale(new Vector(1, 1).toVector());
             text.setStyle(TextStyle.BOLD);
             text.setColor(Color.CYAN);
 
             this.texts[i] = text;
-
         }
     }
-    private String[] initialiseText(){
-        String line1 = "You have died";
-        String line2 = "Click retry to start the level agian or ";
-        String line3 = "return to the main menu";
-
-
-        return new String[]{line1,line2,line3};
-
-    }
-
-
 }
