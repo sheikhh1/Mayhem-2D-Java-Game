@@ -58,4 +58,8 @@ public class SaveData {
 
         return new SaveData(file, name, id, difficulty);
     }
+
+    public static SaveData of(String name, int id, Difficulty difficulty) {
+        return new SaveData(new File(SaveFileManager.SAVE_DIR + File.separator + name + ".txt"), name, id, difficulty);
+    }
 }
