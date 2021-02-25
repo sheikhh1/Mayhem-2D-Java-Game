@@ -3,6 +3,7 @@ package me.mayhem.screens.losescreen;
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
+import me.mayhem.save.SaveData;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.losescreen.items.LoseNewGameButton;
@@ -32,6 +33,7 @@ public class LoseScreenManager implements ScreenManager {
     private final int levelId;
     private final String name;
     private final Difficulty difficulty;
+    private final SaveData saveData;
 
     private Text[] texts;
 
@@ -40,6 +42,7 @@ public class LoseScreenManager implements ScreenManager {
         this.levelId = previous.getId();
         this.name = previous.getPlayerName();
         this.difficulty = previous.getDifficulty();
+        this.saveData = previous.getSaveData();
 
         this.loadScreen(window);
     }
@@ -91,6 +94,10 @@ public class LoseScreenManager implements ScreenManager {
 
     public Difficulty getDifficulty() {
         return this.difficulty;
+    }
+
+    public SaveData getSaveData() {
+        return this.saveData;
     }
 
     private LoseReturnButton createReturnButton() {
