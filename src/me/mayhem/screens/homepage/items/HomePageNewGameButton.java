@@ -12,6 +12,7 @@ import org.jsfml.window.event.Event;
 public class HomePageNewGameButton extends ButtonInteractable {
 
     /**
+     * the button to let you start a new game
      *
      * @param shape the shape of the button
      */
