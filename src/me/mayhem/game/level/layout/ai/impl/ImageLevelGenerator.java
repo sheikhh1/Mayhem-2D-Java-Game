@@ -30,7 +30,6 @@ public class ImageLevelGenerator implements LevelGenerator {
     @Override
     public List<Block> generateLevel() {
         this.levelImage = UtilSharedResources.getLevelImage(this.id);
-        System.out.println(this.levelImage);
         this.loadLevel();
 
         return this.blocks;
