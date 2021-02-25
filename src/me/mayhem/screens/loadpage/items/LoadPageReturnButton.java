@@ -15,9 +15,11 @@ public class LoadPageReturnButton extends ButtonInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new HomePageManager(window, Mayhem.getCurrentScreen().getSound()));
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new HomePageManager(window, Mayhem.getCurrentScreen().getSound()));
     }
 }
