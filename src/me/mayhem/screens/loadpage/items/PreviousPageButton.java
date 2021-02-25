@@ -23,7 +23,7 @@ public class PreviousPageButton extends ButtonInteractable {
 
         if (screen.getPage() != 0) {
             Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new LoadPageManager(window, Mayhem.getCurrentScreen().getSound(), screen.getPage() + 1));
+            Mayhem.setCurrentScreen(new LoadPageManager(window, Mayhem.getCurrentScreen().getSound(), screen.getPage() - 1));
         }
     }
 }
