@@ -8,9 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class NextButton extends ButtonInteractable {
+public class NextPageButton extends ButtonInteractable {
 
-    public NextButton(Shape shape) {
+    public NextPageButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "next");
     }
 
