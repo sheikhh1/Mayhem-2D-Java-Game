@@ -52,7 +52,7 @@ public class LoadPageManager implements ScreenManager {
         this.buttons.add(this.createPrevButton());
         this.buttons.add(this.createReturnButton());
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Math.min(SaveFileManager.getSaveFiles().size(), 3); i++) {
             SaveData saveData = SaveFileManager.getSaveFiles().get(this.page + i);
             this.buttons.add(new LoadGameFileButton(this.createLoadGameShape(new Vector(400, 100 + i * 200)), saveData));
         }
