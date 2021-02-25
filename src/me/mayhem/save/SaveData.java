@@ -48,18 +48,21 @@ public class SaveData {
         int id = -1;
 
         try (BufferedReader fileReader = new BufferedReader(new FileReader(file))) {
-            String line = fileReader.readLine();
+            String line;
 
-            if (line.startsWith("name:")) {
-                name = line.replace("name:", "");
-            } else if (line.startsWith("difficulty:")) {
-                difficulty = Difficulty.valueOf(line.replace("difficulty:", ""));
-            } else if (line.startsWith("id:")) {
-                id = Integer.parseInt(line.replace("id:", ""));
+            while ((line = fileReader.readLine()) != null) {
+                if (line.startsWith("name:")) {
+                    name = line.replace("name:", "");
+                } else if (line.startsWith("difficulty:")) {
+                    difficulty = Difficulty.valueOf(line.replace("difficulty:", ""));
+                } else if (line.startsWith("id:")) {
+                    id = Integer.parseInt(line.replace("id:", ""));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("_--");
 
         return new SaveData(file, name, id, difficulty);
     }
