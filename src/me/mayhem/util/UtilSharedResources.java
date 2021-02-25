@@ -28,10 +28,6 @@ public class UtilSharedResources {
     private static Sprite inGameBackgound = null;
 
     public static void init() {
-        getMainFont();
-        getMainTheme();
-        getBackground();
-        getLogo();
         getWSAD();
         getDoor();
         getKeyCard();
