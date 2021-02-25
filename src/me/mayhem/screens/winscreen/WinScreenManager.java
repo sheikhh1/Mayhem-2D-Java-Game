@@ -56,13 +56,11 @@ public class WinScreenManager implements ScreenManager {
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {
-
-    }
+    public void close(RenderWindow renderWindow) {}
 
     @Override
     public Sound getSound() {
-        return mainTheme;
+        return this.mainTheme;
     }
 
     public WinContinueButton createContinueButton() {
