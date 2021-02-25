@@ -27,6 +27,18 @@ public class UtilSharedResources {
     private static Font mainFont = null;
     private static Sprite inGameBackgound = null;
 
+    public static void init() {
+        getMainFont();
+        getMainTheme();
+        getBackground();
+        getLogo();
+        getWSAD();
+        getDoor();
+        getKeyCard();
+        getInGameBackground();
+        loadLevels();
+    }
+
     public static Sound getMainTheme() {
         if (mainTheme == null) {
             mainTheme = UtilSound.loadSoundFromPath("menu/Mainthememusic.wav");
@@ -96,7 +108,7 @@ public class UtilSharedResources {
         return inGameBackgound;
     }
 
-    public static void loadLevels() {
+    private static void loadLevels() {
         for (int i = 0; i < 100; i++) {
             InputStream imageStream = UtilSharedResources.class.getClassLoader().getResourceAsStream("levels/level-" + i + ".png");
 
