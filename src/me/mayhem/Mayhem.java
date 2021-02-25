@@ -26,7 +26,7 @@ public class Mayhem {
     private static RenderWindow mainWindow;
 
     public static void main(String[] args) {
-        THREAD_POOL.submit(UtilSharedResources::loadLevels);
+        THREAD_POOL.submit(UtilSharedResources::init);
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setVerticalSyncEnabled(true);
