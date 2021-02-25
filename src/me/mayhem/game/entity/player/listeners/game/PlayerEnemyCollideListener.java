@@ -20,6 +20,10 @@ public class PlayerEnemyCollideListener {
         } else if (event.getEntity() instanceof Collectable) {
             ((Collectable) event.getEntity()).collected(event.getPlayer());
         } else if (event.getEntity() instanceof Door) {
+            if (event.getEntity().getCenter().subtract(event.getPlayer().getPosition()).getLengthSquared() > 1000) {
+                return;
+            }
+
             if (event.getPlayer().getInventory().contains(KeyCard.KEY_CARD_ID)) {
                 RenderWindow window = Mayhem.getMainWindow();
                 GameScreenManager currentScreen = (GameScreenManager) Mayhem.getCurrentScreen();
