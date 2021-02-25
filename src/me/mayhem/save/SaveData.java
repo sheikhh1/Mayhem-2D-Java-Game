@@ -1,4 +1,4 @@
-package me.mayhem.screens.loadpage;
+package me.mayhem.save;
 
 import me.mayhem.game.level.difficulty.Difficulty;
 
