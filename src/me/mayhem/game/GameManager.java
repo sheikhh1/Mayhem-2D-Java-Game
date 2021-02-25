@@ -290,4 +290,8 @@ public class GameManager {
     public String getCurrentLevel() {
         return currentLevel.getLayout().getLayoutId();
     }
+
+    public String getTimerText(){return timerText.toString();}
+
+    public SaveData getSaveData(){return this.saveData;}
 }
