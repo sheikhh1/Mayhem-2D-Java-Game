@@ -17,7 +17,7 @@ public class LoseScreenManager implements ScreenManager {
 
     private static final String[] DEATH_TEXT = new String[]{
             "You have died",
-            "Click retry to start the level agian or ",
+            "Click retry to start the level again or ",
             "return to the main menu"
     };
 
