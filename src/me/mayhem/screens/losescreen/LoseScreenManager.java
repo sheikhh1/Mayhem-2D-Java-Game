@@ -104,13 +104,11 @@ public class LoseScreenManager implements ScreenManager {
     private void createText() {
         this.texts = new Text[DEATH_TEXT.length];
 
-        for (int i = 0; i <= DEATH_TEXT.length - 1; i++) {
-
+        for (int i = 0; i < DEATH_TEXT.length; i++) {
             Text text = new Text(DEATH_TEXT[i], UtilFont.loadFont("fonts/FreeSans.ttf"));
             float width = text.getLocalBounds().width;
 
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH / 2f) - (width / 2)) - 20, (Mayhem.SCREEN_HEIGHT / 6f) * i + 2).toVector());
-            text.setScale(new Vector(1, 1).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH / 2f) - (width / 2)) - 20, (Mayhem.SCREEN_HEIGHT / 6f) + (10 * i)).toVector());
             text.setStyle(TextStyle.BOLD);
             text.setColor(Color.CYAN);
 
