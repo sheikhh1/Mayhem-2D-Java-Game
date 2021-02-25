@@ -25,7 +25,6 @@ public class PlayerDeathListener {
         GameScreenManager currentScreen = (GameScreenManager) Mayhem.getCurrentScreen();
 
         Mayhem.getCurrentScreen().unloadScreen(window);
-        currentScreen.getGame().shutdownLevel();
         Mayhem.setCurrentScreen(new LoseScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
     }
 }
