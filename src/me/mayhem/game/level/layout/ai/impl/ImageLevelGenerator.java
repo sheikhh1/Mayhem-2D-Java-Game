@@ -20,6 +20,8 @@ import java.util.function.BiConsumer;
 
 public class ImageLevelGenerator implements LevelGenerator {
 
+    private final int id;
+
     private Image levelImage;
     private Vector playerSpawnPosition;
     private Vector newCenter = null;
@@ -28,7 +30,9 @@ public class ImageLevelGenerator implements LevelGenerator {
     private final List<SpawnPosition> enemySpawnPositions = new ArrayList<>();
     private final Map<RGB, BiConsumer<Integer, Integer>> colours = new HashMap<>();
 
-    public ImageLevelGenerator() {
+    public ImageLevelGenerator(int id) {
+        this.id = id;
+
         this.colours.put(RGB.of(255, 255, 255), (x, y) -> this.blocks.add(this.createBlock(x * 32,y * 32)));
         this.colours.put(RGB.of(0, 0, 255), (x, y) -> this.playerSpawnPosition = new Vector(x * 32, y * 32));
         this.colours.put(RGB.of(255, 0, 0), (x, y) -> this.enemySpawnPositions.add(new SpawnPosition(new Vector(x * 32, y * 32), EntityType.INFECTED.getSpawnMethod())));
@@ -47,7 +51,7 @@ public class ImageLevelGenerator implements LevelGenerator {
 
     @Override
     public List<Block> generateLevel() {
-        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/TEST-MAP.png"));
+        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/level-" + this.id + ".png"));
         this.loadLevel();
 
         return this.blocks;
