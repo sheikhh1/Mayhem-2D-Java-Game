@@ -1,10 +1,8 @@
 package me.mayhem.screens.loadpage.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.GameManager;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.loadpage.LoadPageManager;
 import me.mayhem.util.loadgame.LoadManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
@@ -16,6 +14,7 @@ import java.io.File;
 
 public class SaveInstanceButton extends ButtonInteractable {
     private File myfile;
+
     public SaveInstanceButton(Shape shape, File file) {
 
         super(shape, "fonts/FreeSans.ttf", "filebutton");
@@ -24,7 +23,7 @@ public class SaveInstanceButton extends ButtonInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if ( event.type == Event.Type.MOUSE_BUTTON_PRESSED){
+        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             System.out.println(getFilename());
             LoadManager loader = new LoadManager(getFilename());
             Mayhem.getCurrentScreen().unloadScreen(window);
@@ -32,8 +31,8 @@ public class SaveInstanceButton extends ButtonInteractable {
 
         }
     }
-    public String getFilename(){
-        return myfile.getName().substring(0,myfile.getName().length() - 4);
 
+    public String getFilename() {
+        return myfile.getName().substring(0, myfile.getName().length() - 4);
     }
 }
