@@ -30,14 +30,15 @@ public class NameSelectContinueButton extends ButtonInteractable {
         }
 
         screen.unloadScreen(window);
-        this.createSaveFile(screen);
-        Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getDifficulty(), screen.getName(screen.getInputBox())));
+        SaveData saveData = this.createSaveFile(screen);
+        Mayhem.setCurrentScreen(new GameScreenManager(window, saveData));
     }
 
-    private void createSaveFile(NameSelectScreen screen) {
+    private SaveData createSaveFile(NameSelectScreen screen) {
         SaveData data = SaveData.of(screen.getName(screen.getInputBox()), 1, screen.getDifficulty());
 
         SaveFileManager.addSaveFile(data);
         SaveFileManager.save(data);
+        return data;
     }
 }
