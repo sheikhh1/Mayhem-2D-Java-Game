@@ -8,7 +8,11 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class HomePageLoadButton extends ButtonInteractable {
-
+    /**
+     * the button that lets you go the loading page
+     *
+     * @param shape the shape used to build the button
+     */
     public HomePageLoadButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Load Game");
     }
