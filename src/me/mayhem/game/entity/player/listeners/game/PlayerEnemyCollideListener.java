@@ -7,6 +7,8 @@ import me.mayhem.game.entity.entities.enemies.Enemy;
 import me.mayhem.game.entity.entities.friendly.door.Door;
 import me.mayhem.game.entity.event.PlayerCollideWithEntityEvent;
 import me.mayhem.game.event.struct.EventListener;
+import me.mayhem.save.SaveFileManager;
+import me.mayhem.screens.endgamescreen.EndGameScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.winscreen.WinScreenManager;
 import org.jsfml.graphics.RenderWindow;
@@ -29,7 +31,12 @@ public class PlayerEnemyCollideListener {
                 GameScreenManager currentScreen = (GameScreenManager) Mayhem.getCurrentScreen();
 
                 Mayhem.getCurrentScreen().unloadScreen(window);
-                Mayhem.setCurrentScreen(new WinScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
+                GameScreenManager screen = (GameScreenManager) Mayhem.getCurrentScreen();
+                if (screen.getGame().getSaveData().getId() == 1){
+                    Mayhem.setCurrentScreen(new EndGameScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
+                }else {
+                    Mayhem.setCurrentScreen(new WinScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
+                }
             }
         }
     }
