@@ -287,14 +287,6 @@ public class GameManager {
         this.currentLevel.getLayout().getBlocks().clear();
     }
 
-    public String getCurrentLevel() {
-        return currentLevel.getLayout().getLayoutId();
-    }
-
-    public String getTimerText() {
-        return timerText.getString();
-    }
-
     public SaveData getSaveData() {
         return this.saveData;
     }
