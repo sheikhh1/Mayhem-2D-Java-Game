@@ -26,6 +26,6 @@ public class LoadGameFileButton extends ButtonInteractable {
         }
 
         Mayhem.getCurrentScreen().unloadScreen(window);
-        Mayhem.setCurrentScreen(new GameScreenManager(window, this.loadFile.getDifficulty(), this.loadFile.getId(), this.loadFile.getName()));
+        Mayhem.setCurrentScreen(new GameScreenManager(window, this.loadFile));
     }
 }
