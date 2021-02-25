@@ -2,6 +2,7 @@ package me.mayhem;
 
 import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
+import me.mayhem.save.SaveFileManager;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import me.mayhem.util.UtilSharedResources;
@@ -26,6 +27,8 @@ public class Mayhem {
     private static RenderWindow mainWindow;
 
     public static void main(String[] args) {
+        THREAD_POOL.submit(SaveFileManager::init);
+
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setVerticalSyncEnabled(true);
