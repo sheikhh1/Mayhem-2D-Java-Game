@@ -5,7 +5,6 @@ import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.winscreen.items.WinContinueButton;
-import me.mayhem.screens.winscreen.items.WinQuitButton;
 import me.mayhem.screens.winscreen.items.WinSaveButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
@@ -20,7 +19,6 @@ public class WinScreenManager implements ScreenManager {
 
     private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
     private final Interactable[] buttons = new Interactable[]{
-            createQuitButton(),
             createContinueButton(),
             createSaveButton()
     };
@@ -67,17 +65,6 @@ public class WinScreenManager implements ScreenManager {
         return mainTheme;
     }
 
-    public WinQuitButton createQuitButton() {
-        RectangleShape shape = new RectangleShape();
-
-        shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
-        shape.setFillColor(new Color(176, 176, 176));
-
-        return new WinQuitButton(shape);
-
-    }
-
     public WinContinueButton createContinueButton() {
         RectangleShape shape = new RectangleShape();
 
@@ -86,7 +73,6 @@ public class WinScreenManager implements ScreenManager {
         shape.setFillColor(new Color(176, 176, 176));
 
         return new WinContinueButton(shape);
-
     }
 
     public WinSaveButton createSaveButton() {
