@@ -113,4 +113,8 @@ public class EventManager {
             eventHandler.getConsumer().accept(event);
         }
     }
+
+    public static void clearListeners() {
+        REGISTERED_LISTENERS.clear();
+    }
 }
