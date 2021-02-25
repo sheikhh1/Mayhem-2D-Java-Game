@@ -14,6 +14,9 @@ import org.jsfml.graphics.*;
 
 import java.util.ArrayList;
 
+/**
+ * a class to handle managing the screen that appears when you win the whole game
+ */
 public class EndGameScreenManager implements ScreenManager {
     private Interactable[] buttons;
     private Sprite[] sprites;
@@ -22,6 +25,12 @@ public class EndGameScreenManager implements ScreenManager {
     private Sound mainTheme;
     private GameScreenManager prev;
 
+    /**
+     *
+     * @param window the current renderwindow
+     * @param mainTheme the main sound of the game
+     * @param prev the previous gamescreen manager
+     */
     public EndGameScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev){
         this.mainTheme = mainTheme;
         this.prev = prev;
@@ -67,12 +76,20 @@ public class EndGameScreenManager implements ScreenManager {
     public Sound getSound() {
         return this.mainTheme;
     }
+
+    /**
+     * a method to create the buttons that will be used on the screen
+     */
     private void createButtons(){
         ReturnButton returnButton = createReturnButton();
 
         buttons = new Interactable[]{returnButton};
 
     }
+
+    /**
+     * a method that creates the sprites that appear on the screen
+     */
     private void createSprites(){
         Sprite background = UtilSharedResources.getBackground();
 
@@ -80,6 +97,11 @@ public class EndGameScreenManager implements ScreenManager {
 
     }
 
+    /**
+     * a method to create the shape for the return button
+     *
+     * @return a button objcect to return to the homepage
+     */
     private ReturnButton createReturnButton(){
         RectangleShape shape = new RectangleShape();
 
@@ -89,6 +111,10 @@ public class EndGameScreenManager implements ScreenManager {
 
         return new ReturnButton(shape);
     }
+
+    /**
+     * a method to create text that will apear on the screen
+     */
     private void createText(){
         String[] writing = initialiseText();
 
@@ -108,6 +134,10 @@ public class EndGameScreenManager implements ScreenManager {
         }
     }
 
+    /**
+     *
+     * @return a string that contains all the text that would appear on the screen
+     */
     private String[] initialiseText(){
         String line1 = "Congratulations";
         String line2 = "You have beaten the game with a time of ";
@@ -117,6 +147,11 @@ public class EndGameScreenManager implements ScreenManager {
         return new String[]{line1,line2,line3};
 
     }
+
+    /**
+     * a method to get the previous gamescreen
+     * @return the screen to return
+     */
     public GameScreenManager getGameScreen(){
         return prev;
     }
