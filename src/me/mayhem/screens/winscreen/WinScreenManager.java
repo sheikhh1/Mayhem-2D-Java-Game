@@ -28,8 +28,8 @@ public class WinScreenManager implements ScreenManager {
     private final Sound mainTheme;
     private final GameScreenManager previousGame;
 
-    public WinScreenManager(RenderWindow window, Sound maintheme, GameScreenManager previousGame) {
-        this.mainTheme = maintheme;
+    public WinScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager previousGame) {
+        this.mainTheme = mainTheme;
         this.previousGame = previousGame;
 
         this.loadScreen(window);
