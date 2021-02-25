@@ -291,7 +291,11 @@ public class GameManager {
         return currentLevel.getLayout().getLayoutId();
     }
 
-    public String getTimerText(){return timerText.getString();}
+    public String getTimerText() {
+        return timerText.getString();
+    }
 
-    public SaveData getSaveData(){return this.saveData;}
+    public SaveData getSaveData() {
+        return this.saveData;
+    }
 }
