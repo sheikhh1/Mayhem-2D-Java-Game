@@ -24,6 +24,10 @@ public class LoadPageManager implements ScreenManager {
     private final int page;
     private final List<Interactable> buttons = new ArrayList<>();
 
+    public LoadPageManager(RenderWindow window, Sound mainTheme) {
+        this(window, mainTheme, 0);
+    }
+
     public LoadPageManager(RenderWindow window, Sound mainTheme, int page) {
         this.mainTheme = mainTheme;
         this.page = page;
