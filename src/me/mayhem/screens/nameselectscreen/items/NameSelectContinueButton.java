@@ -25,7 +25,7 @@ public class NameSelectContinueButton extends ButtonInteractable {
         NameSelectScreen screen = (NameSelectScreen) Mayhem.getCurrentScreen();
         String data = screen.getName(screen.getInputBox());
 
-        if (data.isEmpty()) {
+        if (data.isEmpty() || SaveFileManager.doesNameExist(data)) {
             return;
         }
 
