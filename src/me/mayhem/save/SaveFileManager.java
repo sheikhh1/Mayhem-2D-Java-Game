@@ -18,7 +18,6 @@ public class SaveFileManager {
     public static void init() {
         if (!SAVE_DIR.exists()) {
             SAVE_DIR.mkdir();
-            System.out.println("CREATING " + SAVE_DIR.getAbsolutePath());
             return;
         }
 
