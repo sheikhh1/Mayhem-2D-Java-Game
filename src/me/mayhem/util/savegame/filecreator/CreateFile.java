@@ -1,6 +1,7 @@
 package me.mayhem.util.savegame.filecreator;
-import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
+
+import java.io.File;
+import java.io.IOException;
 
 public class CreateFile {
     File save;
@@ -8,22 +9,13 @@ public class CreateFile {
         save = create(filename);
     }
     private File create(String filename){
+        File myObj = new File("resources/savefiles",filename + ".txt");
         try {
-            File myObj = new File("resources/savefiles",filename + ".txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            return myObj;
-
+            myObj.createNewFile();
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
-
-            return null;
         }
-
+        return myObj;
     }
 
     public File getSave() {
