@@ -22,4 +22,7 @@ public interface LevelGenerator {
 
     List<SpawnPosition> getEnemySpawnPositions();
 
+    static LevelGenerator preDefined(int levelId) {
+        return null;
+    }
 }
