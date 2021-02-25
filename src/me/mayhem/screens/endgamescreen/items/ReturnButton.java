@@ -9,6 +9,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a class to call a button that returns you back to the home screen
+ */
 public class ReturnButton extends ButtonInteractable {
     public ReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Homepage ");
