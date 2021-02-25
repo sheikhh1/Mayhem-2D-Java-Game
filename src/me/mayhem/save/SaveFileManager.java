@@ -30,4 +30,12 @@ public class SaveFileManager {
     public static List<SaveData> getSaveFiles() {
         return SAVE_FILES;
     }
+
+    public static void addSaveFile(SaveData saveData) {
+        SAVE_FILES.add(saveData);
+    }
+
+    public static void save(SaveData saveData) {
+        //TODO: write to file
+    }
 }
