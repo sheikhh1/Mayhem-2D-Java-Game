@@ -11,6 +11,7 @@ import org.jsfml.graphics.Sprite;
 
 public class GameScreenManager implements ScreenManager {
 
+    private final int id;
     private final GameManager game;
     private final Difficulty difficulty;
     private final Sprite sprite;
@@ -20,10 +21,15 @@ public class GameScreenManager implements ScreenManager {
     }
 
     public GameScreenManager(RenderWindow window, Difficulty difficulty, int id, String playerName) {
+        this.id = id;
         this.difficulty = difficulty;
         this.game = new GameManager(window, id, this.difficulty, playerName);
         this.sprite = UtilSharedResources.getInGameBackground();
         this.draw(window);
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     @Override
