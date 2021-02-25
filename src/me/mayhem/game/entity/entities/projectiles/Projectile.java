@@ -7,17 +7,26 @@ import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.physics.type.NoMotionPhysics;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
+import org.jsfml.graphics.CircleShape;
+import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
+import org.jsfml.system.Vector2f;
 
-public class Projectile extends Entity {
+public class Projectile<Circle> extends Entity {
+    private final CircleShape circle;
 
-    public Projectile(Shape circle, Vector position) {
-        super(EntityType.PROJECTILE, position, Vector.getZero(), new ShapeHitbox(circle, position, 20, 20), Pathing.NO_PATHING);
-
+    public Projectile(Shape circle, Vector position, Circle circle1) {
+        super(EntityType.PROJECTILE, position, Vector.getZero(), new ShapeHitbox(circle, position, 20, 20), Pathing.FORWARD_PATHING);
+        this.circle = (CircleShape) circle1;
         this.setState(EntityState.FORWARD);
 
-        super.entityPhysics = new NoMotionPhysics(this.getType(), this.getMotion());
+    }
 
+    @Override
+    public void update(RenderWindow renderWindow) {
+        this.circle.setPosition(this.getPosition().toVector());
+        renderWindow.draw((Drawable) this.circle);
     }
 
     public void tick() {
