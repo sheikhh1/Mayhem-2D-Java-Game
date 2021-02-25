@@ -7,6 +7,8 @@ import me.mayhem.game.collision.Hitbox;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.util.Vector;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
@@ -40,5 +42,12 @@ public class Projectiles extends Entity {
         }
 
         return null;
+    }
+    public void projectileCollide(Player player){
+        if (!player.isDead()) {
+            player.damage(this, 2);
+            this.setState(EntityState.MELEE);
+            this.attackedAnimateClock.restart();
+        }
     }
 }

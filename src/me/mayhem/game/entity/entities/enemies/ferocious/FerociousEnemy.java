@@ -34,6 +34,5 @@ public class FerociousEnemy extends Entity implements Enemy {
             this.setState(EntityState.MELEE);
             this.attackedAnimateClock.restart();
         }
-
     }
 }
