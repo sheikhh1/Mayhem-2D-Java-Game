@@ -52,4 +52,14 @@ public class SaveFileManager {
             }
         });
     }
+
+    public static boolean doesNameExist(String name) {
+        for (SaveData saveFile : SAVE_FILES) {
+            if (saveFile.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
