@@ -1,8 +1,5 @@
 package me.mayhem.screens.winscreen.items;
 
-import me.mayhem.Mayhem;
-import me.mayhem.screens.savescreen.SaveScreenManager;
-import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -19,8 +16,6 @@ public class WinSaveButton extends ButtonInteractable {
             return;
         }
 
-        WinScreenManager screen = (WinScreenManager) Mayhem.getCurrentScreen();
-        Mayhem.getCurrentScreen().unloadScreen(window);
-        Mayhem.setCurrentScreen(new SaveScreenManager(window, Mayhem.getCurrentScreen().getSound(), screen));
+        //TODO: save to file
     }
 }
