@@ -19,8 +19,8 @@ public class WinScreenManager implements ScreenManager {
 
     private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
     private final Interactable[] buttons = new Interactable[]{
-            createContinueButton(),
-            createSaveButton()
+            this.createContinueButton(),
+            this.createSaveButton()
     };
 
     private final Sound mainTheme;
