@@ -5,8 +5,8 @@ import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.spawning.SpawnPosition;
 import me.mayhem.game.level.spawning.SpecialPosition;
 import me.mayhem.util.RGB;
+import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Image;
 
 import java.awt.image.BufferedImage;
@@ -30,7 +30,7 @@ public class ImageLevelGenerator implements LevelGenerator {
 
     @Override
     public List<Block> generateLevel() {
-        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/level-" + this.id + ".png"));
+        this.levelImage = UtilSharedResources.getLevelImage(this.id);
         this.loadLevel();
 
         return this.blocks;
