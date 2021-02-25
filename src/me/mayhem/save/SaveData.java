@@ -11,8 +11,9 @@ public class SaveData {
 
     private final File file;
     private final String name;
-    private final int id;
     private final Difficulty difficulty;
+
+    private int id;
 
     private SaveData(File file, String name, int id, Difficulty difficulty) {
         this.file = file;
@@ -31,6 +32,10 @@ public class SaveData {
 
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Difficulty getDifficulty() {
