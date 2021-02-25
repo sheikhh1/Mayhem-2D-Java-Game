@@ -6,6 +6,7 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class LoadPageGameSelectButton extends ButtonInteractable {
+
     public LoadPageGameSelectButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Select save ");
     }
