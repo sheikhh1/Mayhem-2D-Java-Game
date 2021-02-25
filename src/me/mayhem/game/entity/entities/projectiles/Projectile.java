@@ -30,6 +30,6 @@ public class Projectile<Circle> extends Entity {
     }
 
     public void tick() {
-        //TODO: Projectile Movement Calculation
+        //TODO: Projectile Movement Calculation//
     }
 }
