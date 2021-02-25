@@ -1,5 +1,7 @@
 package me.mayhem.screens.winscreen.items;
 
+import me.mayhem.Mayhem;
+import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -7,7 +9,7 @@ import org.jsfml.window.event.Event;
 
 public class WinSaveButton extends ButtonInteractable {
     public WinSaveButton(Shape shape) {
-        super(shape, "fonts/FreeSans.ttf", "Return");
+        super(shape, "fonts/FreeSans.ttf", "Save and return to home");
     }
 
     @Override
@@ -16,6 +18,7 @@ public class WinSaveButton extends ButtonInteractable {
             return;
         }
 
-        //TODO: save to file
+        WinScreenManager screen = (WinScreenManager) Mayhem.getCurrentScreen();
+        //TODO: save
     }
 }
