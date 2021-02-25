@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class Mayhem {
 
-    private static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
+    public static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
 
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 800;
