@@ -7,9 +7,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-public class PrevButton extends ButtonInteractable {
+public class PreviousPageButton extends ButtonInteractable {
 
-    public PrevButton(Shape shape) {
+    public PreviousPageButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "previous");
     }
 

@@ -6,7 +6,7 @@ import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.loadpage.items.LoadGameFileButton;
 import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
 import me.mayhem.screens.loadpage.items.NextPageButton;
-import me.mayhem.screens.loadpage.items.PrevButton;
+import me.mayhem.screens.loadpage.items.PreviousPageButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
@@ -81,14 +81,14 @@ public class LoadPageManager implements ScreenManager {
         return new LoadPageReturnButton(shape);
     }
 
-    private PrevButton createPrevButton() {
+    private PreviousPageButton createPrevButton() {
         RectangleShape rect = new RectangleShape();
 
         rect.setPosition(new Vector(200, 600).toVector());
         rect.setSize(new Vector(200, 100).toVector());
         rect.setFillColor(new Color(176, 176, 176));
 
-        return new PrevButton(rect);
+        return new PreviousPageButton(rect);
     }
 
     private NextPageButton createNextButton() {
