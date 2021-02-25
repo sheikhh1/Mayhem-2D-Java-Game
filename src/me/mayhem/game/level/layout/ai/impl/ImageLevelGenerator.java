@@ -7,7 +7,6 @@ import me.mayhem.game.level.spawning.SpecialPosition;
 import me.mayhem.util.RGB;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Image;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class ImageLevelGenerator implements LevelGenerator {
 
     private final int id;
 
-    private Image levelImage;
+    private BufferedImage levelImage;
     private Vector playerSpawnPosition = null;
     private Vector newCenter = null;
 
@@ -31,6 +30,7 @@ public class ImageLevelGenerator implements LevelGenerator {
     @Override
     public List<Block> generateLevel() {
         this.levelImage = UtilSharedResources.getLevelImage(this.id);
+        System.out.println(this.levelImage);
         this.loadLevel();
 
         return this.blocks;
@@ -46,13 +46,12 @@ public class ImageLevelGenerator implements LevelGenerator {
         this.blocks.clear();
         this.enemySpawnPositions.clear();
 
-        BufferedImage bufferedLevel = this.levelImage.toBufferedImage();
-        int levelWidth = bufferedLevel.getWidth();
-        int levelHeight = bufferedLevel.getHeight();
+        int levelWidth = this.levelImage.getWidth();
+        int levelHeight = this.levelImage.getHeight();
 
         for (int x = 0; x < levelHeight; x++) {
             for (int y = 0; y < levelWidth; y++) {
-                RGB rgb = RGB.from(bufferedLevel.getRGB(x, y));
+                RGB rgb = RGB.from(this.levelImage.getRGB(x, y));
 
                 Block block = ColourFactory.getBlock(rgb, x, y);
 
