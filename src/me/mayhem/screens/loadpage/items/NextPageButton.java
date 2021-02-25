@@ -21,8 +21,9 @@ public class NextPageButton extends ButtonInteractable {
         }
 
         LoadPageManager screen = (LoadPageManager) Mayhem.getCurrentScreen();
+        int pages = (SaveFileManager.getSaveFiles().size()) / 3;
 
-        if (screen.getPage() != (SaveFileManager.getSaveFiles().size()) / 3) {
+        if (screen.getPage() != pages && SaveFileManager.getSaveFiles().size() > (pages * 3)) {
             Mayhem.getCurrentScreen().unloadScreen(window);
             Mayhem.setCurrentScreen(new LoadPageManager(window, Mayhem.getCurrentScreen().getSound(), screen.getPage() + 1));
         }
