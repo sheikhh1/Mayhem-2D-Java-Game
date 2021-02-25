@@ -9,14 +9,20 @@ import java.io.IOException;
 
 public class SaveData {
 
+    private final File file;
     private final String name;
     private final int id;
     private final Difficulty difficulty;
 
-    private SaveData(String name, int id, Difficulty difficulty) {
+    private SaveData(File file, String name, int id, Difficulty difficulty) {
+        this.file = file;
         this.name = name;
         this.id = id;
         this.difficulty = difficulty;
+    }
+
+    public File getFile() {
+        return this.file;
     }
 
     public String getName() {
@@ -50,6 +56,6 @@ public class SaveData {
             e.printStackTrace();
         }
 
-        return new SaveData(name, id, difficulty);
+        return new SaveData(file, name, id, difficulty);
     }
 }
