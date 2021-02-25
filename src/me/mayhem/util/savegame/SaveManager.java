@@ -1,14 +1,11 @@
 package me.mayhem.util.savegame;
 
-import me.mayhem.game.GameManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.savescreen.SaveScreenManager;
 import me.mayhem.util.savegame.filecreator.CreateFile;
 import me.mayhem.util.savegame.write.Writefile;
 
-
 import java.io.File;
-import java.util.PrimitiveIterator;
 
 
 public class SaveManager {
@@ -38,7 +35,7 @@ public class SaveManager {
         String playerName= saveScreen.getBox().getWritten();// get file name
         String level = current.getGame().getCurrentLevel();
 
-        String levelsCompleted = current.getGame().getLevelsCompleted();
+        String levelsCompleted = "1";
 
         String time= "13";  //TODO get the current game time
 
