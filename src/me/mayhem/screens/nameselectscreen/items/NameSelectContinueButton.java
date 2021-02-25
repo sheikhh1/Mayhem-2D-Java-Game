@@ -23,6 +23,12 @@ public class NameSelectContinueButton extends ButtonInteractable {
         }
 
         NameSelectScreen screen = (NameSelectScreen) Mayhem.getCurrentScreen();
+        String data = screen.getName(screen.getInputBox());
+
+        if (data.isEmpty()) {
+            return;
+        }
+
         screen.unloadScreen(window);
         this.createSaveFile(screen);
         Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getDifficulty(), screen.getName(screen.getInputBox())));
