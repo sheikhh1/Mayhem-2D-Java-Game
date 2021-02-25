@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class UtilSharedResources {
 
-    private static final Map<Integer, BufferedImage> LOADED_LEVEL_IMAGES = new HashMap<Integer, BufferedImage>();
+    private static final Map<Integer, BufferedImage> LOADED_LEVEL_IMAGES = new HashMap<>();
 
     private static Sound mainTheme = null;
     private static Sprite background = null;
