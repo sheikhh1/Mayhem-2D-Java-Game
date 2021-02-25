@@ -32,7 +32,7 @@ public class PlayerEnemyCollideListener {
 
                 Mayhem.getCurrentScreen().unloadScreen(window);
                 GameScreenManager screen = (GameScreenManager) Mayhem.getCurrentScreen();
-                if (screen.getGame().getSaveData().getId() == 1){
+                if (screen.getGame().getSaveData().getId() == 3){
                     Mayhem.setCurrentScreen(new EndGameScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
                 }else {
                     Mayhem.setCurrentScreen(new WinScreenManager(window, Mayhem.getCurrentScreen().getSound(), currentScreen));
