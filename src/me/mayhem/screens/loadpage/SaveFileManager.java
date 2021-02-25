@@ -3,13 +3,12 @@ package me.mayhem.screens.loadpage;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SaveFileManager {
 
     private static final File SAVE_DIR = Paths.get("/saves/").toFile();
-    private static final List<File> SAVE_FILES = new ArrayList<>();
+    private static final List<SaveData> SAVE_FILES = new ArrayList<>();
 
     public static void init() {
         if (!SAVE_DIR.exists()) {
@@ -23,10 +22,12 @@ public class SaveFileManager {
             return;
         }
 
-        SAVE_FILES.addAll(Arrays.asList(files));
+        for (File file : files) {
+            SAVE_FILES.add(SaveData.from(file));
+        }
     }
 
-    public static List<File> getSaveFiles() {
+    public static List<SaveData> getSaveFiles() {
         return SAVE_FILES;
     }
 }
