@@ -41,7 +41,9 @@ public class Level {
 
         this.layout = new Layout(levelGenerator);
         this.player = this.spawnPlayer(levelGenerator.getPlayerSpawnPosition(), playerName);
+
         spawner.spawnEntities(this, levelGenerator);
+
         this.entities.add(this.player);
         this.startTime = startTime;
     }
