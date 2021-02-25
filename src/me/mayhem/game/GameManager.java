@@ -90,6 +90,7 @@ public class GameManager {
         InputManager.unregisterInput(this.playerKeyRelease);
         InputManager.unregisterInput(this.playerMouseRelease);
         InputManager.unregisterInput(this.playerLostFocus);
+        EventManager.clearListeners();
     }
 
     /**
