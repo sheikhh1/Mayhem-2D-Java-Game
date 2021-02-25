@@ -107,7 +107,7 @@ public class LoseScreenManager implements ScreenManager {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition(new Vector(450, 350).toVector());
+        shape.setPosition(new Vector(400, 350).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
         return new LoseNewGameButton(shape);
