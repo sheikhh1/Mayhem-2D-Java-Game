@@ -16,10 +16,10 @@ import me.mayhem.game.entity.player.listeners.input.*;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
-import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.game.level.event.LevelStartEvent;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.input.InputManager;
+import me.mayhem.save.SaveData;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.screen.UtilScreen;
@@ -37,6 +37,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameManager {
 
+    private final SaveData saveData;
     private final RenderWindow renderWindow;
     private final Text timerText;
     private final Level currentLevel;
@@ -49,7 +50,9 @@ public class GameManager {
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow, int levelId, Difficulty difficulty, String playerName) {
+    public GameManager(RenderWindow renderWindow, SaveData saveData) {
+        this.saveData = saveData;
+
         new GameStartSound();
         new JumpSound();
         new PlayerDeathListener();
@@ -63,7 +66,7 @@ public class GameManager {
         this.timerText.setColor(Color.WHITE);
         this.timerText.setFont(UtilSharedResources.getMainFont());
         this.drawnShapes.add(timerText);
-        this.currentLevel = new Level(levelId, difficulty, playerName);
+        this.currentLevel = new Level(saveData.getId(), saveData.getDifficulty(), saveData.getName());
 
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
 
