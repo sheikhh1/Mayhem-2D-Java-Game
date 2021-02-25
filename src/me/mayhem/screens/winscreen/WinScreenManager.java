@@ -1,8 +1,6 @@
 package me.mayhem.screens.winscreen;
 
-import jdk.jshell.execution.Util;
 import me.mayhem.Mayhem;
-import me.mayhem.game.GameManager;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
@@ -12,32 +10,34 @@ import me.mayhem.screens.winscreen.items.WinSaveButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
-import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.audio.Sound;
-import org.jsfml.graphics.*;
-
-import javax.security.auth.login.CredentialNotFoundException;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 public class WinScreenManager implements ScreenManager {
-    private Sound mainTheme;
-    private GameScreenManager prev;
 
-    private Interactable[] buttons;
-    private Sprite[] sprites;
+    private final Sprite[] sprites = new Sprite[] {UtilSharedResources.getBackground()};
+    private final Interactable[] buttons = new Interactable[] {
+            createQuitButton(),
+            createContinueButton(),
+            createSaveButton()
+    };
 
+    private final Sound mainTheme;
+    private final GameScreenManager previousGame;
 
-    public WinScreenManager(RenderWindow window, Sound maintheme, GameScreenManager prev){
+    public WinScreenManager(RenderWindow window, Sound maintheme, GameScreenManager previousGame) {
         this.mainTheme = maintheme;
-        this.prev = prev;
+        this.previousGame = previousGame;
 
-        loadScreen(window);
+        this.loadScreen(window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        createButtons();
-        createSprites();
-
-        draw(renderWindow);
+        this.draw(renderWindow);
     }
 
     @Override
@@ -49,10 +49,10 @@ public class WinScreenManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        for (Sprite sprite: sprites){
+        for (Sprite sprite : sprites) {
             renderWindow.draw(sprite);
         }
-        for (Interactable button: buttons){
+        for (Interactable button : buttons) {
             button.draw(renderWindow);
         }
     }
@@ -66,51 +66,40 @@ public class WinScreenManager implements ScreenManager {
     public Sound getSound() {
         return mainTheme;
     }
-    public void createButtons(){
-        WinQuitButton quit = new WinQuitButton(createQuitButton());
-        WinContinueButton continueButton = new WinContinueButton(createContinueButton());
-        WinSaveButton save = new WinSaveButton(createSaveButton());
 
-        buttons = new Interactable[]{quit,continueButton, save};
-    }
-    public Shape createQuitButton(){
+    public WinQuitButton createQuitButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new WinQuitButton(shape);
 
     }
-    public Shape createContinueButton(){
+
+    public WinContinueButton createContinueButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition((Mayhem.SCREEN_WIDTH/10f)* 4, (Mayhem.SCREEN_HEIGHT/8f) * 2);
+        shape.setPosition((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 8f) * 2);
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new WinContinueButton(shape);
 
     }
-    public Shape createSaveButton(){
+
+    public WinSaveButton createSaveButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
-        shape.setPosition((Mayhem.SCREEN_WIDTH/10f)* 4, (Mayhem.SCREEN_HEIGHT/8f) * 5);
+        shape.setPosition((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 8f) * 5);
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new WinSaveButton(shape);
     }
 
-    public void createSprites(){
-        Sprite backGround = UtilSharedResources.getBackground();
-
-        sprites = new Sprite[]{backGround};
-
-    }
-
-    public GameScreenManager getPrev() {
-        return prev;
+    public GameScreenManager getPreviousGame() {
+        return this.previousGame;
     }
 }
