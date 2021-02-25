@@ -21,7 +21,7 @@ public class SaveManager {
             save();
         }
         else {
-            System.out.println("the file cannot be created for some reason");
+
         }
     }
 
