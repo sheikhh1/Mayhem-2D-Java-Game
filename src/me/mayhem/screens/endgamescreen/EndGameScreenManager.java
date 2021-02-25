@@ -25,13 +25,16 @@ public class EndGameScreenManager implements ScreenManager {
     public EndGameScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev){
         this.mainTheme = mainTheme;
         this.prev = prev;
+        loadScreen(window);
 
 
     }
     @Override
     public void loadScreen(RenderWindow renderWindow) {
+
         createButtons();
         createSprites();
+        createText();
         draw(renderWindow);
     }
 
@@ -50,7 +53,9 @@ public class EndGameScreenManager implements ScreenManager {
         for (Interactable button: buttons){
             button.draw(renderWindow);
         }
-
+        for (Text text: texts){
+            renderWindow.draw(text);
+        }
     }
 
     @Override
@@ -60,7 +65,7 @@ public class EndGameScreenManager implements ScreenManager {
 
     @Override
     public Sound getSound() {
-        return null;
+        return this.mainTheme;
     }
     private void createButtons(){
         ReturnButton returnButton = createReturnButton();
@@ -93,7 +98,7 @@ public class EndGameScreenManager implements ScreenManager {
 
             Text text = new Text(writing[i], UtilSharedResources.getMainFont());
             Float width = text.getLocalBounds().width;
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2f) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6f ) * i + 2 ).toVector());
             text.setScale(new Vector(1,1).toVector());
             text.setStyle(TextStyle.BOLD);
             text.setColor(Color.CYAN);
@@ -111,5 +116,8 @@ public class EndGameScreenManager implements ScreenManager {
 
         return new String[]{line1,line2,line3};
 
+    }
+    public GameScreenManager getGameScreen(){
+        return prev;
     }
 }
