@@ -56,6 +56,8 @@ public class Mayhem {
             }
 
         }
+
+        THREAD_POOL.shutdown();
     }
 
     private static void setActive(RenderWindow window, Event event) {
