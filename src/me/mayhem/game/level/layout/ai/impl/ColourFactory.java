@@ -37,6 +37,36 @@ public class ColourFactory {
         ENTITY_COLOURS.put(RGB.of(0, 255, 0), (x, y) -> new SpawnPosition(new Vector(x * 32, y * 32), EntityType.KEY_CARD.getSpawnMethod()));
     }
 
+    public static Block getBlock(RGB rgb, int x, int y) {
+        BiFunction<Integer, Integer, Block> blockFunction = BLOCK_COLOURS.get(rgb);
+
+        if (blockFunction == null) {
+            return null;
+        }
+
+        return blockFunction.apply(x, y);
+    }
+
+    public static Vector getPosition(RGB rgb, int x, int y) {
+        BiFunction<Integer, Integer, Vector> specialFunction = SPECIAL_COLOURS.get(rgb);
+
+        if (specialFunction == null) {
+            return null;
+        }
+
+        return specialFunction.apply(x, y);
+    }
+
+    public static SpawnPosition getSpawnPosition(RGB rgb, int x, int y) {
+        BiFunction<Integer, Integer, SpawnPosition> spawnFunction = ENTITY_COLOURS.get(rgb);
+
+        if (spawnFunction == null) {
+            return null;
+        }
+
+        return spawnFunction.apply(x, y);
+    }
+
     /**
      * Creates blocks at given positions
      * @param x - X position
