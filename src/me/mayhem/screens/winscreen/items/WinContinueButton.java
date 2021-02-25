@@ -2,7 +2,7 @@ package me.mayhem.screens.winscreen.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.losescreen.LoseScreenManager;
+import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
@@ -20,9 +20,9 @@ public class WinContinueButton extends ButtonInteractable {
             return;
         }
 
-        LoseScreenManager screen = (LoseScreenManager) Mayhem.getCurrentScreen();
-        screen.getSaveData().setId(screen.getSaveData().getId() + 1);
+        WinScreenManager screen = (WinScreenManager) Mayhem.getCurrentScreen();
+        screen.getPreviousGame().getSaveData().setId(screen.getPreviousGame().getSaveData().getId() + 1);
         screen.unloadScreen(window);
-        Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getSaveData()));
+        Mayhem.setCurrentScreen(new GameScreenManager(window, screen.getPreviousGame().getSaveData()));
     }
 }
