@@ -17,7 +17,7 @@ public class GameScreenManager implements ScreenManager {
 
     public GameScreenManager(RenderWindow window, Difficulty difficulty, String playerName) {
         this.difficulty = difficulty;
-        this.game = new GameManager(window, this.difficulty, playerName);
+        this.game = new GameManager(window, 1, this.difficulty, playerName);
         this.sprite = UtilSharedResources.getInGameBackground();
         this.draw(window);
     }
