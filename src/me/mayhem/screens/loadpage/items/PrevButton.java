@@ -15,13 +15,15 @@ public class PrevButton extends ButtonInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            LoadPageManager screen = (LoadPageManager) Mayhem.getCurrentScreen();
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
+        }
 
-            if (screen.getSavepage() != 0) {
-                screen.setSavepage(screen.getSavepage() - 1);
-                screen.setpagechange(true);
-            }
+        LoadPageManager screen = (LoadPageManager) Mayhem.getCurrentScreen();
+
+        if (screen.getPage() != 0) {
+            Mayhem.getCurrentScreen().unloadScreen(window);
+            Mayhem.setCurrentScreen(new LoadPageManager(window, Mayhem.getCurrentScreen().getSound(), screen.getPage() + 1));
         }
     }
 }
