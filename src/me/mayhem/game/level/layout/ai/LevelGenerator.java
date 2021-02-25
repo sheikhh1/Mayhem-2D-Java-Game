@@ -1,5 +1,6 @@
 package me.mayhem.game.level.layout.ai;
 
+import me.mayhem.game.level.layout.ai.impl.ImageLevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.game.level.spawning.SpawnPosition;
 import me.mayhem.util.Vector;
@@ -23,6 +24,6 @@ public interface LevelGenerator {
     List<SpawnPosition> getEnemySpawnPositions();
 
     static LevelGenerator preDefined(int levelId) {
-        return null;
+        return new ImageLevelGenerator(levelId);
     }
 }
