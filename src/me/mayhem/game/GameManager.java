@@ -71,9 +71,7 @@ public class GameManager {
     }
 
     /**
-     *
      * Initialize key & mouse listeners on game start up
-     *
      */
     public void initialize() {
         this.playerMousePress = new PlayerMousePressListener(this.currentLevel.getPlayer());
@@ -84,9 +82,7 @@ public class GameManager {
     }
 
     /**
-     *
      * Remove registered listeners when user leaves game screen
-     *
      */
     public void deinitialize() {
         InputManager.unregisterInput(this.playerMousePress);
@@ -97,9 +93,7 @@ public class GameManager {
     }
 
     /**
-     *
      * Update drawables
-     *
      */
     public void draw() {
         this.currentLevel.getLayout().draw(this.renderWindow);
@@ -110,7 +104,7 @@ public class GameManager {
             Entity entity = iterator.next();
 
             if (entity.isDead()) {
-                if(entity.getDeathAnimateComplete()) {
+                if (entity.getDeathAnimateComplete()) {
                     iterator.remove();
                     continue;
                 }
@@ -124,9 +118,7 @@ public class GameManager {
     }
 
     /**
-     *
      * Update entities after drawing and user input complete
-     *
      */
     public void tick() {
         this.handleEntityCollisions();
@@ -195,7 +187,7 @@ public class GameManager {
 
                     if (this.isHigherThanEntity(entity, block)) {
                         if (block.getCenter().getX() > entity.getPosition().getX() && block.getCenter().getX() < (entity.getPosition().getX() + entity.getWidth())) {
-                            if (entity.isJumping())  {
+                            if (entity.isJumping()) {
                                 entity.setJumping(false);
                                 entity.setFalling(true);
                                 block.onCollide(entity);
@@ -292,8 +284,6 @@ public class GameManager {
     }
 
     public String getCurrentLevel() {
-
         return currentLevel.getLayout().getLayoutId();
     }
-    public String getLevelsCompleted(){return levelsCompleted.toString();}
 }
