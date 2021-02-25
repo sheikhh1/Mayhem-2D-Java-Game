@@ -66,8 +66,7 @@ public class LoseScreenManager implements ScreenManager {
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {
-    }
+    public void close(RenderWindow renderWindow) {}
 
     @Override
     public Sound getSound() {
