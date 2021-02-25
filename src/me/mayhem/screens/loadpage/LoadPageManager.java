@@ -18,8 +18,6 @@ import java.util.List;
 
 public class LoadPageManager implements ScreenManager {
 
-    private static final int FILE_HEIGHT = (int) (Mayhem.SCREEN_HEIGHT - 100 / 3.0f);
-
     private final Sprite[] sprites = new Sprite[] {UtilSharedResources.getBackground()};
 
     private final Sound mainTheme;
