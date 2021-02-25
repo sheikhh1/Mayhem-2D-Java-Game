@@ -7,7 +7,16 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.Sprite;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 public class UtilSharedResources {
+
+    private static final Map<Integer, BufferedImage> LOADED_LEVEL_IMAGES = new HashMap<>();
 
     private static Sound mainTheme = null;
     private static Sprite background = null;
@@ -16,6 +25,15 @@ public class UtilSharedResources {
     private static Sprite door = null;
     private static Sprite card = null;
     private static Font mainFont = null;
+    private static Sprite inGameBackgound = null;
+
+    public static void init() {
+        getWSAD();
+        getDoor();
+        getKeyCard();
+        getInGameBackground();
+        loadLevels();
+    }
 
     public static Sound getMainTheme() {
         if (mainTheme == null) {
@@ -76,5 +94,33 @@ public class UtilSharedResources {
         }
 
         return mainFont;
+    }
+
+    public static Sprite getInGameBackground() {
+        if (inGameBackgound == null) {
+            inGameBackgound = UtilSprite.loadFromPath("gamebackground/space.jpg", 2.0f, 2.0f);
+        }
+
+        return inGameBackgound;
+    }
+
+    private static void loadLevels() {
+        for (int i = 0; i < 100; i++) {
+            InputStream imageStream = UtilSharedResources.class.getClassLoader().getResourceAsStream("levels/level-" + i + ".png");
+
+            if (imageStream == null) {
+                return;
+            }
+
+            try {
+                LOADED_LEVEL_IMAGES.put(i, ImageIO.read(imageStream));
+            } catch (IOException e) {
+                return;
+            }
+        }
+    }
+
+    public static BufferedImage getLevelImage(int level) {
+        return LOADED_LEVEL_IMAGES.get(level);
     }
 }

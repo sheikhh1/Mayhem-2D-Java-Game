@@ -2,9 +2,13 @@ package me.mayhem.game.level;
 
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
+import me.mayhem.game.entity.event.EntitySpawnEvent;
 import me.mayhem.game.entity.player.Player;
+import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.difficulty.Difficulty;
+import me.mayhem.game.level.except.LevelLoadingException;
 import me.mayhem.game.level.layout.Layout;
+import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.spawning.EntitySpawner;
 import me.mayhem.util.Vector;
 import me.mayhem.util.direction.UtilVector;
@@ -19,21 +23,27 @@ public class Level {
     private final List<Entity> entities = new ArrayList<>();
 
     private final Player player;
-    private final Difficulty difficulty;
-    private final EntitySpawner spawner;
     private final Layout layout;
     private final long startTime;
 
-    public Level(Difficulty difficulty, String playerName) {
-        this(difficulty, playerName, System.currentTimeMillis());
+    public Level(int levelId, Difficulty difficulty, String playerName) {
+        this(levelId, difficulty, playerName, System.currentTimeMillis());
     }
 
-    public Level(Difficulty difficulty, String playerName, long startTime) {
-        this.difficulty = difficulty;
-        this.spawner = difficulty.getSpawner();
-        this.layout = new Layout(this.difficulty);
-        this.player = this.spawnPlayer(this.difficulty.getGenerator().getPlayerSpawnPosition(), playerName);
-        this.spawner.spawnEntities(this);
+    public Level(int levelId, Difficulty difficulty, String playerName, long startTime) {
+        EntitySpawner spawner = difficulty.getSpawner();
+
+        LevelGenerator levelGenerator = LevelGenerator.preDefined(levelId);
+
+        if (levelGenerator == null) {
+            throw new LevelLoadingException(levelId + "", "Failed to find level generator");
+        }
+
+        this.layout = new Layout(levelGenerator);
+        this.player = this.spawnPlayer(levelGenerator.getPlayerSpawnPosition(), playerName);
+
+        spawner.spawnEntities(this, levelGenerator);
+
         this.entities.add(this.player);
         this.startTime = startTime;
     }
@@ -47,24 +57,20 @@ public class Level {
     }
 
     public void spawnEntity(Entity entity) {
+        EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
+
+        EventManager.callEvent(event);
+
+        if (event.isCancelled()) {
+            return;
+        }
+
         this.entities.add(entity);
         this.entities.sort(Comparator.comparingInt(e -> EntityType.values().length - e.getType().ordinal()));
     }
 
-    public void spawnObstacle(Entity e) {
-        this.entities.add(e);
-    }
-
     public Player getPlayer() {
         return this.player;
-    }
-
-    public Difficulty getDifficulty() {
-        return this.difficulty;
-    }
-
-    public EntitySpawner getSpawner() {
-        return this.spawner;
     }
 
     public Layout getLayout() {

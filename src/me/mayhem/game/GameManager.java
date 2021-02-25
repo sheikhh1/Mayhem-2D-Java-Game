@@ -49,7 +49,7 @@ public class GameManager {
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
+    public GameManager(RenderWindow renderWindow, int levelId, Difficulty difficulty, String playerName) {
         new GameStartSound();
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
@@ -59,10 +59,10 @@ public class GameManager {
         this.renderWindow = renderWindow;
         this.timerText = new Text();
         this.timerText.setPosition(new Vector2f(Mayhem.SCREEN_WIDTH - 100, 0));
-        this.timerText.setColor(Color.BLACK);
+        this.timerText.setColor(Color.WHITE);
         this.timerText.setFont(UtilSharedResources.getMainFont());
         this.drawnShapes.add(timerText);
-        this.currentLevel = new Level(difficulty, playerName);
+        this.currentLevel = new Level(levelId, difficulty, playerName);
 
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
 
@@ -230,17 +230,18 @@ public class GameManager {
 
         if (UtilScreen.isOffScreen(player)) {
             Vector screenMotion = new Vector(0, 0);
+            Vector playerMotion = this.getFixedEntityMotion(player);
 
-            if ((player.getPosition().getX() + player.getWidth() + player.getMotion().getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setX(-2);
-            } else if ((player.getPosition().getX() + player.getMotion().getX()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setX(+2);
+            if ((player.getPosition().getX() + player.getWidth() + playerMotion.getX()) > (Mayhem.SCREEN_WIDTH - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setX(Math.min(-1, playerMotion.getX() * -1));
+            } else if ((player.getPosition().getX() + playerMotion.getX()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setX(Math.max(1, playerMotion.getX() * -1));
             }
 
-            if ((player.getPosition().getY() + player.getHeight() + player.getMotion().getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
-                screenMotion.setY(-2);
-            } else if ((player.getPosition().getY() + player.getMotion().getY()) < UtilScreen.SCREEN_RADIUS) {
-                screenMotion.setY(+2);
+            if ((player.getPosition().getY() + player.getHeight() + playerMotion.getY()) > (Mayhem.SCREEN_HEIGHT - UtilScreen.SCREEN_RADIUS)) {
+                screenMotion.setY(Math.min(-1, playerMotion.getY() * -1));
+            } else if ((player.getPosition().getY() + playerMotion.getY()) < UtilScreen.SCREEN_RADIUS) {
+                screenMotion.setY(Math.max(1, playerMotion.getY() * -1));
             }
 
             for (Entity entity : this.currentLevel.getEntities()) {
@@ -258,21 +259,26 @@ public class GameManager {
 
     private void handleEntityVelocity() {
         for (Entity entity : this.currentLevel.getEntities()) {
-            Vector motionToAdd = entity.getMotion().clone();
-
-            if (Math.abs(motionToAdd.getX()) > EntityPhysics.MAX_SPEED) {
-                motionToAdd.setX((motionToAdd.getX() / Math.abs(motionToAdd.getX())) * EntityPhysics.MAX_SPEED);
-            }
-
-            if (Math.abs(motionToAdd.getY()) > EntityPhysics.MAX_FALL_SPEED) {
-                motionToAdd.setY((motionToAdd.getY() / Math.abs(motionToAdd.getY())) * EntityPhysics.MAX_FALL_SPEED);
-            }
+            Vector motionToAdd = this.getFixedEntityMotion(entity);
 
             entity.getMotion().subtract(motionToAdd);
-
             entity.getPosition().add(motionToAdd);
             entity.getMotion().set(0, 0);
         }
+    }
+
+    private Vector getFixedEntityMotion(Entity entity) {
+        Vector motionToAdd = entity.getMotion().clone();
+
+        if (Math.abs(motionToAdd.getX()) > EntityPhysics.MAX_SPEED) {
+            motionToAdd.setX((motionToAdd.getX() / Math.abs(motionToAdd.getX())) * EntityPhysics.MAX_SPEED);
+        }
+
+        if (Math.abs(motionToAdd.getY()) > EntityPhysics.MAX_FALL_SPEED) {
+            motionToAdd.setY((motionToAdd.getY() / Math.abs(motionToAdd.getY())) * EntityPhysics.MAX_FALL_SPEED);
+        }
+
+        return motionToAdd;
     }
 
     private void updateTimer() {

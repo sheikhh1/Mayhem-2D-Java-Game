@@ -4,6 +4,7 @@ import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
+import me.mayhem.util.UtilSharedResources;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -11,7 +12,12 @@ import org.jsfml.window.Window;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Mayhem {
+
+    private static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
 
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 800;
@@ -23,6 +29,8 @@ public class Mayhem {
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
         window.setVerticalSyncEnabled(true);
+
+        THREAD_POOL.submit(UtilSharedResources::init);
 
         currentScreen = new HomePageManager(window);
         mainWindow = window;
@@ -49,6 +57,8 @@ public class Mayhem {
             }
 
         }
+
+        THREAD_POOL.shutdown();
     }
 
     private static void setActive(RenderWindow window, Event event) {
