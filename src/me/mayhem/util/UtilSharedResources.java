@@ -1,21 +1,22 @@
 package me.mayhem.util;
 
 import me.mayhem.util.file.UtilFont;
-import me.mayhem.util.file.UtilImageLoader;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.Font;
-import org.jsfml.graphics.Image;
 import org.jsfml.graphics.Sprite;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UtilSharedResources {
 
-    private static final Map<Integer, Image> LOADED_LEVEL_IMAGES = new HashMap<>();
+    private static final Map<Integer, BufferedImage> LOADED_LEVEL_IMAGES = new HashMap<Integer, BufferedImage>();
 
     private static Sound mainTheme = null;
     private static Sprite background = null;
@@ -103,13 +104,15 @@ public class UtilSharedResources {
                 return;
             }
 
-            Image image = UtilImageLoader.loadImageFromStream(imageStream);
-
-            LOADED_LEVEL_IMAGES.put(i, image);
+            try {
+                LOADED_LEVEL_IMAGES.put(i, ImageIO.read(imageStream));
+            } catch (IOException e) {
+                return;
+            }
         }
     }
 
-    public static Image getLevelImage(int level) {
+    public static BufferedImage getLevelImage(int level) {
         return LOADED_LEVEL_IMAGES.get(level);
     }
 }
