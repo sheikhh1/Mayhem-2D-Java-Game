@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SaveFileManager {
 
-    private static final File SAVE_DIR = Paths.get("/saves/").toFile();
+    public static final File SAVE_DIR = Paths.get("/saves/").toFile();
     private static final List<SaveData> SAVE_FILES = new ArrayList<>();
 
     public static void init() {
