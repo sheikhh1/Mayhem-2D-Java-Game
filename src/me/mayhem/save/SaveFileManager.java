@@ -12,12 +12,13 @@ import java.util.List;
 
 public class SaveFileManager {
 
-    public static final File SAVE_DIR = Paths.get("/saves/").toFile();
+    public static final File SAVE_DIR = Paths.get("saves/").toFile();
     private static final List<SaveData> SAVE_FILES = new ArrayList<>();
 
     public static void init() {
         if (!SAVE_DIR.exists()) {
             SAVE_DIR.mkdir();
+            System.out.println("CREATING " + SAVE_DIR.getAbsolutePath());
             return;
         }
 
