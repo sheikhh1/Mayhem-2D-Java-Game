@@ -35,6 +35,10 @@ public class LoadPageManager implements ScreenManager {
         this.loadScreen(window);
     }
 
+    public int getPage() {
+        return this.page;
+    }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         this.loadPageFiles();
