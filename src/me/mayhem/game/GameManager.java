@@ -48,7 +48,7 @@ public class GameManager {
 
     private final List<Drawable> drawnShapes = new CopyOnWriteArrayList<>();
 
-    public GameManager(RenderWindow renderWindow, Difficulty difficulty, String playerName) {
+    public GameManager(RenderWindow renderWindow, int levelId, Difficulty difficulty, String playerName) {
         new GameStartSound();
         new JumpSound();
         EventManager.registerListener(new PlayerCollisionListener());
@@ -61,7 +61,7 @@ public class GameManager {
         this.timerText.setColor(Color.WHITE);
         this.timerText.setFont(UtilSharedResources.getMainFont());
         this.drawnShapes.add(timerText);
-        this.currentLevel = new Level(difficulty, playerName);
+        this.currentLevel = new Level(levelId, difficulty, playerName);
 
         EventManager.callEvent(new LevelStartEvent(this.currentLevel.getPlayer(), this.currentLevel));
 
