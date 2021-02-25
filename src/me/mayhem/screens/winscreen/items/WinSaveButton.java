@@ -1,6 +1,9 @@
 package me.mayhem.screens.winscreen.items;
 
 import me.mayhem.Mayhem;
+import me.mayhem.save.SaveData;
+import me.mayhem.save.SaveFileManager;
+import me.mayhem.screens.homepage.HomePageManager;
 import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
@@ -19,6 +22,13 @@ public class WinSaveButton extends ButtonInteractable {
         }
 
         WinScreenManager screen = (WinScreenManager) Mayhem.getCurrentScreen();
-        //TODO: save
+        SaveData saveData = screen.getPreviousGame().getSaveData();
+
+        saveData.setId(saveData.getId() + 1);
+
+        SaveFileManager.save(saveData);
+
+        screen.unloadScreen(window);
+        Mayhem.setCurrentScreen(new HomePageManager(window));
     }
 }
