@@ -22,10 +22,12 @@ public class LoseScreenManager implements ScreenManager {
     };
 
     private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
+    private final Interactable[] buttons = new Interactable[]{
+            this.createReturnButton(),
+            this.createRetryButton()
+    };
 
     private final Sound mainTheme;
-
-    private Interactable[] buttons;
     private Text[] texts;
 
     public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager prev) {
@@ -36,7 +38,6 @@ public class LoseScreenManager implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        this.createButtons();
         this.createText();
 
         draw(renderWindow);
@@ -73,32 +74,24 @@ public class LoseScreenManager implements ScreenManager {
         return this.mainTheme;
     }
 
-    private void createButtons() {
-        LoseReturnButton returnButton = new LoseReturnButton(createReturnButton());
-        LoseNewGameButton newGameButton = new LoseNewGameButton(createRetryButton());
-
-        buttons = new Interactable[]{returnButton, newGameButton};
-    }
-
-    private Shape createReturnButton() {
+    private LoseReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
-
+        return new LoseReturnButton(shape);
     }
 
-    private Shape createRetryButton() {
+    private LoseNewGameButton createRetryButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition(new Vector(450, 350).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new LoseNewGameButton(shape);
     }
 
     private void createText() {
