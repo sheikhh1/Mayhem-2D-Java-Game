@@ -1,13 +1,21 @@
 package me.mayhem.util;
 
 import me.mayhem.util.file.UtilFont;
+import me.mayhem.util.file.UtilImageLoader;
 import me.mayhem.util.file.UtilSprite;
 import me.mayhem.util.sounds.UtilSound;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.Font;
+import org.jsfml.graphics.Image;
 import org.jsfml.graphics.Sprite;
 
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 public class UtilSharedResources {
+
+    private static final Map<Integer, Image> LOADED_LEVEL_IMAGES = new HashMap<>();
 
     private static Sound mainTheme = null;
     private static Sprite background = null;
@@ -85,5 +93,23 @@ public class UtilSharedResources {
         }
 
         return inGameBackgound;
+    }
+
+    public static void loadLevels() {
+        for (int i = 0; i < 100; i++) {
+            InputStream imageStream = UtilSharedResources.class.getClassLoader().getResourceAsStream("levels/level-" + i + ".png");
+
+            if (imageStream == null) {
+                return;
+            }
+
+            Image image = UtilImageLoader.loadImageFromStream(imageStream);
+
+            LOADED_LEVEL_IMAGES.put(i, image);
+        }
+    }
+
+    public static Image getLevelImage(int level) {
+        return LOADED_LEVEL_IMAGES.get(level);
     }
 }
