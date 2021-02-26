@@ -74,6 +74,10 @@ public class Level {
         this.vaccines.add(entity);
     }
 
+    public List<Entity> getVaccines() {
+        return this.vaccines;
+    }
+
     public void spawnEntity(Entity entity) {
         EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
 
