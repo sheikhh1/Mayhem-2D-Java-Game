@@ -17,6 +17,7 @@ public class PlayerMouseReleaseListener extends MouseButtonReleaseListener {
     public PlayerMouseReleaseListener(Player player) {
         this.player = player;
         this.mousePressReleaseHandler.put(Mouse.Button.LEFT, EntityState.NO_MOTION);
+        this.mousePressReleaseHandler.put(Mouse.Button.RIGHT, EntityState.NO_MOTION);
     }
 
     @Override
