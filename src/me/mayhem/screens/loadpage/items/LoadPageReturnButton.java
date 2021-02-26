@@ -8,7 +8,11 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class LoadPageReturnButton extends ButtonInteractable {
-
+    /**
+     * a button that returns you to the main page
+     *
+     * @param shape the shape to create the buttton
+     */
     public LoadPageReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
     }

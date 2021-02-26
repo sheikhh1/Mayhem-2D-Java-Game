@@ -18,6 +18,9 @@ import org.jsfml.graphics.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * a manager for the page where you load previous save files
+ */
 public class LoadPageManager implements ScreenManager {
 
     private final Sprite[] sprites = new Sprite[] {UtilSharedResources.getBackground()};
@@ -47,6 +50,9 @@ public class LoadPageManager implements ScreenManager {
         this.draw(renderWindow);
     }
 
+    /**
+     * method to load in the save instance buttons
+     */
     private void loadPageFiles() {
         this.buttons.add(this.createNextButton());
         this.buttons.add(this.createPrevButton());
@@ -63,6 +69,12 @@ public class LoadPageManager implements ScreenManager {
         }
     }
 
+    /**
+     * creates the shape that represents the loadgame shapes
+     *
+     * @param position the posititon in the
+     * @return
+     */
     private Shape createLoadGameShape(Vector position) {
         RectangleShape rect = new RectangleShape();
 
