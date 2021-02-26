@@ -1,6 +1,7 @@
 package me.mayhem.game.entity.entities.enemies.ferocious;
 
 import me.mayhem.game.ai.path.impl.MoveBetweenBlocksPathing;
+import me.mayhem.game.ai.path.impl.RangedPathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
@@ -22,7 +23,7 @@ public class FerociousEnemy extends Entity implements Enemy {
      * @param position   - Current Position of entity relative to the game window
      */
     public FerociousEnemy(Vector position, Level level) {
-        super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveBetweenBlocksPathing());
+        super(EntityType.FEROCIOUS, position, Vector.getZero(), new SpriteHitbox(position,55,40), new RangedPathing(level));
 
         this.animate.setSpritePosition(position.toVector());
     }
