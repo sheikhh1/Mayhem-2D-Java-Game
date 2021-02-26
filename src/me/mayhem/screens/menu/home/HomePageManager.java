@@ -10,7 +10,10 @@ import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 /**
  *
@@ -22,7 +25,12 @@ public class HomePageManager implements ScreenManager {
     private final RenderWindow window;
     private final Sound mainTheme;
 
-    private Interactable[] buttons;
+    private final Interactable[] buttons = new Interactable[]{
+            this.createNewGameButton(),
+            this.createLoadButton(),
+            this.createQuitButton()
+    };
+
     private Sprite[] sprites;
 
     /**
@@ -53,7 +61,6 @@ public class HomePageManager implements ScreenManager {
     @Override
     public void loadScreen(RenderWindow renderWindow) {
         this.createSprites();
-        this.createButtons();
         this.draw(renderWindow);
     }
 
@@ -62,7 +69,6 @@ public class HomePageManager implements ScreenManager {
      */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
-
         Sprite logo = UtilSharedResources.getLogo();
 
         if (logo == null || background == null) {
@@ -71,18 +77,7 @@ public class HomePageManager implements ScreenManager {
 
         logo.setPosition(new Vector(400, 100).toVector());
 
-        this.sprites = new Sprite[]{logo,background };
-    }
-
-    /**
-     * creates the buttons that will be on the screen
-     */
-    private void createButtons() {
-        HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
-        HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));
-        HomePageLoadButton load = new HomePageLoadButton((this.createLoadButton()));
-
-        this.buttons = new Interactable[]{newPage, load, quit};
+        this.sprites = new Sprite[]{logo, background};
     }
 
     /**
@@ -90,14 +85,14 @@ public class HomePageManager implements ScreenManager {
      *
      * @return the shape of the button
      */
-    private Shape createQuitButton() {
+    private HomepageQuitButton createQuitButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 8).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new HomepageQuitButton(shape);
     }
 
     /**
@@ -105,29 +100,29 @@ public class HomePageManager implements ScreenManager {
      *
      * @return returns the shape that is the load button
      */
-    private Shape createLoadButton() {
+    private HomePageLoadButton createLoadButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 5).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new HomePageLoadButton(shape);
     }
 
     /**
      * creates the new game button, setting its size and position
      *
-     * @return returns the shape that is the newgae button
+     * @return returns the shape that is the newgame button
      */
-    private Shape createNewGameButton() {
+    private HomePageNewGameButton createNewGameButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(400, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 3, (Mayhem.SCREEN_HEIGHT / 10f) * 2).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new HomePageNewGameButton(shape);
     }
 
     @Override
