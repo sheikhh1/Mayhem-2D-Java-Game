@@ -1,5 +1,6 @@
 package me.mayhem.game.entity.entities.enemies.infected;
 
+import me.mayhem.game.ai.path.impl.CorrosivePathing;
 import me.mayhem.game.ai.path.impl.MoveToPlayerPathing;
 import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
@@ -22,7 +23,7 @@ public class InfectedEnemy extends Entity implements Enemy {
      * @param position   - Current Position of entity relative to the game window
      */
     public InfectedEnemy(Vector position, Level level) {
-        super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,55,40), new MoveToPlayerPathing(level));
+        super(EntityType.INFECTED, position, Vector.getZero(), new SpriteHitbox(position,55,40), new CorrosivePathing(level));
     }
 
     @Override
