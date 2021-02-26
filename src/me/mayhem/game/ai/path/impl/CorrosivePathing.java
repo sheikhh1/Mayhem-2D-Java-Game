@@ -31,9 +31,11 @@ public class CorrosivePathing implements Pathing {
             if (toPlayer.getX() < 0) {
                 entity.getAnimation().setRow(11);
                 entity.setState(EntityState.STANDING);
+                this.shootProjectile(entity);
             } else {
                 entity.getAnimation().setRow(9);
                 entity.setState(EntityState.STANDING);
+                this.shootProjectile(entity);
             }
 
             return;
