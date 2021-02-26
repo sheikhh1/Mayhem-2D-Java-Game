@@ -23,19 +23,19 @@ public enum ProjectileType {
         this.imagePath = imagePath;
     }
 
-    private int getIndex() {
+    public int getIndex() {
         return this.index;
     }
 
-    private int getDamage() {
+    public int getDamage() {
         return this.damage;
     }
 
-    private Texture getTexture() {
+    public Texture getTexture() {
         return this.projectileTexture;
     }
 
-    private String getImagePath() {
+    public String getImagePath() {
         return this.imagePath;
     }
 
