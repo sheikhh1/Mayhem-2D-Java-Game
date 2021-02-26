@@ -31,6 +31,13 @@ public class TutorialManager implements ScreenManager {
     private Sprite[] sprites;
     private Text[] texts;
 
+    /**
+     *
+     * Default constructor taking the window to draw onto and the main theme tune to play
+     *
+     * @param window The window to draw on to
+     * @param mainTheme The theme song to play
+     */
     public TutorialManager(RenderWindow window, Sound mainTheme){
         this.mainTheme = mainTheme;
         this.loadScreen(window);
@@ -73,6 +80,12 @@ public class TutorialManager implements ScreenManager {
         return this.mainTheme;
     }
 
+    /**
+     *
+     * Private function to create the tutorial button and load it into the correct {@link Vector} position
+     *
+     * @return The {@link TutorialReturnButton}
+     */
     private TutorialReturnButton createReturnButton(){
         RectangleShape shape = new RectangleShape();
 
@@ -84,7 +97,9 @@ public class TutorialManager implements ScreenManager {
     }
 
     /**
-     * creates the sprites that will appear on the screen
+     *
+     * Creates the cache array of the sprites to display on the {@link RenderWindow}
+     *
      */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
@@ -106,7 +121,9 @@ public class TutorialManager implements ScreenManager {
     }
 
     /**
-     * a method that creates the text objects that appear on the screen
+     *
+     * A method to create the {@link Text} from the string array {@link TutorialManager#TEXT}
+     *
      */
     private void createText() {
         this.texts = new Text[TEXT.length];
