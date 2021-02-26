@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * a manager for the page where you load previous save files
+ *
+ * This page manager displays the save files and allows the user to select a saved game and play it
+ *
  */
 public class LoadPageManager implements ScreenManager {
 
@@ -29,10 +31,25 @@ public class LoadPageManager implements ScreenManager {
     private final int page;
     private final List<Interactable> buttons = new ArrayList<>();
 
+    /**
+     *
+     * Default constructor passing the page as 0 for default (test map)
+     *
+     * @param window The window to draw on
+     * @param mainTheme The main theme to play
+     */
     public LoadPageManager(RenderWindow window, Sound mainTheme) {
         this(window, mainTheme, 0);
     }
 
+    /**
+     *
+     * The constructor taking the page to display the saves from
+     *
+     * @param window The window to draw on
+     * @param mainTheme The main theme to play
+     * @param page the page to show saves from
+     */
     public LoadPageManager(RenderWindow window, Sound mainTheme, int page) {
         this.mainTheme = mainTheme;
         this.page = page;
@@ -40,6 +57,12 @@ public class LoadPageManager implements ScreenManager {
         this.loadScreen(window);
     }
 
+    /**
+     *
+     * The current page
+     *
+     * @return The current page
+     */
     public int getPage() {
         return this.page;
     }
@@ -143,7 +166,6 @@ public class LoadPageManager implements ScreenManager {
 
     @Override
     public Sound getSound() {
-        return mainTheme;
+        return this.mainTheme;
     }
-
 }
