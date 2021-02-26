@@ -1,4 +1,4 @@
-package me.mayhem.screens.homepage.items;
+package me.mayhem.screens.menu.home.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.loadpage.LoadPageManager;

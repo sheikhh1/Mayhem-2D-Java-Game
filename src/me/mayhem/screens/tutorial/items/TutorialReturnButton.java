@@ -1,7 +1,6 @@
 package me.mayhem.screens.tutorial.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.screens.homepage.HomePageManager;
 import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;

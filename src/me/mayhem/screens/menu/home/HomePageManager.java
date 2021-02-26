@@ -1,11 +1,11 @@
-package me.mayhem.screens.homepage;
+package me.mayhem.screens.menu.home;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.homepage.items.HomePageLoadButton;
-import me.mayhem.screens.homepage.items.HomePageNewGameButton;
-import me.mayhem.screens.homepage.items.HomepageQuitButton;
+import me.mayhem.screens.menu.home.items.HomePageLoadButton;
+import me.mayhem.screens.menu.home.items.HomePageNewGameButton;
+import me.mayhem.screens.menu.home.items.HomepageQuitButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

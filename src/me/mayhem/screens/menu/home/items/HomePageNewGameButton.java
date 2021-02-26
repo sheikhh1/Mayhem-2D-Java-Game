@@ -1,8 +1,7 @@
-package me.mayhem.screens.homepage.items;
+package me.mayhem.screens.menu.home.items;
 
 
 import me.mayhem.Mayhem;
-import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
