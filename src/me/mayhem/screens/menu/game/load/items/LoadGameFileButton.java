@@ -9,11 +9,15 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * buttons that store an instance of the savefiles
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the load game
+ * button for the {@link me.mayhem.screens.menu.game.load.LoadPageManager} to continue playing from a given save file
+ *
  */
 public class LoadGameFileButton extends ButtonInteractable {
 
     private final SaveData loadFile;
+
 
     public LoadGameFileButton(Shape shape, SaveData loadFile) {
         super(shape, "fonts/FreeSans.ttf", loadFile.getName());
