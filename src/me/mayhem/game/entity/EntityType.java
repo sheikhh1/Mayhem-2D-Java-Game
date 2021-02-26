@@ -42,7 +42,7 @@ public enum EntityType {
         this.jumpStrength = jumpStrength;
         this.healthBar = healthBar;
         this.spawnMethod = spawnMethod;
-        this.entityTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(imagePath));
+        this.entityTexture = UtilImageLoader.loadTextureFromStream(imagePath);
         this.entitySprite = UtilSprite.loadFromPath(imagePath, 0.25f, 0.25f);
     }
 

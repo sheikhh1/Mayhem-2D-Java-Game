@@ -1,10 +1,10 @@
 package me.mayhem.util.file;
 
+import me.mayhem.Mayhem;
 import org.jsfml.graphics.Image;
 import org.jsfml.graphics.Texture;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  *
@@ -15,32 +15,43 @@ public class UtilImageLoader {
 
     /**
      *
-     * Loads an image from an input stream
+     * Loads the image from the resource path specified
+     * Returns null if the resource does not exist
      *
-     * @param inputStream
-     * @return
+     * @param path The path to check for the resource
+     * @return The image found at the path
      */
-    public static Image loadImageFromStream(InputStream inputStream) {
+    public static Image loadImageFromStream(String path) {
         Image image = new Image();
 
         try {
-            image.loadFromStream(inputStream);
+            image.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
+            return image;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return image;
+        return null;
     }
 
-    public static Texture loadTextureFromStream(InputStream inputStream) {
+    /**
+     *
+     * Loads the texture from the resource path specified
+     * Returns null if the resource does not exist
+     *
+     * @param path The path to check for the resource
+     * @return The texture found at the path
+     */
+    public static Texture loadTextureFromStream(String path) {
         Texture texture = new Texture();
 
         try {
-            texture.loadFromStream(inputStream);
+            texture.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
+            return texture;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return texture;
+        return null;
     }
 }

@@ -1,10 +1,7 @@
 package me.mayhem.util.file;
 
-import me.mayhem.Mayhem;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
-
-import java.io.IOException;
 
 /**
  *
@@ -38,18 +35,15 @@ public class UtilSprite {
      * @return The sprite at the file path
      */
     public static Sprite loadFromPath(String path, float scaleX, float scaleY) {
-        Texture newTexture = new Texture();
+        Texture newTexture = UtilImageLoader.loadTextureFromStream(path);
 
-        try {
-            newTexture.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
-            Sprite sprite = new Sprite(newTexture);
-
-            sprite.scale(scaleX, scaleY);
-            return sprite;
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (newTexture == null) {
+            return null;
         }
 
-        return null;
+        Sprite sprite = new Sprite(newTexture);
+        sprite.scale(scaleX, scaleY);
+
+        return sprite;
     }
 }
