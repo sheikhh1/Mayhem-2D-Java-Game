@@ -122,6 +122,11 @@ public class GameManager {
                 }
 
             }
+
+            if (UtilScreen.isOffScreen(entity.getPosition().getX(), entity.getPosition().getY())) {
+                continue;
+            }
+
             entity.update(renderWindow);
         }
 

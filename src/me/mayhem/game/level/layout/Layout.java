@@ -3,6 +3,7 @@ package me.mayhem.game.level.layout;
 import me.mayhem.game.level.layout.ai.LevelGenerator;
 import me.mayhem.game.level.layout.block.Block;
 import me.mayhem.util.Vector;
+import me.mayhem.util.screen.UtilScreen;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class Layout {
 
     public void draw(RenderWindow renderWindow) {
         for (Block block : this.blocks) {
+            if (UtilScreen.isOffScreen(block.getPosition().getX(), block.getPosition().getY())) {
+                continue;
+            }
+
             block.draw(renderWindow);
         }
     }

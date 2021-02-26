@@ -30,6 +30,8 @@ me.mayhem.game.entity.player.event
 me.mayhem.game.entity.player.inventory
 me.mayhem.game.entity.player.listeners.game
 me.mayhem.game.entity.player.listeners.input
+me.mayhem.game.entity.player.vaccine
+me.mayhem.game.entity.player.vaccine.listener
 me.mayhem.game.entity.state
 me.mayhem.game.event
 me.mayhem.game.event.listener

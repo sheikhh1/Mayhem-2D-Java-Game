@@ -6,7 +6,6 @@
 ./src/me/mayhem/game/ai/audio/impl/JumpSound.java
 ./src/me/mayhem/game/ai/audio/impl/PowerUpSound.java
 ./src/me/mayhem/game/ai/audio/impl/ShootSound.java
-./src/me/mayhem/game/ai/path/impl/CorrosivePathing.java
 ./src/me/mayhem/game/ai/path/impl/DoorStatePathing.java
 ./src/me/mayhem/game/ai/path/impl/ForwardPathing.java
 ./src/me/mayhem/game/ai/path/impl/HoverPathing.java
@@ -14,6 +13,7 @@
 ./src/me/mayhem/game/ai/path/impl/MoveBetweenBlocksPathing.java
 ./src/me/mayhem/game/ai/path/impl/MoveToPlayerPathing.java
 ./src/me/mayhem/game/ai/path/impl/NoPathing.java
+./src/me/mayhem/game/ai/path/impl/RangedPathing.java
 ./src/me/mayhem/game/ai/path/Pathing.java
 ./src/me/mayhem/game/attribute/AbstractAttribute.java
 ./src/me/mayhem/game/attribute/Attribute.java
@@ -40,7 +40,8 @@
 ./src/me/mayhem/game/entity/entities/friendly/door/Door.java
 ./src/me/mayhem/game/entity/entities/friendly/door/DoorState.java
 ./src/me/mayhem/game/entity/entities/obstacle/Spike.java
-./src/me/mayhem/game/entity/entities/projectile/Projectile.java
+./src/me/mayhem/game/entity/entities/projectile/EnemyProjectile.java
+./src/me/mayhem/game/entity/entities/projectile/ProjectileType.java
 ./src/me/mayhem/game/entity/Entity.java
 ./src/me/mayhem/game/entity/EntityType.java
 ./src/me/mayhem/game/entity/event/EntityCollideEvent.java
@@ -64,6 +65,9 @@
 ./src/me/mayhem/game/entity/player/listeners/input/PlayerMousePressListener.java
 ./src/me/mayhem/game/entity/player/listeners/input/PlayerMouseReleaseListener.java
 ./src/me/mayhem/game/entity/player/Player.java
+./src/me/mayhem/game/entity/player/vaccine/listener/VaccineCollideListener.java
+./src/me/mayhem/game/entity/player/vaccine/Vaccine.java
+./src/me/mayhem/game/entity/player/vaccine/VaccineType.java
 ./src/me/mayhem/game/entity/state/EntityState.java
 ./src/me/mayhem/game/event/EventManager.java
 ./src/me/mayhem/game/event/listener/EasyListener.java
