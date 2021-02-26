@@ -1,7 +1,7 @@
-package me.mayhem.screens.escapescreen.items;
+package me.mayhem.screens.game.escape.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.screens.escapescreen.EscapeScreenManager;
+import me.mayhem.screens.game.escape.EscapeScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
