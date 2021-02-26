@@ -24,16 +24,32 @@ public abstract class InputListener<T extends Event> {
 
     private final List<Event.Type> types;
 
+    /**
+     *
+     * Default constructor taking varargs of all the types that it needs to listen to
+     *
+     * @param types The array of types this listener is waiting for
+     */
     public InputListener(Event.Type... types) {
         this.types = Arrays.asList(types);
 
         this.register();
     }
 
+    /**
+     *
+     * Registers the listener with the {@link InputManager} - called in the constructor
+     *
+     */
     public void register() {
         InputManager.registerInput(this);
     }
 
+    /**
+     *
+     * Unregisters the listener with the {@link InputManager}
+     *
+     */
     public void unregister() {
         InputManager.unregisterInput(this);
     }

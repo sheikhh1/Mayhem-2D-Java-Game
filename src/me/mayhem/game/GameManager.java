@@ -13,6 +13,7 @@ import me.mayhem.game.entity.physics.EntityPhysics;
 import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.listeners.game.PlayerEnemyCollideListener;
 import me.mayhem.game.entity.player.listeners.input.*;
+import me.mayhem.game.entity.player.vaccine.listener.VaccineCollideListener;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
@@ -56,6 +57,7 @@ public class GameManager {
         new GameStartSound();
         new JumpSound();
         new PlayerDeathListener();
+        new VaccineCollideListener();
         EventManager.registerListener(new PlayerCollisionListener());
         EventManager.registerListener(new PlayerEnemyCollideListener());
         new EntityDeathListener();
