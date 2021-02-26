@@ -17,7 +17,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
 /**
- * a screen that allows you to input a name into the game for your character
+ *
+ * This page allows you to set the name for the character and file
+ *
  */
 public class NameSelectScreen implements ScreenManager {
 
@@ -32,9 +34,12 @@ public class NameSelectScreen implements ScreenManager {
     };
 
     /**
-     * @param window     the window that the game screen is to run on
-     * @param mainTheme  the main theme of the game
-     * @param difficulty the difficulty level that has be set by the previous screen
+     *
+     * Default constructor taking the window to draw on and the main theme tune and the difficulty
+     *
+     * @param window Window to draw on
+     * @param mainTheme The main song to play
+     * @param difficulty The user selected difficulty
      */
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
@@ -75,9 +80,9 @@ public class NameSelectScreen implements ScreenManager {
     }
 
     /**
-     * creates the input box that appears on the screen
+     * Creates the input box, including size and position
      *
-     * @return the box to be used on the screen
+     * @return returns the input box
      */
     private InputBox createInput() {
         InputBox inputBox = new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 6, (Mayhem.SCREEN_HEIGHT / 10f)).toVector());
@@ -87,14 +92,32 @@ public class NameSelectScreen implements ScreenManager {
         return inputBox;
     }
 
+    /**
+     *
+     * Gets the name from the input box
+     *
+     * @param nameBox The input box to obtain the name from
+     * @return The name from the input box
+     */
     public String getName(InputBox nameBox) {
         return nameBox.getWritten();
     }
 
+    /**
+     *
+     * The input box from the cache
+     *
+     * @return The input box being cached
+     */
     public InputBox getInputBox() {
         return (InputBox) buttons[2];
     }
 
+    /**
+     * Creates the  name select button, including size and position
+     *
+     * @return returns the name select button
+     */
     private NameSelectContinueButton createContinueButton() {
         RectangleShape shape = new RectangleShape();
 
@@ -105,6 +128,11 @@ public class NameSelectScreen implements ScreenManager {
         return new NameSelectContinueButton(shape);
     }
 
+    /**
+     * Creates the return button, including size and position
+     *
+     * @return returns the return button
+     */
     private ReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
