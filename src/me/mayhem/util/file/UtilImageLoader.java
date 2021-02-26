@@ -5,7 +5,6 @@ import org.jsfml.graphics.Image;
 import org.jsfml.graphics.Texture;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  *
@@ -35,15 +34,17 @@ public class UtilImageLoader {
         return null;
     }
 
-    public static Texture loadTextureFromStream(InputStream inputStream) {
+
+    public static Texture loadTextureFromStream(String path) {
         Texture texture = new Texture();
 
         try {
-            texture.loadFromStream(inputStream);
+            texture.loadFromStream(Mayhem.class.getClassLoader().getResourceAsStream(path));
+            return texture;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return texture;
+        return null;
     }
 }
