@@ -13,18 +13,20 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 /**
- * a mamager for the main homepage of the game
+ *
+ * A tutorial screen manager that loads in the buttons and images for the screen
+ *
  */
 public class HomePageManager implements ScreenManager {
 
     private final RenderWindow window;
+    private final Sound mainTheme;
 
-    private Sound mainTheme;
     private Interactable[] buttons;
     private Sprite[] sprites;
 
     /**
-     * this can be called if the music has not already been initialised
+     * This can be called if the music has not already been initialised
      *
      * @param window the renderwindow to be used for the manager
      */
@@ -152,6 +154,12 @@ public class HomePageManager implements ScreenManager {
         }
     }
 
+    /**
+     *
+     * Gets the window to draw on
+     *
+     * @return The JSFML window
+     */
     public RenderWindow getWindow() {
         return this.window;
     }
