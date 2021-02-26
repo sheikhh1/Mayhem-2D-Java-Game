@@ -45,6 +45,7 @@ public abstract class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private boolean entityRangeAttack = false;
     private boolean entityGrounded = true;
 
     private double health;
@@ -446,5 +447,13 @@ public abstract class Entity {
         this.dead = dead;
         this.animate.setEntityDead(dead);
         this.animate.setPause(dead);
+    }
+
+    public boolean isEntityRangeAttack() {
+        return entityRangeAttack;
+    }
+
+    public void setEntityRangeAttack(boolean entityRangeAttack) {
+        this.entityRangeAttack = entityRangeAttack;
     }
 }
