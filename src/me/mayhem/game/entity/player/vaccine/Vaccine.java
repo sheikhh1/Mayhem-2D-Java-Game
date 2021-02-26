@@ -6,7 +6,6 @@ import me.mayhem.game.collision.impl.SpriteHitbox;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.EntityType;
 import me.mayhem.util.Vector;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Vector2f;
@@ -40,9 +39,4 @@ public class Vaccine extends Entity {
     public void tick() {
         this.getMotion().add(this.xMotion, 0);
     }
-
-    public void attack(Entity enemy) {
-        System.out.println("here");
-    }
-
 }

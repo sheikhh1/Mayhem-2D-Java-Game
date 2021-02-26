@@ -46,7 +46,7 @@ public class Mayhem {
      *
      * The main function is where the game is run from
      *
-     * @param args Unused in this instance - paramaters specified upon startup
+     * @param args Unused in this instance - parameters specified upon startup
      */
     public static void main(String[] args) {
         THREAD_POOL.submit(SaveFileManager::init);
@@ -61,22 +61,14 @@ public class Mayhem {
         mainWindow = window;
 
         while (window.isOpen()) {
-            long startTime = System.currentTimeMillis();
             window.clear(Color.BLACK);
 
             if (currentScreen != null) {
-//                long startTime = System.currentTimeMillis();
                 currentScreen.draw(window);
-//                long endTime = System.currentTimeMillis();
-//                System.out.println("Total time spend drawing: " + (endTime - startTime));
             }
 
-            long startDisplay = System.currentTimeMillis();
             window.display();
-            long endDisplay = System.currentTimeMillis();
-            System.out.println("DISPLAY TIME: " + (endDisplay - startDisplay));
 
-//            long startTime = System.currentTimeMillis();
             for (Event event : window.pollEvents()) {
                 setActive(window, event);
 
@@ -88,8 +80,6 @@ public class Mayhem {
                     }
                 }
             }
-            long endTime = System.currentTimeMillis();
-            System.out.println("Total time spent on events: " + (endTime - startTime));
         }
 
         THREAD_POOL.shutdown();
