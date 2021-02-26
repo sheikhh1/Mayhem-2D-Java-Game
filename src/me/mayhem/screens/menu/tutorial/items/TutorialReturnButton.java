@@ -8,10 +8,19 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * button that you can click to return back to the settings page
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the return
+ * button for the {@link me.mayhem.screens.menu.tutorial.TutorialManager} to take the user back to the {@link me.mayhem.screens.menu.home.HomePageManager}
+ *
  */
 public class TutorialReturnButton extends ButtonInteractable {
 
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape The shape to display
+     */
     public TutorialReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
     }
