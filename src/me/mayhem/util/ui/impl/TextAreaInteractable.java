@@ -7,6 +7,12 @@ import org.jsfml.graphics.*;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
 
+/**
+ *
+ * An abstract implementation of the {@link me.mayhem.util.ui.Interactable} interface and the {@link AbstractKeyboardMouseInteractable}
+ * that checks if the area has been clicked before updating the written text on the screen.
+ *
+ */
 public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteractable {
 
     private final Font font;
@@ -17,6 +23,13 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
     private boolean locked = false;
     private boolean heightUpdated = false;
 
+    /**
+     *
+     * Creates the text interactable area with the given shape as a background and using the specified {@link Font}
+     *
+     * @param shape The shape for the background
+     * @param font The font for the written text to appear in
+     */
     public TextAreaInteractable(Shape shape, Font font) {
         super(shape);
 
@@ -25,6 +38,13 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
                 (shape.getPosition().y + shape.getGlobalBounds().height / 2f));
     }
 
+    /**
+     *
+     * Default constructor that converts the named font into a JSFML {@link Font}
+     *
+     * @param shape The shape for the background
+     * @param font The font for the written text to appear in
+     */
     public TextAreaInteractable(Shape shape, String font) {
         this(shape, UtilFont.loadFont(font));
     }
@@ -61,6 +81,13 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
         this.updateText();
     }
 
+    /**
+     *
+     * Checks if the key pressed is a valid input (currently only allowing space and character keys)
+     *
+     * @param key The key being checked
+     * @return If the key pressed is valid or not (false if valid, true if invalid)
+     */
     private boolean isInvalid(Keyboard.Key key) {
         if (key == Keyboard.Key.SPACE) {
             return false;
@@ -69,6 +96,13 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
         return key.name().length() > 1;
     }
 
+    /**
+     *
+     * Updates the cached JSFML {@link Text} object
+     * This method is used as not to generate the same object every draw tick meaning memory performance is saved
+     * and also processing time
+     *
+     */
     private void updateText() {
         this.writtenText = new Text(this.written, this.font);
 
@@ -85,6 +119,12 @@ public abstract class TextAreaInteractable extends AbstractKeyboardMouseInteract
         }
     }
 
+    /**
+     *
+     * The written text as a string
+     *
+     * @return The text that has been written by the user
+     */
     public String getWritten() {
         return this.written;
     }
