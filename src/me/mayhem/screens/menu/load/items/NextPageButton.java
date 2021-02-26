@@ -1,8 +1,8 @@
-package me.mayhem.screens.loadpage.items;
+package me.mayhem.screens.menu.load.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.save.SaveFileManager;
-import me.mayhem.screens.loadpage.LoadPageManager;
+import me.mayhem.screens.menu.load.LoadPageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;

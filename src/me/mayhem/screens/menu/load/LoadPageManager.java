@@ -1,14 +1,14 @@
-package me.mayhem.screens.loadpage;
+package me.mayhem.screens.menu.load;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.save.SaveData;
 import me.mayhem.save.SaveFileManager;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.loadpage.items.LoadGameFileButton;
-import me.mayhem.screens.loadpage.items.LoadPageReturnButton;
-import me.mayhem.screens.loadpage.items.NextPageButton;
-import me.mayhem.screens.loadpage.items.PreviousPageButton;
+import me.mayhem.screens.menu.load.items.LoadGameFileButton;
+import me.mayhem.screens.menu.load.items.LoadPageReturnButton;
+import me.mayhem.screens.menu.load.items.NextPageButton;
+import me.mayhem.screens.menu.load.items.PreviousPageButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

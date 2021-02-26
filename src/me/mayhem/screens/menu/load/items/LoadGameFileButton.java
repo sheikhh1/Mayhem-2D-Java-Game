@@ -1,4 +1,4 @@
-package me.mayhem.screens.loadpage.items;
+package me.mayhem.screens.menu.load.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.save.SaveData;
