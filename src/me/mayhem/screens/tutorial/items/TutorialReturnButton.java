@@ -8,6 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * button that you can click to return back to the settings page
+ */
 public class TutorialReturnButton extends ButtonInteractable {
     public TutorialReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");

@@ -7,6 +7,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button to return you to the main page
+ */
 public class SettingsPageReturnButton extends ButtonInteractable {
     public SettingsPageReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
