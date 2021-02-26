@@ -1,6 +1,5 @@
-package me.mayhem.screens.nameselectscreen.items;
+package me.mayhem.screens.menu.game.naming.items;
 
-import me.mayhem.util.Vector;
 import me.mayhem.util.ui.impl.TextAreaInteractable;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;

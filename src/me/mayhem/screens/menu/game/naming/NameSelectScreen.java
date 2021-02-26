@@ -1,12 +1,12 @@
-package me.mayhem.screens.nameselectscreen;
+package me.mayhem.screens.menu.game.naming;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.nameselectscreen.items.InputBox;
-import me.mayhem.screens.nameselectscreen.items.NameSelectContinueButton;
-import me.mayhem.screens.nameselectscreen.items.ReturnButton;
+import me.mayhem.screens.menu.game.naming.items.InputBox;
+import me.mayhem.screens.menu.game.naming.items.NameSelectContinueButton;
+import me.mayhem.screens.menu.game.naming.items.ReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

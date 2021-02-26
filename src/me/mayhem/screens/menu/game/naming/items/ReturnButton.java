@@ -1,4 +1,4 @@
-package me.mayhem.screens.nameselectscreen.items;
+package me.mayhem.screens.menu.game.naming.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;

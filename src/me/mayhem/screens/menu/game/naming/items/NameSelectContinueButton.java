@@ -1,10 +1,10 @@
-package me.mayhem.screens.nameselectscreen.items;
+package me.mayhem.screens.menu.game.naming.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.save.SaveData;
 import me.mayhem.save.SaveFileManager;
 import me.mayhem.screens.game.game.GameScreenManager;
-import me.mayhem.screens.nameselectscreen.NameSelectScreen;
+import me.mayhem.screens.menu.game.naming.NameSelectScreen;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
