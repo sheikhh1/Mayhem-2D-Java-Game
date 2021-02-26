@@ -78,6 +78,10 @@ public class Level {
         return this.vaccines;
     }
 
+    public void clearVaccines() {
+        this.vaccines.clear();
+    }
+
     public void spawnEntity(Entity entity) {
         EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
 
