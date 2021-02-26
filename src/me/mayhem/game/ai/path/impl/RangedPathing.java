@@ -3,6 +3,7 @@ package me.mayhem.game.ai.path.impl;
 import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.entities.projectile.EnemyProjectile;
 import me.mayhem.game.entity.entities.projectile.ProjectileType;
 import me.mayhem.game.entity.state.EntityState;
@@ -15,6 +16,7 @@ public class RangedPathing implements Pathing {
 
     private final Level currentLevel;
     private Clock rateOfFire = new Clock();
+    private int shootCounter = 0;
 
     public RangedPathing(Level currentLevel) {
         this.currentLevel = currentLevel;
@@ -50,14 +52,29 @@ public class RangedPathing implements Pathing {
         EnemyProjectile fireBall;
 
         if (entity.isEntityGrounded()) {
-            if (!rapidFire) {
+            if (entity.getType() == EntityType.CORROSIVE) {
                 if (this.rateOfFire.getElapsedTime().asMilliseconds() > 1000) {
                     fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.WEAK);
                     this.currentLevel.spawnProjectile(fireBall);
                     this.rateOfFire.restart();
                 }
-            }
+            } else {
+                if (this.rateOfFire.getElapsedTime().asMilliseconds() > 500) {
+                    this.shootCounter++;
 
+                    if(this.shootCounter <= 5) {
+                        fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.NORMAL);
+                    } else {
+                        fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.SUPER);
+                    }
+
+                    if (this.shootCounter ) {
+                        this.shootCounter = 1;
+                    }
+                    this.currentLevel.spawnProjectile(fireBall);
+                    this.rateOfFire.restart();
+                }
+            }
        }
     }
 
