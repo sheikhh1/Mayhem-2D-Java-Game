@@ -21,6 +21,7 @@ public class PlayerMousePressListener extends MouseButtonPressListener {
         this.player = player;
 
         this.mousePressHandler.put(Mouse.Button.LEFT, EntityState.MELEE);
+        this.mousePressHandler.put(Mouse.Button.RIGHT, EntityState.RANGEATTACK);
     }
 
     @Override
