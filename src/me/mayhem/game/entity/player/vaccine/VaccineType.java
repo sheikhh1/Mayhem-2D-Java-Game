@@ -19,15 +19,15 @@ public enum VaccineType {
         this.imagePath = imagePath;
     }
 
-    private int getDamage() {
+    public int getDamage() {
         return this.damage;
     }
 
-    private Texture getTexture() {
+    public Texture getTexture() {
         return this.imageTexture;
     }
 
-    private String getImagePath() {
+    public String getImagePath() {
         return this.imagePath;
     }
 }
