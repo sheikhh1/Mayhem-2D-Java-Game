@@ -10,8 +10,20 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the return
+ * button for the {@link me.mayhem.screens.menu.game.naming.NameSelectScreen} to continue to the game
+ *
+ */
 public class NameSelectContinueButton extends ButtonInteractable {
 
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public NameSelectContinueButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "confirm name");
     }
