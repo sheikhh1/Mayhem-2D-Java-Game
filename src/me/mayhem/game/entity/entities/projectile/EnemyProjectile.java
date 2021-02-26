@@ -16,13 +16,13 @@ import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
-public class Projectile extends Entity implements Enemy {
+public class EnemyProjectile extends Entity implements Enemy {
 
     private final CircleShape fireBall;
     private int xMotion = 0;
     private final ProjectileType projectileType;
 
-    public Projectile(Vector position,Vector playerPosition, ProjectileType projectileType, Attribute<?>... attributes) {
+    public EnemyProjectile(Vector position, Vector playerPosition, ProjectileType projectileType, Attribute<?>... attributes) {
         super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
         this.projectileType = projectileType;
         this.fireBall = new CircleShape(15);
