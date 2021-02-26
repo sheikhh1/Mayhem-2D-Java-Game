@@ -26,4 +26,8 @@ public enum VaccineType {
     private Texture getTexture() {
         return this.imageTexture;
     }
+
+    private String getImagePath() {
+        return this.imagePath;
+    }
 }
