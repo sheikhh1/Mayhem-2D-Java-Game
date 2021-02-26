@@ -179,6 +179,10 @@ public class GameManager {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
 
+                    if (entity.getType() == EntityType.PROJECTILE) {
+                        entity.setDead(true);
+                    }
+
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
                         if (block.getPosition().getX() > entity.getPosition().getX()) {
                             entity.setAttribute("collidedRight", true);
