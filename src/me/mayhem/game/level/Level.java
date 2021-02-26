@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Level {
 
     private final List<Entity> entities = new ArrayList<>();
+    private final List<Entity> projectiles = new ArrayList<>();
 
     private final Player player;
     private final Difficulty difficulty;
@@ -49,6 +50,18 @@ public class Level {
     public void spawnEntity(Entity entity) {
         this.entities.add(entity);
         this.entities.sort(Comparator.comparingInt(e -> EntityType.values().length - e.getType().ordinal()));
+    }
+
+    public void spawnProjectile(Entity entity) {
+        this.projectiles.add(entity);
+    }
+
+    public List<Entity> getProjectiles() {
+        return this.projectiles;
+    }
+
+    public void clearProjectiles() {
+        this.projectiles.clear();
     }
 
     public void spawnObstacle(Entity e) {

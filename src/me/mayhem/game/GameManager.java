@@ -108,10 +108,16 @@ public class GameManager {
             Entity entity = iterator.next();
 
             if (entity.isDead()) {
-                if(entity.getDeathAnimateComplete()) {
+                if (entity.getType() == EntityType.PLAYER || entity.getType() == EntityType.INFECTED) {
+                    if(entity.getDeathAnimateComplete()) {
+                        iterator.remove();
+                        continue;
+                    }
+                } else {
                     iterator.remove();
                     continue;
                 }
+
             }
             entity.update(renderWindow);
         }
@@ -135,6 +141,15 @@ public class GameManager {
             entity.tick();
         }
 
+        for (Entity projectile : this.currentLevel.getProjectiles()) {
+            System.out.println("ADDING ");
+            this.currentLevel.spawnEntity(projectile);
+        }
+
+        if (this.currentLevel.getProjectiles().size() > 0) {
+            this.currentLevel.clearProjectiles();
+        }
+
         this.handleScreenScrolling();
         this.handleEntityVelocity();
         this.updateTimer();
@@ -145,6 +160,7 @@ public class GameManager {
             if (entity.isDead()) {
                 continue;
             }
+
 
             for (Entity other : this.currentLevel.getEntities()) {
                 if (Objects.equals(entity, other) || other.isDead()) {
@@ -165,6 +181,10 @@ public class GameManager {
 
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
+
+                    if (entity.getType() == EntityType.PROJECTILE) {
+                        entity.setDead(true);
+                    }
                     Vector center = new Vector(0f, 0f);
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
@@ -209,7 +229,7 @@ public class GameManager {
                 entity.setState(EntityState.NO_MOTION);
             } else {
                 entity.setState(EntityState.FALLING);
-                if (entity.getType() == EntityType.PLAYER) {
+                if (entity.getType() == EntityType.PLAYER || entity.getType() == EntityType.INFECTED) {
                     entity.setEntityGrounded(false);
                 }
             }
