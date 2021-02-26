@@ -108,10 +108,16 @@ public class GameManager {
             Entity entity = iterator.next();
 
             if (entity.isDead()) {
-                if (entity.getDeathAnimateComplete()) {
+                if (entity.getType() == EntityType.PLAYER || entity.getType() == EntityType.INFECTED) {
+                    if (entity.getDeathAnimateComplete()) {
+                        iterator.remove();
+                        continue;
+                    }
+                } else {
                     iterator.remove();
                     continue;
                 }
+
             }
             entity.update(renderWindow);
         }
@@ -215,7 +221,7 @@ public class GameManager {
                 entity.setState(EntityState.NO_MOTION);
             } else {
                 entity.setState(EntityState.FALLING);
-                if (entity.getType() == EntityType.PLAYER) {
+                if (entity.getType() == EntityType.PLAYER || entity.getType() == EntityType.INFECTED) {
                     entity.setEntityGrounded(false);
                 }
             }
