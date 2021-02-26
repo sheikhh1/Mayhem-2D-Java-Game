@@ -1,10 +1,13 @@
 package me.mayhem.game.entity.player.vaccine.listener;
 
+import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.event.EntityCollideEvent;
-import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.event.struct.EventListener;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -12,6 +15,18 @@ import me.mayhem.game.event.struct.EventListener;
  *
  */
 public class VaccineCollideListener {
+
+    private static final Set<EntityType> IGNORED_TYPES = new HashSet<>();
+
+    static {
+        IGNORED_TYPES.add(EntityType.VACCINE);
+        IGNORED_TYPES.add(EntityType.PLAYER);
+        IGNORED_TYPES.add(EntityType.DOOR);
+        IGNORED_TYPES.add(EntityType.PROJECTILE);
+        IGNORED_TYPES.add(EntityType.KEY_CARD);
+        IGNORED_TYPES.add(EntityType.SPIKES);
+    }
+
 
     /**
      *
@@ -29,14 +44,14 @@ public class VaccineCollideListener {
         }
 
         if (event.getFirst() instanceof Vaccine) {
-            if (event.getSecond() instanceof Player || event.getFirst().isDead()) {
+            if (IGNORED_TYPES.contains(event.getSecond().getType()) || event.getFirst().isDead()) {
                 return;
             }
 
             event.getSecond().damage(event.getFirst(), 10);
             event.getFirst().setDead(true);
         } else if (event.getSecond() instanceof Vaccine) {
-            if (event.getFirst() instanceof Player || event.getFirst().isDead()) {
+            if (IGNORED_TYPES.contains(event.getFirst().getType()) || event.getFirst().isDead()) {
                 return;
             }
 
