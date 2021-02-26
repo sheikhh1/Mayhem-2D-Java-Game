@@ -11,24 +11,35 @@ import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Color;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 /**
- * a screen that allows you to input a name into the game for your character
+ *
+ * This page allows you to set the name for the character and file
+ *
  */
 public class NameSelectScreen implements ScreenManager {
 
     private final Sound mainTheme;
     private final Difficulty difficulty;
 
-    private Sprite[] sprites;
-    private Interactable[] buttons;
+    private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
+    private final Interactable[] buttons = new Interactable[]{
+            this.createContinueButton(),
+            this.createReturnButton(),
+            this.createInput()
+    };
 
     /**
      *
-     * @param window the window that the game screen is to run on
-     * @param mainTheme the main theme of the game
-     * @param difficulty the difficulty level that has be set by the previous screen
+     * Default constructor taking the window to draw on and the main theme tune and the difficulty
+     *
+     * @param window Window to draw on
+     * @param mainTheme The main song to play
+     * @param difficulty The user selected difficulty
      */
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
@@ -38,8 +49,6 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        this.createSprites();
-        this.createButtons();
         this.draw(renderWindow);
     }
 
@@ -63,37 +72,17 @@ public class NameSelectScreen implements ScreenManager {
 
     @Override
     public void close(RenderWindow renderWindow) {
-
     }
 
     @Override
     public Sound getSound() {
-        return mainTheme;
+        return this.mainTheme;
     }
 
     /**
-     * method that creates the sprites that appear on the game
-     */
-    private void createSprites() {
-        Sprite background = UtilSharedResources.getBackground();
-
-        this.sprites = new Sprite[]{background};
-    }
-
-    /**
-     * creates the buttons that appear on the screen
-     */
-    private void createButtons() {
-        NameSelectContinueButton continueButton = new NameSelectContinueButton(createContinueButton());
-        ReturnButton returnButton = new ReturnButton(createReturnButton());
-        InputBox input = createInput();
-
-        buttons = new Interactable[]{continueButton, returnButton, input};
-    }
-
-    /**
-     * creates the input box that appears on the screen
-     * @return the box to be used on the screen
+     * Creates the input box, including size and position
+     *
+     * @return returns the input box
      */
     private InputBox createInput() {
         InputBox inputBox = new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 6, (Mayhem.SCREEN_HEIGHT / 10f)).toVector());
@@ -103,35 +92,64 @@ public class NameSelectScreen implements ScreenManager {
         return inputBox;
     }
 
+    /**
+     *
+     * Gets the name from the input box
+     *
+     * @param nameBox The input box to obtain the name from
+     * @return The name from the input box
+     */
     public String getName(InputBox nameBox) {
         return nameBox.getWritten();
     }
 
+    /**
+     *
+     * The input box from the cache
+     *
+     * @return The input box being cached
+     */
     public InputBox getInputBox() {
         return (InputBox) buttons[2];
     }
 
-    private Shape createContinueButton() {
+    /**
+     * Creates the  name select button, including size and position
+     *
+     * @return returns the name select button
+     */
+    private NameSelectContinueButton createContinueButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 4, (Mayhem.SCREEN_HEIGHT / 10f) * 8).toVector());
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new NameSelectContinueButton(shape);
     }
 
-    private Shape createReturnButton() {
+    /**
+     * Creates the return button, including size and position
+     *
+     * @return returns the return button
+     */
+    private ReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new ReturnButton(shape);
     }
 
+    /**
+     *
+     * Get the selected difficulty
+     *
+     * @return The user selected difficulty
+     */
     public Difficulty getDifficulty() {
-        return difficulty;
+        return this.difficulty;
     }
 }
