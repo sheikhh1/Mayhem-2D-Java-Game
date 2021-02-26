@@ -60,7 +60,10 @@ public class GameScreenManager implements ScreenManager {
     public void draw(RenderWindow renderWindow) {
         renderWindow.draw(this.sprite);
         this.game.draw();
+        long startTime = System.nanoTime();
         this.game.tick();
+        long endTime = System.nanoTime();
+        System.out.println("Total tick duration: " + (startTime - endTime));
     }
 
     @Override

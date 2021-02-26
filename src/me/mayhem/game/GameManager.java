@@ -102,6 +102,7 @@ public class GameManager {
      * Update drawables
      */
     public void draw() {
+        long startTime = System.nanoTime();
         this.currentLevel.getLayout().draw(this.renderWindow);
 
         Iterator<Entity> iterator = this.currentLevel.getEntities().iterator();
@@ -127,6 +128,8 @@ public class GameManager {
         for (Drawable drawnShape : this.drawnShapes) {
             this.renderWindow.draw(drawnShape);
         }
+        long endTime = System.nanoTime();
+        System.out.println("Total draw time of level: " + (startTime - endTime));
     }
 
     /**
