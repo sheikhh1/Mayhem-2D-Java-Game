@@ -398,8 +398,8 @@ public abstract class Entity {
                 this.animate.setTimeOut(340);
                 this.animate.resetTimeOutClock();
             } else if (state == EntityState.RANGEATTACK) {
-                this.setForward(false);
-                this.setBack(false);
+                //this.setForward(false);
+                //this.setBack(false);
                 this.setMelee(false);
                 this.setEntityRangeAttack(true);
             }
