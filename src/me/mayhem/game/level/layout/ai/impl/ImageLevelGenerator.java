@@ -47,7 +47,7 @@ public class ImageLevelGenerator implements LevelGenerator {
 
     @Override
     public List<Block> generateLevel() {
-        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/TEST-MAP.png"));
+        this.levelImage = UtilImageLoader.loadImageFromStream(getClass().getClassLoader().getResourceAsStream("levels/Level0.png"));
         this.loadLevel();
 
         return this.blocks;
