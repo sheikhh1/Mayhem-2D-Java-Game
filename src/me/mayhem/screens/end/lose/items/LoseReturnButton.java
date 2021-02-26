@@ -1,4 +1,4 @@
-package me.mayhem.screens.losescreen.items;
+package me.mayhem.screens.end.lose.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.homepage.HomePageManager;

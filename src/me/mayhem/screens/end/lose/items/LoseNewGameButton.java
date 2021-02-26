@@ -1,8 +1,8 @@
-package me.mayhem.screens.losescreen.items;
+package me.mayhem.screens.end.lose.items;
 
 import me.mayhem.Mayhem;
+import me.mayhem.screens.end.lose.LoseScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.losescreen.LoseScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;

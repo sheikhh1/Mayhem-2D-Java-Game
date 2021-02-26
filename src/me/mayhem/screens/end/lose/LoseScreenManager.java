@@ -1,13 +1,13 @@
-package me.mayhem.screens.losescreen;
+package me.mayhem.screens.end.lose;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
 import me.mayhem.input.InputListener;
 import me.mayhem.save.SaveData;
 import me.mayhem.screens.ScreenManager;
+import me.mayhem.screens.end.lose.items.LoseNewGameButton;
+import me.mayhem.screens.end.lose.items.LoseReturnButton;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.losescreen.items.LoseNewGameButton;
-import me.mayhem.screens.losescreen.items.LoseReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;
