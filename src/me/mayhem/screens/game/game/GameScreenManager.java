@@ -1,4 +1,4 @@
-package me.mayhem.screens.gamescreen;
+package me.mayhem.screens.game.game;
 
 import me.mayhem.game.GameManager;
 import me.mayhem.game.level.difficulty.Difficulty;

@@ -5,7 +5,7 @@ import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.end.win.items.WinContinueButton;
 import me.mayhem.screens.end.win.items.WinSaveButton;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

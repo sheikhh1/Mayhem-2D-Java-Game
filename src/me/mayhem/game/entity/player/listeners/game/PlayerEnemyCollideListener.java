@@ -9,7 +9,7 @@ import me.mayhem.game.entity.event.PlayerCollideWithEntityEvent;
 import me.mayhem.game.event.struct.EventListener;
 import me.mayhem.screens.end.finish.EndGameScreenManager;
 import me.mayhem.screens.end.win.WinScreenManager;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import org.jsfml.graphics.RenderWindow;
 
 public class PlayerEnemyCollideListener {

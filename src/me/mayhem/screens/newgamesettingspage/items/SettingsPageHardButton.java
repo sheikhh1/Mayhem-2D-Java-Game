@@ -2,7 +2,6 @@ package me.mayhem.screens.newgamesettingspage.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
-import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.screens.nameselectscreen.NameSelectScreen;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;

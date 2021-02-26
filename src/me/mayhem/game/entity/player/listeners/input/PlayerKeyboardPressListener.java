@@ -5,7 +5,7 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.input.impl.keyboard.KeyboardPressListener;
 import me.mayhem.screens.game.escape.EscapeScreenManager;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.KeyEvent;
 

@@ -7,7 +7,7 @@ import me.mayhem.save.SaveData;
 import me.mayhem.screens.ScreenManager;
 import me.mayhem.screens.end.lose.items.LoseNewGameButton;
 import me.mayhem.screens.end.lose.items.LoseReturnButton;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.file.UtilFont;

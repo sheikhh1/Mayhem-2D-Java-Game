@@ -3,7 +3,7 @@ package me.mayhem.screens.nameselectscreen.items;
 import me.mayhem.Mayhem;
 import me.mayhem.save.SaveData;
 import me.mayhem.save.SaveFileManager;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import me.mayhem.screens.nameselectscreen.NameSelectScreen;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;

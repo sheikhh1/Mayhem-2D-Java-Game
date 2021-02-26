@@ -6,7 +6,7 @@ import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.event.struct.EventListener;
 import me.mayhem.screens.end.lose.LoseScreenManager;
-import me.mayhem.screens.gamescreen.GameScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import org.jsfml.graphics.RenderWindow;
 
 public class PlayerDeathListener {
