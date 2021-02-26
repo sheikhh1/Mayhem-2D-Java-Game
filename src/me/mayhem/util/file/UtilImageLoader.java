@@ -34,7 +34,14 @@ public class UtilImageLoader {
         return null;
     }
 
-
+    /**
+     *
+     * Loads the texture from the resource path specified
+     * Returns null if the resource does not exist
+     *
+     * @param path The path to check for the resource
+     * @return The texture found at the path
+     */
     public static Texture loadTextureFromStream(String path) {
         Texture texture = new Texture();
 
