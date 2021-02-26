@@ -34,12 +34,14 @@ public class VaccineCollideListener {
             }
 
             event.getSecond().damage(event.getFirst(), 10);
+            event.getFirst().setDead(true);
         } else if (event.getSecond() instanceof Vaccine) {
             if (event.getSecond() instanceof Player) {
                 return;
             }
 
             event.getFirst().damage(event.getSecond(), 10);
+            event.getSecond().setDead(true);
         }
     }
 }
