@@ -9,18 +9,31 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button that lets you select easy as your difficulty
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the medium
+ * button for the {@link me.mayhem.screens.menu.game.settings.NewGameSettingsPageManager} to set the difficulty to easy
+ * for the next game
+ *
  */
 public class SettingsPageEasyButton extends ButtonInteractable {
+
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public SettingsPageEasyButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Easy");
     }
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.EASY));
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.EASY));
     }
 }
