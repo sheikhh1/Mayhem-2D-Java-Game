@@ -19,8 +19,8 @@ public enum EntityType {
 
     PLAYER(200, 1.75f, 6f, true, "players/PlayerSheet.png", null),
     INFECTED(50,0.8f, 4f, true, "enemies/Infected.png", InfectedEnemy::new),
-    CORROSIVE(50,0.8f, 4f, true, "enemies/CorrosiveEnemy.png", CorrosiveEnemy::new),
-    FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferocious.png", FerociousEnemy::new),
+    CORROSIVE(50,0.8f, 4f, true, "enemies/Corrosive.png", CorrosiveEnemy::new),
+    FEROCIOUS(100, 0.9f, 4f, true, "enemies/Ferrocious.png", FerociousEnemy::new),
     PROJECTILE(0, 1f, 4f, false, "projectiles/bluefireball.png", null), //TODO: NEED TO ADD CORRECT IMAGE PATH FOR PROJECTILES
     KEY_CARD(0, 1f, 4f, false, "interactables/keycard/KeyCard.png", KeyCard::new),
     VACCINE(0, 1f, 4f, false, "projectiles/LeftSyringe.png", null),
