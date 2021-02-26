@@ -68,7 +68,7 @@ public class RangedPathing implements Pathing {
                         fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.SUPER);
                     }
 
-                    if (this.shootCounter ) {
+                    if (this.shootCounter == 6) {
                         this.shootCounter = 1;
                     }
                     this.currentLevel.spawnProjectile(fireBall);
