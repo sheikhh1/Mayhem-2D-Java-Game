@@ -7,6 +7,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button that allows you to navigate the save files
+ */
 public class PreviousPageButton extends ButtonInteractable {
 
     public PreviousPageButton(Shape shape) {

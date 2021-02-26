@@ -9,13 +9,20 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
-
+/**
+ * this method controls the screen that manages the gamemanager
+ */
 public class GameScreenManager implements ScreenManager {
 
     private final SaveData saveData;
     private final GameManager game;
     private final Sprite sprite;
 
+    /**
+     *
+     * @param window the renderwindow that is to be drawn on
+     * @param saveData the data that can be saved about a particular game
+     */
     public GameScreenManager(RenderWindow window, SaveData saveData) {
         this.saveData = saveData;
         this.game = new GameManager(window, this.saveData);

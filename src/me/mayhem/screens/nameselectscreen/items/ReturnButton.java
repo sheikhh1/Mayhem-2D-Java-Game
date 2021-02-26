@@ -8,6 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button that can be used to return to the previous screen
+ */
 public class ReturnButton extends ButtonInteractable {
     public ReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");

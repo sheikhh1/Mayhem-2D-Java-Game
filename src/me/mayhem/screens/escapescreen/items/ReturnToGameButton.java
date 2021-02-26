@@ -8,7 +8,11 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class ReturnToGameButton extends ButtonInteractable {
-
+    /**
+     * the button that allows you to return to the game
+     *
+     * @param shape the shape to create the button out of
+     */
     public ReturnToGameButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return to game ");
     }

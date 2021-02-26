@@ -68,12 +68,18 @@ public class EscapeScreenManager implements ScreenManager {
         return this.mainTheme;
     }
 
+    /**
+     * a method to create the sprites that appear in the game
+     */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
 
         this.sprites = new Sprite[]{background};
     }
 
+    /**
+     * a method that creates the buttons that appear on the screen
+     */
     private void createButtons() {
         ReturnToGameButton toGame = new ReturnToGameButton(createReturnButton());
         ReturnToMainMenuButton main = new ReturnToMainMenuButton(createQuitButton());
@@ -81,6 +87,11 @@ public class EscapeScreenManager implements ScreenManager {
         buttons = new ButtonInteractable[]{toGame, main};
     }
 
+    /**
+     * a method that creates the button to return to the previous screen
+     *
+     * @return the shape that the button is created using
+     */
     private Shape createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
@@ -91,7 +102,11 @@ public class EscapeScreenManager implements ScreenManager {
         return shape;
     }
 
-
+    /**
+     * a method that creates the button to quit the game
+     *
+     * @return the shape that the button is created using
+     */
     private Shape createQuitButton() {
         RectangleShape shape = new RectangleShape();
 
@@ -102,6 +117,11 @@ public class EscapeScreenManager implements ScreenManager {
         return shape;
     }
 
+    /**
+     * a method to get the previous gamescreen
+     *
+     * @return the previous gamescreen
+     */
     public GameScreenManager getGameScreen() {
         return this.prevScreen;
     }

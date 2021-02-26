@@ -15,6 +15,9 @@ import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
+/**
+ * a class that manages the screen that handles when you die in game
+ */
 public class LoseScreenManager implements ScreenManager {
 
     private static final String[] DEATH_TEXT = new String[]{
@@ -37,6 +40,12 @@ public class LoseScreenManager implements ScreenManager {
 
     private Text[] texts;
 
+    /**
+     *
+     * @param window the window that you draw on
+     * @param mainTheme the main theme for the game
+     * @param previous the previous game manager screeen
+     */
     public LoseScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager previous) {
         this.mainTheme = mainTheme;
         this.levelId = previous.getId();
@@ -120,6 +129,9 @@ public class LoseScreenManager implements ScreenManager {
         return new LoseNewGameButton(shape);
     }
 
+    /**
+     * creates the text objects that can be returned on screen
+     */
     private void createText() {
         this.texts = new Text[DEATH_TEXT.length];
 

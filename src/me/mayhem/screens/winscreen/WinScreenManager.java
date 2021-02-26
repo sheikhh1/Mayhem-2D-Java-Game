@@ -15,6 +15,9 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
+/**
+ * manager to manage the screen for when you win the level
+ */
 public class WinScreenManager implements ScreenManager {
 
     private final Sprite[] sprites = new Sprite[]{UtilSharedResources.getBackground()};
@@ -26,6 +29,12 @@ public class WinScreenManager implements ScreenManager {
     private final Sound mainTheme;
     private final GameScreenManager previousGame;
 
+    /**
+     *
+     * @param window the window that the screen is on
+     * @param mainTheme the main themesound of the game
+     * @param previousGame the previous screen manager for the game
+     */
     public WinScreenManager(RenderWindow window, Sound mainTheme, GameScreenManager previousGame) {
         this.mainTheme = mainTheme;
         this.previousGame = previousGame;

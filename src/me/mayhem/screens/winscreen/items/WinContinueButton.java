@@ -8,6 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * the button that lets you continue to the next level when you win
+ */
 public class WinContinueButton extends ButtonInteractable {
 
     public WinContinueButton(Shape shape) {

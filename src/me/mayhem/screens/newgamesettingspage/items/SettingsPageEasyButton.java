@@ -10,6 +10,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button that lets you select easy as your difficulty
+ */
 public class SettingsPageEasyButton extends ButtonInteractable {
     public SettingsPageEasyButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Easy");

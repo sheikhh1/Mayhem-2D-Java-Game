@@ -34,6 +34,12 @@ public class NameSelectContinueButton extends ButtonInteractable {
         Mayhem.setCurrentScreen(new GameScreenManager(window, saveData));
     }
 
+    /**
+     * creates the save data for the current run of the game
+     *
+     * @param screen
+     * @return
+     */
     private SaveData createSaveFile(NameSelectScreen screen) {
         SaveData data = SaveData.of(screen.getName(screen.getInputBox()), 1, screen.getDifficulty());
 

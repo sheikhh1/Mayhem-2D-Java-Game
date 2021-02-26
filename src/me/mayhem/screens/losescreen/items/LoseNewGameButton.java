@@ -9,7 +9,10 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 public class LoseNewGameButton extends ButtonInteractable {
-
+    /**
+     * button to let you create a new game instance
+     * @param shape the shape that you create the button from
+     */
     public LoseNewGameButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Restart Level");
     }

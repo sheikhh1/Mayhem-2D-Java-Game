@@ -8,6 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button that lets you select the tutorial for the game
+ */
 public class SettingsPageTutorialButton extends ButtonInteractable {
     public SettingsPageTutorialButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "?");

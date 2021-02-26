@@ -12,6 +12,9 @@ import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
+/**
+ * a mamager for the main homepage of the game
+ */
 public class HomePageManager implements ScreenManager {
 
     private final RenderWindow window;
@@ -20,7 +23,11 @@ public class HomePageManager implements ScreenManager {
     private Interactable[] buttons;
     private Sprite[] sprites;
 
-
+    /**
+     * this can be called if the music has not already been initialised
+     *
+     * @param window the renderwindow to be used for the manager
+     */
     public HomePageManager(RenderWindow window) {
         this.window = window;
 
@@ -28,6 +35,12 @@ public class HomePageManager implements ScreenManager {
         this.loadScreen(this.window);
     }
 
+    /**
+     * this is the constructor that you can call if the music has already been created
+     *
+     * @param window the window to draw the manager on
+     * @param music the maintheme music of the game
+     */
     public HomePageManager(RenderWindow window, Sound music) {
         this.window = window;
         this.mainTheme = music;
@@ -42,6 +55,9 @@ public class HomePageManager implements ScreenManager {
         this.draw(renderWindow);
     }
 
+    /**
+     * a method that creates the sprites of the game
+     */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
 
@@ -56,7 +72,9 @@ public class HomePageManager implements ScreenManager {
         this.sprites = new Sprite[]{logo,background };
     }
 
-
+    /**
+     * creates the buttons that will be on the screen
+     */
     private void createButtons() {
         HomepageQuitButton quit = new HomepageQuitButton(this.createQuitButton());
         HomePageNewGameButton newPage = new HomePageNewGameButton((this.createNewGameButton()));

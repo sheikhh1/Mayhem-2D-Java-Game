@@ -10,6 +10,9 @@ import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
+/**
+ * this page allows you to set the difficulty for thw upcomming game
+ */
 public class NewGameSettingsPageManager implements ScreenManager {
 
     private final Sound mainTheme;
