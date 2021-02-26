@@ -7,6 +7,7 @@ import me.mayhem.game.entity.EntityType;
 import me.mayhem.game.entity.player.event.PlayerJumpEvent;
 import me.mayhem.game.entity.player.inventory.Inventory;
 import me.mayhem.game.entity.player.inventory.Item;
+import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
@@ -60,6 +61,23 @@ public class Player extends Entity {
             EventManager.callEvent(new PlayerJumpEvent(this));
         }
     }
+
+    @Override
+    public void setEntityRangeAttack(boolean rangeAttack) {
+        super.setEntityRangeAttack(rangeAttack);
+
+        Vaccine vaccine;
+
+        if (!rangeAttack) {
+            return;
+        }
+
+        vaccine = new Vaccine(this.getPosition().clone(), this.getFacing());
+        this.level.spawnVaccine(vaccine);
+
+
+    }
+
 
     @Override
     public void setMelee(boolean entityMelee) {
