@@ -11,15 +11,18 @@ import org.jsfml.window.event.Event;
  * button that you can click to return back to the settings page
  */
 public class TutorialReturnButton extends ButtonInteractable {
+
     public TutorialReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
     }
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if ( event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
     }
 }
