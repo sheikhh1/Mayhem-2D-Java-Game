@@ -58,7 +58,7 @@ public class GameScreenManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        renderWindow.draw(this.sprite);
+        /*renderWindow.draw(this.sprite);*/
         this.game.draw();
 //        long startTime = System.currentTimeMillis();
         this.game.tick();
