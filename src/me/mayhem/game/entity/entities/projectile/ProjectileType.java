@@ -4,9 +4,7 @@ import me.mayhem.util.file.UtilImageLoader;
 import org.jsfml.graphics.Texture;
 
 public enum ProjectileType {
-
-
-
+    
 
     private final int index;
     private final int damage;
@@ -30,6 +28,10 @@ public enum ProjectileType {
 
     private Texture getTexture() {
         return this.projectileTexture;
+    }
+
+    private String getImagePath() {
+        return this.imagePath;
     }
 
 
