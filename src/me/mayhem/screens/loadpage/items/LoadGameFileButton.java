@@ -8,7 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
-
+/**
+ * buttons that store an instance of the savefiles
+ */
 public class LoadGameFileButton extends ButtonInteractable {
 
     private final SaveData loadFile;
