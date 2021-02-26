@@ -15,109 +15,96 @@ import org.jsfml.graphics.*;
  */
 public class NewGameSettingsPageManager implements ScreenManager {
 
+    private final Sprite[] sprites = new Sprite[] { UtilSharedResources.getBackground() };
+    private final Interactable[] buttons = new Interactable[]{
+            this.createEasyButton(),
+            this.createMediumButton(),
+            this.createHardButton(),
+            this.createReturnButton(),
+            this.createTutorialButton()
+    };
+
     private final Sound mainTheme;
 
-    private Interactable[] buttons;
-    private Sprite[] sprites;
 
-
-    public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme){
+    public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme) {
         this.mainTheme = mainTheme;
-
         this.loadScreen(window);
     }
 
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        this.createSprites();
-        this.createButtons();
         this.draw(renderWindow);
     }
 
-    private void createSprites() {
-        Sprite background = UtilSharedResources.getBackground();
-
-        this.sprites = new Sprite[]{background};
-    }
-
     /**
-     * creates all the buttons that the screen is going to display
-     */
-    private void createButtons() {
-        // each difficult button and return
-        SettingsPageReturnButton returnButton = new SettingsPageReturnButton(createReturnButton());
-        SettingsPageEasyButton easy = new SettingsPageEasyButton(createEasyButton());
-        SettingsPageMediumButton medium = new SettingsPageMediumButton(createMediumButton());
-        SettingsPageHardButton hard = new SettingsPageHardButton(createHardButton());
-        SettingsPageTutorialButton tutorialButton = new SettingsPageTutorialButton(createTutorialButton());
-
-
-        this.buttons = new Interactable[] {easy, medium, hard, returnButton, tutorialButton };
-    }
-
-    /**
-     *Creates the shape for the return button, including size and position
+     * Creates the shape for the return button, including size and position
+     *
      * @return returns the shape that is the return button
      */
-    private Shape createReturnButton() {
+    private SettingsPageReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new SettingsPageReturnButton(shape);
     }
 
     /**
-     *Creates the shape for the easy button, including size and position
+     * Creates the shape for the easy button, including size and position
+     *
      * @return returns the shape that is the easy button
      */
-    private Shape createEasyButton() {
+    private SettingsPageEasyButton createEasyButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new SettingsPageEasyButton(shape);
     }
 
     /**
-     *Creates the shape for the medium button, including size and position
+     * Creates the shape for the medium button, including size and position
+     *
      * @return returns the shape that is the medium button
      */
-    private Shape createMediumButton() {
+    private SettingsPageMediumButton createMediumButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f) * 4);
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new SettingsPageMediumButton(shape);
     }
 
     /**
-     *Creates the shape for the hard button, including size and position
+     * Creates the shape for the hard button, including size and position
+     *
      * @return returns the shape that is the Hard button
      */
-    private Shape createHardButton() {
+    private SettingsPageHardButton createHardButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((Mayhem.SCREEN_WIDTH / 10f * 4), (Mayhem.SCREEN_HEIGHT / 10f) * 7);
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new SettingsPageHardButton(shape);
     }
-    public Shape createTutorialButton(){
-        CircleShape circ = new CircleShape();
 
-        circ.setRadius(50);
-        circ.setPosition(new Vector(Mayhem.SCREEN_WIDTH - 150, 100).toVector());
-        circ.setFillColor(new Color(176, 176, 176));
+    public SettingsPageTutorialButton createTutorialButton() {
+        CircleShape circle = new CircleShape();
 
-        return circ;
+        circle.setRadius(50);
+        circle.setPosition(new Vector(Mayhem.SCREEN_WIDTH - 150, 100).toVector());
+        circle.setFillColor(new Color(176, 176, 176));
+
+        return new SettingsPageTutorialButton(circle);
     }
 
     @Override
@@ -139,8 +126,8 @@ public class NewGameSettingsPageManager implements ScreenManager {
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {}
-
+    public void close(RenderWindow renderWindow) {
+    }
 
     @Override
     public Sound getSound() {
