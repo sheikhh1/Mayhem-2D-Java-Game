@@ -8,6 +8,7 @@ import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.entities.drawable.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
 import me.mayhem.game.entity.physics.EntityPhysics;
+import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
@@ -395,6 +396,11 @@ public abstract class Entity {
                 this.setMelee(true);
                 this.animate.setTimeOut(340);
                 this.animate.resetTimeOutClock();
+            } else if (state == EntityState.RANGEATTACK) {
+                this.setForward(false);
+                this.setBack(false);
+                this.setMelee(false);
+                Vaccine vaccine = new Vaccine(this.getPosition(), this.getFacing());
             }
         }
     }
