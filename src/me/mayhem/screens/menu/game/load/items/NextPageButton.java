@@ -9,10 +9,19 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button that allows you to navigate the savepage menu
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the next
+ * button for the {@link me.mayhem.screens.menu.game.load.LoadPageManager} to go to the next page of save files
+ *
  */
 public class NextPageButton extends ButtonInteractable {
 
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public NextPageButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "next");
     }
