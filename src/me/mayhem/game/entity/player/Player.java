@@ -72,7 +72,7 @@ public class Player extends Entity {
             return;
         }
 
-        vaccine = new Vaccine(this.getPosition().clone(), this.getFacing());
+        vaccine = new Vaccine(this.getPosition().clone().add(0,15), this.getFacing());
         this.level.spawnVaccine(vaccine);
 
 
@@ -110,6 +110,5 @@ public class Player extends Entity {
         if (!enemy.isDead() && enemy.getType() != EntityType.PROJECTILE) {
             enemy.damage(this, 1);
         }
-
     }
 }
