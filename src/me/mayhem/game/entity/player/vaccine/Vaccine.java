@@ -21,12 +21,13 @@ public class Vaccine extends Entity {
         this.vaccine = new RectangleShape(new Vector2f(40,20));
         this.vaccine.setPosition(position.toVector());
 
-        this.vaccine.setTexture(EntityType.VACCINE.getEntityTexture());
 
         if (facing.getX() == 1f) {
             this.xMotion = 2;
+            this.vaccine.setTexture(VaccineType.RIGHT.getTexture());
         } else {
             this.xMotion = -2;
+            this.vaccine.setTexture(VaccineType.LEFT.getTexture());
         }
     }
 
