@@ -1,4 +1,4 @@
-package me.mayhem.screens.newgamesettingspage.items;
+package me.mayhem.screens.menu.game.settings.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.game.level.difficulty.Difficulty;
@@ -9,18 +9,18 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button to let you select medium as your difficulty
+ * a button that lets you select hard as youn difficulty
  */
-public class SettingsPageMediumButton extends ButtonInteractable {
-    public SettingsPageMediumButton(Shape shape) {
-        super(shape, "fonts/FreeSans.ttf", "Medium");
+public class SettingsPageHardButton extends ButtonInteractable {
+    public SettingsPageHardButton(Shape shape) {
+        super(shape, "fonts/FreeSans.ttf", "Hard");
     }
 
     @Override
     protected void call(RenderWindow window, Event event) {
         if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
             Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.MEDIUM));
+            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.DIFFICULT));
         }
     }
 }

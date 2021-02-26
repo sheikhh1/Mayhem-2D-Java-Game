@@ -1,4 +1,4 @@
-package me.mayhem.screens.newgamesettingspage.items;
+package me.mayhem.screens.menu.game.settings.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.menu.home.HomePageManager;

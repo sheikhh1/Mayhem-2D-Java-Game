@@ -1,9 +1,9 @@
-package me.mayhem.screens.newgamesettingspage;
+package me.mayhem.screens.menu.game.settings;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.newgamesettingspage.items.*;
+import me.mayhem.screens.menu.game.settings.items.*;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

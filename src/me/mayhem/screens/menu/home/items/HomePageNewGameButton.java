@@ -2,7 +2,7 @@ package me.mayhem.screens.menu.home.items;
 
 
 import me.mayhem.Mayhem;
-import me.mayhem.screens.newgamesettingspage.NewGameSettingsPageManager;
+import me.mayhem.screens.menu.game.settings.NewGameSettingsPageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
