@@ -19,6 +19,10 @@ public class UtilScreen {
      */
     public static final int SCREEN_RADIUS = 256;
 
+    public static boolean isOffScreen(float x, float y) {
+        return x < 0 || x > Mayhem.SCREEN_WIDTH || y > Mayhem.SCREEN_HEIGHT || y < 0;
+    }
+
     /**
      *
      * Main method for checking if the entity is off/close to any edge of the screen (left, right, up, or down)
