@@ -1,9 +1,9 @@
-package me.mayhem.screens.tutorial;
+package me.mayhem.screens.menu.tutorial;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.tutorial.items.TutorialReturnButton;
+import me.mayhem.screens.menu.tutorial.items.TutorialReturnButton;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;
 import me.mayhem.util.ui.Interactable;

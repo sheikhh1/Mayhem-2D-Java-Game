@@ -1,4 +1,4 @@
-package me.mayhem.screens.tutorial.items;
+package me.mayhem.screens.menu.tutorial.items;
 
 import me.mayhem.Mayhem;
 import me.mayhem.screens.menu.game.settings.NewGameSettingsPageManager;
