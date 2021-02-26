@@ -12,7 +12,6 @@ import java.util.List;
 public class Layout {
 
     private final List<Block> blocks = new ArrayList<>();
-    private Integer layoutID;
 
     public Layout(LevelGenerator generator) {
         this.blocks.addAll(generator.generateLevel());
@@ -24,7 +23,7 @@ public class Layout {
                 continue;
             }
 
-            /*block.draw(renderWindow);*/
+            block.draw(renderWindow);
         }
     }
 
@@ -37,6 +36,4 @@ public class Layout {
     public List<Block> getBlocks() {
         return blocks;
     }
-
-    public String getLayoutId(){ return layoutID.toString();}
 }
