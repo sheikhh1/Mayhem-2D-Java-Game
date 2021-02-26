@@ -1,6 +1,7 @@
 package me.mayhem.game.entity.player.vaccine.listener;
 
 import me.mayhem.game.entity.event.EntityCollideEvent;
+import me.mayhem.game.entity.player.Player;
 import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.event.struct.EventListener;
@@ -28,8 +29,16 @@ public class VaccineCollideListener {
         }
 
         if (event.getFirst() instanceof Vaccine) {
+            if (event.getSecond() instanceof Player) {
+                return;
+            }
+
             event.getSecond().damage(event.getFirst(), 10);
         } else if (event.getSecond() instanceof Vaccine) {
+            if (event.getSecond() instanceof Player) {
+                return;
+            }
+
             event.getFirst().damage(event.getSecond(), 10);
         }
     }
