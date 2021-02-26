@@ -24,7 +24,7 @@ public class ImageLevelGenerator implements LevelGenerator {
     private final List<SpawnPosition> enemySpawnPositions = new ArrayList<>();
 
     public ImageLevelGenerator(int id) {
-        this.id = 3;
+        this.id = id;
     }
 
     @Override
