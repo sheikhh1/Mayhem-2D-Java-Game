@@ -107,26 +107,4 @@ public class UtilScreen {
     public static boolean isOffScreenTopY(Vector position, Vector motion) {
         return (position.getY() + motion.getY()) < SCREEN_RADIUS;
     }
-
-    public static void fixEntityMotion(Entity entity) {
-        if (isOffScreenLeftX(entity.getPosition(), entity.getMotion())) {
-            float position = entity.getPosition().getX() + entity.getMotion().getX();
-            entity.getMotion().add(position, 0);
-        }
-
-        if (isOffScreenRightX(entity.getPosition(), entity.getMotion(), (int) entity.getWidth())) {
-            float position = (-1) * (entity.getPosition().getX() + entity.getWidth() + entity.getMotion().getX() - Mayhem.SCREEN_WIDTH);
-            entity.getMotion().add(position, 0);
-        }
-
-        if (isOffScreenBottomY(entity.getPosition(), entity.getMotion(), (int) entity.getHeight())) {
-            float position = (-1) * (entity.getPosition().getY() + entity.getHeight() + entity.getMotion().getY() - Mayhem.SCREEN_HEIGHT);
-            entity.getMotion().add(0, position);
-        }
-
-        if (isOffScreenTopY(entity.getPosition(), entity.getMotion())) {
-            float position = entity.getPosition().getY() + entity.getMotion().getY();
-            entity.getMotion().add(0, position);
-        }
-    }
 }
