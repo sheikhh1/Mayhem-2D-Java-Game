@@ -1,8 +1,8 @@
-package me.mayhem.screens.winscreen.items;
+package me.mayhem.screens.end.win.items;
 
 import me.mayhem.Mayhem;
+import me.mayhem.screens.end.win.WinScreenManager;
 import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.winscreen.WinScreenManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
