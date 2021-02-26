@@ -5,8 +5,18 @@ import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.game.event.struct.EventListener;
 
+/**
+ *
+ * A listener class used to damage any entities that are hit by the vaccine projectile
+ *
+ */
 public class VaccineCollideListener {
 
+    /**
+     *
+     * Default constructor taking no parameters and registering this object as a listener to the {@link EventManager}
+     *
+     */
     public VaccineCollideListener() {
         EventManager.registerListener(this);
     }
