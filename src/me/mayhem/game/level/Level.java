@@ -56,7 +56,11 @@ public class Level {
         this.projectiles.add(entity);
     }
 
-    
+    public List<Entity> getProjectiles() {
+        return this.projectiles;
+    }
+
+   
 
     public void spawnObstacle(Entity e) {
         this.entities.add(e);
