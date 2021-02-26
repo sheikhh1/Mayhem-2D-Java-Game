@@ -11,7 +11,9 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 /**
- * class that prints text about how to play the game
+ *
+ * A tutorial screen manager that loads in the buttons and images for the screen
+ *
  */
 public class TutorialManager implements ScreenManager {
 
