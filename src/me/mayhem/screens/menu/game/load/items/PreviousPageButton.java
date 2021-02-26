@@ -8,10 +8,19 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button that allows you to navigate the save files
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the previous
+ * button for the {@link me.mayhem.screens.menu.game.load.LoadPageManager} to go to the previous page of save files
+ *
  */
 public class PreviousPageButton extends ButtonInteractable {
 
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public PreviousPageButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "previous");
     }
