@@ -11,7 +11,9 @@ import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
 /**
- * this page allows you to set the difficulty for thw upcomming game
+ *
+ * this page allows you to set the difficulty for the game
+ *
  */
 public class NewGameSettingsPageManager implements ScreenManager {
 
@@ -26,7 +28,13 @@ public class NewGameSettingsPageManager implements ScreenManager {
 
     private final Sound mainTheme;
 
-
+    /**
+     *
+     * Default constructor taking the window to draw on and the main theme tune
+     *
+     * @param window Window to draw on
+     * @param mainTheme The main song to play
+     */
     public NewGameSettingsPageManager(RenderWindow window, Sound mainTheme) {
         this.mainTheme = mainTheme;
         this.loadScreen(window);
@@ -97,6 +105,11 @@ public class NewGameSettingsPageManager implements ScreenManager {
         return new SettingsPageHardButton(shape);
     }
 
+    /**
+     * Creates the shape for the tutorial button, including size and position
+     *
+     * @return returns the shape that is the Hard button
+     */
     public SettingsPageTutorialButton createTutorialButton() {
         CircleShape circle = new CircleShape();
 
