@@ -65,6 +65,10 @@ public class Level {
         return this.projectiles;
     }
 
+    public void clearProjectiles() {
+        this.projectiles.clear();
+    }
+
     public void spawnEntity(Entity entity) {
         EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
 
