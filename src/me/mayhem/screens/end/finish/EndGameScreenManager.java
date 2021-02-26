@@ -1,9 +1,9 @@
-package me.mayhem.screens.endgamescreen;
+package me.mayhem.screens.end.finish;
 
 import me.mayhem.Mayhem;
 import me.mayhem.input.InputListener;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.endgamescreen.items.ReturnButton;
+import me.mayhem.screens.end.finish.items.ReturnButton;
 import me.mayhem.screens.gamescreen.GameScreenManager;
 import me.mayhem.util.UtilSharedResources;
 import me.mayhem.util.Vector;

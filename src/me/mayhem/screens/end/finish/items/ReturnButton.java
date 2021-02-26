@@ -1,7 +1,7 @@
-package me.mayhem.screens.endgamescreen.items;
+package me.mayhem.screens.end.finish.items;
 
 import me.mayhem.Mayhem;
-import me.mayhem.screens.endgamescreen.EndGameScreenManager;
+import me.mayhem.screens.end.finish.EndGameScreenManager;
 import me.mayhem.screens.homepage.HomePageManager;
 import me.mayhem.util.ui.impl.ButtonInteractable;
 import org.jsfml.graphics.RenderWindow;
