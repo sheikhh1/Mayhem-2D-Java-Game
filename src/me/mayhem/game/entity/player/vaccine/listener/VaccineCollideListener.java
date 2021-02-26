@@ -29,14 +29,14 @@ public class VaccineCollideListener {
         }
 
         if (event.getFirst() instanceof Vaccine) {
-            if (event.getSecond() instanceof Player) {
+            if (event.getSecond() instanceof Player || event.getSecond().isDead()) {
                 return;
             }
 
             event.getSecond().damage(event.getFirst(), 10);
             event.getFirst().setDead(true);
         } else if (event.getSecond() instanceof Vaccine) {
-            if (event.getSecond() instanceof Player) {
+            if (event.getSecond() instanceof Player || event.getFirst().isDead()) {
                 return;
             }
 
