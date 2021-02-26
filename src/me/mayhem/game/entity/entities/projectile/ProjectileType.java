@@ -28,6 +28,10 @@ public enum ProjectileType {
         return this.damage;
     }
 
+    private Texture getTexture() {
+        return this.projectileTexture;
+    }
+
 
 
 }
