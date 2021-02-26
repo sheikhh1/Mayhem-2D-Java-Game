@@ -10,6 +10,9 @@ import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
+/**
+ * class that prints text about how to play the game
+ */
 public class TutorialManager implements ScreenManager {
 
     private final Sound mainTheme;
@@ -77,6 +80,10 @@ public class TutorialManager implements ScreenManager {
 
         return shape;
     }
+
+    /**
+     * creates the sprites that will appear on the screen
+     */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
         Sprite WSAD = UtilSharedResources.getWSAD();
@@ -96,6 +103,9 @@ public class TutorialManager implements ScreenManager {
     this.sprites = new Sprite[]{background, WSAD, keyCard, door};
     }
 
+    /**
+     * a method that creates the text objects that appear on the screen
+     */
     private void createText(){
         String[] writing = initialiseText();
 
@@ -105,7 +115,7 @@ public class TutorialManager implements ScreenManager {
 
             Text text = new Text(writing[i], UtilSharedResources.getMainFont());
             Float width = text.getLocalBounds().width;
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6 ) * i + 2 ).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2f) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6f ) * i + 2 ).toVector());
             text.setScale(new Vector(1,1).toVector());
             text.setStyle(TextStyle.BOLD);
             text.setColor(Color.CYAN);
@@ -115,6 +125,10 @@ public class TutorialManager implements ScreenManager {
         }
     }
 
+    /**
+     * initalises the strings for the text that will appear on the screen
+     * @return
+     */
     private String[] initialiseText(){
         String line1 = "Welcome to Mayhem";
         String line2 = "In Mayhem you must use the WSAD keys to move your character";

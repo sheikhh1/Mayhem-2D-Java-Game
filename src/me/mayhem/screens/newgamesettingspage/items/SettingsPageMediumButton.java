@@ -8,6 +8,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button to let you select medium as your difficulty
+ */
 public class SettingsPageMediumButton extends ButtonInteractable {
     public SettingsPageMediumButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Medium");
