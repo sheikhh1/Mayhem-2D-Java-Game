@@ -11,13 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * this is the managaer to saved data to file
+ *
+ * This is the static factory that stores the cache for all save files from the game
+ * They are all cached to prevent lag when trying to load files mid-screen change.
+ *
  */
 public class SaveFileManager {
 
+    /**
+     * The directory where the save files are stored
+     */
     public static final File SAVE_DIR = Paths.get("saves/").toFile();
     private static final List<SaveData> SAVE_FILES = new ArrayList<>();
 
+    /**
+     *
+     * Called asynchronously on startup. This firstly creates the save directory, and if it was already present it
+     * loads and caches all the files found in the save directory
+     *
+     */
     public static void init() {
         if (!SAVE_DIR.exists()) {
             SAVE_DIR.mkdir();
@@ -35,16 +47,31 @@ public class SaveFileManager {
         }
     }
 
+    /**
+     *
+     * Gets a {@link List} of all the cached {@link SaveData} loaded at startup
+     *
+     * @return The list of save files
+     */
     public static List<SaveData> getSaveFiles() {
         return SAVE_FILES;
     }
 
+    /**
+     *
+     * Adds a new save file to the cache (when a new game is started)
+     *
+     * @param saveData The new save data
+     */
     public static void addSaveFile(SaveData saveData) {
         SAVE_FILES.add(saveData);
     }
 
     /**
-     * method to write the contents of the savedata to file
+     *
+     * This method is used to asynchronously write the data from the {@link SaveData} to the file that belongs to it
+     * This is asynchronous as not to freeze the main thread when writing to the file
+     *
      * @param saveData the data that is to be written
      */
     public static void save(SaveData saveData) {
@@ -61,6 +88,8 @@ public class SaveFileManager {
     }
 
     /**
+     *
+     * Checks if a {@link SaveData} already exists with the specified name
      *
      * @param name the name to be checked
      * @return a boolean for it the name given is a file
