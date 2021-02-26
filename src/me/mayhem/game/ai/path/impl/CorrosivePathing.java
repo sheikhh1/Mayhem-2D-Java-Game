@@ -4,6 +4,7 @@ import me.mayhem.game.ai.path.Pathing;
 import me.mayhem.game.attribute.type.BooleanAttribute;
 import me.mayhem.game.entity.Entity;
 import me.mayhem.game.entity.entities.projectile.Projectile;
+import me.mayhem.game.entity.entities.projectile.ProjectileType;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.level.Level;
 import me.mayhem.util.Vector;
@@ -50,7 +51,7 @@ public class CorrosivePathing implements Pathing {
 
         if (entity.isEntityGrounded()) {
             if (this.rateOfFire.getElapsedTime().asMilliseconds() > 1000) {
-                fireBall = new Projectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition());
+                fireBall = new Projectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.NORMAL);
                 this.currentLevel.spawnProjectile(fireBall);
                 this.rateOfFire.restart();
             }
