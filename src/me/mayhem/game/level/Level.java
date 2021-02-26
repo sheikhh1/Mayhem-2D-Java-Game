@@ -21,6 +21,7 @@ import java.util.Objects;
 public class Level {
 
     private final List<Entity> entities = new ArrayList<>();
+    private final List<Entity> projectiles = new ArrayList<>();
 
     private final Player player;
     private final Layout layout;
@@ -54,6 +55,10 @@ public class Level {
 
     public List<Entity> getEntities() {
         return this.entities;
+    }
+
+    public void spawnProjectile(Entity entity) {
+        this.projectiles.add(entity);
     }
 
     public void spawnEntity(Entity entity) {
