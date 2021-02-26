@@ -12,31 +12,36 @@ import me.mayhem.util.Vector;
 import me.mayhem.util.direction.Direction;
 import me.mayhem.util.file.UtilSprite;
 import org.jsfml.graphics.CircleShape;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
 public class Projectile extends Entity implements Enemy {
 
-    private final Sprite sprite;
+    private final CircleShape fireBall;
     private int xMotion = 0;
 
-    public Projectile(Vector position,Vector playerPosition Attribute<?>... attributes) {
-        super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 5, 5), Pathing.NO_PATHING, attributes);
-
-        this.sprite = UtilSprite.loadFromPath(EntityType.PROJECTILE.getImagePath());
+    public Projectile(Vector position,Vector playerPosition, Attribute<?>... attributes) {
+        super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
+        this.fireBall = new CircleShape(15);
+        this.fireBall.setTexture(EntityType.PROJECTILE.getEntityTexture());
 
         if (Direction.LEFT.is(playerPosition, position)) {
-            this.xMotion = -1;
-        } else {
             this.xMotion = 1;
+        } else {
+            this.xMotion = -1;
         }
 
     }
 
     @Override
     public void update(RenderWindow window) {
-        this.sprite.setPosition(this.getPosition().toVector());
-        window.draw(this.sprite);
+        this.fireBall.setPosition(this.getPosition().toVector());
+        window.draw(this.fireBall);
+    }
+
+    public void tick() {
+        this.getMotion().add(xMotion, 0);
     }
 
     @Override
