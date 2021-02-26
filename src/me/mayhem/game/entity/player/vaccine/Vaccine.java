@@ -13,13 +13,20 @@ import org.jsfml.system.Vector2f;
 
 public class Vaccine extends Entity {
     private final RectangleShape vaccine;
+    private int xMotion = 0;
 
-    public Vaccine(Vector position, Attribute<?>... attributes) {
+    public Vaccine(Vector position, Vector facing, Attribute<?>... attributes) {
         super(EntityType.VACCINE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
         this.vaccine = new RectangleShape(new Vector2f(10,10));
         this.vaccine.setPosition(position.toVector());
 
         this.vaccine.setFillColor(Color.BLUE);
+
+        if (facing.getX() == 1f) {
+            this.xMotion = 1;
+        } else {
+            this.xMotion = -1;
+        }
     }
 
     @Override
@@ -29,7 +36,7 @@ public class Vaccine extends Entity {
     }
 
     public void tick() {
-
+        this.getMotion().add(this.xMotion, 0);
     }
 
 
