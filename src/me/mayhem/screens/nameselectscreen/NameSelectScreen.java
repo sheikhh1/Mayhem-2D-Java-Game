@@ -13,6 +13,9 @@ import me.mayhem.util.ui.Interactable;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.*;
 
+/**
+ * a screen that allows you to input a name into the game for your character
+ */
 public class NameSelectScreen implements ScreenManager {
 
     private final Sound mainTheme;
@@ -21,6 +24,12 @@ public class NameSelectScreen implements ScreenManager {
     private Sprite[] sprites;
     private Interactable[] buttons;
 
+    /**
+     *
+     * @param window the window that the game screen is to run on
+     * @param mainTheme the main theme of the game
+     * @param difficulty the difficulty level that has be set by the previous screen
+     */
     public NameSelectScreen(RenderWindow window, Sound mainTheme, Difficulty difficulty) {
         this.mainTheme = mainTheme;
         this.difficulty = difficulty;
@@ -62,12 +71,18 @@ public class NameSelectScreen implements ScreenManager {
         return mainTheme;
     }
 
+    /**
+     * method that creates the sprites that appear on the game
+     */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
 
         this.sprites = new Sprite[]{background};
     }
 
+    /**
+     * creates the buttons that appear on the screen
+     */
     private void createButtons() {
         NameSelectContinueButton continueButton = new NameSelectContinueButton(createContinueButton());
         ReturnButton returnButton = new ReturnButton(createReturnButton());
@@ -76,6 +91,10 @@ public class NameSelectScreen implements ScreenManager {
         buttons = new Interactable[]{continueButton, returnButton, input};
     }
 
+    /**
+     * creates the input box that appears on the screen
+     * @return the box to be used on the screen
+     */
     private InputBox createInput() {
         InputBox inputBox = new InputBox(new Vector((Mayhem.SCREEN_WIDTH / 10f) * 6, (Mayhem.SCREEN_HEIGHT / 10f)).toVector());
 

@@ -7,6 +7,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * a button that returns you to the main menu
+ */
 public class LoseReturnButton extends ButtonInteractable {
 
     public LoseReturnButton(Shape shape) {
