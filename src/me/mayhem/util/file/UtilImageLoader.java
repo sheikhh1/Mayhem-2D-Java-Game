@@ -13,6 +13,13 @@ import java.io.InputStream;
  */
 public class UtilImageLoader {
 
+    /**
+     *
+     * Loads an image from an input stream
+     *
+     * @param inputStream
+     * @return
+     */
     public static Image loadImageFromStream(InputStream inputStream) {
         Image image = new Image();
 
