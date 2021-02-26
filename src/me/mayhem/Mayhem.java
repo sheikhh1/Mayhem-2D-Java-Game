@@ -16,8 +16,24 @@ import org.jsfml.window.event.MouseEvent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ *
+ * Main class where the main JSFML logic is handled.
+ * All events are polled and then passed off to the {@link InputManager} as not to pollute this class with any
+ * methods that need to handle input.
+ *
+ * We also store any constants here such as the {@link Mayhem#SCREEN_HEIGHT} and {@link Mayhem#SCREEN_WIDTH}
+ * We keep a static reference to the current screen and window for easy access from other classes
+ *
+ *
+ */
 public class Mayhem {
 
+    /**
+     *
+     * Used for handling any off-main-thread activities such as loading resources
+     *
+     */
     public static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
 
     public static final int SCREEN_WIDTH = 1000;
@@ -26,6 +42,12 @@ public class Mayhem {
     private static ScreenManager currentScreen;
     private static RenderWindow mainWindow;
 
+    /**
+     *
+     * The main function is where the game is run from
+     *
+     * @param args Unused in this instance - paramaters specified upon startup
+     */
     public static void main(String[] args) {
         THREAD_POOL.submit(SaveFileManager::init);
 
@@ -64,6 +86,13 @@ public class Mayhem {
         THREAD_POOL.shutdown();
     }
 
+    /**
+     *
+     * Sets the window as active - used for when clicking on the game
+     *
+     * @param window The window being clicked
+     * @param event The event causing the window to be going back into focus
+     */
     private static void setActive(RenderWindow window, Event event) {
         if (event instanceof MouseEvent) {
             try {
