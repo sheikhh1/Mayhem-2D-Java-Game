@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * a class used to store data about the current data of the gamemanger
+ */
 public class SaveData {
 
     private final File file;
@@ -15,6 +18,13 @@ public class SaveData {
 
     private int id;
 
+    /**
+     *
+     * @param file the file to be saveed in
+     * @param name the name of the player
+     * @param id the id of the level
+     * @param difficulty the difficulty level of the game
+     */
     private SaveData(File file, String name, int id, Difficulty difficulty) {
         this.file = file;
         this.name = name;
@@ -42,6 +52,11 @@ public class SaveData {
         return this.difficulty;
     }
 
+    /**
+     *
+     * @param file the file to be written from
+     * @return the data object that has been written
+     */
     public static SaveData from(File file) {
         String name = null;
         Difficulty difficulty = null;
@@ -66,6 +81,13 @@ public class SaveData {
         return new SaveData(file, name, id, difficulty);
     }
 
+    /**
+     *
+     * @param name the name of the player
+     * @param id the id of the level
+     * @param difficulty  the difficulty of the level
+     * @return a new savedata object containing the data of the level
+     */
     public static SaveData of(String name, int id, Difficulty difficulty) {
         return new SaveData(new File(SaveFileManager.SAVE_DIR + File.separator + name + ".txt"), name, id, difficulty);
     }
