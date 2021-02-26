@@ -61,6 +61,10 @@ public class Level {
         this.projectiles.add(entity);
     }
 
+    public List<Entity> getProjectiles() {
+        return this.projectiles;
+    }
+
     public void spawnEntity(Entity entity) {
         EntitySpawnEvent event = new EntitySpawnEvent(entity, this);
 
