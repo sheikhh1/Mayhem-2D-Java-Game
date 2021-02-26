@@ -51,7 +51,7 @@ public class CorrosivePathing implements Pathing {
 
         if (entity.isEntityGrounded()) {
             if (this.rateOfFire.getElapsedTime().asMilliseconds() > 1000) {
-                fireBall = new Projectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.NORMAL);
+                fireBall = new Projectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.WEAK);
                 this.currentLevel.spawnProjectile(fireBall);
                 this.rateOfFire.restart();
             }
