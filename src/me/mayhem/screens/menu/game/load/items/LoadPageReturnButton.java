@@ -7,11 +7,19 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the return
+ * button for the {@link me.mayhem.screens.menu.game.load.LoadPageManager} to return to main page
+ *
+ */
 public class LoadPageReturnButton extends ButtonInteractable {
+
     /**
-     * a button that returns you to the main page
      *
-     * @param shape the shape to create the buttton
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
      */
     public LoadPageReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
