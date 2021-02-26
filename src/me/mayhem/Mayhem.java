@@ -53,7 +53,7 @@ public class Mayhem {
 
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
-        window.setVerticalSyncEnabled(true);
+        window.setFramerateLimit(60);
 
         THREAD_POOL.submit(UtilSharedResources::init);
 
