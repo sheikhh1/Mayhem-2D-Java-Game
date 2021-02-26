@@ -22,4 +22,8 @@ public enum VaccineType {
     private int getDamage() {
         return this.damage;
     }
+
+    private Texture getTexture() {
+        return this.imageTexture;
+    }
 }
