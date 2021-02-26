@@ -18,7 +18,12 @@ public class LoadGameFileButton extends ButtonInteractable {
 
     private final SaveData loadFile;
 
-
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public LoadGameFileButton(Shape shape, SaveData loadFile) {
         super(shape, "fonts/FreeSans.ttf", loadFile.getName());
 
