@@ -10,15 +10,12 @@ public enum DoorState {
     OPENING(-1, "interactables/doors/DoorOpening.png")
     ;
 
-    private int doorState;
-    private String imagePath;
+    private final int doorState;
     private final Texture doorTexture;
-
 
     DoorState(int doorState, String imagePath) {
         this.doorState = doorState;
-        this.imagePath = imagePath;
-        this.doorTexture = UtilImageLoader.loadTextureFromStream(getClass().getClassLoader().getResourceAsStream(this.imagePath));
+        this.doorTexture = UtilImageLoader.loadTextureFromStream(imagePath);
     }
 
     public int getDoorState() {
