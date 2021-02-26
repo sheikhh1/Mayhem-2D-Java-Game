@@ -102,7 +102,7 @@ public class GameManager {
      * Update drawables
      */
     public void draw() {
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
         this.currentLevel.getLayout().draw(this.renderWindow);
 
         Iterator<Entity> iterator = this.currentLevel.getEntities().iterator();
@@ -128,8 +128,8 @@ public class GameManager {
         for (Drawable drawnShape : this.drawnShapes) {
             this.renderWindow.draw(drawnShape);
         }
-        long endTime = System.currentTimeMillis();
-        System.out.println("Total draw time of level: " + (endTime - startTime));
+/*        long endTime = System.currentTimeMillis();
+        System.out.println("Total draw time of level: " + (endTime - startTime));*/
     }
 
     /**

@@ -61,18 +61,19 @@ public class Mayhem {
         mainWindow = window;
 
         while (window.isOpen()) {
+            long startTime = System.currentTimeMillis();
             window.clear(Color.BLACK);
 
             if (currentScreen != null) {
-                long startTime = System.currentTimeMillis();
+//                long startTime = System.currentTimeMillis();
                 currentScreen.draw(window);
-                long endTime = System.currentTimeMillis();
-                System.out.println("Total time spend drawing: " + (endTime - startTime));
+//                long endTime = System.currentTimeMillis();
+//                System.out.println("Total time spend drawing: " + (endTime - startTime));
             }
 
             window.display();
 
-            long startTime = System.currentTimeMillis();
+//            long startTime = System.currentTimeMillis();
             for (Event event : window.pollEvents()) {
                 setActive(window, event);
 
