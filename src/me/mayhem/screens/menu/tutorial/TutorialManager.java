@@ -17,22 +17,30 @@ import org.jsfml.graphics.*;
  */
 public class TutorialManager implements ScreenManager {
 
+    private static final String[] TEXT = new String[]{
+            "Welcome to Mayhem",
+            "In Mayhem you must use the WASD keys to move your character",
+            "Collect the KeyCard  and take it to the elevator to progress",
+            "Can you make it out in time to save the world?"
+    };
+
     private final Sound mainTheme;
 
-    private Interactable[] buttons;
+    private final Interactable[] buttons = new Interactable[]{this.createReturnButton()};
+
     private Sprite[] sprites;
     private Text[] texts;
 
     public TutorialManager(RenderWindow window, Sound mainTheme){
         this.mainTheme = mainTheme;
-        loadScreen(window);
+        this.loadScreen(window);
     }
+
     @Override
     public void loadScreen(RenderWindow renderWindow) {
-        createSprites();
-        createButtons();
-        createText();
-        draw(renderWindow);
+        this.createSprites();
+        this.createText();
+        this.draw(renderWindow);
     }
 
     @Override
@@ -44,7 +52,6 @@ public class TutorialManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-
         for (Sprite sprite : sprites){
             renderWindow.draw(sprite);
         }
@@ -52,35 +59,28 @@ public class TutorialManager implements ScreenManager {
         for (Interactable button: buttons){
             button.draw(renderWindow);
         }
+
         for (Text words: this.texts){
             renderWindow.draw(words);
         }
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {
-
-    }
+    public void close(RenderWindow renderWindow) {}
 
     @Override
     public Sound getSound() {
         return this.mainTheme;
     }
 
-    private void createButtons(){
-        TutorialReturnButton returnButton = new TutorialReturnButton(createReturnButton());
-
-        this.buttons = new Interactable[]{returnButton};
-
-    }
-    private Shape createReturnButton(){
+    private TutorialReturnButton createReturnButton(){
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
         shape.setPosition((0), (Mayhem.SCREEN_HEIGHT - 100));
         shape.setFillColor(new Color(176, 176, 176));
 
-        return shape;
+        return new TutorialReturnButton(shape);
     }
 
     /**
@@ -88,57 +88,39 @@ public class TutorialManager implements ScreenManager {
      */
     private void createSprites() {
         Sprite background = UtilSharedResources.getBackground();
-        Sprite WSAD = UtilSharedResources.getWSAD();
+        Sprite wasdKeys = UtilSharedResources.getWSAD();
         Sprite keyCard = UtilSharedResources.getKeyCard();
         Sprite door = UtilSharedResources.getDoor();
 
-        WSAD.setPosition(new Vector(440, 40).toVector());
-        WSAD.setScale(new Vector(0.5f,0.5f).toVector());
+        wasdKeys.setPosition(new Vector(440, 40).toVector());
+        wasdKeys.setScale(new Vector(0.5f, 0.5f).toVector());
 
 
         keyCard.setPosition(new Vector(260, 310).toVector());
-        keyCard.setScale(new Vector(0.3f,0.3f).toVector());
+        keyCard.setScale(new Vector(0.3f, 0.3f).toVector());
 
         door.setPosition(new Vector(800, 350).toVector());
-        door.setScale(new Vector(0.5f,0.5f).toVector());
+        door.setScale(new Vector(0.5f, 0.5f).toVector());
 
-    this.sprites = new Sprite[]{background, WSAD, keyCard, door};
+        this.sprites = new Sprite[]{background, wasdKeys, keyCard, door};
     }
 
     /**
      * a method that creates the text objects that appear on the screen
      */
-    private void createText(){
-        String[] writing = initialiseText();
+    private void createText() {
+        this.texts = new Text[TEXT.length];
 
-        this.texts = new Text[writing.length];
+        for (int i = 0; i < TEXT.length; i++) {
+            Text text = new Text(TEXT[i], UtilSharedResources.getMainFont());
+            float width = text.getLocalBounds().width;
 
-        for (int i = 0; i <= writing.length - 1; i++){
-
-            Text text = new Text(writing[i], UtilSharedResources.getMainFont());
-            Float width = text.getLocalBounds().width;
-            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH/ 2f) - (width/2)) - 20, (Mayhem.SCREEN_HEIGHT/6f ) * i + 2 ).toVector());
-            text.setScale(new Vector(1,1).toVector());
+            text.setPosition(new Vector(((Mayhem.SCREEN_WIDTH / 2f) - (width / 2)) - 20, (Mayhem.SCREEN_HEIGHT / 6f) * i + 2).toVector());
+            text.setScale(new Vector(1, 1).toVector());
             text.setStyle(TextStyle.BOLD);
             text.setColor(Color.CYAN);
 
             this.texts[i] = text;
-
         }
     }
-
-    /**
-     * initalises the strings for the text that will appear on the screen
-     * @return
-     */
-    private String[] initialiseText(){
-        String line1 = "Welcome to Mayhem";
-        String line2 = "In Mayhem you must use the WSAD keys to move your character";
-        String line3 = "Collect the KeyCard  and take it to the elevator to progress";
-        String line4 = "Can you make it out in time to save the world?";
-
-        return new String[]{line1,line2,line3, line4};
-
-    }
-
 }
