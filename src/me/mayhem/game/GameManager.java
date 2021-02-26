@@ -188,7 +188,7 @@ public class GameManager {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
 
-                    if (entity.getType() == EntityType.PROJECTILE) {
+                    if (entity.getType() == EntityType.PROJECTILE || entity.getType() == EntityType.VACCINE) {
                         entity.setDead(true);
                     }
 
