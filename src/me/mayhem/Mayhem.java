@@ -53,7 +53,7 @@ public class Mayhem {
 
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Mayhem", Window.CLOSE | Window.TITLEBAR);
-        window.setVerticalSyncEnabled(true);
+        window.setFramerateLimit(60);
 
         THREAD_POOL.submit(UtilSharedResources::init);
 
@@ -64,11 +64,15 @@ public class Mayhem {
             window.clear(Color.BLACK);
 
             if (currentScreen != null) {
+                long startTime = System.currentTimeMillis();
                 currentScreen.draw(window);
+                long endTime = System.currentTimeMillis();
+                System.out.println("Total time spend drawing: " + (endTime - startTime));
             }
 
             window.display();
 
+            long startTime = System.currentTimeMillis();
             for (Event event : window.pollEvents()) {
                 setActive(window, event);
 
@@ -80,7 +84,8 @@ public class Mayhem {
                     }
                 }
             }
-
+            long endTime = System.currentTimeMillis();
+            System.out.println("Total time spent on events: " + (endTime - startTime));
         }
 
         THREAD_POOL.shutdown();
