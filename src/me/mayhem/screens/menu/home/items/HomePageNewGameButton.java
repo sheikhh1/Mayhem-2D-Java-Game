@@ -8,6 +8,12 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the quit
+ * button for the {@link me.mayhem.screens.menu.home.HomePageManager} to start a new game
+ *
+ */
 public class HomePageNewGameButton extends ButtonInteractable {
 
     /**
@@ -21,10 +27,11 @@ public class HomePageNewGameButton extends ButtonInteractable {
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
-
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
     }
 }
