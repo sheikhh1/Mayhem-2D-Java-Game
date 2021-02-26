@@ -12,20 +12,21 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Vector2f;
 
 public class Vaccine extends Entity {
+
     private final RectangleShape vaccine;
     private int xMotion = 0;
 
     public Vaccine(Vector position, Vector facing, Attribute<?>... attributes) {
-        super(EntityType.VACCINE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
-        this.vaccine = new RectangleShape(new Vector2f(10,10));
+        super(EntityType.VACCINE, position, Vector.getZero(), new SpriteHitbox(position, 20, 40), Pathing.NO_PATHING, attributes);
+        this.vaccine = new RectangleShape(new Vector2f(40,20));
         this.vaccine.setPosition(position.toVector());
 
-        this.vaccine.setFillColor(Color.BLUE);
+        this.vaccine.setTexture(EntityType.VACCINE.getEntityTexture());
 
         if (facing.getX() == 1f) {
-            this.xMotion = 1;
+            this.xMotion = 2;
         } else {
-            this.xMotion = -1;
+            this.xMotion = -2;
         }
     }
 
@@ -39,6 +40,8 @@ public class Vaccine extends Entity {
         this.getMotion().add(this.xMotion, 0);
     }
 
-
+    public void attack(Entity enemy) {
+        System.out.println("here");
+    }
 
 }
