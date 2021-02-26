@@ -89,7 +89,7 @@ public class Player extends Entity {
     }
 
     public void attack(Entity enemy) {
-        if (!enemy.isDead()) {
+        if (!enemy.isDead() && enemy.getType() != EntityType.PROJECTILE) {
             enemy.damage(this, 1);
         }
 
