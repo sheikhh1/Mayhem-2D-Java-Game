@@ -11,12 +11,12 @@ import me.mayhem.util.Vector;
 import me.mayhem.util.direction.UtilVector;
 import org.jsfml.system.Clock;
 
-public class CorrosivePathing implements Pathing {
+public class RangedPathing implements Pathing {
 
     private final Level currentLevel;
     private Clock rateOfFire = new Clock();
 
-    public CorrosivePathing(Level currentLevel) {
+    public RangedPathing(Level currentLevel) {
         this.currentLevel = currentLevel;
     }
 
@@ -50,12 +50,15 @@ public class CorrosivePathing implements Pathing {
         EnemyProjectile fireBall;
 
         if (entity.isEntityGrounded()) {
-            if (this.rateOfFire.getElapsedTime().asMilliseconds() > 1000) {
-                fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.WEAK);
-                this.currentLevel.spawnProjectile(fireBall);
-                this.rateOfFire.restart();
+            if (!rapidFire) {
+                if (this.rateOfFire.getElapsedTime().asMilliseconds() > 1000) {
+                    fireBall = new EnemyProjectile(entity.getPosition().clone(), this.currentLevel.getPlayer().getPosition(), ProjectileType.WEAK);
+                    this.currentLevel.spawnProjectile(fireBall);
+                    this.rateOfFire.restart();
+                }
             }
-        }
+
+       }
     }
 
     public void determineState(Entity entity) {
