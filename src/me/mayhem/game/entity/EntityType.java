@@ -34,6 +34,7 @@ public enum EntityType {
     private final Texture entityTexture;
     private final Sprite entitySprite;
     private final boolean healthBar;
+    private final String imagePath;
     private final BiFunction<Vector, Level, Entity> spawnMethod;
 
     EntityType(int maxHealth, float movementSpeed, float jumpStrength, boolean healthBar, String imagePath, BiFunction<Vector, Level, Entity> spawnMethod) {
@@ -41,6 +42,7 @@ public enum EntityType {
         this.movementSpeed = movementSpeed;
         this.jumpStrength = jumpStrength;
         this.healthBar = healthBar;
+        this.imagePath = imagePath;
         this.spawnMethod = spawnMethod;
         this.entityTexture = UtilImageLoader.loadTextureFromStream(imagePath);
         this.entitySprite = UtilSprite.loadFromPath(imagePath, 0.25f, 0.25f);
@@ -56,6 +58,10 @@ public enum EntityType {
 
     public float getJumpStrength() {
         return this.jumpStrength;
+    }
+
+    public String getImagePath() {
+        return this.imagePath;
     }
 
     public boolean getHasHealthBar() {
