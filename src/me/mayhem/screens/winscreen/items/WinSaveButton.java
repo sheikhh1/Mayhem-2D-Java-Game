@@ -10,6 +10,9 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
+/**
+ * the button that lets you save the game when you finish the level
+ */
 public class WinSaveButton extends ButtonInteractable {
     public WinSaveButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Save and return to home");
