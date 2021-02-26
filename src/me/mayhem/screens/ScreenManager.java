@@ -1,10 +1,15 @@
 package me.mayhem.screens;
 
-import me.mayhem.game.level.difficulty.Difficulty;
 import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
 
+/**
+ *
+ * Screen manager interface for handling the different screens the game passes through
+ *
+ */
 public interface ScreenManager {
+
     /**
      * loads items onto a render window
      *
