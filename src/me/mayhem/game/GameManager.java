@@ -133,6 +133,14 @@ public class GameManager {
             entity.tick();
         }
 
+        for (Entity projectile : this.currentLevel.getProjectiles()) {
+            this.currentLevel.spawnEntity(projectile);
+        }
+
+        if (this.currentLevel.getProjectiles().size() > 0) {
+            this.currentLevel.clearProjectiles();
+        }
+
         this.handleScreenScrolling();
         this.handleEntityVelocity();
         this.updateTimer();
