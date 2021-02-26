@@ -4,8 +4,21 @@ import me.mayhem.input.InputListener;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseButtonEvent;
 
+/**
+ *
+ * Concrete implementation of the {@link InputListener} to remove any generics from higher level code
+ * thus making it easier for the team to use listeners as all the potential ambiguity and confusion is removed.
+ *
+ * This implementation is for the event where the user presses or releases a button on their mouse
+ *
+ */
 public abstract class MouseButtonListener extends InputListener<MouseButtonEvent> {
 
+    /**
+     *
+     * Default constructor passing the correct {@link Event.Type} that relate to this listener
+     *
+     */
     public MouseButtonListener() {
         super(Event.Type.MOUSE_BUTTON_PRESSED,
                 Event.Type.MOUSE_BUTTON_RELEASED);
