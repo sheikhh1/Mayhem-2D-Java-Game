@@ -20,9 +20,11 @@ public class Projectile extends Entity implements Enemy {
 
     private final CircleShape fireBall;
     private int xMotion = 0;
+    private final ProjectileType projectileType;
 
     public Projectile(Vector position,Vector playerPosition, ProjectileType projectileType, Attribute<?>... attributes) {
         super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
+        this.projectileType = projectileType;
         this.fireBall = new CircleShape(15);
         this.fireBall.setTexture(projectileType.getTexture());
 
@@ -47,7 +49,7 @@ public class Projectile extends Entity implements Enemy {
     @Override
     public void attack(Player player) {
         if (!player.isDead()) {
-            player.damage(this, 4);
+            player.damage(this, this.projectileType.getDamage());
             this.setDead(true);
         }
     }
