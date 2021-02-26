@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this is the managaer to saved data to file
+ */
 public class SaveFileManager {
 
     public static final File SAVE_DIR = Paths.get("saves/").toFile();
@@ -40,6 +43,10 @@ public class SaveFileManager {
         SAVE_FILES.add(saveData);
     }
 
+    /**
+     * method to write the contents of the savedata to file
+     * @param saveData the data that is to be written
+     */
     public static void save(SaveData saveData) {
         Mayhem.THREAD_POOL.submit(() -> {
             try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(saveData.getFile()))) {
@@ -53,6 +60,11 @@ public class SaveFileManager {
         });
     }
 
+    /**
+     *
+     * @param name the name to be checked
+     * @return a boolean for it the name given is a file
+     */
     public static boolean doesNameExist(String name) {
         for (SaveData saveFile : SAVE_FILES) {
             if (saveFile.getName().equalsIgnoreCase(name)) {
