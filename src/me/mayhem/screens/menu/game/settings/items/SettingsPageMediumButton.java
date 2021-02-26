@@ -9,18 +9,31 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button to let you select medium as your difficulty
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the medium
+ * button for the {@link me.mayhem.screens.menu.game.settings.NewGameSettingsPageManager} to set the difficulty to medium
+ * for the next game
+ *
  */
 public class SettingsPageMediumButton extends ButtonInteractable {
+
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public SettingsPageMediumButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Medium");
     }
 
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.MEDIUM));
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new NameSelectScreen(window, Mayhem.getCurrentScreen().getSound(), Difficulty.MEDIUM));
     }
 }
