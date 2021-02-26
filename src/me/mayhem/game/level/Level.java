@@ -60,7 +60,9 @@ public class Level {
         return this.projectiles;
     }
 
-   
+    public void clearProjectiles() {
+        this.projectiles.clear();
+    }
 
     public void spawnObstacle(Entity e) {
         this.entities.add(e);
