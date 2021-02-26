@@ -143,8 +143,17 @@ public class GameManager {
             this.currentLevel.spawnEntity(projectile);
         }
 
+
         if (this.currentLevel.getProjectiles().size() > 0) {
             this.currentLevel.clearProjectiles();
+        }
+
+        for (Entity vaccine : this.currentLevel.getVaccines()) {
+            this.currentLevel.spawnEntity(vaccine);
+        }
+
+        if (this.currentLevel.getVaccines().size() > 0) {
+            this.currentLevel.clearVaccines();
         }
 
         this.handleScreenScrolling();
@@ -179,7 +188,7 @@ public class GameManager {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
                     Vector center = new Vector(0f, 0f);
 
-                    if (entity.getType() == EntityType.PROJECTILE) {
+                    if (entity.getType() == EntityType.PROJECTILE || entity.getType() == EntityType.VACCINE) {
                         entity.setDead(true);
                     }
 

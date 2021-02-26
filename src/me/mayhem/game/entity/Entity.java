@@ -8,6 +8,7 @@ import me.mayhem.game.entity.animation.EntityAnimation;
 import me.mayhem.game.entity.entities.drawable.healthbox.EntityHealthBox;
 import me.mayhem.game.entity.event.EntityDamageByEntityEvent;
 import me.mayhem.game.entity.physics.EntityPhysics;
+import me.mayhem.game.entity.player.vaccine.Vaccine;
 import me.mayhem.game.entity.state.EntityState;
 import me.mayhem.game.event.EventManager;
 import me.mayhem.util.Vector;
@@ -45,6 +46,7 @@ public abstract class Entity {
     private boolean entityBack = false;
     private boolean entityJump = false;
     private boolean entityStanding = false;
+    private boolean entityRangeAttack = false;
     private boolean entityGrounded = true;
 
     private double health;
@@ -392,8 +394,14 @@ public abstract class Entity {
                 this.facing = new Vector(1, 0);
             } else if (state == EntityState.MELEE) {
                 this.setMelee(true);
+                this.setEntityRangeAttack(false);
                 this.animate.setTimeOut(340);
                 this.animate.resetTimeOutClock();
+            } else if (state == EntityState.RANGEATTACK) {
+                //this.setForward(false);
+                //this.setBack(false);
+                this.setMelee(false);
+                this.setEntityRangeAttack(true);
             }
         }
     }
@@ -446,5 +454,13 @@ public abstract class Entity {
         this.dead = dead;
         this.animate.setEntityDead(dead);
         this.animate.setPause(dead);
+    }
+
+    public boolean isEntityRangeAttack() {
+        return entityRangeAttack;
+    }
+
+    public void setEntityRangeAttack(boolean entityRangeAttack) {
+        this.entityRangeAttack = entityRangeAttack;
     }
 }

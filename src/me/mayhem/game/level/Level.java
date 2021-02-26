@@ -22,6 +22,7 @@ public class Level {
 
     private final List<Entity> entities = new ArrayList<>();
     private final List<Entity> projectiles = new ArrayList<>();
+    private final List<Entity> vaccines = new ArrayList<>();
 
     private final Player player;
     private final Layout layout;
@@ -67,6 +68,18 @@ public class Level {
 
     public void clearProjectiles() {
         this.projectiles.clear();
+    }
+
+    public void spawnVaccine(Entity entity) {
+        this.vaccines.add(entity);
+    }
+
+    public List<Entity> getVaccines() {
+        return this.vaccines;
+    }
+
+    public void clearVaccines() {
+        this.vaccines.clear();
     }
 
     public void spawnEntity(Entity entity) {
