@@ -7,4 +7,4 @@ if [[ $JAVA_VERSION < "11.0.0" ]]
    exit 0
 fi
 
-java -cp resources:classes:libs/jsfml.jar me.mayhem.Mayhem
+java -Xmx 1g -cp resources:classes:libs/jsfml.jar me.mayhem.Mayhem
