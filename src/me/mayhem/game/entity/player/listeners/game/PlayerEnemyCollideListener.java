@@ -7,10 +7,9 @@ import me.mayhem.game.entity.entities.enemies.Enemy;
 import me.mayhem.game.entity.entities.friendly.door.Door;
 import me.mayhem.game.entity.event.PlayerCollideWithEntityEvent;
 import me.mayhem.game.event.struct.EventListener;
-import me.mayhem.save.SaveFileManager;
-import me.mayhem.screens.endgamescreen.EndGameScreenManager;
-import me.mayhem.screens.gamescreen.GameScreenManager;
-import me.mayhem.screens.winscreen.WinScreenManager;
+import me.mayhem.screens.end.finish.EndGameScreenManager;
+import me.mayhem.screens.end.win.WinScreenManager;
+import me.mayhem.screens.game.game.GameScreenManager;
 import org.jsfml.graphics.RenderWindow;
 
 public class PlayerEnemyCollideListener {

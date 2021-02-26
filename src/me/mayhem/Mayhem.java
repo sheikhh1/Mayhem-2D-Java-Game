@@ -4,7 +4,7 @@ import me.mayhem.input.InputListener;
 import me.mayhem.input.InputManager;
 import me.mayhem.save.SaveFileManager;
 import me.mayhem.screens.ScreenManager;
-import me.mayhem.screens.homepage.HomePageManager;
+import me.mayhem.screens.menu.home.HomePageManager;
 import me.mayhem.util.UtilSharedResources;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
