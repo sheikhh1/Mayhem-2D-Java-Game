@@ -8,17 +8,30 @@ import org.jsfml.graphics.Shape;
 import org.jsfml.window.event.Event;
 
 /**
- * a button that can be used to return to the previous screen
+ *
+ * Concrete implementation of {@link me.mayhem.util.ui.Interactable} and {@link ButtonInteractable} classes for the return
+ * button for the {@link me.mayhem.screens.menu.game.naming.NameSelectScreen} to return to the {@link me.mayhem.screens.menu.home.HomePageManager}
+ *
  */
 public class ReturnButton extends ButtonInteractable {
+
+    /**
+     *
+     * Default constructor taking the shape as the background
+     *
+     * @param shape Background shape
+     */
     public ReturnButton(Shape shape) {
         super(shape, "fonts/FreeSans.ttf", "Return");
     }
+
     @Override
     protected void call(RenderWindow window, Event event) {
-        if (event.type == Event.Type.MOUSE_BUTTON_PRESSED) {
-            Mayhem.getCurrentScreen().unloadScreen(window);
-            Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
+        if (event.type != Event.Type.MOUSE_BUTTON_PRESSED) {
+            return;
         }
+
+        Mayhem.getCurrentScreen().unloadScreen(window);
+        Mayhem.setCurrentScreen(new NewGameSettingsPageManager(window, Mayhem.getCurrentScreen().getSound()));
     }
 }
