@@ -71,7 +71,10 @@ public class Mayhem {
 //                System.out.println("Total time spend drawing: " + (endTime - startTime));
             }
 
+            long startDisplay = System.currentTimeMillis();
             window.display();
+            long endDisplay = System.currentTimeMillis();
+            System.out.println("DISPLAY TIME: " + (endDisplay - startDisplay));
 
 //            long startTime = System.currentTimeMillis();
             for (Event event : window.pollEvents()) {
