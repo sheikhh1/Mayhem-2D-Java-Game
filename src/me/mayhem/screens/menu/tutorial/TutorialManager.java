@@ -32,13 +32,12 @@ public class TutorialManager implements ScreenManager {
     private Text[] texts;
 
     /**
-     *
      * Default constructor taking the window to draw onto and the main theme tune to play
      *
-     * @param window The window to draw on to
+     * @param window    The window to draw on to
      * @param mainTheme The theme song to play
      */
-    public TutorialManager(RenderWindow window, Sound mainTheme){
+    public TutorialManager(RenderWindow window, Sound mainTheme) {
         this.mainTheme = mainTheme;
         this.loadScreen(window);
     }
@@ -59,21 +58,22 @@ public class TutorialManager implements ScreenManager {
 
     @Override
     public void draw(RenderWindow renderWindow) {
-        for (Sprite sprite : sprites){
+        for (Sprite sprite : sprites) {
             renderWindow.draw(sprite);
         }
 
-        for (Interactable button: buttons){
+        for (Interactable button : buttons) {
             button.draw(renderWindow);
         }
 
-        for (Text words: this.texts){
+        for (Text words : this.texts) {
             renderWindow.draw(words);
         }
     }
 
     @Override
-    public void close(RenderWindow renderWindow) {}
+    public void close(RenderWindow renderWindow) {
+    }
 
     @Override
     public Sound getSound() {
@@ -86,7 +86,7 @@ public class TutorialManager implements ScreenManager {
      *
      * @return The {@link TutorialReturnButton}
      */
-    private TutorialReturnButton createReturnButton(){
+    private TutorialReturnButton createReturnButton() {
         RectangleShape shape = new RectangleShape();
 
         shape.setSize(new Vector(200, 100).toVector());
