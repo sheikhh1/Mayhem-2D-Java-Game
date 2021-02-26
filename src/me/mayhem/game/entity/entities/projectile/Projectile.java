@@ -21,10 +21,10 @@ public class Projectile extends Entity implements Enemy {
     private final CircleShape fireBall;
     private int xMotion = 0;
 
-    public Projectile(Vector position,Vector playerPosition, Attribute<?>... attributes) {
+    public Projectile(Vector position,Vector playerPosition, ProjectileType projectileType, Attribute<?>... attributes) {
         super(EntityType.PROJECTILE, position, Vector.getZero(), new SpriteHitbox(position, 10, 10), Pathing.NO_PATHING, attributes);
         this.fireBall = new CircleShape(15);
-        this.fireBall.setTexture(EntityType.PROJECTILE.getEntityTexture());
+        this.fireBall.setTexture(projectileType.getTexture());
 
         if (Direction.LEFT.is(playerPosition, position)) {
             this.xMotion = 1;
