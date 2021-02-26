@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.nio.file.Path;
 
 /**
- * Class to read and return an image given a specified file path
+ *
+ * A static utility class for loading {@link Image} and {@link Texture} from the resource paths specified
+ *
  */
 public class UtilImageLoader {
 
