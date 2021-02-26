@@ -24,7 +24,7 @@ public class Layout {
                 continue;
             }
 
-            block.draw(renderWindow);
+            /*block.draw(renderWindow);*/
         }
     }
 
