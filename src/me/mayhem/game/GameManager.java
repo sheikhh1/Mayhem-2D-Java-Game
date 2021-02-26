@@ -182,7 +182,9 @@ public class GameManager {
             for (Block block : this.currentLevel.getLayout().getBlocks()) {
                 if (entity.getHitbox().checkForCollision(block.getHitbox())) {
 
-                   
+                    if (entity.getType() == EntityType.PROJECTILE) {
+                        entity.setDead(true);
+                    }
                     Vector center = new Vector(0f, 0f);
 
                     if (entity.inBoundsY(block.getCenter()) && !collisionDetectedX) {
