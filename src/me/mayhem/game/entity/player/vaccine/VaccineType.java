@@ -12,10 +12,14 @@ public enum VaccineType {
     private final int damage;
     private final Texture imageTexture;
     private final String imagePath;
-    
+
     VaccineType(int damage, String imagePath) {
         this.damage = damage;
         this.imageTexture = UtilImageLoader.loadTextureFromStream(imagePath);
         this.imagePath = imagePath;
+    }
+
+    private int getDamage() {
+        return this.damage;
     }
 }
