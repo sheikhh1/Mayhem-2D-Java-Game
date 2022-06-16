@@ -18,7 +18,10 @@ In order to compile the game simply run `sh buildme.sh`
 In order to run the game simply run `sh runme.sh`
 
 ## Third Party Notices
-All content used is referenced in our [ThirdPartyNotices](https://codefeedback.lancaster.ac.uk/git210/SCC210-mon_9_1/Game/src/master/ThirdPartyNotices.txt) file
+All content used is referenced in our [ThirdPartyNotices] file
 
 ## JavaDocs
-For details on how to use our API and extend our game please view our [JavaDocs](https://codefeedback.lancaster.ac.uk/git210/SCC210-mon_9_1/Game/docs/master/index.html)
+For details on how to use our API and extend our game please view our [JavaDocs]
+
+![Screenshot 2022-06-16 215940](https://user-images.githubusercontent.com/60651558/174162726-281a2058-88e3-4443-a851-ff27d7370e38.jpg)
+![Screenshot 2022-06-16 215909](https://user-images.githubusercontent.com/60651558/174162728-95ef8e3f-8f5f-4fce-b107-5ce140ef7fe7.jpg)
