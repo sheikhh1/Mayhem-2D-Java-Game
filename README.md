@@ -1,5 +1,3 @@
-# Mayhem
-
 Mayhem is a simple side-scroller 2d game where the user adventures through the various levels.
 During the adventure the user must find the key in order to escape to the next level through the door!
 However, all is not as simple as it may seem. There are plenty of enemies, and obstacles blocking your
